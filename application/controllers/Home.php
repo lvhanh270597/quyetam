@@ -39,18 +39,12 @@ class Home extends CI_Controller {
             $map[$place['id']] = $place['name'];
         }
 
-        $needed_trips = $this->needed_trip_ml->get_newest();
-        $trips = $this->trip_ml->get_newest();
-        $cheapest_trips = $this->trip_ml->get_cheapest();
-        $number_of_each_from_place = $this->trip_ml->count_each_from_place();
-        $number_of_each_to_place = $this->trip_ml->count_each_to_place();
+        $needed_trips = $this->needed_trip_ml->get_newest(100);
+        $trips = $this->trip_ml->get_newest(100);             
 
         $data = array(
             'trips' => $trips,
-            'needed_trips' => $needed_trips,
-            'cheapest_trips' => $cheapest_trips,            
-            'count_each_from_place' => $number_of_each_from_place,
-            'count_each_to_place' => $number_of_each_to_place,
+            'needed_trips' => $needed_trips,                                   
             'places' => $map,
             'notification' => $this->notification,            
         );
