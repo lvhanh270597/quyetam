@@ -59,7 +59,10 @@ class Home extends CI_Controller {
     }
 
     public function page_not_found(){
-        display('pnf');
+        $data = [
+            'notification' => $this->notification
+        ];
+        display('pnf', $data);
     }
 
     public function send(){                   

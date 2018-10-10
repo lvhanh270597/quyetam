@@ -421,7 +421,15 @@ class Trip extends CI_Controller {
         display('create_trip', $data);
     }
 
-    public function process_request($trip_id, $id){        
+    public function process_request($trip_id, $id){   
+        if (!$this->session->userdata('user_logged')){
+            redirect('page_not_found');
+        }     
+        // Nếu trip không phải của mình, thì chuyển về detail
+        $trip = $this->trip_ml->get_by_primary($trip_id);
+        $username = $this->session->userdata('username');
+        if ($trip['owner'] != $username){ redirect('trip/detail/'.$trip_id); }
+        
         if ($this->input->post('accept')){
             $this->accept_request($trip_id, $id);            
         }
@@ -454,8 +462,9 @@ class Trip extends CI_Controller {
             else{
                 $data = [
                     'price' => $trip['price'],
-                    'fee'   => $trip['price'] * 0.2
+                    'fee'   => $trip['price'] * 0.2                    
                 ];
+                $data['notification'] = $this->notification;
                 display('not_enough', $data);     
                 return ;
                 //redirect('trip/edit/'.$trip_id);
