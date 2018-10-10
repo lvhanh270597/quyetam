@@ -138,17 +138,7 @@
                                                 <label for="form2" data-error="wrong" data-success="right">Giá</label>
                                             </div>
                                         </div>                                        
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="md-form mb-0">
-                                                <textarea type="text" id="form78" class="md-textarea form-control" rows="3" name="note" disabled>
-                                                <?php echo $trip['note']; ?> 
-                                                </textarea>
-                                                <label for="form78">Ghi chú</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div>                                    
                                     <!--/.Third row-->
                                     <!-- Fourth row -->
                                     
