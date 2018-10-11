@@ -38,7 +38,7 @@ class Security
             return "username quá dài";
         }elseif (!preg_match('~^[a-z]{2}~i', $username)) {
             return "username phải bắt đầu với hai kí tự chữ";
-        }elseif (preg_match('~[^a-z0-9_.]+~i', $username)) {
+        }elseif (preg_match('~[^a-zA-Z0-9_.]+~i', $username)) {
             return "username chứa những kí tự không hợp lệ";
         }elseif (substr_count($username, ".") > 1) {
             return "username chỉ chứa một hoặc không có dấu chấm nào";
@@ -93,7 +93,7 @@ class Security
         return true;
     }
 
-    public function checkLogin($data){  
+    public function checkLogin($data){          
         $error = $this->checkUsername($data['username']);		
         if ($error !== true){ return $error; }	
         $error = $this->checkPassword($data['password']);	
