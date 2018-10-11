@@ -93,8 +93,7 @@
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">                                                 
                                                 <input type="datetime-local" id="party-time"
-                                                    name="timestart" value="2018-08-12T08:30"
-                                                    min="2018-06-07T00:00" max="2018-08-14T00:00" disabled class="form-control validate"/>
+                                                    name="timestart" value="<?= after($trip['timestart']) ?>" disabled class="form-control validate"/>
                                                 <label for="form2" data-error="wrong" data-success="right" class="active">Bắt đầu lúc</label>                                                                                                                                                              
                                             </div>
                                         </div>  
