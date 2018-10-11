@@ -173,18 +173,17 @@ class Verify extends CI_Controller {
         $mail->isSMTP();
         $mail->SMTPDebug = 2;        
         $mail->Host = 'smtp.gmail.com';
-        $mail->Port = 587;
+        $mail->Port = '587';
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;        
         $mail->Username = "easyhere.dh@gmail.com";
         //Password to use for SMTP authentication
         $mail->Password = "EasyHere@2018";
         //Set who the message is to be sent from
-        $mail->setFrom('admin@together.easyhere.cf', 'First Last');
+        $mail->From = 'admin@together.easyhere.cf';
         //Set an alternative reply-to address
-        $mail->addReplyTo('replyto@example.com', 'First Last');
         //Set who the message is to be sent to
-        $mail->addAddress('lvhanh.270597@gmail.com', 'John Doe');
+        $mail->AddAddress('lvhanh.270597@gmail.com');
         //Set the subject line
         $mail->Subject = 'PHPMailer GMail SMTP test';
         //Read an HTML message body from an external file, convert referenced images to embedded,
