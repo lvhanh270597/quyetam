@@ -148,7 +148,7 @@ class Trip_ml extends Trip_template
 			$where = '(start_from = '.$from.') and (finish_to = '.$to.')';
 		}
 		if ($empty){
-			$where = '(('.$where.') and (guess is null) and (timestart >= '.get_current_time().'))';
+			$where = '(('.$where.') and (guess is null) and (timestart >= "'.get_current_time().'"))';
 		}		
 		else{
 			$where .= 'and (timestart >= "'.get_current_time().'")';
