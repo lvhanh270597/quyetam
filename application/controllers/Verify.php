@@ -178,7 +178,7 @@ class Verify extends CI_Controller {
         $mail->SMTPAuth = true;        
         $mail->Username = "easyhere.dh@gmail.com";
         //Password to use for SMTP authentication
-        $mail->Password = "Xfam0usx";
+        $mail->Password = "EasyHere@2018";
         //Set who the message is to be sent from
         $mail->setFrom('admin@together.easyhere.cf', 'First Last');
         //Set an alternative reply-to address
