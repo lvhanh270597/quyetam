@@ -166,45 +166,28 @@ class Verify extends CI_Controller {
         //        
     }
     
-    function sen2(){
+    function sendMail2(){                   
         require_once "./vendor/autoload.php";
         //PHPMailer Object
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->isSMTP();
-        $mail->SMTPDebug = 2;        
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'tls';
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = '587';
-        $mail->SMTPSecure = 'tls';
-        $mail->SMTPAuth = true;        
-        $mail->Username = "easyhere.dh@gmail.com";
-        //Password to use for SMTP authentication
-        $mail->Password = "Xfam0usx";
-        //Set who the message is to be sent from
+        $mail->isHTML();
+        $mail->Username ='easyhere.dh@gmail.com';
+        $mail->Password = 'EasyHere@2018';
         $mail->From = 'admin@together.easyhere.cf';
-        //Set an alternative reply-to address
-        //Set who the message is to be sent to
-        $mail->AddAddress('lvhanh.270597@gmail.com');
-        //Set the subject line
-        $mail->Subject = 'PHPMailer GMail SMTP test';
-        //Read an HTML message body from an external file, convert referenced images to embedded,
-        //convert HTML into a basic plain-text alternative body
-        $mail->isHTML();        
+        $mail->FromName = 'noreply';
+        $mail->Subject = 'EasyHere - Verification student email';
         $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
 			
-		Hãy click vào linh dưới để xác thực email sinh viên của bạn! ';
-        //Replace the plain text body with one created manually
-        //Attach an image file
-        //send the message, check for errors
-        if (!$mail->send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
-        } else {
-            echo "Message sent!";
-            //Section 2: IMAP
-            //Uncomment these to save your message in the 'Sent Mail' folder.
-            #if (save_mail($mail)) {
-            #    echo "Message saved!";
-            #}
-        }
+		Hãy click vào linh dưới để xác thực email sinh viên của bạn!
+		'.base_url('verify/active/'.$id.'/'.$hash).'
+        '; // Our message above including the link
+        $mail->AddAddress($email);
+        $mail->send();        
     }
 
     function sendMail($id, $hash, $email){                   
@@ -213,9 +196,9 @@ class Verify extends CI_Controller {
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->isSMTP();
         $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'ssl';
+        $mail->SMTPSecure = 'tls';
         $mail->Host = 'smtp.gmail.com';
-        $mail->Port = '465';
+        $mail->Port = '587';
         $mail->isHTML();
         $mail->Username ='easyhere.dh@gmail.com';
         $mail->Password = 'EasyHere@2018';
