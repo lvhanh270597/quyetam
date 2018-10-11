@@ -43,26 +43,8 @@ class Price extends CI_Controller {
 	}	
 
     public function add_price(){
-        $message_success = '
-		<div class="row">
-			<div class="col-md-12">
-				<div class="alert alert-success"> 
-					<strong>                                        
-						Your profile has been updated successfully!
-					</strong>
-				</div>  
-			</div>
-		</div>    ';
-		$message_error = '
-		<div class="row">
-			<div class="col-md-12">
-				<div class="alert alert-error"> 
-					<strong>                                        
-						Your profile has been updated successfully!
-					</strong>
-				</div>  
-			</div>
-		</div>    ';		
+        $message_success = get_message_success('Adding successfully');
+		$message_error = get_message_error('Fail when adding');
 
         $places = $this->place_ml->get_all();
         $data = ['message' => '', 'places' => $places];

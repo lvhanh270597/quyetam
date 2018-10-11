@@ -4,13 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Notify extends CI_Controller {
     
     // declare variables
-    public $places;
-    public $map;
     public $notification;
 
     public function __construct(){
         parent::__construct();
-        $this->load->model(['notify_ml', 'place_ml', 'notify_ml']);
+        $this->load->model(['notify_ml', 'place_ml']);
         $this->load->helper(['layout']);
         $this->places = $this->place_ml->get_all();
         $this->map = [];

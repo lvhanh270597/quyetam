@@ -7,21 +7,19 @@ class User_control extends CI_Controller {
 	public $places;
 	public function __construct(){
 		parent::__construct();
-		$this->load->helper('layout');		
-		$this->load->model(['user_ml', 'admin_ml', 'place_ml']);	
+		$this->load->model(['admin_ml']);
 		$this->places = $this->place_ml->get_all();
         $this->map = [];
         foreach ($this->places as $place){
             $this->map[$place['id']] = $place['name'];
         }
-           	
 	}
 
 	public function index() {		
 		if (!$this->session->userdata('admin')){
 			redirect('admin/login');
 		}		
-		$users = $this->user_ml->get_all();
+		$users = $this->user_ml->get_total();
 		$data = array(
 			'users' => $users,
             'places' => $this->map

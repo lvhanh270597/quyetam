@@ -37,8 +37,8 @@
                     <div class="row">
 
                         <?php                            
-                            if (count($_places) > 0){                                
-                                foreach ($_places as $place){                                                                                                                                                   
+                            if (count($all) > 0){                                
+                                foreach ($all as $place){                                                                                                                                                   
                                     echo '
                                     <div class="col-lg-3 col-md-6 mb-4">
 
@@ -47,7 +47,7 @@
 
                                             <!--Card image-->
                                             <div class="view overlay">
-                                                <img src="assets/images/uploads/places/'.$place['id'].'/'.$place['image'].'" class="img-fluid" alt="" id="dm">
+                                                <img src="'.place_image($place['id'], $place['image']).'" class="img-fluid" alt="" id="dm">
                                                 <a href="'.site_url('place/detail/'.$place['id']).'">
                                                     <div class="mask rgba-white-slight waves-effect waves-light">                                            
                                                     </div>                                            

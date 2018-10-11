@@ -26,6 +26,13 @@
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}
 </style>
 
+<style>
+    legend{
+        padding-top: 0px;
+        font-size: 16px;
+    }
+</style>     
+
 </head>
 
 <body class="cart-v1 hidden-sn white-skin animated">
@@ -123,10 +130,15 @@
                             </a>';
                        }
                        else{
-                           $count = '';
-                           if ($this->session->userdata('count') > 0){
-                               $count = $this->session->userdata('count');                               
-                           }
+                        $count = '';
+                        if (count($notification) > 0){                               
+                            foreach ($notification as $noti){
+                                if ($noti['seen'] == false){
+                                    if ($count == '') $count = 1;
+                                    else $count += 1;
+                                }
+                            }                               
+                        }
                            echo '
                            <!--Dropdown primary-->
                            <li class="nav-item">
@@ -142,12 +154,12 @@
                                     </a>
                                 </li>                                
                                 <!--Menu-->
-                                <div class="dropdown-menu dropdown-primary" id="noti_tab">';                                    
+                                <div class="dropdown-menu dropdown-primary" id="noti_tab">';                                
                                 foreach (array_slice($notification, 0, 4) as $notify){                                
                                     $new = ($notify['seen'] == false) ? '<span class="badge badge-danger mb-2">new</span>' : '';
                                     echo '<a href="'.site_url('notify/check/'.$notify['id']).'" class="beau">
                                     <div class="fuck">
-                                        <h6>'.$new.' <small>'.$notify['content'].'</h6> </small> <small>'.$notify['time'].'</small>
+                                        <h6>'.$new.' <small>'.$notify['content'].'</h6> </small> <small>'.ago($notify['time']).'</small>
                                     </div>
                                     </a>';
                                 }
@@ -242,7 +254,7 @@
                     let tempi = items[i];
                     item = '<a href="<?php echo site_url('notify/check/'); ?>'+tempi['id']+'" class="beau waves-effect waves-light"><div class="fuck">' +
                         '<h6><span class="badge badge-danger mb-2">new</span><small>' + tempi['content'] +
-                        '</h6> </small> <small>'+tempi['time']+'</small></div></a>';
+                        '</h6> </small> <small>'+moment(tempi['time']).fromNow()+'</small></div></a>';
                     $("#noti_tab").children().first().before(item);                    
                 }         
 

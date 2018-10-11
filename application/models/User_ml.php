@@ -5,20 +5,23 @@ class User_ml extends Quickaccess
 
 	protected $primary = 'username';
 	protected $db_table = 'user';
-	protected $personal_info = ['username','full_name', 'password'];
-	protected $editable_fields = ['username','full_name', 'gender', 'password','facebook', 'phone_num', 'mssv', 'university'];	
+	protected $personal_info = ['username', 'password'];
+	protected $editable_fields = ['username','full_name', 'gender', 'password'];
+	protected $fields = ['full_name', 'facebook', 'phone_num'];	
+	private $security;
 
 	public function __construct()
 	{
 		parent::__construct();			
 		$this->load->helper(array('string'));
+		require_once "assets/security/Security.php";
+        $this->security = new Security(); 
 	}
 
-	public function user_log_in($username){
-		if ($username){
-			$this->session->set_userdata('user_logged', true);						
-			$user = $this->get_by_primary($username);
-			foreach ($this->personal_info as $info_field) {				
+	public function user_log_in($user){
+		if ($user !== null){
+			$this->session->set_userdata('user_logged', true);									
+			foreach ($this->editable_fields as $info_field) {				
 				$this->session->set_userdata($info_field, $user[$info_field]);
 			}						
 			$redirect = $this->session->redirect != null ? $this->session->redirect : base_url();
@@ -26,41 +29,121 @@ class User_ml extends Quickaccess
 		}
 	}	
 
+	public function edit(){
+		$username = $this->session->userdata('username');
+		$data  = $this->user_ml->get_by_primary($username);
+		foreach ($this->fields as $field){
+			if (!empty($this->input->post($field))){
+				$data[$field] = hashCode($this->input->post($field));
+			}
+		}
+		$this->db->set($data);
+		$this->db->where(['username' => $username]);
+		$this->db->update($this->db_table);
+		return true;
+	}
+
 	public function add_money($username, $money){		
-		$query = $this->get_by_primary($username);
-		$query['balance'] += $money;
-		$this->db->where('username', $username)->update($this->db_table, $query);		
+		if (!$this->session->userdata('admin')){
+			redirect('admin/login');
+		}
+		$username = trim($username);
+		if (!$this->place_ml->security->checkUsername($username)){
+			return false;	
+		}
+		$user = $this->get_by_primary($username);
+		if ($user === null){
+			return false;
+		}
+		$user['balance'] += $money;
+		$this->db->where('username', $username)->update($this->db_table, $user);		
 	}
 
 	public function check_register(){
-		$error = array(
-			'username' => 'Bạn phải nhập Username',
-			'full_name' => 'Bạn phải nhập Tên đầy đủ',
-			'password' => 'Bạn phải nhập Mật khẩu'			
-		);
-		foreach ($this->personal_info as $field){
-			if ($this->input->post($field) == null){
-				return $error[$field];
+		$empty = [
+			'username' => 'Bạn phải nhập username',
+			'full_name' => 'Bạn phải nhập tên đầy đủ',
+			'password' => 'Bạn phải nhập mật khẩu',
+			'gender' => 'Bạn phải điền gender',			
+		];
+		$data = [];
+		foreach ($this->editable_fields as $field){
+			if ($this->input->post($field) === null){ 
+				return [
+					'status' => false,
+					'data' => $empty[$field]
+				]; 
 			}
+			else{ $data[$field] = trim($this->input->post($field)); }
 		}
-		// check validation username		
-		$username = $this->input->post('username');
-		if ($error = checkUsername($username)){
-			if ($error !== true){ return $error; }
+		// check validation username				
+		$ok = $this->security->checkRegister($data);
+		if ($ok !== true){ 
+			return [
+				'status' => false,
+				'data' => $ok
+			]; 
+		}
+		// check existed username		
+		print_r($data);
+		$user = $this->get_by_primary($data['username']);
+		if ($user !== null){ 
+			return [
+				'status' => false,
+				'data' => 'username đã tồn tại.'
+			]; 
+		}					
+
+		return [
+			'status' => true, 
+			'data' => $data
+		];		
+	}	
+	
+	public function check_login(){
+		$empty = [
+			'username' => 'Bạn phải nhập username',			
+			'password' => 'Bạn phải nhập mật khẩu',					
+		];
+		$data = [];
+		foreach ($this->personal_info as $field){
+			if ($this->input->post($field) === null){ 
+				return [
+					'status' => false,
+					'data' => $empty[$field]
+				]; 
+			}
+			else{ $data[$field] = trim($this->input->post($field)); }
 		}
 		
-		$user = $this->get_by_primary($username);
-		if ($user != null){
-			return 'Username '.$this->input->post('username').' đã tồn tại.';
+		$ok = $this->security->checkLogin($data);
+		if ($ok !== true){ 
+			return [
+				'status' => false,
+				'data' => $ok
+			]; 
 		}
-		// end check
-		// check password
-		$password = $this->input->post('password');
-		if (strlen($password) < 4){
-			return 'Mật khẩu nên nhiều hơn 3 kí tự';
-		}
-		return null;		
-	}	
+		// check existed username		
+		$user = $this->get_by_primary($data['username']);
+		if ($user === null){ 
+			return [
+				'status' => false,
+				'data' => 'username không tồn tại.'
+			]; 
+		}			
+
+		return [
+			'status' => true,
+			'data' => $data
+		];
+	}
+
+	public function add_really_carefully($data){
+		$data['created'] = get_current_time();
+		$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT, ['cost' => 11]);
+		$this->db->insert($this->db_table, $data);
+		return true;
+	}
 
 	public function check_verify($username){
 		$query = $this->db->get_where($this->db_table, array('username' => $username));
@@ -108,5 +191,11 @@ class User_ml extends Quickaccess
 		$user = $this->get_by_primary($username);		
 		$tkc = $tkc ?  'balance': 't_balance';		
 		$this->set_attr($username, $tkc, $user['balance'] - $money);		
+	}
+
+	public function get_total(){
+		$this->db->order_by('created', 'desc');
+		$dataset = $this->db->get($this->db_table);
+		return $dataset->result_array();
 	}
 }

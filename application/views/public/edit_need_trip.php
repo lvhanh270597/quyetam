@@ -26,9 +26,9 @@
 
                             <!-- Card content -->
                             <div class="card-body text-center">                                
-                            <img id="fuck" src="../../assets/images/uploads/places/<?php echo $trip['start_from'].'/'.$images[$trip['start_from']]; ?>" alt="User Photo" class="z-depth-1 mb-3 mx-auto" />
+                            <img id="fuck" src="<?php echo base_url('assets/images/uploads/places/'.$trip['start_from'].'/'.$images[$trip['start_from']]); ?>" alt="User Photo" class="z-depth-1 mb-3 mx-auto" />
                                 <span><i class="fa fa-mail-forward" aria-hidden="true"></i> </span>
-                                <img id="fuck" src="../../assets/images/uploads/places/<?php echo $trip['finish_to'].'/'.$images[$trip['finish_to']]; ?>" alt="User Photo" class="z-depth-1 mb-3 mx-auto" /> 
+                                <img id="fuck" src="<?php echo base_url('assets/images/uploads/places/'.$trip['finish_to'].'/'.$images[$trip['finish_to']]); ?>" alt="User Photo" class="z-depth-1 mb-3 mx-auto" /> 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <a href="<?php echo site_url('review/detail/'.$asker['username']); ?>">
@@ -68,7 +68,7 @@
                                             <div class="md-form mb-0">
                                               <select class="browser-default custom-select mb-4" name="start_from">
                                                 <?php                                                
-                                                    echo '<option value="'.$trip['start_from'].'" disabled selected> from: '.$places[$trip['start_from']].'</option>';                                                                              
+                                                    echo '<option value="'.$trip['start_from'].'" selected> from: '.$places[$trip['start_from']].'</option>';
                                                 ?>
                                               </select>
                                             </div>
@@ -78,7 +78,7 @@
                                             <div class="md-form mb-0">
                                               <select class="browser-default custom-select mb-4" name="finish_to">                                                
                                                 <?php                                                
-                                                echo '<option value="'.$trip['finish_to'].'" disabled selected>to: '.$places[$trip['finish_to']].'</option>';
+                                                echo '<option value="'.$trip['finish_to'].'" selected>to: '.$places[$trip['finish_to']].'</option>';
                                                 ?>
                                               </select>
                                             </div>
@@ -88,13 +88,15 @@
                                     <!--First row-->
                                     <div class="row">                                        
                                         <!--Second row-->                                    
-                                        <!--First column-->
-                                        <div class="col-md-6">                                                                                        
-                                            <div class="md-form mb-0">
-                                                <input type="text" id="form1" class="form-control validate" value="<?php echo $trip['timestart']; ?>" name="timestart">
-                                                <label for="form2" data-error="wrong" data-success="right">Giờ xuất phát</label>                                                                                                                                   
-                                            </div>                                        
-                                        </div>    
+                                        <!--First column-->                                                                                                                           
+                                        <div class="col-md-6">
+                                            <div class="md-form mb-0">                                                 
+                                                <input type="datetime-local" id="party-time"
+                                                    name="timestart" value="<?= system_to_user($trip['timestart']) ?>"
+                                                    min="<?= min_date() ?>" max="<?= max_date() ?>" class="form-control validate"/>
+                                                <label for="form2" data-error="wrong" data-success="right" class="active">Bắt đầu lúc</label>                                                                                                                                                              
+                                            </div>
+                                        </div>  
                                         <!--First column-->
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
@@ -117,7 +119,7 @@
                                                 <select class="browser-default custom-select mb-4" name="type_transaction">
                                                     <?php
                                                     if ($trip['type_transaction']){
-                                                        echo '<option value="" disabled selected>'.$trip['type_transaction'].'</option>';
+                                                        echo '<option value="'.$trip['type_transaction'].'" disabled selected>'.$trip['type_transaction'].'</option>';
                                                     }
                                                     else{
                                                         echo '

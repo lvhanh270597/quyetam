@@ -74,7 +74,8 @@ Licensed under MIT
                             error: function() {
                                 alert('Something is wrong');
                             },
-                            success: function(data) {                                                
+                            success: function(data) {
+                                console.log(data);
                                 window.location.href = "<?php site_url('edit_profile'); ?>";
                             }                           
                         });                                            

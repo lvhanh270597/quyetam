@@ -81,25 +81,19 @@
                                     <div class="row">                                        
                                         <!--Second row-->                                    
                                         <!--First column-->
-                                        <div class="col-md-6">                                                                                        
-                                            <div class="md-form mb-0">
-                                                <div id="picker"></div>
-                                                <input style="display: none" id="result" value="" name="timestart"/>                                            
-                                                <script type="text/javascript">
-                                                    var _gaq = _gaq || [];
-                                                    _gaq.push(['_setAccount', 'UA-36251023-1']);
-                                                    _gaq.push(['_setDomainName', 'jqueryscript.net']);
-                                                    _gaq.push(['_trackPageview']);
-
-                                                    (function() {
-                                                        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                                                        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                                                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                                                    })();
-                                                </script>                                            
-                                                                                                
-                                            </div>                                        
-                                        </div>    
+                                        <style>
+                                            legend{
+                                                font-size: 16px;
+                                            }
+                                        </style>                                                                                                         
+                                        <div class="col-md-6">
+                                            <div class="md-form mb-0">                                                 
+                                                <input type="datetime-local" id="party-time"
+                                                    name="timestart" value=""
+                                                    min="<?= min_date() ?>" max="<?= max_date() ?>" class="form-control validate"/>
+                                                <label for="form2" data-error="wrong" data-success="right" class="active">Bắt đầu lúc</label>                                                                                                                                                              
+                                            </div>
+                                        </div>  
                                         <!--First column-->
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
@@ -108,16 +102,7 @@
                                             </div>
                                         </div>
                                     </div>                                                                                                           
-                                    <!--Third row-->
-                                    <div class="row">
-                                        <!--First column-->
-                                        <div class="col-md-12">
-                                            <div class="md-form mb-0">
-                                                <textarea type="text" id="form78" class="md-textarea form-control" rows="3" name="note"></textarea>
-                                                <label for="form78">Ghi chú</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!--Third row-->                                    
                                     <!--/.Third row-->
                                     <!-- Fourth row -->
                                     <div class="row">

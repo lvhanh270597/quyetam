@@ -38,9 +38,9 @@
 
                             <!-- Card content -->
                             <div class="card-body text-center">                                
-                                <img id="fuck" src="../../assets/images/uploads/places/<?php echo $trip['start_from'].'/'.$images[$trip['start_from']]; ?>" alt="User Photo" class="z-depth-1 mb-3 mx-auto" />
+                                <img id="fuck" src="<?php echo base_url('assets/images/uploads/places/'.$trip['start_from'].'/'.$images[$trip['start_from']]); ?>" alt="User Photo" class="z-depth-1 mb-3 mx-auto" />
                                 <span><i class="fa fa-mail-forward" aria-hidden="true"></i> </span>
-                                <img id="fuck" src="../../assets/images/uploads/places/<?php echo $trip['finish_to'].'/'.$images[$trip['finish_to']]; ?>" alt="User Photo" class="z-depth-1 mb-3 mx-auto" /> 
+                                <img id="fuck" src="<?php echo base_url('assets/images/uploads/places/'.$trip['finish_to'].'/'.$images[$trip['finish_to']]); ?>" alt="User Photo" class="z-depth-1 mb-3 mx-auto" /> 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <?php
@@ -92,7 +92,7 @@
                                                 $disable = '';                       
                                                 if ($editable == false) $disable = 'disabled'; 
                                                 $place = $this->place_ml->get_by_primary($trip['start_from']);               
-                                                echo '<option value="'.$place['id'].'"  selected '.$disable.'>'.$place['name'].'</option>';                                                                                        
+                                                echo '<option value="'.$place['id'].'"  selected '.$disable.'>'.$place['name'].'</option>'; 
                                                 if ($editable){
                                                     foreach ($_places as $place){                                                    
                                                         echo '<option value="'.$place['id'].'">'.$place['name'].'</option>';                                                                                        
@@ -126,12 +126,13 @@
                                     <div class="row">                                        
                                         <!--Second row-->                                    
                                         <!--First column-->
-                                        <div class="col-md-6">                                                                                        
-                                            <div class="md-form mb-0">
-                                                <input type="text" id="form1" class="form-control validate" value="<?php echo $trip['timestart']; ?>" name="timestart">
-                                                <label for="form2" data-error="wrong" data-success="right">Giờ xuất phát</label>                                                                                                                                   
-                                            </div>                                        
-                                        </div>    
+                                        <div class="col-md-6">
+                                            <div class="md-form mb-0">                                                 
+                                                <input type="datetime-local" id="party-time" min="<?= min_date() ?>" max="<?= max_date() ?>"
+                                                    name="timestart" value="<?= system_to_user($trip['timestart']) ?>" class="form-control validate"/>
+                                                <label for="form2" data-error="wrong" data-success="right" class="active">Bắt đầu lúc</label>                                                                                                                                                              
+                                            </div>
+                                        </div>  
                                         <!--First column-->
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
@@ -140,16 +141,7 @@
                                             </div>
                                         </div>
                                     </div>                                                                                                           
-                                    <!--Third row-->
-                                    <div class="row">
-                                        <!--First column-->
-                                        <div class="col-md-12">
-                                            <div class="md-form mb-0">
-                                                <textarea type="text" id="form78" class="md-textarea form-control" rows="3" name="note" <?php echo $disable; ?>><?php echo $trip['note']; ?></textarea>
-                                                <label for="form78">Ghi chú</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!--Third row-->                                    
                                     <!--/.Third row-->
                                     <!-- Fourth row -->
                                     <div class="row">

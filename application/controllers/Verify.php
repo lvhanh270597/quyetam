@@ -49,9 +49,7 @@ class Verify extends CI_Controller {
         $data = [
             'info' => $info,
             'message' => $message,
-            'status' => $status,
-            'places' => $this->map,
-            'notification' => $this->notification
+            'status' => $status,          
         ];
         display('verify', $data);
     }
@@ -83,7 +81,7 @@ class Verify extends CI_Controller {
 
         if ($cmnd['status'] == 'Not yet'){
             if(!empty($_FILES['cmnd']['name'])){            
-                $this->verify_cmnd();
+                $this->verify_cmnd();                
                 $ok = true;
             }
         }
@@ -98,15 +96,20 @@ class Verify extends CI_Controller {
         if (!$ok){
             redirect('verify');
         }
+        else{
+            redirect('verify/success');
+        }
     }
 
     public function verify_mail($username, $email){
         $uni = check_email($email);
         if (!$uni){
-            echo 'Xin lỗi! Chúng tôi không tìm thấy trường nào có dạng email này! <br>
-            Xin vui lòng liên hệ ad để biết thêm thông tin.';
+            $this->session->set_flashdata('error_mail', true);            
             return false;
         }        
+        else{
+            $this->session->set_flashdata('uni_mail', $uni);            
+        }
         // send to mail a hash
         $hash = md5( rand(1, 1000000) );
         //push
@@ -121,6 +124,13 @@ class Verify extends CI_Controller {
             'content' => $content,
             'hash' => $hash
         ];
+        if ($this->verify_ml->check_exist($from_user, $type)){
+            return ;
+        }
+        if ($this->verify_ml->check_mail($content)){
+            $this->session->set_flashdata('invalid_mail', true);
+            return ;
+        }
         if ($this->verify_ml->add_into($data)){            
             /*
             Send mail
@@ -138,8 +148,7 @@ class Verify extends CI_Controller {
                 'where_noti' => ''
             ];
             // Gửi thông báo
-            $this->notify_ml->add_trigger($notify);            
-            redirect(base_url('verify'));
+            $this->notify_ml->add_trigger($notify);                        
         }
         else{
             // Gửi thông báo là check email
@@ -223,16 +232,22 @@ class Verify extends CI_Controller {
         // push file name to database
         // save image 
         $file_name = $this->save_img('scard');
+        if ($this->session->flashdata('scard')){
+            return ;
+        }
         $content = $file_name;
         $from_user = $this->session->userdata('username');
         $type = 'student card';
-        $status = 'Pending';
+        $status = 'Đang chờ';
         $data = [
             'from_user' => $from_user,
             'status' => $status,
             'type' => $type,
             'content' => $content
         ];
+        if ($this->verify_ml->check_exist($from_user, $type)){
+            return ;
+        }
         if ($this->verify_ml->add_into($data)){
             // Gửi thông báo là check email
             $notify = [
@@ -248,9 +263,13 @@ class Verify extends CI_Controller {
     }
 
     public function verify_dcard(){
+        
         // push file name to database
         // save image 
         $file_name = $this->save_img('dcard');
+        if ($this->session->flashdata('dcard')){
+            return ;
+        }
         $content = $file_name;
         $from_user = $this->session->userdata('username');
         $type = 'driver card';
@@ -261,6 +280,9 @@ class Verify extends CI_Controller {
             'type' => $type,
             'content' => $content
         ];
+        if ($this->verify_ml->check_exist($from_user, $type)){
+            return ;
+        }
         if ($this->verify_ml->add_into($data)){
             $notify = [
                 'to_user' => $from_user,
@@ -278,6 +300,9 @@ class Verify extends CI_Controller {
          // push file name to database
         // save image 
         $file_name = $this->save_img('cmnd');
+        if ($this->session->flashdata('cmnd')){
+            return ;
+        }
         $content = $file_name;
         $from_user = $this->session->userdata('username');
         $type = 'cmnd card';
@@ -288,6 +313,9 @@ class Verify extends CI_Controller {
             'type' => $type,
             'content' => $content
         ];
+        if ($this->verify_ml->check_exist($from_user, $type)){
+            return ;
+        }
         if ($this->verify_ml->add_into($data)){
             $notify = [
                 'to_user' => $from_user,
@@ -299,6 +327,9 @@ class Verify extends CI_Controller {
             // Gửi thông báo
             $this->notify_ml->add_trigger($notify);
         }        
+        return [
+            'status' => true            
+        ];
     }
 
 
@@ -386,7 +417,7 @@ class Verify extends CI_Controller {
 		//set a message in case of failure
 		if ( ! $this->upload->do_upload($object))
 		{
-			$this->session->set_flashdata('message_img','Failed to upload a photo');
+			$this->session->set_flashdata($object, true);
 		}
 		//success
 		else
@@ -408,12 +439,48 @@ class Verify extends CI_Controller {
     }
 
     public function accept($id){
+        if (!$this->session->userdata('admin')){
+            redirect('admin/login');
+        }
         $this->verify_ml->set_attr($id, 'status', 'OK');
         redirect('verify/admin');
     }
 
     public function deny($id){
+        if (!$this->session->userdata('admin')){
+            redirect('admin/login');
+        }
         $this->verify_ml->delete($id);
         redirect('verify/admin');
     }
+
+    public function success(){
+        $success = '';
+        $errors = '';
+        if ($this->session->flashdata('cmnd')){
+            $errors .= get_message_error('Lỗi upload cmnd.', 'Định dạng file không đúng.');
+        }
+        if ($this->session->flashdata('scard')){
+            $errors .= get_message_error('Lỗi upload thẻ sinh viên.', 'Định dạng file không đúng.');
+        }
+        if ($this->session->flashdata('dcard')){
+            $errors .= get_message_error('Lỗi upload bằng lái xe.', 'Định dạng file không đúng');
+        }
+        if ($this->session->flashdata('error_mail')){
+            $errors .= get_message_error('Lỗi mail.', 'Chúng tôi không tìm thấy địa chỉ mail này thuộc trường Đại học nào! Vui lòng liên hệ admin để biết thêm chi tiết.');
+        }        
+        if ($this->session->flashdata('invalid_mail')){
+            $errors .= get_message_error('Lỗi mail.', 'Email này đã được sử dụng');
+        }
+        if ($uni = $this->session->flashdata('uni_mail')){
+            $success .= get_message_success($uni);        
+        }        
+        $data = [
+            'title' => 'Gửi thông tin xác thực thành công',
+            'content' => 'Đối với email, bạn sẽ nhận được tin nhắn xác thực, bạn vui lòng mở email lên và click vào link xác thực <br>
+            Còn các loại hình khác, admin sẽ nhanh chóng xem xét thông tin bạn gửi. Và phản hồi sớm nhất có thể. <br>
+            '.$success.$errors
+        ];
+        display('action_info', $data);
+    }  
 }

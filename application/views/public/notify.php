@@ -32,7 +32,7 @@
                 echo $new.' <a href="'.site_url('notify/check/'.$notify['id']).'">'.$notify['content'].' </a>';
                 echo '</td>';
                 echo '<td>';
-                echo $notify['time'];
+                echo ago($notify['time']);
                 echo '</td>';
                 echo '</tr>';
             }

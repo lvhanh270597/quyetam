@@ -41,6 +41,7 @@ if ( ! function_exists('hasSpecialCharacter')) {
 
 if ( ! function_exists('checkUsername') ){
     function checkUsername($username) {
+                
         $username = trim($username);
         if (empty($username)) {
             return "username was left blank.";
@@ -166,5 +167,11 @@ if ( ! function_exists('check_email')){
             }
         }
         return false;
+    }
+}
+
+if ( ! function_exists('hashCode')){
+    function hashCode($code){
+        return htmlentities($code);
     }
 }

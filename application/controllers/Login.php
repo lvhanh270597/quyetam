@@ -3,70 +3,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
     
-    // declare variables
-    public $places;
-    public $map;
     public function __construct(){
-        parent::__construct();
-        
-        $this->places = $this->place_ml->get_all();
-        $this->map = [];
-        foreach ($this->places as $place){
-            $this->map[$place['id']] = $place['name'];
-        }
+        parent::__construct();                
     }       
     
-    public function index(){         
-        if ($this->session->userdata('user_logged')){
-            redirect(base_url());
-        }       
+    public function index(){                         
+        if ($this->session->userdata('user_logged')){ redirect(base_url()); }       
         $data = array(
-            'errors' => '',
-            'success'=> false,
-            'places' => $this->map           
-        );        
-        
+            'errors' => '',            
+            'places' => $this->place_ml->places
+        );                                
         if ($this->input->post()){
-            $username = $this->input->post('username');
-            if (!$user = $this->user_ml->get_by_primary($username)){
-                $data['errors'] = get_message_error('Does not exist!');
+            $ok = $this->user_ml->check_login();
+            if ($ok['status'] === false){
+                $data['errors'] = get_message_error('Lỗi!<br>', $ok['data']);
             }
-            else{
-                $password = $this->input->post('password');
+            else{                
+                $user = $this->user_ml->get_by_primary($ok['data']['username']);                                            
+                $password = $ok['data']['password'];
                 if (password_verify($password, $user['password'])){
-                    $this->user_ml->user_log_in($user['username']);
-                    $data['success'] = true;
-                }                
+                    $this->user_ml->user_log_in($user);                    
+                }                                
             }
         }
-
-        display('login', $data);
-        //$this->load->view('public/login', $data);
+        display('login', $data);        
     }
 
     public function register(){   
         if ($this->session->userdata('user_logged')){
            redirect(base_url()); 
         }   
-
         $errors = '';
         if ($this->input->post()){              
             // check register
-            $errors = $this->user_ml->check_register();
-            if (!$errors){
-                if ($this->user_ml->add()){
-                    redirect('login/success');
-                }                
+            $check = $this->user_ml->check_register();
+            if ($check['status'] === true){                
+                if ($this->user_ml->add_really_carefully($check['data'])){ redirect('login/success'); }                
             }
-            else{
-                $errors = get_message_error($errors);
-            }
+            else{ $errors = get_message_error('Lỗi! <br>', $check['data']); }
         }
-        // register page will show the notification: "signing up success, please login"
-        $data = array( 
-            'errors' => $errors ,
-            'places' => $this->map           
-        );
+        
+        $data = ['errors' => $errors ];
         display('register', $data);
     }
 
@@ -76,6 +53,10 @@ class Login extends CI_Controller {
     }
 
     public function success(){
-        display('success_register', null);
+        $data = [
+            'title' => 'Đăng kí tài khoản thành công!',
+            'content' => 'Nhấn vào <a href="'.site_url('login').'"> đây </a> để đăng nhập'
+        ];
+        display('action_info', $data);
     }
 }

@@ -4,32 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile extends CI_Controller {
 	
-	 // declare variables
-	 public $places;
-	 public $map;
-	 public $notification;
 
 	 public function __construct(){
-		 parent::__construct();
-		 $this->load->model(['trip_ml', 'needed_trip_ml', 'user_ml', 'place_ml', 'verify_ml', 'notify_ml']);
-		 $this->load->helper(['layout', 'time', 'string']);
-		 $this->places = $this->place_ml->get_all();
-		 $this->map = [];
-		 foreach ($this->places as $place){
-			 $this->map[$place['id']] = $place['name'];
-		 }
-		 if ($this->session->userdata('user_logged')){
-            $username = $this->session->userdata('username');
-            $this->notification = $this->notify_ml->get_from_user($username);                        
-            $count = 0;                        
-            foreach ($this->notification as $notify){
-                $count += ($notify['seen'] == false);
-            }
-            $this->session->set_userdata('count', $count);
-        }      
+		 parent::__construct();		 
+		 $this->load->model(['verify_ml']);		 	
+		 if (!$this->session->userdata('user_logged')){
+			 redirect('login');
+		 }	
 	 }        
 
 	public function index(){
+		if (!$this->session->userdata('user_logged')){
+			redirect('login');
+		}
 		// show and edit my profile here
 		$username = $this->session->userdata('username');	
 		$student_mail = $this->verify_ml->get_type_from_user($username, 'student email');
@@ -47,62 +34,36 @@ class Profile extends CI_Controller {
         if ($driver_card['status'] == 'OK') { $driver_card = $ok; }
         else { $driver_card = $no; }
 		
-		$message_success = '
-		<div class="row">
-			<div class="col-md-12">
-				<div class="alert alert-success"> 
-					<strong>                                        
-						Your profile has been updated successfully!
-					</strong>
-				</div>  
-			</div>
-		</div>    ';
-		$message_error = '
-		<div class="row">
-			<div class="col-md-12">
-				<div class="alert alert-error"> 
-					<strong>                                        
-						Your profile has been updated successfully!
-					</strong>
-				</div>  
-			</div>
-		</div>    ';		
 		$data = ['message'=>''];
 		if ($this->input->post()){
-			if ($this->user_ml->edit($username)){								
-				$data['message'] = $message_success;
+			if ($this->user_ml->edit()){								
+				$data['message'] = get_message_success('Update successfully!');
 			}			
 			else{
-				$data['message'] = $message_error;
+				$data['message'] = get_message_error('Fail!');
 			}
 		}
 		$info = $this->user_ml->get_by_primary($username);		
 		
-		if ($info['image'] == null || strlen($info['image']) == 0){
-			$info['image'] = 'assets/images/'.$info['gender'].'/default.jpg';
-		}
-		else{
-			$info['image'] = 'assets/images/uploads/users/profile/'.$username.'/'.$info['image'];
-		}
+
+		$info['image'] = profile_image($info['gender'], $username, $info['image']);
 
 		$data = array_merge($data, $info);		
 		$addition = [                  
             'email' => $student_mail,
             'scard' => $student_card,
             'cmnd' => $cmnd_card,
-			'dcard' => $driver_card,
-			'places' => $this->map,
-			'notification' => $this->notification
+			'dcard' => $driver_card	
 		];
 		$data = array_merge($data, $addition);
 		display('edit_profile', $data);
 	}	
 
 	public function upload(){
-		$username = $this->session->userdata('username');	
-		// first
-		// save image name into database	
+		$username = $this->session->userdata('username');				
+		
 		$name = preg_replace('/[^A-Za-z0-9.-]/', "", $_FILES['image']['name']);			
+		 
 		if ($this->save_img($username)){
 			$this->user_ml->set_attr($username, 'image', $name);			
 		}		

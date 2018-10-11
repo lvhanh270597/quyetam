@@ -1,17 +1,4 @@
-<html lang="en"><head>
-    <!-- Required meta tags always come first -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Check code</title>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Bootstrap core CSS -->
-    <link href="assets/beauty/type1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="assets/beauty/type1/css/mdb.min.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo 'assets/images/icon/icon.jpg'; ?>" />
     <style>
 
         .intro-2 {
@@ -106,28 +93,7 @@
     <!--Main Navigation-->
     <header>
 
-        <!--/. Sidebar navigation -->
-        <!-- Navbar -->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar white">
-            <div class="container">
-                
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-                    <ul class="navbar-nav ml-auto">                      
-                        <li class="nav-item dropdown ml-3">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light dark-grey-text font-weight-bold" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <i class="fa fa-user blue-text"></i> Profile </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                                <a class="dropdown-item waves-effect waves-light" href="<?= base_url('login'); ?>">Login</a>
-                                <a class="dropdown-item waves-effect waves-light" href="<?= base_url('register');?>">Register</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+   
 
         <!--Intro Section-->
         <section class="view intro-2">

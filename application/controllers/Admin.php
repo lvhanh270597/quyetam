@@ -8,13 +8,7 @@ class Admin extends CI_Controller {
 	 public $map;
 	 public function __construct(){
 		 parent::__construct();
-		 $this->load->model(['trip_ml', 'needed_trip_ml', 'user_ml', 'place_ml', 'admin_ml']);
-		 $this->load->helper(['layout', 'time', 'string']);
-		 $this->places = $this->place_ml->get_all();
-		 $this->map = [];
-		 foreach ($this->places as $place){
-			 $this->map[$place['id']] = $place['name'];
-		 }
+		 $this->load->model(['admin_ml']);		
 	 }        
 
 	public function index() {
@@ -26,8 +20,15 @@ class Admin extends CI_Controller {
 
 	public function login(){
 		$errors = '';
-		if ($username = $this->input->post('username')){
+		if ($this->input->post()){
+			$username = $this->input->post('username');
+			if ($this->place_ml->security->checkUsername($username) !== true){
+				redirect('admin/login');
+			}
 			$password = $this->input->post('password');			
+			if ($this->place_ml->security->checkPassword($password) !== true){
+				redirect('admin/login');
+			}
 			if ($this->admin_ml->check($username, $password)){
 				$this->session->set_userdata('username', $username);
 				$this->session->set_userdata('admin', true);				
@@ -35,10 +36,10 @@ class Admin extends CI_Controller {
 			}
 			else{
 				$errors = get_message_error('Lỗi!', 'Sai tên đăng nhập hoặc mật khẩu!');
-			}
-		}		
+			}				
+		}
 		$data = [ 'errors' => $errors];
-		display('admin_login', $data);
+		display('admin_login', $data, true);
 	}
 
 	public function create($username, $password){

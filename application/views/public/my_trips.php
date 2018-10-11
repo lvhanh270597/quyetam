@@ -94,7 +94,7 @@
                                                     <!--Card footer-->
                                                     <div class="card-footer pb-0">
                                                         <div class="row mb-0">
-                                                            <span class="float-left"><strong> '.$trip['timestart'].'</strong></span>
+                                                            <span class="float-left"><strong> '.get_compare($trip['timestart']).'</strong></span>
                                                             <span class="float-right">                                                                                                       
                                                                 <a class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Giờ xuất phát"><i class="fa fa-clock-o ml-3" aria-hidden="true"></i></a>
                                                             </span>
@@ -182,7 +182,7 @@
                                             <!--Card footer-->
                                             <div class="card-footer pb-0">
                                                 <div class="row mb-0">
-                                                    <span class="float-left"><strong> '.$trip['timestart'].'</strong></span>
+                                                    <span class="float-left"><strong> '.get_compare($trip['timestart']).'</strong></span>
                                                     <span class="float-right">                                                                                                       
                                                         <a class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Giờ xuất phát"><i class="fa fa-clock-o ml-3" aria-hidden="true"></i></a>
                                                     </span>

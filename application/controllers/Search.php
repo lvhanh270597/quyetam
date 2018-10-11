@@ -2,30 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Search extends CI_Controller {
-    
-    // declare variables
-    public $places;
-    public $map;
-    public $notification;
 
     public function __construct(){
         parent::__construct();
-        $this->load->model(['trip_ml', 'needed_trip_ml', 'user_ml', 'place_ml', 'notify_ml']);
-        $this->load->helper(['layout']);
-        $this->places = $this->place_ml->get_all();
-        $this->map = [];
-        foreach ($this->places as $place){
-            $this->map[$place['id']] = $place['name'];            
-        }
-        if ($this->session->userdata('user_logged')){
-            $username = $this->session->userdata('username');
-            $this->notification = $this->notify_ml->get_from_user($username);                        
-            $count = 0;                        
-            foreach ($this->notification as $notify){
-                $count += ($notify['seen'] == false);
-            }
-            $this->session->set_userdata('count', $count);
-        }   
     }           
 
     public function combine($from, $to, $all='all'){           
@@ -38,7 +17,7 @@ class Search extends CI_Controller {
         }
         else{
             if (is_numeric($from)){
-                $from = $this->map[(int)$from];
+                $from = $this->place_ml->places[(int)$from];
             }
         }
         if ($to == 'null'){
@@ -46,17 +25,15 @@ class Search extends CI_Controller {
         }
         else{
             if (is_numeric($to)){
-                $to = $this->map[(int)$to];
+                $to = $this->place_ml->places[(int)$to];
             }
         }        
         $data = array(
             'normal_trips' => $normal_trips,
-            'needed_trips' => $needed_trips,
-            'places'       => $this->map,
+            'needed_trips' => $needed_trips,            
             'from'         => $from,
             'to'           => $to,
-            'all'          => $all,
-            'notification' => $this->notification
+            'all'          => $all,            
         );
         display('search', $data);
     }

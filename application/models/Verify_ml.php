@@ -23,7 +23,17 @@ class Verify_ml extends Quickaccess
         }        
         return null;        
     }
+
+    public function check_exist($from_user, $type){
+        $dataset = $this->db->get_where($this->db_table, ['from_user' => $from_user, 'type' => $type]);
+        return $dataset->num_rows() > 0;
+    }
     
+    public function check_mail($mail){
+        $dataset = $this->db->get_where($this->db_table, ['content' => $mail]);
+        return $dataset->num_rows() > 0;
+    }
+
     public function get_type_from_user($user, $type){
         $sql = ['from_user' => $user, 'type' => $type]; 
         $all = $this->db->get_where($this->db_table, $sql);

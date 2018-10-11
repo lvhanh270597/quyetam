@@ -4,31 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Place extends CI_Controller {
     
     // declare variables
-    public $notification, $map, $places;
     public function __construct(){
-        parent::__construct();      
-        $this->places = $this->place_ml->get_all();        
-        if ($this->session->userdata('user_logged')){
-            $username = $this->session->userdata('username');
-            $this->notification = $this->notify_ml->get_from_user($username);                        
-            $count = 0;                        
-            foreach ($this->notification as $notify){
-                $count += ($notify['seen'] == false);
-            }
-            $this->session->set_userdata('count', $count);
-        }
-        $this->map = [];
-        foreach ($this->places as $place){
-            $this->map[$place['id']] = $place['name'];
-        }                  
+        parent::__construct();                                        
     }       
     
-    public function index(){                
-        $data = [
-            '_places' => $this->places, 
-            'places' => $this->map, 
-            'notification' => $this->notification
-        ];    
+    public function index(){
+        $data = ['all' => $this->place_ml->get_all()];
         display('places', $data);
     }
 
@@ -116,27 +97,8 @@ class Place extends CI_Controller {
     }
 
     public function detail($id){        
-        $message_success = '
-		<div class="row">
-			<div class="col-md-12">
-				<div class="alert alert-success"> 
-					<strong>                                        
-						Your profile has been updated successfully!
-					</strong>
-				</div>  
-			</div>
-		</div>    ';
-		$message_error = '
-		<div class="row">
-			<div class="col-md-12">
-				<div class="alert alert-error"> 
-					<strong>                                        
-						Your profile has been updated successfully!
-					</strong>
-				</div>  
-			</div>
-		</div>    ';		
-                
+        $message_success = get_message_success('Added successfully!');
+		$message_error = get_message_error('Fail adding!');        
         $data = ['message' => ''];
         $this_place = $this->place_ml->get_by_primary($id);
         if ($this->input->post('update')){
@@ -154,9 +116,6 @@ class Place extends CI_Controller {
         $this_place = $this->place_ml->get_by_primary($id);
         $data = array_merge($data, $this_place);
         
-        $data['notification'] = $this->notification;
-        $data['places'] = $this->map;
-
         display('detail_place', $data);
     }
 

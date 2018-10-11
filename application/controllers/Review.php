@@ -2,30 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Review extends CI_Controller {
-    
-    // declare variables
-    public $places;
-    public $map;
-    public $notification;
+
 
     public function __construct(){
         parent::__construct();
-        $this->load->model(['review_ml', 'user_ml', 'verify_ml', 'place_ml', 'notify_ml']);
-        $this->load->helper(['layout', 'time', 'image']);
-        $this->places = $this->place_ml->get_all();
-        $this->map = [];
-        foreach ($this->places as $place){
-            $this->map[$place['id']] = $place['name'];
-        }
-        if ($this->session->userdata('user_logged')){
-            $username = $this->session->userdata('username');
-            $this->notification = $this->notify_ml->get_from_user($username);                        
-            $count = 0;                        
-            foreach ($this->notification as $notify){
-                $count += ($notify['seen'] == false);
-            }
-            $this->session->set_userdata('count', $count);
-        }        
+        $this->load->model(['review_ml', 'verify_ml']);
     }           
 
     public function detail($user){
@@ -37,14 +18,20 @@ class Review extends CI_Controller {
         if (!$test_user = $this->user_ml->get_by_primary($user)){
             redirect('page_not_found');
         }
+
+        $username = $this->session->userdata('username');
+        $permission = false;
+        if ($this->matched_ml->check_exist($user, $username)){
+            $permission = true;
+        }
+
         if ($this->input->post()){            
-            $username = $this->session->userdata('username');
             $content = $this->input->post('content');
             $current = get_current_time();
             $sql = [
                 'from_user' => $username,
                 'to_user' => $user,
-                'content' => $content,
+                'content' => hashCode($content),
                 'created' => $current,                
             ];
             if ($this->review_ml->add_into($sql)){
@@ -85,10 +72,9 @@ class Review extends CI_Controller {
             'scard' => $student_card,
             'cmnd' => $cmnd_card,
             'dcard' => $driver_card,
-            'current_user' =>$current_user,
-            'places' => $this->map,
-            'notification' => $this->notification
+            'current_user' =>$current_user,            
+            'permission' => $permission
         ];
-        display('review_detail', $data, true);
+        display('review_detail', $data);
     }
 }

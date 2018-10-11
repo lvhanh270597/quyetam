@@ -9,8 +9,9 @@ class Notify_ml extends Quickaccess
 	protected $editable_fields = ['to_user','content', 'type_noti', 'where_noti'];	
 	
 	public function get_from_user($user, $limit=100){
-        $query = 'select * from '.$this->db_table.' where (to_user="'.$user.'") order by time desc limit '.$limit;
-        $dataset = $this->db->query($query);
+		$this->db->where(['to_user' => $user]);
+		$this->db->order_by('time', 'desc');
+		$dataset = $this->db->get($this->db_table, $limit);                
         return $dataset->result_array();
 	}
 	
@@ -30,8 +31,9 @@ class Notify_ml extends Quickaccess
 		if ($check->num_rows() > 0){
 			$check = $check->result_array()[0];
 			$id = $check['id'];
-			$this->set_attr($id, 'seen', false);
-			$this->set_attr($id, 'time', $data['time']);
+			$this->db->set(['seen' => false, 'time' => $data['time']]);			
+			$this->db->where('id', $id);
+			$this->db->update($this->db_table); 
 		}
 		else{
 			$this->db->insert($this->db_table, $data);			

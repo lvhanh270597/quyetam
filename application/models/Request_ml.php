@@ -25,12 +25,7 @@ class Request_ml extends Quickaccess
     
     public function delete_all_from_trip($trip_id){
         $this->db->delete($this->db_table, array('trip_id' => $trip_id));
-	}
-	/*
-	public function delete_all_from_guess($guess){
-		$this->db->delete($this->db_table, array('guess_id' => $guess));
-	}
-	*/
+	}	
     public function remove_a_request($trip, $guess){
         $this->db->delete($this->db_table, array(
             'trip_id' => $trip,

@@ -7,7 +7,7 @@ class Comment_ml extends Quickaccess
 	protected $db_table = 'comment';
 	protected $editable_fields = ['content','created'];	
 	
-	public function get_from_trip($trip_id){
+	public function get_from_trip($trip_id){		
         $dataset = $this->db->get_where($this->db_table, ['trip_id' => $trip_id]);
         return $dataset->result_array();
 	}
@@ -17,14 +17,21 @@ class Comment_ml extends Quickaccess
 	}
 
 	public function get_unseen_comment($trip, $user){
-		$query = 'select * from '.$this->db_table.' where ((trip_id='.$trip.') and (user_id="'.$user.'") and (seen=0))';
-		$dataset = $this->db->query($query);
+		if (!$this->trip_ml->checkExist($trip)){ return []; }		
+		$where = [
+			'trip_id' => $trip, 
+			'user_id' => $user,
+			'seen' => false
+		];
+		$dataset = $this->db->get_where($this->db_table, $where);
 		return $dataset->result_array();
 	}
 
-	public function set_seen_comment($comments){
+	public function set_seen_comment($comments){		
 		foreach ($comments as $comment){
-			$this->set_attr($comment['id'], 'seen', true);
+			$this->db->set('seen', true);
+			$this->db->where('id', $comment['id']);
+			$this->db->update($this->db_table); 			
 		}
 	}
 }

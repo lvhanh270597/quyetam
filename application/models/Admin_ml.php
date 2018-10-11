@@ -9,11 +9,10 @@ class Admin_ml extends Quickaccess
 	protected $editable_fields = ['username','password'];	
 	
 	public function check($username, $password){
-		$query = $this->db->get_where($this->db_table, array(
+		$query = $this->db->get_where($this->db_table, [
 			'username' => $username,
 			'password' => md5($password)
-		));		
-		echo md5($password);
+		]);				
 		if ($query->num_rows() == 0){
 			return false;
 		}

@@ -151,3 +151,11 @@ CREATE TABLE comment (
 	FOREIGN KEY (user_id) REFERENCES user(username),
 	FOREIGN KEY (trip_id) REFERENCES trip(id)
 );
+
+CREATE TABLE matched (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	user1 VARCHAR(30) NOT NULL,
+	user2 VARCHAR(30) NOT NULL,
+	FOREIGN KEY (user1) REFERENCES user(username),
+	FOREIGN KEY (user2) REFERENCES user(username)
+);

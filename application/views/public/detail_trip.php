@@ -79,7 +79,7 @@
                                             <div class="md-form mb-0">
                                               <select class="browser-default custom-select mb-4" name="start_from">
                                                 <?php                                                
-                                                    echo '<option value="'.$trip['start_from'].'" disabled selected> from: '.$map[$trip['start_from']].'</option>';                                                                              
+                                                    echo '<option value="'.$trip['start_from'].'" disabled selected> from: '.$places[$trip['start_from']].'</option>';                                                                              
                                                 ?>
                                               </select>
                                             </div>
@@ -89,7 +89,7 @@
                                             <div class="md-form mb-0">
                                               <select class="browser-default custom-select mb-4" name="finish_to">                                                
                                                 <?php                                                
-                                                echo '<option value="'.$trip['finish_to'].'" disabled selected>to: '.$map[$trip['finish_to']].'</option>';                                                
+                                                echo '<option value="'.$trip['finish_to'].'" disabled selected>to: '.$places[$trip['finish_to']].'</option>';                                                
                                                 ?>
                                               </select>
                                             </div>
@@ -100,12 +100,12 @@
                                     <div class="row">                                        
                                         <!--Second row-->                                    
                                         <!--First column-->
-                                        <div class="col-md-6">                                                                                        
-                                            <div class="md-form mb-0">
-                                                <input type="text" id="form1" class="form-control validate" value="<?php echo $trip['timestart']; ?>" disabled>
-                                                <label for="form2" data-error="wrong" data-success="right">Giờ xuất phát</label>                                                                                                                                   
-                                            </div>                                        
-                                        </div>    
+                                        <div class="col-md-6">
+                                            <div class="md-form mb-0">       
+                                                <input type="text" name="timestart" value="<?= after($trip['timestart']) ?>"disabled class="form-control validate"/>
+                                                <label for="form2" data-error="wrong" data-success="right" class="active">Bắt đầu lúc</label>                                                                                                                                                              
+                                            </div>
+                                        </div>   
                                         <!--First column-->
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
@@ -138,7 +138,7 @@
                                                 <label for="form2" data-error="wrong" data-success="right">Giá</label>
                                             </div>
                                         </div>                                        
-                                    </div>                                    
+                                    </div>                                   
                                     <!--/.Third row-->
                                     <!-- Fourth row -->
                                     
@@ -169,7 +169,7 @@
                                     echo '<input type="submit" class="btn btn-danger btn-rounded" value="Hủy đặt chuyến" name="cancel">';                                        
                                     echo '</form>';
                                     echo '</div>
-                                    </div>';                                                          
+                                    </div>';    
                                 }
 
                                 ?>
@@ -210,7 +210,8 @@
                                                         <a href="'.site_url('review/detail/'.$from['username']).'"> <h5 class="mt-0 font-weight-bold blue-text">'.$from['full_name'].'</h5> </a>
                                                         '.$comment['content'].'
                                                         <div class="media mt-3 shadow-textarea">
-                                                        </div>                                        
+                                                        </div>          
+                                                        <label> <small>'.$comment['created'].'</small> </label>                              
                                                     </div>                                    
                                                 </div>
                                                 ';

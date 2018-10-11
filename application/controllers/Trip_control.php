@@ -22,6 +22,9 @@ class Trip_control extends CI_Controller {
 	}
 
 	public function remove_trip($trip_id){	
+		if (!$this->session->userdata('admin')){
+			redirect('admin/login');
+		}
 		// Gửi notify đến cho Khách nếu đã có khách
 		//Trả lại tiền cho những người gián tiếp
 		$content = 'admin đã xóa chuyến đi '.$trip_id.' mà bạn quan tâm.';

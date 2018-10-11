@@ -115,7 +115,7 @@
                 </style>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                     <ul class="nav navbar-nav nav-flex-icons ml-auto">                                                                
-                       <?php
+                    <?php
                        if (!$this->session->userdata('user_logged')){
                            echo '
                            <a id="navbar-static-login" class="btn btn-info btn-rounded btn-sm waves-effect waves-light"  href="'.site_url('login').'">Log In
@@ -123,6 +123,15 @@
                             </a>';
                        }
                        else{
+                           $count = '';
+                           if (count($notification) > 0){                               
+                               foreach ($notification as $noti){
+                                   if ($noti['seen'] == false){
+                                       if ($count == '') $count = 1;
+                                       else $count += 1;
+                                   }
+                               }                               
+                           }
                            echo '
                            <!--Dropdown primary-->
                            <li class="nav-item">
@@ -134,36 +143,29 @@
                                 <!--Trigger-->                                
                                 <li class="nav-item dropdown-toggle" data-toggle="dropdown">
                                     <a href="/contact" data-toggle="modal" data-target="#contactForm" class="nav-link waves-effect">
-                                        <i class="fa fa-bell"></i>
+                                        <i class="fa fa-bell"></i><span class="badge badge-danger mb-2" id="count">'.$count.'</span>
                                     </a>
                                 </li>                                
                                 <!--Menu-->
-                                <div class="dropdown-menu dropdown-primary">';                                    
-                                foreach ($notification as $notify){
-                                    $link = '';
-                                    $type_noti = $notify['type_noti'];
-                                    $where_noti = $notify['where_noti'];
-                                    if ($type_noti == 'profile'){
-                                        $link = site_url('profile');
-                                    }
-                                    if ($type_noti == 'trip'){
-                                        $link = site_url('trip/detail/'.$where_noti);
-                                    }                
-                                    if ($type_noti == 'edit_trip'){
-                                        $link = site_url('trip/edit/'.$where_noti);
-                                    }
-                                    if ($type_noti == 'verify'){
-                                        $link = site_url('verify');
-                                    }
-                                    echo '<a href="'.$link.'" class="beau">
-                                    <div class="fuck"> <h6> <small>'.$notify['content'].'</h6> </small></div>
+                                <div class="dropdown-menu dropdown-primary" id="noti_tab">';                                
+                                foreach (array_slice($notification, 0, 4) as $notify){                                
+                                    $new = ($notify['seen'] == false) ? '<span class="badge badge-danger mb-2">new</span>' : '';
+                                    echo '<a href="'.site_url('notify/check/'.$notify['id']).'" class="beau">
+                                    <div class="fuck">
+                                        <h6>'.$new.' <small>'.$notify['content'].'</h6> </small> <small>'.$notify['time'].'</small>
+                                    </div>
                                     </a>';
                                 }
+                                $count = '';
+                                if ($this->session->userdata('user_logged')){
+                                    $count = $this->session->userdata('count');
+                                    if ($count == 0) $count = '';
+                                }
                                 echo '<a href="'.site_url('notify').'"> <h6> Xem tất cả </h6></a>'; 
-                                echo '</div>;
+                                echo '</div>
                             </div>
                             <!--/Dropdown primary-->
-                            <!-- Login / register -->                                                  
+                            <!-- Login / register -->                        
                             <li class="nav-item ">
                                 <a href="'.site_url('edit_profile').'" class="nav-link waves-effect headerNotifCountBadge">
                                     <i class="fa fa-cogs" aria-hidden="true"></i>
@@ -176,8 +178,7 @@
                             </li>                             
                            ';
                        }
-                       ?>
-                                             
+                       ?>                                             
                      </ul>
                     
                 </div>                

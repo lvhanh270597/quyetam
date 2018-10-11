@@ -105,7 +105,8 @@ Licensed under MIT
                                         <a href="'.site_url('review/detail/'.$from['username']).'"> <h5 class="mt-0 font-weight-bold blue-text">'.$from['full_name'].'</h5> </a>
                                         '.$review['content'].'
                                         <div class="media mt-3 shadow-textarea">
-                                        </div>                                        
+                                        </div>                                      
+                                        <label> <small>'.ago($review['created']).'</small></label>  
                                     </div>                                    
                                 </div>
                                 ';
@@ -113,34 +114,39 @@ Licensed under MIT
                         }
 
                         ?>
-                                                      
-                        <div class="card-body">
-                            <!-- Edit Form -->
-                            <form method="post">                                                                                                                                  
-                                <!--Third row-->
-                                <div class="media mt-3 shadow-textarea">
-                                    <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="<?php echo $current_user['image']; ?>" alt="Generic placeholder image">
-                                    <div class="media-body">
-                                        <h5 class="mt-0 font-weight-bold blue-text"><?php echo $current_user['full_name']; ?></h5>
-                                        <div class="form-group basic-textarea rounded-corners">
-                                            <textarea class="form-control z-depth-1" id="exampleFormControlTextarea3" rows="3" placeholder="Write your review..." name="content"></textarea>
-                                        </div>
-                                    </div>
-                                </div> 
 
-                                <!--/.Third row-->
-                                <!-- Fourth row -->
-                                <div class="text-center">                                
-                                    <div class="row">
-                                        <div class="col-md-12">                                        
-                                            <input type="submit" value="Đăng"" class="btn btn-info btn-rounded" name="btn">
+                        <?php
+                        if ($permission){
+                            echo '
+                            <div class="card-body">
+                                <!-- Edit Form -->
+                                <form method="post">                                                                                                                                  
+                                    <!--Third row-->
+                                    <div class="media mt-3 shadow-textarea">
+                                        <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="'.$current_user['image'].'" alt="Generic placeholder image">
+                                        <div class="media-body">
+                                            <h5 class="mt-0 font-weight-bold blue-text">'.$current_user['full_name'].'</h5>
+                                            <div class="form-group basic-textarea rounded-corners">
+                                                <textarea class="form-control z-depth-1" id="exampleFormControlTextarea3" rows="3" placeholder="Write your review..." name="content"></textarea>
+                                            </div>
                                         </div>
-                                    </div>                   
-                                </div>                 
-                                <!-- /.Fourth row -->                                    
-                            </form>
-                            <!-- Edit Form -->
-                        </div>                           
+                                    </div> 
+
+                                    <!--/.Third row-->
+                                    <!-- Fourth row -->
+                                    <div class="text-center">                                
+                                        <div class="row">
+                                            <div class="col-md-12">                                        
+                                                <input type="submit" value="Đăng"" class="btn btn-info btn-rounded" name="btn">
+                                            </div>
+                                        </div>                   
+                                    </div>                 
+                                    <!-- /.Fourth row -->                                    
+                                </form>
+                                <!-- Edit Form -->
+                            </div>';              
+                        }           
+                        ?>  
                         <!-- /.Card content -->
 
                     </div>

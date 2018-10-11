@@ -17,17 +17,10 @@ class Review_ml extends Quickaccess
 		return $query->result_array();
 	}
     
-    public function get_top_review($limit = 10){
-        $this->db->select('id, to_user, AVG(star) as point');
-        $this->db->group_by('to_user');         
-        $query = $this->db->get($this->db_table, $limit);
-        return $query->result_array();
-	}	
-
-	public function get_by_user($user){
+	public function get_by_user($user){		
 		$query = $this->db->get_where($this->db_table, ['to_user' => $user]);
 		if ($query->num_rows() > 0){
-			return $query->result_array();
+			return $query->result_array(); 
 		}
 		return null;
 	}

@@ -1,3 +1,9 @@
+<style>
+        #fuck {
+            height: 150px;
+            width: 150px;
+        }
+    </style>
 
 
     <main>
@@ -21,9 +27,9 @@
 
                             <!-- Card content -->
                             <div class="card-body text-center">                                
-                                <img src="https://scontent.fsgn5-7.fna.fbcdn.net/v/t39.1997-6/s168x128/851582_488524031261042_690174590_n.png?_nc_cat=1&oh=e0db0fafa1fd62d1f358046ad1a77d0e&oe=5C1A14E9" alt="User Photo" class="z-depth-1 mb-3 mx-auto" />
+                                <img  id="fuck" src="<?php echo base_url('assets/images/uploads/places/'.$trip['start_from'].'/'.$images[$trip['start_from']]); ?>" alt="User Photo" class="z-depth-1 mb-3 mx-auto" />
                                 <span><i class="fa fa-mail-forward" aria-hidden="true"></i> </span>
-                                <img src="https://scontent.fsgn5-7.fna.fbcdn.net/v/t39.1997-6/s168x128/851582_488524031261042_690174590_n.png?_nc_cat=1&oh=e0db0fafa1fd62d1f358046ad1a77d0e&oe=5C1A14E9" alt="User Photo" class="z-depth-1 mb-3 mx-auto" />                                
+                                <img  id="fuck" src="<?php echo base_url('assets/images/uploads/places/'.$trip['finish_to'].'/'.$images[$trip['finish_to']]); ?>" alt="User Photo" class="z-depth-1 mb-3 mx-auto" />                                
                                 <div class="row">
                                     <div class="col-md-12">
                                         <a href="<?php echo site_url('review/detail/'.$asker['username']); ?>">
@@ -63,7 +69,7 @@
                                             <div class="md-form mb-0">
                                               <select class="browser-default custom-select mb-4" name="start_from">
                                                 <?php                                                
-                                                    echo '<option value="'.$trip['start_from'].'" disabled selected> from: '.$map[$trip['start_from']].'</option>';                                                                              
+                                                    echo '<option value="'.$trip['start_from'].'" disabled selected> from: '.$places[$trip['start_from']].'</option>';                                                                              
                                                 ?>
                                               </select>
                                             </div>
@@ -73,7 +79,7 @@
                                             <div class="md-form mb-0">
                                               <select class="browser-default custom-select mb-4" name="finish_to">                                                
                                                 <?php                                                
-                                                echo '<option value="'.$trip['finish_to'].'" disabled selected>to: '.$map[$trip['finish_to']].'</option>';                                                
+                                                echo '<option value="'.$trip['finish_to'].'" disabled selected>to: '.$places[$trip['finish_to']].'</option>';                                                
                                                 ?>
                                               </select>
                                             </div>
@@ -84,12 +90,14 @@
                                     <div class="row">                                        
                                         <!--Second row-->                                    
                                         <!--First column-->
-                                        <div class="col-md-6">                                                                                        
-                                            <div class="md-form mb-0">
-                                                <input type="text" id="form1" class="form-control validate" value="<?php echo $trip['timestart']; ?>" disabled>
-                                                <label for="form2" data-error="wrong" data-success="right">Giờ xuất phát</label>                                                                                                                                   
-                                            </div>                                        
-                                        </div>    
+                                        <div class="col-md-6">
+                                            <div class="md-form mb-0">                                                 
+                                                <input type="datetime-local" id="party-time"
+                                                    name="timestart" value="2018-08-12T08:30"
+                                                    min="2018-06-07T00:00" max="2018-08-14T00:00" disabled class="form-control validate"/>
+                                                <label for="form2" data-error="wrong" data-success="right" class="active">Bắt đầu lúc</label>                                                                                                                                                              
+                                            </div>
+                                        </div>  
                                         <!--First column-->
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
