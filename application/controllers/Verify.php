@@ -184,7 +184,6 @@ class Verify extends CI_Controller {
         $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
 			
 		Hãy click vào linh dưới để xác thực email sinh viên của bạn!
-		'.base_url('verify/active/'.$id.'/'.$hash).'
         '; // Our message above including the link
         $mail->AddAddress($email);
         $mail->send();        
