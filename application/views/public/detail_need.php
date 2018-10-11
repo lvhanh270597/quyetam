@@ -91,9 +91,9 @@
                                         <!--Second row-->                                    
                                         <!--First column-->
                                         <div class="col-md-6">
-                                            <div class="md-form mb-0">                                                 
+                                            <div class="md-form mb-0">
                                                 <input type="datetime-local" id="party-time"
-                                                    name="timestart" value="<?= after($trip['timestart']) ?>" disabled class="form-control validate"/>
+                                                    name="timestart" value="<?= system_to_user($trip['timestart']) ?>" disabled class="form-control validate"/>
                                                 <label for="form2" data-error="wrong" data-success="right" class="active">Bắt đầu lúc</label>                                                                                                                                                              
                                             </div>
                                         </div>  
