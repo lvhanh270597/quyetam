@@ -104,7 +104,7 @@
                                     else{
                                         echo '
                                         <div class="col-md-12">
-                                        <h5> No need trips</h5>
+                                        <h5> No trips</h5>
                                         </div>
                                         ';      
                                     }
