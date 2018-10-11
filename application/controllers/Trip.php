@@ -184,6 +184,12 @@ class Trip extends CI_Controller {
         $message = '';
         // Nếu gửi yêu cầu
         if ($this->input->post()){            
+
+            $trip = $this->trip_ml->get_by_primary($trip_id);   
+            if ($trip['guess'] != null){
+                redirect('trip/detail/'.$trip_id);
+            }
+
             $type_transaction = $this->input->post('type_transaction');  
             // Nếu chưa chọn hình thức giao dịch          
             if ($type_transaction == null){
