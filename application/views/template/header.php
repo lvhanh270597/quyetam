@@ -46,7 +46,7 @@
                 <!-- SideNav slide-out button -->
                 <div class="float-left mr-2">
                     <a href="#" data-activates="slide-out" >
-                        <i class="fa fa-motorcycle" aria-hidden="true"></i>
+                        <img href="<?= base_url('assets/images/icon/icon.png') ?>"/>
                     </a>
                 </div>
                 <a class="navbar-brand font-weight-bold" href="<?= base_url();?>">
@@ -180,7 +180,7 @@
                             </li> 
                             <li class="nav-item ">
                                 <a href="'.site_url('trip/my_trips').'" class="nav-link waves-effect headerNotifCountBadge">
-                                    <i class="fa fa-motorcycle" aria-hidden="true"></i>
+                                    <img href="'.base_url('assets/images/icon/icon.png').'" /> 
                                 </a>
                             </li>                             
                            ';
