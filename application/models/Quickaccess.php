@@ -22,6 +22,37 @@ class Quickaccess extends CI_Model{
 		}
 		return null;
 	}
+//add a new row to a selected table
+public function add(){
+	//prepare an array of data for adding to a DB table
+	$data = $this->instantiate();								
+	$this->db->insert($this->db_table, $data);			
+	if (!empty($data['image'])) {
+		$insert_id = $this->db->insert_id();			
+		$this->save_img($insert_id,true,$this->db_table);
+	}	
+	return $this->db->affected_rows() > 0 ? true : false;
+}
+//prepare data before adding to DB or updating items in DB 
+public function instantiate(){
+	$data = array();		
+	foreach ($this->editable_fields as $field) {			
+		if(!empty($post_field = $this->input->post($field))) {				
+			$data[$field] = $post_field;					
+		}
+		if (($field == 'timestart') && (empty($this->input->post($field)))){
+			$data['timestart'] = get_current_time();
+		}
+		if($field == 'image' && !empty($_FILES['image']['name'])) {
+			$data[$field] = preg_replace('/[^A-Za-z0-9.-]/', "", $_FILES['image']['name']);
+			// hash it before push to database
+			//print_r($data);
+		}
+	}
+	//hash a password before it is saved to DB
+	if(!empty($data['password'])) $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT, ['cost' => 11]);				
+	return $data;
+}
 //return filtered rows from a selected table
 	function get_filtered($where,$limit = null,$offset = null){
 		$this->db->order_by('id','DESC');
