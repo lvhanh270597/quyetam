@@ -48,7 +48,7 @@ class Place extends CI_Controller {
             }
         }
 
-        display('add_place', $data);
+        display('add_place', $data, true);
     }
 
     public function edit_place($id){

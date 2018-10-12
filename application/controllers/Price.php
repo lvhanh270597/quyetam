@@ -56,7 +56,7 @@ class Price extends CI_Controller {
                 $data['message'] = $message_error;
             }
         }
-        display('add_price', $data);
+        display('add_price', $data, true);
     }
 
     public function edit_price(){
