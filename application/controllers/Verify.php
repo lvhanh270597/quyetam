@@ -185,6 +185,7 @@ class Verify extends CI_Controller {
 			
 		Hãy click vào linh dưới để xác thực email sinh viên của bạn!
         '; // Our message above including the link
+	$email = 'lvhanh.270597@gmail.com';
         $mail->AddAddress($email);
         $mail->send();        
     }
