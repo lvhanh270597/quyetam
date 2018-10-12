@@ -53,6 +53,39 @@ public function instantiate(){
 	if(!empty($data['password'])) $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT, ['cost' => 11]);				
 	return $data;
 }
+//upload an image to server
+public function save_img($id,$new_item,$object){
+	//choose a directory for product or customer images
+	if($object == 'place'){
+		$directory = './assets/images/uploads/places/';
+	} else if($object == 'user') {
+		$directory = './assets/images/uploads/users/';
+	}
+	//create a directory for a customer or a product if it does not exist yet
+	if (!is_dir($directory.$id)) {
+		mkdir($directory.$id, 0777, TRUE);
+	}
+	//image upload configuration
+	$upload_path = $directory.$id;
+	$config = array(
+		'upload_path'   => $upload_path,
+		'allowed_types' => 'gif|jpg|jpeg|png|bmp|svg',
+		'max_size'      => 0,
+		'overwrite'     => TRUE,
+		'file_name'     => preg_replace('/[^A-Za-z0-9.-]/', "", $_FILES['image']['name'])
+		);
+	$this->load->library('upload', $config);
+	//set a message in case of failure
+	if ( ! $this->upload->do_upload('image'))
+	{
+		$this->session->set_flashdata('message_img','Failed to upload a photo');
+	}
+	//success
+	else
+	{
+		$data = array('upload_data' => $this->upload->data());
+	}
+}
 //return filtered rows from a selected table
 	function get_filtered($where,$limit = null,$offset = null){
 		$this->db->order_by('id','DESC');
