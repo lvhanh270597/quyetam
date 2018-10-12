@@ -51,4 +51,17 @@ class User_control extends CI_Controller {
 		redirect('user_control');
 	}
 	
+	public function all_user_1999(){
+		if (!$this->session->userdata('admin')){
+			redirect('admin/login');
+		}
+		$users = $this->user_ml->get_all();
+		foreach ($users as $user){
+			if ($user['balance'] == 0){				
+				$this->user_ml->set_attr($user['username'], 'balance', 1999);
+			}			
+		}
+		echo 'OK';
+	}
+
 }
