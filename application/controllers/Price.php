@@ -47,7 +47,7 @@ class Price extends CI_Controller {
 		$message_error = get_message_error('Fail when adding');
 
         $places = $this->place_ml->get_all();
-        $data = ['message' => '', 'places' => $places];
+        $data = ['message' => '', '_places' => $places];
         if ($this->input->post()){
             if ($this->price_ml->add()){
                 $data['message'] = $message_success;

@@ -64,7 +64,7 @@
                                               <select class="browser-default custom-select mb-4" name="start_from">
                                                 <option value="" disabled selected>Bạn đi từ đâu?</option>
                                                 <?php
-                                                foreach ($places as $place){
+                                                foreach ($_places as $place){
                                                     echo '<option value="'.$place['id'].'">'.$place['name'].'</option>';
                                                 }                                                
                                                 ?>
@@ -77,7 +77,7 @@
                                               <select class="browser-default custom-select mb-4" name="finish_to">
                                                 <option value="" disabled selected>Bạn đến đâu?</option>
                                                 <?php
-                                                foreach ($places as $place){
+                                                foreach ($_places as $place){
                                                     echo '<option value="'.$place['id'].'">'.$place['name'].'</option>';
                                                 }                                                
                                                 ?>
