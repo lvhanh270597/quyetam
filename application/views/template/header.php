@@ -19,7 +19,7 @@
 <!-- Material Design Bootstrap -->
 <link href="<?php echo base_url('assets/css/mdb.min.css'); ?>" rel="stylesheet">
 
-<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('assets/images/icon/icon.jpg'); ?>" />
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('assets/images/icon/icon.png'); ?>" />
 
 
 <style type="text/css">/* Chart.js */
