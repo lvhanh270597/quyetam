@@ -27,9 +27,9 @@
 </style>
 
 <style>
-    legend{
-        padding-top: 0px;
-        font-size: 16px;
+    #hehe{
+        width: 50%;
+        height: 50%;
     }
 </style>     
 
@@ -46,7 +46,7 @@
                 <!-- SideNav slide-out button -->
                 <div class="float-left mr-2">
                     <a href="#" data-activates="slide-out" >
-                        <img href="<?= base_url('assets/images/icon/icon.png') ?>"/>
+                        <img href="<?= base_url('assets/images/icon/icon.png') ?>" id="hehe"/>
                     </a>
                 </div>
                 <a class="navbar-brand font-weight-bold" href="<?= base_url();?>">
@@ -180,7 +180,7 @@
                             </li> 
                             <li class="nav-item ">
                                 <a href="'.site_url('trip/my_trips').'" class="nav-link waves-effect headerNotifCountBadge">
-                                    <img href="'.base_url('assets/images/icon/icon.png').'" /> 
+                                    <i class="fa fa-motorcycle" aria-hidden="true"></i>
                                 </a>
                             </li>                             
                            ';
