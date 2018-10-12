@@ -32,6 +32,9 @@
         height: 50px; 
         margin-right: 30px;       
     }
+    .dropdown-toggle::after {
+        display:none;
+    }
 </style>     
 
 </head>

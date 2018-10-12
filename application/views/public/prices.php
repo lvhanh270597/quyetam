@@ -24,6 +24,16 @@
 
 <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}
+
+#hehe{
+        width: 50px;
+        height: 50px; 
+        margin-right: 30px;       
+    }
+    .dropdown-toggle::after {
+        display:none;
+    }
+
 </style>
 
 </head>
@@ -37,14 +47,11 @@
         <nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar white">
             <div class="container">
                 <!-- SideNav slide-out button -->
-                <div class="float-left mr-2">
-                    <a href="#" data-activates="slide-out" >
-                        <i class="fa fa-motorcycle" aria-hidden="true"></i>
+                <div>
+                    <a href="<?= base_url();?>">
+                        <img src="<?= base_url('assets/images/icon/icon.png') ?>" id="hehe"/>
                     </a>
-                </div>
-                <a class="navbar-brand font-weight-bold" href="<?= base_url();?>">
-                    <strong>EZHERE</strong>
-                </a>
+                </div>                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
