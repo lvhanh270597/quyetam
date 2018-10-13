@@ -109,11 +109,14 @@
                                 </th>
                                 <th class="th-sm sorting">Temp balance
                                     <i class="fa fa-sort float-right" aria-hidden="true"></i>
-                                </th>                                    
+                                </th>                                
+                                <th class="th-sm sorting">Created
+                                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                                </th>    
                                 <th class="th-sm sorting">Remove
                                     <i class="fa fa-sort float-right" aria-hidden="true"></i>
-                                </th>
-                                <th class="th-sm sorting">Add 5k
+                                </th>                                                                
+                                <th class="th-sm sorting">Add money
                                     <i class="fa fa-sort float-right" aria-hidden="true"></i>
                                 </th>
                             </tr>
@@ -130,8 +133,9 @@
                                     <td>'.$user['full_name'].'</td>
                                     <td>'.$user['balance'].'</td>
                                     <td>'.$user['t_balance'].'</td>
+                                    <td>'.$user['created'].'</td>
                                     <td> <a href="'.site_url('user_control/remove_user/'.$user['username']).'"> Remove</a></td>
-                                    <td> <a href="'.site_url('user_control/add_money/'.$user['username'].'/5000').'"> Add 5</a></td>
+                                    <td> <a href="'.site_url('user_control/add_money/'.$user['username']).'"> Add money</a></td>
                                     </tr>
                                     ';
                                 } 
@@ -142,8 +146,9 @@
                                     <td>'.$user['full_name'].'</td>
                                     <td>'.$user['balance'].'</td>
                                     <td>'.$user['t_balance'].'</td>
+                                    <td>'.$user['created'].'</td>
                                     <td> <a href="'.site_url('user_control/remove_user/'.$user['username']).'"> Remove</a></td>
-                                    <td> <a href="'.site_url('user_control/add_money/'.$user['username'].'/5000').'"> Add 5</a></td>
+                                    <td> <a href="'.site_url('user_control/add_money/'.$user['username']).'"> Add money</a></td>
                                     </tr>
                                     ';
                                 }

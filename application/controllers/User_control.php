@@ -43,14 +43,19 @@ class User_control extends CI_Controller {
 		redirect('user_control');
 	}
 
-	public function add_money($username, $money){
+	public function add_money($username){
 		if (!$this->session->userdata('admin')){
 			redirect(base_url());
 		}
-		$this->user_ml->add_money($username, $money);
-		redirect('user_control');
+		$data = ['message' => ''];
+		$data['username'] = $username;
+		if ($this->input->post()){
+			$money = trim($this->input->post('money'));
+			$this->user_ml->add_money($username, $money);
+			$data['message'] = get_message_success('Successfully!');
+		}				
+		display('add_money', $data, true);
 	}
-	
 	public function all_user_1999(){
 		if (!$this->session->userdata('admin')){
 			redirect('admin/login');
