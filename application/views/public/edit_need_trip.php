@@ -136,7 +136,7 @@
                                         <div class="col-md-12 text-center my-4">
                                             <input type="text" name="asker" hidden value="<?php echo $this->session->userdata('username'); ?>"/>
                                             <input type="submit" value="Sửa" class="btn btn-info btn-rounded" name="edit">
-                                            <input type="submit" value="Xóa" class="btn btn-danger btn-rounded" name="delete"">
+                                            <a class="btn btn-danger btn-rounded" href="<?php echo site_url('trip/remove_need/'.$trip['id']); ?>"> Xóa </a>
                                         </div>
                                     </div>                                                                                                                                                                
                                     <!--/.Third row-->

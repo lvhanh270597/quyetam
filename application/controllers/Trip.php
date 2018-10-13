@@ -118,42 +118,7 @@ class Trip extends CI_Controller {
                 $message = $check_edit['data'];
             }
         }
-
-        if ($this->input->post('delete')){
-            // Gửi notify đến cho Khách nếu đã có khách
-            //Trả lại tiền cho những người gián tiếp
-            $self = $this->user_ml->get_by_primary($username);
-            $content = hashCode($self['full_name'].' đã xóa chuyến đi '.$trip_id.' mà bạn quan tâm.');
-            $all_requests = $this->request_ml->get_all_from_trip($trip_id);            
-            if ($all_requests){
-                foreach ($all_requests as $req){
-                    // Gửi thông báo rằng đã xóa chuyến đi
-                    // Soạn thông báo
-                    $notify = [
-                        'to_user' => $req['guess_id'],
-                        'time' => get_current_time(),
-                        'content' => $content,
-                        'type_noti' => 'profile',
-                        'where_noti' => $req['guess_id']
-                    ];
-
-                    if ($req['type_transaction'] == $this->giantiep){
-                        $notify['content'] = $content.'Vì vậy, chúng tôi đã chuyển tiền từ tài khoản dự bị vào lại tài khoản chính cho bạn';
-                        $this->user_ml->move_money_to_balance($req['guess_id'], $trip['price']);
-                    }
-                    // Gửi thông báo
-                    $this->notify_ml->add_trigger($notify);
-                }
-            }            
-            // Xóa tất cả comment liên quan đến chuyến đi này
-            $this->comment_ml->delete_all_from_trip($trip_id);
-            // Xóa hết tất cả các request từ chuyến đi này
-            $this->request_ml->delete_all_from_trip($trip_id);        
-            // Xóa chuyến đi này!
-            $this->trip_ml->delete($trip_id);
-
-            redirect('trip/my_trips');
-        }
+        
         // Nếu đã có khách, thì không thể sửa chuyến đi được
         if ($trip['guess'] != null){
             $editable = false;
@@ -662,14 +627,6 @@ class Trip extends CI_Controller {
             }
         }
 
-        // Nếu là xóa, thì mình chuyển lại tiền vào tài khoản chính từ tài khoản dự bị
-        if ($this->input->post('delete')){            
-            if ($trip['type_transaction'] == $this->giantiep){
-                $this->user_ml->move_money_to_balance($username, $trip['price']);   
-            }            
-            $this->needed_trip_ml->delete($trip_id);
-            redirect('trip/my_trips');
-        }        
         $trip = $this->needed_trip_ml->get_by_primary($trip_id);
         $data = [
             'trip' => $trip,
@@ -699,4 +656,59 @@ class Trip extends CI_Controller {
         display('action_info', $this->session->flashdata());
     }
 
+    public function remove_trip($trip_id){
+        $username = $this->session->userdata('username');
+        $trip = $this->trip_ml->get_by_primary($trip_id);
+        if ($trip['owner'] != $username){
+            redirect('trip/detail/'.$trip_id); 
+        }
+        // Gửi notify đến cho Khách nếu đã có khách
+        //Trả lại tiền cho những người gián tiếp
+        $self = $this->user_ml->get_by_primary($username);
+        $content = hashCode($self['full_name'].' đã xóa chuyến đi '.$trip_id.' mà bạn quan tâm.');
+        $all_requests = $this->request_ml->get_all_from_trip($trip_id);            
+        if ($all_requests){
+            foreach ($all_requests as $req){
+                // Gửi thông báo rằng đã xóa chuyến đi
+                // Soạn thông báo
+                $notify = [
+                    'to_user' => $req['guess_id'],
+                    'time' => get_current_time(),
+                    'content' => $content,
+                    'type_noti' => 'profile',
+                    'where_noti' => $req['guess_id']
+                ];
+
+                if ($req['type_transaction'] == $this->giantiep){
+                    $notify['content'] = $content.'Vì vậy, chúng tôi đã chuyển tiền từ tài khoản dự bị vào lại tài khoản chính cho bạn';
+                    $this->user_ml->move_money_to_balance($req['guess_id'], $trip['price']);
+                }
+                // Gửi thông báo
+                $this->notify_ml->add_trigger($notify);
+            }
+        }            
+        // Xóa tất cả comment liên quan đến chuyến đi này
+        $this->comment_ml->delete_all_from_trip($trip_id);
+        // Xóa hết tất cả các request từ chuyến đi này
+        $this->request_ml->delete_all_from_trip($trip_id);        
+        // Xóa chuyến đi này!
+        $this->trip_ml->delete($trip_id);
+
+        redirect('trip/my_trips');        
+    }
+
+    public function remove_need($trip_id){
+        $username = $this->session->userdata('username');
+        $trip = $this->needed_trip_ml->get_by_primary($trip_id);
+        if ($trip['asker'] != $username){ redirect('trip/detail_need/'.$trip_id); }
+        // Gửi notify đến cho Khách nếu đã có khách
+        //Trả lại tiền cho những người gián tiếp
+        // Nếu là xóa, thì mình chuyển lại tiền vào tài khoản chính từ tài khoản dự bị                
+        if ($trip['type_transaction'] == $this->giantiep){
+            $this->user_ml->move_money_to_balance($username, $trip['price']);   
+        }            
+        $this->needed_trip_ml->delete($trip_id);
+        redirect('trip/my_trips');
+    
+    }
 }

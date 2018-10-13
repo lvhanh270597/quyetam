@@ -143,12 +143,12 @@
                                     </div>                                                                                                           
                                     <!--Third row-->                                    
                                     <!--/.Third row-->
-                                    <!-- Fourth row -->
+                                    <!-- Fourth row -->                                    
                                     <div class="row">
                                         <div class="col-md-12 text-center my-4">
-                                            <input type="text" name="owner" hidden value="<?php echo $this->session->userdata('username'); ?>"/>
+                                            <input type="text" name="owner" hidden value="<?php echo $this->session->userdata('username'); ?>"/>                                            
                                             <?php
-                                                echo '<input type="submit" value="Xóa" class="btn btn-danger btn-rounded" name="delete">';
+                                                echo '<a class="btn btn-danger btn-rounded" href="'.site_url('trip/remove_trip/'.$trip['id']).'"> Xóa </a>';
                                                 if ($editable){
                                                     echo '<input type="submit" value="Sửa" class="btn btn-info btn-rounded" name="edit">';                                                    
                                                 }
