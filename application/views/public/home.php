@@ -106,7 +106,7 @@
     <!-- Title -->
     <h2 class="card-header-title mb-3">EasyHere</h2>
     <!-- Subtitle -->
-    <p class="card-header-subtitle mb-0">We go tothere!!!</p>
+    <p class="card-header-subtitle mb-0">We go together!!!</p>
 
     </div>
 
