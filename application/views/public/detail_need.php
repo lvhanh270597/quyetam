@@ -124,8 +124,7 @@
                                                     else{
                                                         echo '
                                                         <option value="" disabled selected>Chọn hình thức thanh toán</option>
-                                                        <option value="Trực tiếp">Trực tiếp</option>
-                                                        <option value="Gián tiếp">Gián tiếp</option>';
+                                                        <option value="Trực tiếp">Trực tiếp</option>';
                                                     }
                                                     ?>                                                    
                                                 </select>
