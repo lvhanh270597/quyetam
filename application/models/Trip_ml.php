@@ -151,8 +151,8 @@ class Trip_ml extends Trip_template
 			$where = '(('.$where.') and (guess is null) and (timestart >= "'.get_current_time().'"))';
 		}		
 		else{
-			$where .= 'and (timestart >= "'.get_current_time().'")';
-		}
+			$where .= ' and (timestart >= "'.get_current_time().'")';
+		}		
 		$dataset = $this->db->query('select * from '.$this->db_table.' where '.$where);				
 		return $dataset == null ? null : $dataset->result_array();
 	}
