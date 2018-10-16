@@ -24,7 +24,7 @@
                 <!-- Section: Last items -->
                 <section>
                 
-                    <h4 class="font-weight-bold mt-4 dark-grey-text"><strong>ALL TRIPS</strong></h4>
+                    <h4 class="font-weight-bold mt-4 dark-grey-text"><strong>CÁC CHUYẾN ĐI HIỆN CÓ</strong></h4>
                     <hr class="mb-3">
 
                                         <!-- Card -->
@@ -34,9 +34,26 @@
                         <div class="view view-cascade gradient-card-header blue-gradient">
 
                             <!-- Title -->
-                            <h2 class="card-header-title mb-3">ALL TRIPS</h2>
+                            <h2 class="card-header-title mb-3">CÁC CHUYẾN ĐI HIỆN CÓ</h2>
                             <!-- Subtitle -->
-                            <p class="card-header-subtitle mb-0">from <?php echo $from; ?> to <?php echo $to; ?> <?php echo $all; ?></p>
+                            <?php
+                            if ($all == 'all') $all = '<span class="badge badge-info mb-2">tất cả</span>';
+                            else $all = '<span class="badge badge-info mb-2">chỉ trống</span>';
+                            echo $from.' '.$to;
+                            if ($from == 'Any'){
+                                $from = '<span class="badge badge-warning mb-2">bất cứ nơi nào</span>';
+                            }
+                            else{                                
+                                $from = '<span class="badge badge-warning mb-2">'.$from.'</span>';
+                            }
+                            if ($to == 'Any'){
+                                $to = '<span class="badge badge-danger mb-2">bất cứ nơi nào</span>';
+                            }
+                            else{
+                                $to = '<span class="badge badge-danger mb-2">'.$to.'</span>';
+                            }                            
+                            ?>
+                            <p class="card-header-subtitle mb-0"><?php echo $all; ?> từ <?php echo $from; ?> đến <?php echo $to; ?></p>
 
                         </div>
 
@@ -104,7 +121,7 @@
                                     else{
                                         echo '
                                         <div class="col-md-12">
-                                        <h5> No trips</h5>
+                                        <h5> KHÔNG CÓ CHUYẾN ĐI NÀO</h5>
                                         </div>
                                         ';      
                                     }
@@ -136,9 +153,9 @@
                         <div class="view view-cascade gradient-card-header blue-gradient">
 
                             <!-- Title -->
-                            <h2 class="card-header-title mb-3">ALL NEED TRIPS</h2>
+                            <h2 class="card-header-title mb-3">CÁC YÊU CẦU</h2>
                             <!-- Subtitle -->
-                            <p class="card-header-subtitle mb-0">from <?php echo $from; ?> to <?php echo $to; ?> <?php echo $all; ?></p>
+                            <p class="card-header-subtitle mb-0"><?php echo $all; ?> từ <?php echo $from; ?> đến <?php echo $to; ?></p>
 
                         </div>
 
@@ -197,7 +214,7 @@
                             else{
                                 echo '
                                 <div class="col-md-12">
-                                <h5> No need trips</h5>
+                                <h5> KHÔNG CÓ YÊU CẦU NÀO</h5>
                                 </div>
                                 ';                                
                             }
