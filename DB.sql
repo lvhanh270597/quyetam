@@ -75,6 +75,7 @@ CREATE TABLE needed_trip (
 	finish_to INT(6) UNSIGNED NOT NULL,
 	price FLOAT NOT NULL,
 	type_transaction VARCHAR(30) NOT NULL,
+	trip_id INT(6) UNSIGNED,
 	FOREIGN KEY (start_from) references place(id),
 	FOREIGN KEY (finish_to) references place(id),
 	FOREIGN KEY (asker) references user(username)

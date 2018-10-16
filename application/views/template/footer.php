@@ -116,8 +116,6 @@
     
     ?>    
 
-    <div class="drag-target" style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-    </div>
     
 <script>
     $(document).ready(function(){ 

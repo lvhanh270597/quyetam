@@ -131,12 +131,18 @@
                                             </div>
                                         </div>
                                     </div> 
-                                    <div class="row">
-                                        <div class="col-md-12 text-center my-4">
-                                            <input type="text" name="asker" hidden value="<?php echo $this->session->userdata('username'); ?>"/>
-                                            <input type="submit" value="Mở chuyến đi này"" class="btn btn-info btn-rounded">
-                                        </div>
-                                    </div>                                                                                                                                                                
+                                    <?php   
+                                    $trip_detail = $this->trip_ml->get_by_primary($trip['trip_id']);
+                                    if ($trip_detail == null){
+                                        echo '
+                                        <div class="row">
+                                            <div class="col-md-12 text-center my-4">
+                                                <input type="text" name="asker" hidden value="'.$this->session->userdata('username').'"/>
+                                                <input type="submit" value="Mở chuyến đi này"" class="btn btn-info btn-rounded">
+                                            </div>
+                                        </div>';
+                                    }                                    
+                                    ?>                                    
                                     <!--/.Third row-->
                                     <!-- Fourth row -->                                                                   
                                     <!-- /.Fourth row -->                                    

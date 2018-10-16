@@ -543,7 +543,9 @@ class Trip extends CI_Controller {
                     $this->trip_ml->add_into($data_sql);
                     $insert_id = $this->db->insert_id();                    
                     // Xóa need trip này!
-                    $this->needed_trip_ml->delete($id);
+                    // Set trip_id, instead removing it
+                    $this->needed_trip_ml->set_attr($id, 'trip_id', $insert_id);
+                    //$this->needed_trip_ml->delete($id);
                     // Gửi thông báo
                     $notify = [
                         'to_user' => $data_sql['owner'],
