@@ -165,7 +165,7 @@
                                                         $place = $this->place_ml->get_by_primary($trip['finish_to']);                                    
                                                         $free = '';
                                                         $trip_detail = $this->trip_ml->get_by_primary($trip['trip_id']);
-                                                        if ($trip_detail == null){
+                                                        if ($trip_detail !== null){
                                                             $free = '<span class="badge badge-warning mb-2">đã có người chở</span>';
                                                         }                                    
                                                         echo '<div class="col-lg-3 col-md-6 mb-4">
