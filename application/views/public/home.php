@@ -28,6 +28,7 @@
     
     <!-- /.Main Container -->    
     <div class="container">  
+    
         <div class="fuck">                                
         </div>                  
         <!-- Grid row -->
@@ -35,7 +36,7 @@
         <div class="card card-cascade">
             <!-- Card image -->            
             <div class="view view-cascade overlay" id="hihi">
-                <!-- Title -->
+                <!-- Title -->                
                 <img  class="card-img-top" src="<?php echo base_url('assets/cover.jpg'); ?>" alt="Card image cap">                
             </div>
 
@@ -45,7 +46,7 @@
                 <div class="container">
                     <!-- Grid row -->
                     <div class="row">
-                        <div class="container">    
+                        <div class="container">                                
                             <div class="row">
                                 <div class="col-md-12">
                                     <!-- Nav tabs -->
@@ -70,6 +71,7 @@
                                     <div class="row">
                                     <div class="card-body card-body-cascade">
                                                         <!--Card-->
+                                                        
                                         <div class="card card-cascade narrower">
                                             <!-- Card content -->
                                             <div class="card-body text-center">
@@ -236,5 +238,5 @@
                 </div>
             </div>
         </div>                     
-    </div>
+    </div>    
 </div>

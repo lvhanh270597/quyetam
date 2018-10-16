@@ -32,6 +32,9 @@
 
 <body>
 
+<canvas id="canvas"></canvas>
+<link rel="stylesheet" href="<?php echo base_url('assets/css/snow.css'); ?>">
+<script src="<?php echo base_url('assets/js/snow.js') ?>"> </script>
 	<div id="notfound">
 		<div class="notfound">
 			<div class="notfound-404"></div>
