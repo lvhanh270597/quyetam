@@ -32,7 +32,7 @@ class Needed_trip_ml extends Trip_template
 		if ($from != -1 && $to != -1){			
 			$where = '(start_from = '.$from.') and (finish_to = '.$to.')';
 		}
-		$where .= 'and (timestart >= "'.get_current_time().'")';
+		$where .= ' and (timestart >= "'.get_current_time().'")';
 		$dataset = $this->db->query('select * from '.$this->db_table.' where '.$where);				
 		return $dataset == null ? null : $dataset->result_array();
 	}

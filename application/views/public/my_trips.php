@@ -25,8 +25,9 @@
                 
                 <!-- Section: Last items -->
                 <section>
-                
-                    <h4 class="font-weight-bold mt-4 dark-grey-text"><strong>ALL TRIPS</strong></h4>
+                    <hr class="mb-3">
+                    <hr class="mb-3">
+                    <hr class="mb-3">
                     <hr class="mb-3">
                 
                                         <!-- Card -->
@@ -36,10 +37,10 @@
                         <div class="view view-cascade gradient-card-header blue-gradient">
 
                             <!-- Title -->
-                            <h2 class="card-header-title mb-3">ALL MY TRIPS</h2>
+                            <h2 class="card-header-title mb-3">CÁC CHUYẾN ĐI CỦA TÔI</h2>
                             <!-- Subtitle -->                           
                             <a href="<?php echo site_url('trip/create'); ?>" class="btn aqua-gradient btn-rounded btn-sm">                            
-                            Create new
+                            TẠO MỚI
                             </a>
                         </div>
 
@@ -109,6 +110,13 @@
                                         </div>';
                                         }
                                     }
+                                    else{                                
+                                        echo '
+                                        <div class="col-md-12">
+                                        <h5>CHƯA CÓ CHUYẾN ĐI NÀO</h5>
+                                        </div>
+                                        ';
+                                    }
                                 ?>
 
                                 <!--Grid column-->
@@ -137,10 +145,10 @@
                         <div class="view view-cascade gradient-card-header blue-gradient">
 
                             <!-- Title -->
-                            <h2 class="card-header-title mb-3">ALL NEED TRIPS</h2>
+                            <h2 class="card-header-title mb-3">CÁC YÊU CẦU CỦA TÔI</h2>
                             <!-- Subtitle -->                            
                             <a href="<?php echo site_url('trip/create_ask_trip'); ?>" class="btn aqua-gradient btn-rounded btn-sm">                            
-                            Create new
+                            TẠO MỚI
                             </a>
                         </div>
 
@@ -200,7 +208,7 @@
                             else{                                
                                 echo '
                                 <div class="col-md-12">
-                                <h5> No need trips</h5>
+                                <h5>CHƯA CÓ YÊU CẦU NÀO</h5>
                                 </div>
                                 ';
                             }
