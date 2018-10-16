@@ -131,7 +131,7 @@
                                                 else{
                                                     echo '
                                                     <div class="col-md-12">
-                                                    <h5>CHƯA CÓ YÊU CẦU NÀO</h5>
+                                                    <h5>CHƯA CÓ CHUYẾN ĐI NÀO</h5>
                                                     </div>
                                                     ';      
                                                 }
