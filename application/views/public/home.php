@@ -17,6 +17,9 @@
         width: 100%;
         height: 70px;
     }
+    #hihi{
+        height: 50%;
+    }
 </style>
 
     <!-- Mega menu -->
@@ -31,7 +34,7 @@
         <!-- Card -->
         <div class="card card-cascade">
             <!-- Card image -->            
-            <div class="view view-cascade overlay">
+            <div class="view view-cascade overlay" id="hihi">
                 <!-- Title -->
                 <img  class="card-img-top" src="<?php echo base_url('assets/cover.jpg'); ?>" alt="Card image cap">                
             </div>
