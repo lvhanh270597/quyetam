@@ -140,14 +140,7 @@ Licensed under MIT
                                     <?php
                                         echo $message;
                                     ?>
-                                    <div class="row">
-                                        <!--First column-->
-                                        <div class="col-md-6">
-                                            <div class="md-form mb-0">
-                                                <input type="text" id="form1" class="form-control validate" value="Company, inc" disabled>
-                                                <label for="form1" data-error="wrong" data-success="right">Company</label>
-                                            </div>
-                                        </div>
+                                    <div class="row">                                        
                                         <!--Second column-->
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
@@ -155,10 +148,6 @@ Licensed under MIT
                                                 <label for="form2" data-error="wrong" data-success="right">Username</label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!--/.First row-->
-                                    <!--First row-->
-                                    <div class="row">
                                         <!--First column-->
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
@@ -166,14 +155,18 @@ Licensed under MIT
                                                 <label for="form81" data-error="wrong" data-success="right">Full name</label>
                                             </div>
                                         </div>
+                                    </div>
+                                    <!--/.First row-->
+                                    <!--First row-->
+                                    <div class="row">                                        
                                         <!--Second column-->
-                                        <div class="col-md-3">
+                                        <div class="col-md-6">
                                             <div class="md-form mb-0">
                                                 <input type="text" id="form1" class="form-control validate" value="<?php echo $balance; ?>" disabled>
                                                 <label for="form2" data-error="wrong" data-success="right">Tài khoản chính</label>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-6">
                                             <div class="md-form mb-0">
                                                 <input type="text" id="form1" class="form-control validate" value="<?php echo $t_balance; ?>" disabled>
                                                 <label for="form2" data-error="wrong" data-success="right">Tài khoản dự bị</label>
