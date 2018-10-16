@@ -32,6 +32,9 @@
         height: 50px; 
         margin-right: 30px;       
     }
+    .fuck2{
+        margin: 0px;
+    }
     .dropdown-toggle::after {
         display:none;
     }
@@ -115,7 +118,8 @@
                         width: 150px;                    
                     }
                     .beau{
-                        height: 90px;                        
+                        height: 100px;                        
+                        width: 200px;
                     }
                     .beau:hover{
                         background-color: #ebebeb;
@@ -159,7 +163,7 @@
                                 foreach (array_slice($notification, 0, 4) as $notify){                                
                                     $new = ($notify['seen'] == false) ? '<span class="badge badge-danger mb-2">new</span>' : '';
                                     echo '<a href="'.site_url('notify/check/'.$notify['id']).'" class="beau">
-                                    <div class="fuck">
+                                    <div class="fuck2">
                                         <h6>'.$new.' <small>'.$notify['content'].'</h6> </small> <small>'.ago($notify['time']).'</small>
                                     </div>
                                     </a>';
