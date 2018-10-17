@@ -94,19 +94,16 @@
                                                 <!--Card image-->
                 
                                                 <!--Card content-->
-                                                <div class="card-body" id="dm">                                    
+                                                <div class="card-body">                                    
                                                     <!--Category & Title-->
-                                                    <h5 class="card-title mb-1"><strong><a href="" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h5>                                        
+                                                    <h6 class="card-title mb-1"><strong><a href="" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h6>                                        
                                                     <span class="badge badge-success mb-2">'.$owner['full_name'].'</span> </br>
                                                     '.$free.'
                                                     '.$empty.'
                                                     <!--Card footer-->
                                                     <div class="card-footer pb-0">
                                                         <div class="row mb-0">
-                                                            <span class="float-left"><strong> '.after($trip['timestart']).'</strong></span>
-                                                            <span class="float-right">                                                                                                       
-                                                                <a class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Giờ xuất phát"><i class="fa fa-clock-o ml-3" aria-hidden="true"></i></a>
-                                                            </span>
+                                                            <span class="float-left"><strong> '.after($trip['timestart']).'</strong></span>                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -179,7 +176,7 @@
 
                                         <!--Card image-->
                                         <div class="view overlay">
-                                            <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="">
+                                            <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">
                                             <a href="'.site_url('trip/detail_need/'.$trip['id']).'">
                                                 <div class="mask rgba-white-slight waves-effect waves-light">                                            
                                                 </div>                                            
@@ -190,16 +187,13 @@
                                         <!--Card content-->
                                         <div class="card-body">                                    
                                             <!--Category & Title-->
-                                            <h5 class="card-title mb-1"><strong><a href="" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h5>
+                                            <h6 class="card-title mb-1"><strong><a href="" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h6>
                                             <span class="badge badge-success mb-2">'.$asker['full_name'].'</span> </br>
                                             '.$free.'                                            
                                             <!--Card footer-->
                                             <div class="card-footer pb-0">
                                                 <div class="row mb-0">
-                                                    <span class="float-left"><strong> '.$trip['timestart'].'</strong></span>
-                                                    <span class="float-right">                                                                                                       
-                                                        <a class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Giờ xuất phát"><i class="fa fa-clock-o ml-3" aria-hidden="true"></i></a>
-                                                    </span>
+                                                    <span class="float-left"><strong> '.after($trip['timestart']).'</strong></span>                                                    
                                                 </div>
                                             </div>
                                         </div>
