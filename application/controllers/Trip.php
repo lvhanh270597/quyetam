@@ -21,26 +21,7 @@ class Trip extends CI_Controller {
     }       
     
     public function index(){
-        // show newest trip: top 10
-        // needed trip : top 10
-        // number of trips to others place        
-        // show cheapest trips
-        $needed_trips = $this->needed_trip_ml->get_newest();
-        $trips = $this->trip_ml->get_newest();
-        
-        $cheapest_trips = $this->trip_ml->get_cheapest();        
-        $number_of_each_from_place = $this->trip_ml->count_each_from_place();
-        $number_of_each_to_place = $this->trip_ml->count_each_to_place();
-        
-        $data = array(
-            'trips' => $trips,
-            'needed_trips' => $needed_trips,
-            'cheapest_trips' => $cheapest_trips,          
-            'count_each_from_place' => $number_of_each_from_place,
-            'count_each_to_place' => $number_of_each_to_place,         
-        );
-
-        display('trip', $data);
+        redirect('trip/my_trips');
     }
 
     public function all($type){
