@@ -81,30 +81,25 @@
                                     <div class="row">                                        
                                         <!--Second row-->                                    
                                         <!--First column-->              
-                                        <div class="col-md-6">
-                                            <div class="md-form mb-0">                                                 
-                                                <input type="datetime-local" id="party-time"
-                                                    name="timestart" value="" class="form-control validate"/>
-                                                <label for="form2" data-error="wrong" data-success="right" class="active">Bắt đầu lúc</label>                                                                                                                                                              
+                                        <div class="col-md-3">
+                                            <div class="md-form mb-0">                                                                                                 
+                                                <input type="date" min="<?= get_date(min_date()) ?>" max="<?= get_date(max_date()) ?>" name="datestart" id="dateofbirth" class="form-control validate">
+                                                <label for="form2" data-error="wrong" data-success="right" class="active">Ngày đi</label>
+                                            </div>
+                                        </div>  
+                                        <div class="col-md-3">
+                                            <div class="md-form mb-0">                                                                                                 
+                                                <input type="time" name="timestart" id="dateofbirth" class="form-control validate">
+                                                <label for="form2" data-error="wrong" data-success="right" class="active">Giờ đi</label>                                                                                                                                                              
                                             </div>
                                         </div>  
                                         <!--First column-->
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
-                                                <select class="browser-default custom-select mb-4" name="type_transaction">
-                                                    <?php
-                                                    if ($trip['guess']){
-                                                        echo '<option value="" disabled selected>'.$trip['type_transaction'].'</option>';
-                                                    }
-                                                    else{
-                                                        echo '
-                                                        <option value="" disabled selected>Chọn hình thức thanh toán</option>
-                                                        <option value="Trực tiếp">Trực tiếp</option>';
-                                                    }
-                                                    ?>                                                    
-                                                </select>
+                                                <input name="type_transaction" type="text" id="form1" class="form-control validate" value="Trực tiếp" disabled>
+                                                <label for="form2" data-error="wrong" data-success="right">Hình thức thanh toán</label>
                                             </div>
-                                        </div>
+                                        </div>          
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
                                                 <input type="text" id="form1" class="form-control validate" value="<?php echo $this->session->userdata('username'); ?>" disabled>
@@ -118,6 +113,7 @@
                                     <div class="row">
                                         <div class="col-md-12 text-center my-4">
                                             <input type="text" name="asker" hidden value="<?php echo $this->session->userdata('username'); ?>"/>
+                                            <input type="text" name="type_transaction" hidden value="Trực tiếp" />
                                             <input type="submit" value="Tạo Mới" class="btn btn-info btn-rounded">
                                         </div>
                                     </div>                                    

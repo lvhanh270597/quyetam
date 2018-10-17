@@ -71,17 +71,15 @@ class Needed_trip_ml extends Trip_template
 		if ($check['status'] === false){ return $check; }
 		$data = $check['data'];
 		$timestart = $this->input->post('timestart');
-		$timestart = user_to_system($timestart);
+		$datestart = $this->input->post('datestart');
+		$timestart = $datestart.' '.$timestart;
 		if (!validateDate($timestart)){
 			return [
 				'status' => false,
 				'data' => 'Bạn đang cố gắng làm sai giờ hệ thống?'
 			];
 		}
-		if (adjust_time($timestart) < adjust_time(min_date()) || adjust_time($timestart) > adjust_time(max_date())){
-			echo "$timestart<br>".user_to_system(min_date()).'<br>'.user_to_system(max_date());
-			echo (strtotime($timestart) < user_to_system(min_date()) ? "true" : "false");
-			echo (strtotime($timestart) > user_to_system(max_date()) ? "true" : "false");
+		if (adjust_time($timestart) < adjust_time(min_date()) || adjust_time($timestart) > adjust_time(max_date())){			
 			return [
 				'status' => false,
 				'data' => get_message_error('Bạn đang cố gắng làm sai giờ hệ thống?<br>', 'Vui lòng chỉnh giờ từ '.min_date().' đến '.max_date())
@@ -100,17 +98,17 @@ class Needed_trip_ml extends Trip_template
 		if ($check['status'] === false){ return $check; }
 
 		$timestart = $this->input->post('timestart');
-		$timestart = user_to_system($timestart);
+		$datestart = $this->input->post('datestart');
+		$timestart = $datestart.' '.$timestart;
+		echo $timestart;
+		
 		if (!validateDate($timestart)){
 			return [
 				'status' => false,
 				'data' => 'Bạn đang cố gắng làm sai giờ hệ thống?'
 			];
 		}
-		if (adjust_time($timestart) < adjust_time(min_date()) || adjust_time($timestart) > adjust_time(max_date())){
-			echo "$timestart<br>".user_to_system(min_date()).'<br>'.user_to_system(max_date());
-			echo (strtotime($timestart) < user_to_system(min_date()) ? "true" : "false");
-			echo (strtotime($timestart) > user_to_system(max_date()) ? "true" : "false");
+		if (adjust_time($timestart) < adjust_time(min_date()) || adjust_time($timestart) > adjust_time(max_date())){			
 			return [
 				'status' => false,
 				'data' => get_message_error('Bạn đang cố gắng làm sai giờ hệ thống?<br>', 'Vui lòng chỉnh giờ từ '.min_date().' đến '.max_date())

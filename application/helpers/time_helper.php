@@ -111,15 +111,21 @@ if (! function_exists('get_compare')){
 }
 
 if (! function_exists('validateDate')){
-    function validateDate($date, $format = 'Y-m-d H:i:s'){
+    function validateDate($date, $format = 'Y-m-d H:i'){        
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;
     }
 }
 
-if (! function_exists('user_to_system')){
-    function user_to_system($user_time){
-        return date("Y-m-d H:i:s", strtotime($user_time));
+if (! function_exists('get_date')){
+    function get_date($user_time){
+        return date("Y-m-d", strtotime($user_time));
+    }
+}
+
+if (! function_exists('get_time')){
+    function get_time($datetime){
+        return date("H:i", strtotime($datetime));
     }
 }
 

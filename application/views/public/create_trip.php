@@ -78,14 +78,7 @@
                                     </div>
                                     <!--/.First row-->
                                     <!--First row-->
-                                    <div class="row">                                        
-                                        <!--Second row-->                                    
-                                        <!--First column-->
-                                        <style>
-                                            legend{
-                                                font-size: 16px;
-                                            }
-                                        </style>                                                                                                         
+                                    <div class="row">                                                                                                                                                                                     
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">                                                 
                                                 <input type="datetime-local" id="party-time"

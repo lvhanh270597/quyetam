@@ -100,12 +100,18 @@
                                     <div class="row">                                        
                                         <!--Second row-->                                    
                                         <!--First column-->
-                                        <div class="col-md-6">
-                                            <div class="md-form mb-0">       
-                                                <input type="datetime-local" name="timestart" value="<?= system_to_user($trip['timestart']) ?>"disabled class="form-control validate"/>
-                                                <label for="form2" data-error="wrong" data-success="right" class="active">Bắt đầu lúc</label>                                                                                                                                                              
+                                        <div class="col-md-3">
+                                            <div class="md-form mb-0">
+                                                <input type="date" value="<?= get_date($trip['timestart']) ?>" disabled class="form-control validate"/>
+                                                <label for="form2" data-error="wrong" data-success="right" class="active">Ngày đi</label>                                                                                                                                                              
                                             </div>
-                                        </div>   
+                                        </div>  
+                                        <div class="col-md-3">
+                                            <div class="md-form mb-0">
+                                                <input type="time" value="<?= get_time($trip['timestart']) ?>" disabled class="form-control validate"/>
+                                                <label for="form2" data-error="wrong" data-success="right" class="active">Giờ đi</label>                                                                                                                                                              
+                                            </div>
+                                        </div>  
                                         <!--First column-->
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
