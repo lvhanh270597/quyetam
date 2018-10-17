@@ -82,7 +82,7 @@ class Profile extends CI_Controller {
 		$config = array(
 			'upload_path'   => $upload_path,
 			'allowed_types' => 'gif|jpg|jpeg|png|bmp|svg',
-			'max_size'      => 0,
+			'max_size'      => 2048,
 			'overwrite'     => TRUE,
 			'file_name'     => preg_replace('/[^A-Za-z0-9.-]/', "", $_FILES['image']['name'])
 		);
