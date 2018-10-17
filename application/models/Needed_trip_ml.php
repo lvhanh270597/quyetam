@@ -85,7 +85,7 @@ class Needed_trip_ml extends Trip_template
 				'data' => get_message_error('Bạn đang cố gắng làm sai giờ hệ thống?<br>', 'Vui lòng chỉnh giờ từ '.min_date().' đến '.max_date())
 			];
 		}
-		$data['timestart'] = hashCode(trim($this->input->post('timestart')));
+		$data['timestart'] = $timestart;
 		$this->db->update($this->db_table,$data,[$this->primary => $id]);
 		//upload an image to a server if a new row was successfully edited
 		return ['status' => true];
@@ -100,7 +100,6 @@ class Needed_trip_ml extends Trip_template
 		$timestart = $this->input->post('timestart');
 		$datestart = $this->input->post('datestart');
 		$timestart = $datestart.' '.$timestart;
-		echo $timestart;
 		
 		if (!validateDate($timestart)){
 			return [
@@ -123,6 +122,7 @@ class Needed_trip_ml extends Trip_template
 			'price' => $check['data']['price'],
 			'asker' => $this->session->userdata('username')
 		];
+		
 		return [
 			'status' => true,
 			'data' => $data

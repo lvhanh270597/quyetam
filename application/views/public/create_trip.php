@@ -79,11 +79,16 @@
                                     <!--/.First row-->
                                     <!--First row-->
                                     <div class="row">                                                                                                                                                                                     
-                                        <div class="col-md-6">
-                                            <div class="md-form mb-0">                                                 
-                                                <input type="datetime-local" id="party-time"
-                                                    name="timestart" value="" class="form-control validate"/>
-                                                <label for="form2" data-error="wrong" data-success="right" class="active">Bắt đầu lúc</label>                                                                                                                                                              
+                                        <div class="col-md-3">
+                                            <div class="md-form mb-0">                                                                                                 
+                                                <input type="date" min="<?= get_date(min_date()) ?>" max="<?= get_date(max_date()) ?>" name="datestart" id="dateofbirth" class="form-control validate">
+                                                <label for="form2" data-error="wrong" data-success="right" class="active">Ngày đi</label>
+                                            </div>
+                                        </div>  
+                                        <div class="col-md-3">
+                                            <div class="md-form mb-0">                                                                                                 
+                                                <input type="time" name="timestart" id="dateofbirth" class="form-control validate">
+                                                <label for="form2" data-error="wrong" data-success="right" class="active">Giờ đi</label>                                                                                                                                                              
                                             </div>
                                         </div>  
                                         <!--First column-->

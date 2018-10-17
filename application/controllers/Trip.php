@@ -283,7 +283,7 @@ class Trip extends CI_Controller {
                 if ($type == null){
                     $message = get_message_error('Lỗi!', 'Xin vui lòng chọn hình thức thanh toán!');
                 } else{
-                    $data_sql = $check['data'];                    
+                    $data_sql = $check['data'];                       
                     $ok = ($type == $this->tructiep);
                     if ($type == $this->giantiep){
                         $asker = $this->session->userdata('username');
@@ -292,6 +292,7 @@ class Trip extends CI_Controller {
                     if ($ok){
                         $data_sql['type_transaction'] = $type;
                         if ($this->needed_trip_ml->add_into($data_sql)){
+                            print_r($data_sql);                 
                             $insert_id = $this->db->insert_id();
                             $link = 'click vào link <a href="'.site_url('trip/edit_need/'.$insert_id).'"> này </a> để xem chuyến đi vừa tạo.';
                             $message = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link);                            
