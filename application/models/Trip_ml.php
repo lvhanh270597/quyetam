@@ -88,7 +88,6 @@ class Trip_ml extends Trip_template
 		$timestart = $this->input->post('timestart');
 		$timestart = user_to_system($timestart);
 		
-		echo $timestart;
 		if (!validateDate($timestart)){
 			return [
 				'status' => false,
