@@ -198,7 +198,7 @@
                             <!-- /.Card content -->
                             <?php
                             $cur_user = $this->session->userdata('username');
-                            if ($trip['guess'] && (($cur_user == $trip['guess']) || ($cur_user == $trip['owner']))){
+                            if (($this->session->userdata('admin')) || $trip['guess'] && (($cur_user == $trip['guess']) || ($cur_user == $trip['owner']))){
                                 echo '
                                 <div class="card-body card-body-cascade" id="fuckyou">
                                         <!--Card-->
