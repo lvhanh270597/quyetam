@@ -538,6 +538,10 @@ class Trip extends CI_Controller {
                     ];
                     $this->notify_ml->add_trigger($notify);
 
+                    // them vao bang matched
+                    $this->matched_ml->add_into(['user1' => $data_sql['owner'], 'user2' => $data_sql['guess']]);
+                    //
+                    
                     $notify = [
                         'to_user' => $data_sql['guess'],
                         'time' => get_current_time(),
