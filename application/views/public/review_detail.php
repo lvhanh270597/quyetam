@@ -47,29 +47,26 @@ Licensed under MIT
 
                 <div class="card-body">
                     <!-- Name -->
-                    <h4 class="card-title"><?php  echo $info['full_name']; ?></h4>
-                    <span class="badge badge-info mb-2"><?php  echo $info['username']; ?></span>
-                    <span class="badge badge-warning mb-2"><?php  echo $info['gender']; ?></span>                    
-                    <hr>
+                    <h4 class="card-title"><?php  echo $info['full_name']; ?></h4>                    
+                    <span class="badge badge-info mb-2"></span>
+                    <span class="badge badge-warning mb-2"></span>                                        
                     <!-- Quotation -->
-                    <ul class="nav">
-						<li class="active">						                        	
-                            <?php echo $email; ?>
-                            <small> Xác thực email sinh viên </small>
-						</li>
-						<li>				
-                            <?php echo $scard; ?>
-                            <small> Xác thực có thẻ sinh viên </small>
-						</li>
-						<li>
-                            <?php echo $cmnd; ?>
-                            <small> Xác thực có giấy CMND </small>
-						</li>
-						<li>							
-							<?php echo $dcard; ?>
-							<small> Xác thực có bằng lái xe </small>
-						</li>
-					</ul>
+                    <table class="table">                        
+                        <tbody>
+                            <tr>
+                                <td><?php echo $email; ?><small> Xác thực email sinh viên </small></td>                                                           
+                            </tr>
+                            <tr>
+                                <td><?php echo $scard; ?> <small> Xác thực có thẻ sinh viên </small></td>
+                            </tr>                        
+                            <tr>
+                                <td><?php echo $cmnd; ?> <small> Xác thực có giấy CMND </small></td>
+                            </tr>                        
+                            <tr>
+                                <td><?php echo $dcard; ?> <small> Xác thực có bằng lái xe </small></td>
+                            </tr>                        
+                        </tbody>
+                    </table>                           
                 </div>
 
             </div>
@@ -84,6 +81,36 @@ Licensed under MIT
                 <div class="view view-cascade gradient-card-header purple-gradient">
                 <!-- Title -->
                     <h2 class="card-header-title">Reviews</h2>            
+                </div>
+                <div class="card-body">
+                    <!-- Name -->
+                    <h4 class="card-title">Thông Tin</h4>
+                    <table class="table">                        
+                        <tbody>
+                        <tr>
+                            <td><p class="font-weight-bold green-text">Giới tính</p></td>
+                            <td><p class="font-weight-bold"> <?= $info['gender']; ?> </p></td>                            
+                        </tr>
+                        <tr>
+                            <td><p class="font-weight-bold green-text">Username</p></td>
+                            <td><p class="font-weight-bold "> <?= $info['username']; ?></p></td>  
+                        </tr>
+                        <?php                        
+                        if ($permission){
+                            echo '
+                            <tr>
+                                <td><p class="font-weight-bold green-text">SĐT</p></td>
+                                <td> <p class="font-weight-bold ">'.$info['phone_num'].' </p></td>  
+                            </tr>
+                            <tr>
+                                <td><p class="font-weight-bold green-text">Facebook</p></td>
+                                <td><p class="font-weight-bold ">'.$info['facebook'].'</p></td>  
+                            </tr>
+                            ';
+                        }                        
+                        ?>
+                        </tbody>
+                    </table>                                                          
                 </div>
 
                 <!-- Card content -->

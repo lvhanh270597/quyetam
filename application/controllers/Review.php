@@ -17,13 +17,14 @@ class Review extends CI_Controller {
 
         if (!$test_user = $this->user_ml->get_by_primary($user)){
             redirect('page_not_found');
-        }
+        }        
 
         $username = $this->session->userdata('username');
+
         $permission = false;
         if ($this->matched_ml->check_exist($user, $username)){
             $permission = true;
-        }
+        }        
 
         if ($this->input->post()){            
             $content = $this->input->post('content');
