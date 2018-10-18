@@ -167,12 +167,7 @@
                             }                               
                         }
                            echo '
-                           <!--Dropdown primary-->
-                           <li class="nav-item">
-                                <a href="'.site_url('price').'" class="nav-link waves-effect headerNotifCountBadge">
-                                    <i class="fa fa-money" aria-hidden="true"></i>
-                                </a>
-                            </li>                          
+                           <!--Dropdown primary-->                                                  
                             <div class="dropdown">                            
                                 <!--Trigger-->                                
                                 <li class="nav-item dropdown-toggle" data-toggle="dropdown">
