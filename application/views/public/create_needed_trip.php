@@ -96,8 +96,8 @@
                                         <!--First column-->
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
-                                                <input type="text" id="form1" class="form-control validate" value="Trực tiếp" disabled>
-                                                <label for="form2" data-error="wrong" data-success="right">Hình thức thanh toán</label>
+                                                <input type="number" id="form1" class="form-control validate" value="" name="price">
+                                                <label for="form2" data-error="wrong" data-success="right">Giá</label>
                                             </div>
                                         </div>          
                                         <div class="col-md-3">

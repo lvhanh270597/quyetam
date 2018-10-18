@@ -49,19 +49,12 @@ class Needed_trip_ml extends Trip_template
 				'data' => get_message_error('Vị trí không hợp lệ', $start_from.' '.$finish_to)
 			];
 		}
-		$price = $this->price_ml->get_price_from_and_to($start_from, $finish_to);
-		if ($price === null){
-			return [
-				'status' => false,
-				'data' => get_message_error('Thất bại!<br>', 'Do tuyến đường này chưa được cập nhật trên hệ thống.')
-			];
-		}
+		
 		return [
 			'status' => true,
 			'data' => [
 				'start_from' => $start_from,
-				'finish_to' => $finish_to,
-				'price' => $price['amount']
+				'finish_to' => $finish_to,				
 			]
 		];		
 	}
@@ -113,13 +106,25 @@ class Needed_trip_ml extends Trip_template
 				'data' => get_message_error('Bạn đang cố gắng làm sai giờ hệ thống?<br>', 'Vui lòng chỉnh giờ từ '.min_date().' đến '.max_date())
 			];
 		}
+
+
+		$price = $this->input->post('price');
+		$price = get_price($price);		
+		
+		if ($price === false){
+			return [
+				'status' => false,
+				'data' => get_message_error('Thất bại!<br>', 'Giá tiền phải là một con số!')
+			];
+		}
+
 		$data = [
 			'created' => $created, 
 			'created' => get_current_time(),
 			'start_from' => $check['data']['start_from'],
 			'finish_to' => $check['data']['finish_to'],
 			'timestart' => $timestart,
-			'price' => $check['data']['price'],
+			'price' => $price,
 			'asker' => $this->session->userdata('username')
 		];
 		

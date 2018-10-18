@@ -92,10 +92,16 @@
                                             </div>
                                         </div>  
                                         <!--First column-->
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="md-form mb-0">
                                                 <input type="text" id="form1" class="form-control validate" value="<?php echo $this->session->userdata('username'); ?>" disabled>
                                                 <label for="form2" data-error="wrong" data-success="right">Bạn là</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="md-form mb-0">
+                                                <input type="number" id="form1" class="form-control validate" name="price">
+                                                <label for="form2" data-error="wrong" data-success="right">Giá</label>
                                             </div>
                                         </div>
                                     </div>                                                                                                           

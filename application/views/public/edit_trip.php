@@ -139,10 +139,16 @@
                                             </div>
                                         </div>  
                                         <!--First column-->
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="md-form mb-0">
                                                 <input type="text" id="form1" class="form-control validate" value="<?php echo $this->session->userdata('username'); ?>" disabled>
                                                 <label for="form2" data-error="wrong" data-success="right">Bạn là</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="md-form mb-0">
+                                                <input type="text" id="form1" name="price" class="form-control validate" value="<?= $trip['price'] ?>" disabled>
+                                                <label for="form2" data-error="wrong" data-success="right">Giá</label>
                                             </div>
                                         </div>
                                     </div>                                                                                                           
@@ -156,10 +162,7 @@
                                                 echo '<a class="btn btn-danger btn-rounded" href="'.site_url('trip/remove_trip/'.$trip['id']).'"> Xóa </a>';
                                                 if ($editable){
                                                     echo '<input type="submit" value="Sửa" class="btn btn-info btn-rounded" name="edit">';                                                    
-                                                }
-                                                if ($trip['guess'] != null){
-                                                    echo '<a href="'.site_url('verify/trip/'.$trip['id']).'" class="btn btn-success btn-rounded">Check code</a>';
-                                                }
+                                                }                                                
                                             ?>
                                         </div>
                                     </div>                                                      
