@@ -175,3 +175,10 @@ if ( ! function_exists('hashCode')){
         return htmlentities($code);
     }
 }
+
+if (!function_exists('get_price')){
+    function get_price($price){
+        $price = trim($price);
+        return is_numeric($price) ? (int)$price : false;
+    }
+}

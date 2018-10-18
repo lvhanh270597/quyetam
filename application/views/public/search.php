@@ -69,8 +69,11 @@
                                             $place = $this->place_ml->get_by_primary($trip['finish_to']);                                    
                                             $free = '';
                                             if ($trip['price'] == 0){
-                                                $free = '<span class="badge badge-warning mb-2">free</span>';
+                                                $free = '<span class="badge badge-info mb-2">free</span> <br>';
                                             }
+                                            else{
+                                                $free = '<span class="badge badge-info mb-2">'.$trip['price'].'đ</span> <br>';
+                                            }     
                                             $empty = '';
                                             if ($trip['guess'] == null){
                                                 $empty = '<span class="badge badge-primary mb-2">còn trống</span></br>';
@@ -97,9 +100,9 @@
                                                 <div class="card-body">                                    
                                                     <!--Category & Title-->
                                                     <h6 class="card-title mb-1"><strong><a href="" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h6>                                        
-                                                    <span class="badge badge-success mb-2">'.$owner['full_name'].'</span> </br>
-                                                    '.$free.'
+                                                    <span class="badge badge-success mb-2">'.$owner['full_name'].'</span> </br>                                                    
                                                     '.$empty.'
+                                                    '.$free.'
                                                     <!--Card footer-->
                                                     <div class="card-footer pb-0">
                                                         <div class="row mb-0">
@@ -165,10 +168,19 @@
                                 foreach ($needed_trips as $trip){
                                     $asker = $this->user_ml->get_by_primary($trip['asker']);                                    
                                     $place = $this->place_ml->get_by_primary($trip['finish_to']);                                    
+                                    $empty = '';
+                                    $trip_detail = $this->trip_ml->get_by_primary($trip['trip_id']);
+                                    if ($trip_detail !== null){
+                                        $empty = '<span class="badge badge-warning mb-2">đã có người chở</span><br>';
+                                    }          
                                     $free = '';
                                     if ($trip['price'] == 0){
-                                        $free = '<span class="badge badge-warning mb-2">free</span>';
-                                    }                                    
+                                        $free = '<span class="badge badge-info mb-2">free</span> <br>';
+                                    }
+                                    else{
+                                        $free = '<span class="badge badge-info mb-2">'.$trip['price'].'đ</span> <br>';
+                                    }                
+                                                
                                     echo '<div class="col-lg-3 col-md-6 mb-4">
 
                                     <!--Card-->
@@ -188,7 +200,8 @@
                                         <div class="card-body">                                    
                                             <!--Category & Title-->
                                             <h6 class="card-title mb-1"><strong><a href="" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h6>
-                                            <span class="badge badge-success mb-2">'.$asker['full_name'].'</span> </br>
+                                            <span class="badge badge-success mb-2">'.$asker['full_name'].'</span><br>
+                                            '.$empty.'   
                                             '.$free.'                                            
                                             <!--Card footer-->
                                             <div class="card-footer pb-0">
