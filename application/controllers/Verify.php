@@ -174,7 +174,7 @@ class Verify extends CI_Controller {
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'tls';
         $mail->Host = 'smtp.gmail.com';
-        $mail->Port = '465';
+        $mail->Port = '587';
         $mail->isHTML();
         $mail->Username ='easyhere.dh@gmail.com';
         $mail->Password = 'EasyHere@2018';
@@ -198,7 +198,7 @@ class Verify extends CI_Controller {
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'tls';
         $mail->Host = 'smtp.gmail.com';
-        $mail->Port = '465';
+        $mail->Port = '587';
         $mail->isHTML();
         $mail->Username ='easyhere.dh@gmail.com';
         $mail->Password = 'EasyHere@2018';
