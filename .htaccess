@@ -5,4 +5,5 @@ RewriteEngine on
 RewriteCond $1 !^(index\.php)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{SERVER_PORT} ^443$  
 RewriteRule ^(.*)$ index.php/$1 [L,QSA]
