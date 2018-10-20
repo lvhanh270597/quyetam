@@ -2,7 +2,7 @@
     <style>
 
         .intro-2 {
-            background: url("http://anhdep.pro/wp-content/uploads/2015/06/anh-dep-71.jpg")no-repeat center center;
+            background: url("<?= base_url('assets/cover-login.jpg'); ?>")no-repeat center center;
             background-size: cover;
         }
         .top-nav-collapse {
