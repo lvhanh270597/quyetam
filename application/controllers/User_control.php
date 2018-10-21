@@ -7,7 +7,7 @@ class User_control extends CI_Controller {
 	public $places;
 	public function __construct(){
 		parent::__construct();
-		$this->load->model(['admin_ml']);
+		$this->load->model(['admin_ml', 'verify_ml', 'needed_trip_ml']);
 		$this->places = $this->place_ml->get_all();
         $this->map = [];
         foreach ($this->places as $place){
