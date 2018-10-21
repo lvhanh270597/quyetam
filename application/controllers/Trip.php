@@ -184,7 +184,7 @@ class Trip extends CI_Controller {
                         'type_transaction' => $type_transaction
                     ];
                     if ($this->request_ml->add_into($sql)){                        
-                        $message = get_message_success('Bạn đã gửi yêu cầu tới chuyến đi này!');
+                        $message = get_message_success('Bạn đã gửi yêu cầu tới chuyến đi này! Phí gửi yêu cầu là 100đ');
                         // Gửi thông báo
                         $this->notify_ml->add_trigger($notify);
                         // Gửi thông báo đến người owner luôn
