@@ -163,7 +163,7 @@ class Trip extends CI_Controller {
                     $price = $trip['price'];                    
                     $success = ($this->user_ml->move_money_to_temp_balance($username, $price));                    
                 }
-                $success = $success && ($this->get_money($username) >= 100);
+                $success = $success && ($this->user_ml->get_money($username) >= 100);
                 // Nếu kiểm tra tài khoản thành công! Thì thêm vào database của Request
                 if ($success){
                     //Gửi thông báo rằng: Bạn đã bị chuyển từ tài khoản chính vào tk dự bị số tiền là: $trip[price]
