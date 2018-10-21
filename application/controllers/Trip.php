@@ -145,6 +145,8 @@ class Trip extends CI_Controller {
                 $message = get_message_error('Lỗi! <br>', 'Bạn vui lòng chọn đúng 1 trong 2 loại hình thức giao dịch');
             }
             else {                
+                // Gui yeu cau mat 100d
+                
                 // Soạn thông báo trước
                 $notify = [
                     'to_user' => $username,
@@ -161,6 +163,7 @@ class Trip extends CI_Controller {
                     $price = $trip['price'];                    
                     $success = ($this->user_ml->move_money_to_temp_balance($username, $price));                    
                 }
+                $success = $success && ($this->get_money($username) >= 100);
                 // Nếu kiểm tra tài khoản thành công! Thì thêm vào database của Request
                 if ($success){
                     //Gửi thông báo rằng: Bạn đã bị chuyển từ tài khoản chính vào tk dự bị số tiền là: $trip[price]
@@ -170,6 +173,10 @@ class Trip extends CI_Controller {
                         $notify['where_noti'] = $username;                        
                     }
                     
+                    /*  */
+                    $this->user_ml->move_money_to_temp_balance($this->session->userdata('username'), 100);
+                    /*  */
+
                     $sql = [
                         'trip_id' => $trip_id, 
                         'guess_id' => $username, 
@@ -185,7 +192,7 @@ class Trip extends CI_Controller {
                         $notify = [
                             'to_user' => $trip['owner'],
                             'time' => get_current_time(),
-                            'content' => hashCode($user_guess['full_name']).' đã gửi yêu cầu đến chuyến đi '.$trip['id'].' của bạn.',
+                            'content' => hashCode($user_guess['full_name']).' đã gửi yêu cầu đến chuyến đi '.$trip['id'].' của bạn. Phí gửi yêu cầu là 100đ',
                             'type_noti' => 'edit_trip',
                             'where_noti' => $trip_id
                         ];
@@ -289,13 +296,20 @@ class Trip extends CI_Controller {
                         $asker = $this->session->userdata('username');
                         $ok = $this->user_ml->move_money_to_temp_balance($asker, $data_sql['price']);                                                
                     }
+                    /* */                    
+                    if ($this->user_ml->get_money($this->session->userdata('username')) < 100){
+                        $ok = false;                        
+                    }
+                    /*  */
                     if ($ok){
                         $data_sql['type_transaction'] = $type;
                         if ($this->needed_trip_ml->add_into($data_sql)){
                             print_r($data_sql);                 
                             $insert_id = $this->db->insert_id();
                             $link = 'click vào link <a href="'.site_url('trip/edit_need/'.$insert_id).'"> này </a> để xem chuyến đi vừa tạo.';
-                            $message = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link);                            
+                            $money = ' Phí cho chuyến đi là 100đ';
+                            $message = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link.$money); 
+                            $this->user_ml->move_money_to_temp_balance($this->session->userdata('username'), 100);
                         }
                     }
                     else{
@@ -328,13 +342,23 @@ class Trip extends CI_Controller {
             else{
                 $data_sql = $check['data'];
                 // Tạo chuyến đi mới
-                if ($this->trip_ml->add_into($data_sql)){
-                    $insert_id = $this->db->insert_id();
-                    $link = 'click vào link <a href="'.site_url('trip/edit/'.$insert_id).'"> này </a> để xem chuyến đi vừa tạo.';
-                    $data['message'] = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link);
-                }
-                else{
+
+                /* */                    
+                if ($this->user_ml->get_money($this->session->userdata('username')) < 100){
                     $data['message'] = get_message_error('Tạo chuyến đi thất bại!');
+                }                
+                /* */
+                else{
+                    if ($this->trip_ml->add_into($data_sql)){
+                        $insert_id = $this->db->insert_id();
+                        $link = 'click vào link <a href="'.site_url('trip/edit/'.$insert_id).'"> này </a> để xem chuyến đi vừa tạo.';
+                        $money = ' Phí để tạo chuyến đi là 100đ';
+                        $data['message'] = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link.$money);
+                        $this->user_ml->move_money_to_temp_balance($username, 100);
+                    }
+                    else{
+                        $data['message'] = get_message_error('Tạo chuyến đi thất bại!');
+                    }
                 }
             }
         }

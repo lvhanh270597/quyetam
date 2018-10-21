@@ -68,6 +68,15 @@ class Trip_ml extends Trip_template
 				'data' => get_message_error('Thất bại!<br>', 'Giá tiền phải là một con số!')
 			];
 		}
+		else{
+			$price2 = (int)$price;
+			if ($price2 < 0){
+				return [
+					'status' => false,
+					'data' => get_message_error('Thất bại!<br>', 'Giá tiền phải lớn hơn 0!')
+				];
+			}
+		}
 
 		$data = [
 			'created' => $created, 

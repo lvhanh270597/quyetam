@@ -140,7 +140,7 @@ class User_ml extends Quickaccess
 
 	public function add_really_carefully($data){
 		$data['created'] = get_current_time();
-		$data['balance'] = 1999;
+		$data['balance'] = 0; //1999
 		$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT, ['cost' => 11]);
 		$this->db->insert($this->db_table, $data);
 		return true;
@@ -198,5 +198,11 @@ class User_ml extends Quickaccess
 		$this->db->order_by('created', 'desc');
 		$dataset = $this->db->get($this->db_table);
 		return $dataset->result_array();
+	}
+
+	public function get_money($username){
+		$dataset = $this->db->get_where($this->db_table, ['username'=> $username]);
+		if ($dataset->num_rows() == 0) return 0;
+		return $dataset->result_array()[0]['balance'];
 	}
 }
