@@ -167,5 +167,5 @@ class Trip_ml extends Trip_template
 		}		
 		$dataset = $this->db->query('select * from '.$this->db_table.' where '.$where);				
 		return $dataset == null ? null : $dataset->result_array();
-	}
+	}	
 }

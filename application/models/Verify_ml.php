@@ -43,4 +43,8 @@ class Verify_ml extends Quickaccess
         $res = ['status' => 'Not yet', 'content' => ''];
         return $res;        
     }
+
+    public function remove_from_user($username){
+        $this->db->delete($this->db_table, ['from_user'=> $from_user]);
+    }
 }

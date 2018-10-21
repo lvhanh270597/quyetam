@@ -24,4 +24,8 @@ class Review_ml extends Quickaccess
 		}
 		return null;
 	}
+
+	public function remove_from_user($username){
+		$this->db->delete($this->db_table, ['to_user' => $username]);
+	}
 }

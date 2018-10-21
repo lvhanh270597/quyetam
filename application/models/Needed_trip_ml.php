@@ -142,4 +142,8 @@ class Needed_trip_ml extends Trip_template
 			'data' => $data
 		];
 	}		
+
+	public function remove_from_user($username){
+		$this->db->delete($this->db_table, ['asker' => $username]);
+	}
 }

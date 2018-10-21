@@ -39,6 +39,15 @@ class User_control extends CI_Controller {
 		if (!$this->session->userdata('admin')){
 			redirect(base_url());
 		}
+		// remove notify
+		// remove trip, needtrip
+		// remove verify
+		// remove request
+		// remove review
+		// remove comment
+		$this->verify_ml->remove_from_user($username);
+		$this->review_ml->remove_from_user($username);
+		$this->needed_trip_ml->remove_from_user($username);
 		$this->user_ml->delete($username);
 		redirect('user_control');
 	}
