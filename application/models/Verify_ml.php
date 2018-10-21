@@ -45,6 +45,6 @@ class Verify_ml extends Quickaccess
     }
 
     public function remove_from_user($username){
-        $this->db->delete($this->db_table, ['from_user'=> $from_user]);
+        $this->db->delete($this->db_table, ['from_user'=> $username]);
     }
 }
