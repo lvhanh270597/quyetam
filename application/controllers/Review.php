@@ -21,7 +21,7 @@ class Review extends CI_Controller {
 
         $username = $this->session->userdata('username');
 
-        $permission = false;
+        $permission = $this->session->userdata('admin');
         if ($this->matched_ml->check_exist($user, $username)){
             $permission = true;
         }        
