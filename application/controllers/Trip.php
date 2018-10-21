@@ -225,7 +225,7 @@ class Trip extends CI_Controller {
         $requested = false;
         $username = $this->session->userdata('username');
         if ($requested = $this->request_ml->check_user_trip($username, $trip_id)){
-            $message = get_message_info('', 'Bạn đã gửi yêu cầu tới chuyến đi này!');;
+            $message = get_message_info('', 'Bạn đã gửi yêu cầu tới chuyến đi này! Phí gửi yêu cầu là 100đ');
         }
 
         $data = [            
