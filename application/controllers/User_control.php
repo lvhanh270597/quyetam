@@ -7,7 +7,7 @@ class User_control extends CI_Controller {
 	public $places;
 	public function __construct(){
 		parent::__construct();
-		$this->load->model(['admin_ml', 'verify_ml', 'needed_trip_ml']);
+		$this->load->model(['admin_ml', 'verify_ml', 'needed_trip_ml', 'notify_ml']);
 		$this->places = $this->place_ml->get_all();
         $this->map = [];
         foreach ($this->places as $place){
@@ -45,9 +45,11 @@ class User_control extends CI_Controller {
 		// remove request
 		// remove review
 		// remove comment
+		// remove notify
 		$this->verify_ml->remove_from_user($username);
 		$this->review_ml->remove_from_user($username);
 		$this->needed_trip_ml->remove_from_user($username);
+		$this->notify_ml->remove_from_user($username);
 		$this->user_ml->delete($username);
 		redirect('user_control');
 	}

@@ -40,5 +40,9 @@ class Notify_ml extends Quickaccess
 		}
 		return $this->db->affected_rows() > 0 ? true : false;		
 	}
+
+	public function remove_from_user($username){
+		$this->db->delete($this->db_table, ['to_user' => $username]);
+	}
 }
 ?>
