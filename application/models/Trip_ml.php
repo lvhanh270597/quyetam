@@ -78,6 +78,8 @@ class Trip_ml extends Trip_template
 			}
 		}
 
+		$price = round($price, -3);
+
 		$data = [
 			'created' => $created, 
 			'code' =>$code,

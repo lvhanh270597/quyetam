@@ -127,6 +127,8 @@ class Needed_trip_ml extends Trip_template
 			}
 		}
 
+		$price = round($price, -3);
+
 		$data = [
 			'created' => $created, 
 			'created' => get_current_time(),
