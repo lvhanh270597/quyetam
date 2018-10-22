@@ -96,7 +96,7 @@ Licensed under MIT
                             <td><p class="font-weight-bold "> <?= $info['username']; ?></p></td>  
                         </tr>
                         <?php                        
-                        if ($permission){
+                        //if ($permission){
                             echo '
                             <tr>
                                 <td><p class="font-weight-bold green-text">SĐT</p></td>
@@ -107,7 +107,7 @@ Licensed under MIT
                                 <td><p class="font-weight-bold ">'.$info['facebook'].'</p></td>  
                             </tr>
                             ';
-                        }                        
+                        //}                        
                         ?>
                         </tbody>
                     </table>                                                          
