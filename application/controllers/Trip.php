@@ -231,6 +231,7 @@ class Trip extends CI_Controller {
         $data = [            
             'trip' => $trip,
             'owner' => $this->user_ml->get_by_primary($trip['owner']),
+            'guess' => false,
             'message' => $message,
             'requested' => $requested,
             'images' => $this->image,
@@ -268,6 +269,7 @@ class Trip extends CI_Controller {
                 }                
             }
 
+            $data['guess'] = $this->user_ml->get_by_primary($trip['guess']);
             $data['comments'] = $this->comment_ml->get_from_trip($trip_id);            
         }        
 

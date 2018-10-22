@@ -40,6 +40,13 @@
                                         <a href="<?php echo site_url('review/detail/'.$owner['username']); ?>">
                                             <button class="btn btn-info btn-rounded btn-sm"><?php echo $owner['full_name']; ?></button><br>
                                         </a>
+                                        <?php
+                                        if ($guess !== false){
+                                            echo '<a href="'.site_url('review/detail/'.$guess['username']).'">
+                                                <button class="btn btn-info btn-rounded btn-sm">'.$owner['full_name'].'</button><br>
+                                            </a>';
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
