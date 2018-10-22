@@ -43,7 +43,7 @@
                                         <?php
                                         if ($guess !== false){
                                             echo '<a href="'.site_url('review/detail/'.$guess['username']).'">
-                                                <button class="btn btn-info btn-rounded btn-sm">'.$owner['full_name'].'</button><br>
+                                                <button class="btn btn-info btn-rounded btn-sm">'.$guess['full_name'].'</button><br>
                                             </a>';
                                         }
                                         ?>
