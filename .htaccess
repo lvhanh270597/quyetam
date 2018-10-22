@@ -1,8 +1,9 @@
 ### Canonicalize codeigniter URLs
 
 # Enforce SSL https://www. 
-RewriteCond %{HTTPS} !=on
-RewriteRule ^.*$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{SERVER_NAME}/$1 [R,L]
 
 ###
 # Removes access to the system folder by users.
