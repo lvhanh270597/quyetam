@@ -7,7 +7,7 @@ class User_ml extends Quickaccess
 	protected $db_table = 'user';
 	protected $personal_info = ['username', 'password'];
 	protected $editable_fields = ['username','full_name', 'gender', 'password'];
-	protected $fields = ['full_name', 'facebook', 'phone_num'];	
+	protected $fields = ['full_name', 'facebook', 'phone_num', 'gender'];	
 	private $security;
 
 	public function __construct()
@@ -84,8 +84,7 @@ class User_ml extends Quickaccess
 				'data' => $ok
 			]; 
 		}
-		// check existed username		
-		print_r($data);
+		// check existed username				
 		$user = $this->get_by_primary($data['username']);
 		if ($user !== null){ 
 			return [
