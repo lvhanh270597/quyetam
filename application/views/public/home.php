@@ -112,7 +112,9 @@
                                                             <!--Card content-->
                                                             <div class="card-body">                                    
                                                                 <!--Category & Title-->
+                                                                <a href="'.site_url('trip/detail/'.$trip['id']).'">
                                                                 <h6 class="card-title mb-1"><strong><a href="" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h6>                                        
+                                                                </a>
                                                                 <span class="badge badge-success mb-2">'.$owner['full_name'].'</span> </br>
                                                                 '.$empty.'
                                                                 '.$free.'                                                                
@@ -195,7 +197,9 @@
                                                             <!--Card content-->
                                                             <div class="card-body">
                                                                 <!--Category & Title-->
+                                                                <a href="'.site_url('trip/detail_need/'.$trip['id']).'">
                                                                 <h6 class="card-title mb-1"><strong><a href="" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h6>
+                                                                </a>
                                                                 <span class="badge badge-success mb-2">'.$asker['full_name'].'</span> </br>
                                                                 '.$empty.'
                                                                 '.$free.'
