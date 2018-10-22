@@ -112,7 +112,7 @@
                                                             <!--Card content-->
                                                             <div class="card-body">                                    
                                                                 <!--Category & Title-->
-                                                                <h6 class="card-title mb-1"><strong><a href="'.site_url('trip/detail/'.$trip['id']).'" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h6>                                        
+                                                                <h6 class="card-title mb-1"><strong><a href="'.site_url('trip/detail/'.$trip['id']).'" class="dark-grey-text">'.$places[$trip['start_from']].'<i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a> </strong></h6>
                                                                 <span class="badge badge-success mb-2">'.$owner['full_name'].'</span> </br>
                                                                 '.$empty.'
                                                                 '.$free.'                                                                
@@ -195,7 +195,7 @@
                                                             <!--Card content-->
                                                             <div class="card-body">
                                                                 <!--Category & Title-->                                                                
-                                                                <h6 class="card-title mb-1"><strong><a href="'.site_url('trip/detail_need/'.$trip['id']).'" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h6>                                                                
+                                                                <h6 class="card-title mb-1"><strong><a href="'.site_url('trip/detail_need/'.$trip['id']).'" class="dark-grey-text">'.$places[$trip['start_from']].' <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a></strong></h6>
                                                                 <span class="badge badge-success mb-2">'.$asker['full_name'].'</span> </br>
                                                                 '.$empty.'
                                                                 '.$free.'
