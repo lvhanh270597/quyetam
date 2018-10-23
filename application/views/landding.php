@@ -329,7 +329,7 @@ EasyHere được tạo ra từ một ý tưởng đơn giản nhưng hiệu qu�
 
                                         <!--Featured image-->
                                         <div class="view overlay z-depth-1 mb-2">
-                                            <img src="" class="rounded img-fluid" alt="sample image">
+                                            <img src="<?= base_url('assets/info/h5.png') ?>" class="rounded img-fluid" alt="sample image">
                                         </div>
                                     </div>
                                     <!--First column-->
@@ -408,6 +408,9 @@ Tại ô bình luận này, hai bạn có thể nói về địa điểm gặp g
 
                                         <!--Featured image-->
                                         <div class="view overlay z-depth-1 mb-2">
+                                            <img src="<?= base_url('assets/info/h2.png') ?>" class="rounded img-fluid" alt="sample image">
+                                        </div>
+                                        <div class="view overlay z-depth-1 mb-2">
                                             <img src="<?= base_url('assets/info/h9.png') ?>" class="rounded img-fluid" alt="sample image">
                                         </div>
                                         <div class="view overlay z-depth-1 mb-2">
@@ -448,6 +451,9 @@ Sau khi bạn bấm vào nút Tạo mới, thì sẽ hiện ra một hộp tho�
                                     <div class="col-lg-5 col-md-12">
 
                                         <!--Featured image-->
+                                        <div class="view overlay z-depth-1 mb-2">
+                                            <img src="<?= base_url('assets/info/h8.png') ?>" class="rounded img-fluid" alt="sample image">
+                                        </div>
                                         <div class="view overlay z-depth-1 mb-2">
                                             <img src="<?= base_url('assets/info/h7.png') ?>" class="rounded img-fluid" alt="sample image">
                                         </div>
