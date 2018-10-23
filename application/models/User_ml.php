@@ -139,7 +139,7 @@ class User_ml extends Quickaccess
 
 	public function add_really_carefully($data){
 		$data['created'] = get_current_time();
-		$data['balance'] = 500; //1999
+		$data['balance'] = 1500; //1999
 		$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT, ['cost' => 11]);
 		$this->db->insert($this->db_table, $data);
 		return true;
