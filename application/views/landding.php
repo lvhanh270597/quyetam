@@ -364,6 +364,9 @@ Sau đó bấm Continue, nếu bạn chưa có tài khoản bấm Sign Up để 
 
                                         <!--Featured image-->
                                         <div class="view overlay z-depth-1 mb-2">
+                                            <img src="<?= base_url('assets/info/h12.png') ?>" class="rounded img-fluid" alt="sample image">
+                                        </div>
+                                        <div class="view overlay z-depth-1 mb-2">
                                             <img src="<?= base_url('assets/info/h6.png') ?>" class="rounded img-fluid" alt="sample image">
                                         </div>
                                         <div class="view overlay z-depth-1 mb-2">
@@ -380,10 +383,18 @@ Sau đó bấm Continue, nếu bạn chưa có tài khoản bấm Sign Up để 
 
                                         <!--Description-->
                                         <p class="text-muted">Sau khi đăng nhập xong. Bạn sẽ vào Trang chủ của trang web. Ở đây bạn thấy 2 tabs, 
-Tab 1: Tất cả chyến đi đã có
-Tab 2: Các chuyến đi được yêu cầu
-* Nếu bạn là người chủ xe, bạn hãy bấm qua Tab 2, để xem xem có yêu cầu nào không. Nếu bạn chấp nhận được yêu cầu của họ thì bạn hãy bấm vào yêu cầu đó, xem thông tin chi tiết về yêu cầu chuyến đi, xem thông tin người yêu cầu và giá tiền. Sau đó, nếu bạn đồng ý thì hãy bấm vào nút "Mở chuyến đi này". Ngay lúc này, một chuyến đi mới sẽ được tạo giống y đúc yêu cầu chuyến đi này và có hai bạn trong đó. 
-* Nếu bạn là người khách, bạn hãy bấm vào Tab 1, để xem có chuyến đi nào phù hợp với mình không. Nếu có, bạn bấm vào chuyến đi ấy, xem thông tin chi tiết chuyến đi, người chở bạn và giá tiền. Sau đó, nếu bạn đồng ý, bạn hãy chọn hình thức thanh toán là "Trực tiếp", sau đó bấm gửi yêu cầu.
+                                        <ul>
+                                            <li>Tab 1: Tất cả chyến đi đã có </li>
+                                            <li>Tab 2: Các chuyến đi được yêu cầu </li>
+                                        </ul>
+                                        <ul>
+                                            <li>
+                                            * Nếu bạn là người chủ xe, bạn hãy bấm qua Tab 2, để xem xem có yêu cầu nào không. Nếu bạn chấp nhận được yêu cầu của họ thì bạn hãy bấm vào yêu cầu đó, xem thông tin chi tiết về yêu cầu chuyến đi, xem thông tin người yêu cầu và giá tiền. Sau đó, nếu bạn đồng ý thì hãy bấm vào nút "Mở chuyến đi này". Ngay lúc này, một chuyến đi mới sẽ được tạo giống y đúc yêu cầu chuyến đi này và có hai bạn trong đó.
+                                            </li>
+                                            <li>
+                                            * Nếu bạn là người khách, bạn hãy bấm vào Tab 1, để xem có chuyến đi nào phù hợp với mình không. Nếu có, bạn bấm vào chuyến đi ấy, xem thông tin chi tiết chuyến đi, người chở bạn và giá tiền. Sau đó, nếu bạn đồng ý, bạn hãy chọn hình thức thanh toán là "Trực tiếp", sau đó bấm gửi yêu cầu.
+                                            </li>
+                                        </ul>
 Lưu ý: Khi bạn bấm gửi yêu cầu, người chủ xe sẽ thấy thông báo hiện lên. Và trong chuyến đi của họ sẽ hiển thị là bạn đang gửi yêu cầu đến chuyến đi này. Có thể có nhiều người cùng gửi yêu cầu đến một chuyến đi, nên người chủ xe buộc phải chọn 1 trong số đó. Một thời gian, nếu bạn quan sát thấy, chuyến đi mà bạn gửi yêu cầu đã có chữ "Chuyến đi thành công" thì nghĩa là người chủ chuyến đi này đã đồng ý yêu cầu của một ai đó. Nếu ngay tại chuyến đi đó, bạn không thấy ô bình luận hiện ra, thì nghĩa là người đó không phải là bạn, nếu có ô bình luận, thì nghĩa là bạn đã được chấp nhận yêu cầu.
 Tại ô bình luận này, hai bạn có thể nói về địa điểm gặp gỡ, thông tin liên lạc...v.v.v Chỉ có hai người có thể thấy những bình luận này.
 </p>
@@ -428,8 +439,10 @@ Tại ô bình luận này, hai bạn có thể nói về địa điểm gặp g
                                         <!--Description-->
                                         <p class="text-muted">Nếu ở bước 3, bạn thấy không có chuyến đi nào phù hợp với mình. Thì ở bước này, bạn sẽ tạo một chuyến đi hoặc yêu cầu theo ý bạn.
 Bạn bấm vào hình chiếc xe máy (ở gốc trên phải màn hình máy tính, nếu điện thoại thì bạn bấm vào dấu "gạch ngang" để hiện thị ra chiếc xe máy). Khi bấm vào đó, bạn sẽ vào mục Các chuyến đi của tôi. Ở đây, bạn có hai sự lựa chọn:
-1. Nếu bạn là chủ xe, và đang muốn kêu gọi người khác vào đi cùng, thì bạn sẽ tạo một chuyến đi.
-2. Nếu bạn là người đi cùng và đang muốn kêu gọi người chở, thì bạn sẽ tạo một yêu cầu.
+                                        <ul>
+                                            <li>Nếu bạn là chủ xe, và đang muốn kêu gọi người khác vào đi cùng, thì bạn sẽ tạo một chuyến đi.</li>
+                                            <li>Nếu bạn là người đi cùng và đang muốn kêu gọi người chở, thì bạn sẽ tạo một yêu cầu.</li>
+                                        </ul>
 Lưu ý: Bạn cần phân biệt rõ chuyến đi và yêu cầu chuyến đi để tránh tạo nhầm :D
 Sau khi bạn bấm vào nút Tạo mới, thì sẽ hiện ra một hộp thoại, và bạn cần điền đầy đủ các thông tin. Sau đó bấm Tạo mới tiếp, để hệ thống ghi nhận chuyến đi của bạn.</p>
 
@@ -467,8 +480,10 @@ Sau khi bạn bấm vào nút Tạo mới, thì sẽ hiện ra một hộp tho�
                                         <h4 class="mb-5">Quan sát chuyến đi của mình</h4>
 
                                         <!--Description-->
-                                        <p class="text-muted">- Nếu bạn là chủ xe, hãy thường xuyên xem ai gửi yêu cầu và chấp nhận họ sớm nhất có thể nhé!
-- Nếu bạn là khách, hãy thường xuyên quan sát yêu cầu của mình, xem người ta đã chấp nhận yêu cầu chưa. Hoặc có người nào mở chuyến đi của mình chưa.
+                                        <p class="text-muted">
+                                        <ul>
+                                            <li>Nếu bạn là chủ xe, hãy thường xuyên xem ai gửi yêu cầu và chấp nhận họ sớm nhất có thể nhé! </li>
+                                            <li>Nếu bạn là khách, hãy thường xuyên quan sát yêu cầu của mình, xem người ta đã chấp nhận yêu cầu chưa. Hoặc có người nào mở chuyến đi của mình chưa. </li>
 Các bạn xem những thông tin ấy ở Nút hình Cái chuông (ở cạnh hình chiếc xe máy)
 Khi các bạn đã được kết nối, hãy để lại thông tin ở ô bình luận để giữ liên lạc nhé!^^ Hoặc có thể hẹn nơi gặp.</p>
 
