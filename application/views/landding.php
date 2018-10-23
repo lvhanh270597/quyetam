@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Information about EasyHere</title>
+    <title>Thông tin về EasyHere</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -78,7 +78,7 @@
                             <a class="nav-link waves-effect waves-light" href="#info" data-offset="100">Hướng dẫn sử dụng</a>
                         </li>                        
                         <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" data-toggle="modal" data-target="#modal-contact">Contact</a>
+                            <a class="nav-link waves-effect waves-light" data-toggle="modal" data-target="#modal-contact">Liên hệ</a>
                         </li>
                     </ul>
 
@@ -116,8 +116,8 @@
                                 <hr class="hr-light">
                                 <h3 class="subtext-header mt-4 mb-5">Dịch vụ đi xe chung giá rẻ chưa từng thấy</h3>
                             </div>
-                            <a href="#events" data-offset="100" class="btn btn-info wow fadeInLeft waves-effect waves-light" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeInLeft; animation-delay: 0.2s;">Events</a>
-                            <a href="#courses" data-offset="100" class="btn btn-warning wow fadeInRight waves-effect waves-light" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeInRight; animation-delay: 0.2s;">Courses</a>
+                            <a href="<?= site_url('login') ?>" data-offset="100" class="btn btn-info wow fadeInLeft waves-effect waves-light" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeInLeft; animation-delay: 0.2s;">Đăng nhập</a>
+                            <a href="<?= site_url('register'); ?>" data-offset="100" class="btn btn-warning wow fadeInRight waves-effect waves-light" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeInRight; animation-delay: 0.2s;">Đăng kí</a>
                         </div>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                     <div class="col-lg-5 col-md-12 mb-5 pb-4 wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
 
                         <!--Image-->
-                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Architecture/4-col/img%20%289%29.jpg" class="img-fluid z-depth-1 rounded" alt="My photo">
+                        <img src="<?= base_url('assets/info/h1.jpg') ?>" class="img-fluid z-depth-1 rounded" alt="My photo">
 
                     </div>
                     <!--First column-->
@@ -214,7 +214,7 @@ EasyHere được tạo ra từ một ý tưởng đơn giản nhưng hiệu qu�
                     <div class="col-lg-5 col-md-12 mb-5 pb-4 wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
 
                         <!--Image-->
-                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Architecture/4-col/img%20%289%29.jpg" class="img-fluid z-depth-1 rounded" alt="My photo">
+                        <img src="<?= base_url('assets/info/h3.jpg') ?>" class="img-fluid z-depth-1 rounded" alt="My photo">
 
                     </div>
                     <!--First column-->
@@ -289,7 +289,7 @@ EasyHere được tạo ra từ một ý tưởng đơn giản nhưng hiệu qu�
 
                                         <!--Featured image-->
                                         <div class="view overlay z-depth-1 mb-2">
-                                            <img src="https://mdbootstrap.com/img/Photos/Others/images/54.jpg" class="rounded img-fluid" alt="sample image">
+                                            <img src="<?= base_url('assets/info/h4.png') ?>" class="rounded img-fluid" alt="sample image">
                                         </div>
                                     </div>
                                     <!--First column-->
@@ -330,7 +330,7 @@ EasyHere được tạo ra từ một ý tưởng đơn giản nhưng hiệu qu�
 
                                         <!--Featured image-->
                                         <div class="view overlay z-depth-1 mb-2">
-                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2840%29.jpg" class="rounded img-fluid" alt="sample image">
+                                            <img src="" class="rounded img-fluid" alt="sample image">
                                         </div>
                                     </div>
                                     <!--First column-->
@@ -365,7 +365,10 @@ Sau đó bấm Continue, nếu bạn chưa có tài khoản bấm Sign Up để 
 
                                         <!--Featured image-->
                                         <div class="view overlay z-depth-1 mb-2">
-                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2841%29.jpg" class="rounded img-fluid" alt="sample image">
+                                            <img src="<?= base_url('assets/info/h6.png') ?>" class="rounded img-fluid" alt="sample image">
+                                        </div>
+                                        <div class="view overlay z-depth-1 mb-2">
+                                            <img src="<?= base_url('assets/info/h11.png') ?>" class="rounded img-fluid" alt="sample image">
                                         </div>
                                     </div>
                                     <!--First column-->
@@ -406,7 +409,10 @@ Tại ô bình luận này, hai bạn có thể nói về địa điểm gặp g
 
                                         <!--Featured image-->
                                         <div class="view overlay z-depth-1 mb-2">
-                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2842%29.jpg" class="rounded img-fluid" alt="sample image">
+                                            <img src="<?= base_url('assets/info/h9.png') ?>" class="rounded img-fluid" alt="sample image">
+                                        </div>
+                                        <div class="view overlay z-depth-1 mb-2">
+                                            <img src="<?= base_url('assets/info/h10.png') ?>" class="rounded img-fluid" alt="sample image">
                                         </div>
                                     </div>
                                     <!--First column-->
@@ -444,7 +450,7 @@ Sau khi bạn bấm vào nút Tạo mới, thì sẽ hiện ra một hộp tho�
 
                                         <!--Featured image-->
                                         <div class="view overlay z-depth-1 mb-2">
-                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2840%29.jpg" class="rounded img-fluid" alt="sample image">
+                                            <img src="<?= base_url('assets/info/h7.png') ?>" class="rounded img-fluid" alt="sample image">
                                         </div>
                                     </div>
                                     <!--First column-->
