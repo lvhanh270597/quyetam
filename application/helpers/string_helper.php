@@ -187,7 +187,7 @@ if (!function_exists('get_color_status')){
     function get_color_status($status){
         $ok = (strpos($status, 'online') !== false);
         if ($ok){
-            return '<span class="badge badge-success mb-2">on</span>';            
+            return '<span class="badge badge-success mb-2">online</span>';            
         }
         else{
             $ok = (strpos($status, 'offline') !== false);
