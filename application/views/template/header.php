@@ -259,7 +259,9 @@ enablejavascript="true">
                 if (diff.length == 0) return ;                
                                 
                 if (diff.length > 0 && first_time == false){
-                    PlaySound("sound1");
+                    //PlaySound("sound1");
+                    console.log("DMMMMMMMMMMMM");
+                    console.log(first_time);
                     first_time = false;
                 }     
 
