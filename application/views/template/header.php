@@ -62,6 +62,18 @@
     }
 </style>     
 
+
+<script>
+function PlaySound(soundObj) {
+  var sound = document.getElementById(soundObj);
+  sound.Play();
+}
+</script>
+
+<embed src="<?= base_url('assets/noti.wav') ?>" autostart="false" width="0" height="0" id="sound1"
+enablejavascript="true">
+
+
 </head>
 
 <body class="cart-v1 hidden-sn white-skin animated">
@@ -252,13 +264,22 @@
             _old = get_id(data);
         });
     });
+
+    first_time = true;
+
     setInterval(
         function(){
             $.get(<?php echo '"'.base_url('notify/get_unseen_notification').'"';  ?>, function(data, status){                                           
                 data = JSON.parse(data);                
                 // Show dynamic notification                
                 _new = get_id(data);
-                diff = get_diff(_old, _new);                
+                diff = get_diff(_old, _new);          
+                
+                console.log(_new);
+                if (_new.length > 0 && first_time == false){
+                    PlaySound("sound1");
+                    first_time = false;
+                }     
                 
                 if (diff.length == 0) return ;                
                                 
@@ -270,7 +291,7 @@
                 
                 items.sort(function (a, b) {
                     return new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b);
-                });
+                });                            
 
                 for (var i=0; i<items.length; i++){                    
                     let tempi = items[i];
