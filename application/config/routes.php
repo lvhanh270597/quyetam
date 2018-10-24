@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'Home';
 $route['page_not_found'] = 'home/page_not_found';
+$route['pages/(:num)'] = 'home/pages/$1';
 $route['logout'] = 'login/logout';
 $route['register'] = 'login/register';
 $route['my_trips'] = 'trip/my_trips';

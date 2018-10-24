@@ -101,7 +101,7 @@
                                                         <div class="card card-ecommerce">
                                                             <!--Card image-->
                                                             <div class="view overlay">
-                                                                <img src="assets/images/uploads/places/'.$place['id'].'/'.$place['image'].'" class="img-fluid" alt="" id="dm">
+                                                                <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">
                                                                 <a href="'.site_url('trip/detail/'.$trip['id']).'">
                                                                     <div class="mask rgba-white-slight waves-effect waves-light">                                            
                                                                     </div>                                            
@@ -240,7 +240,37 @@
                         <!-- Card -->                    
                     </div>
                 </div>
-            </div>
-        </div>                     
-    </div>    
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination pagination-circle pg-blue justify-content-center">
+                        <li class="page-item <?php if ($index == 1) echo 'disabled'; ?>"><a class="page-link"  href="<?= site_url('pages/1') ?>">First</a></li>
+                        <li class="page-item">
+                        <a class="page-link <?php if ($index == 1) echo 'disabled'; ?>" aria-label="Previous"  href="<?= site_url('pages/'.($index - 1)) ?>">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        </li>                        
+                        <?php
+                        for ($i=max(1, $index - 2); $i<=min($max, $index + 2); $i++){
+                            echo '<li class="page-item ';
+                            if ($i == $index){
+                                echo 'active">';
+                            }
+                            else{
+                                echo '">';
+                            }
+                            echo '<a class="page-link" href="'.site_url('pages/'.$i).'">'.$i.'</a> </li>';
+                        }
+                        ?>                        
+                        <li class="page-item <?php if ($index == $max) echo 'disabled'; ?>">
+                        <a class="page-link" aria-label="Next" href="<?= site_url('pages/'.($index + 1)) ?>">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        </li>
+                        <li class="page-item <?php if ($index == $max) echo 'disabled'; ?>"><a class="page-link" href="<?= site_url('pages/'.($max)) ?>">Last</a></li>
+                    </ul>
+                    </nav>
+            </div>            
+        </div>                             
+    </div>        
 </div>

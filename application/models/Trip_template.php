@@ -28,12 +28,12 @@ class Trip_template extends Quickaccess
 		return null;
 	}
 
-    public function get_newest($limit = 10, $current=false){		
+    public function get_newest($current=false){		
 		$this->db->order_by("timestart", "asc");
 		if ($current){
 			$this->db->where(["timestart>=" => get_current_time()]);
 		}
-		$query = $this->db->get($this->db_table, $limit);
+		$query = $this->db->get($this->db_table);
 		if ($query->num_rows() > 0){
 			return $query->result_array();							
 		}
