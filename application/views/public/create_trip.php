@@ -47,7 +47,7 @@
                                             <div class="alert alert-info"> 
                                                 <strong>Lưu ý:</strong>
                                                 Nếu tạo chuyến đi, nghĩa là bạn đang là chủ xe. Tức là người có xe và đang cần tìm người để chở. Khác với tạo yêu cầu. Khi tạo yêu cầu bạn mới là người cần tìm chủ xe.
-                                                Nếu thực sự bạn đã nhầm. Hãy bấm vào <a href="<?= base_url('trip/create_ask_trip') ?>"> đây </a> để tạo yêu cầu.
+                                                Nếu thực sự bạn muốn được chở. Hãy bấm vào <a href="<?= base_url('trip/create_ask_trip') ?>"> đây </a> để tạo yêu cầu.
                                             </div>  
                                         </div>
                                     </div>  
