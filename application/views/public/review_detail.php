@@ -78,7 +78,7 @@ Licensed under MIT
             <div class="card card-cascade narrower">
 
                 <!-- Card image -->
-                <div class="view view-cascade gradient-card-header purple-gradient">
+                <div class="view view-cascade gradient-card-header blue-gradient">
                 <!-- Title -->
                     <h2 class="card-header-title">Reviews</h2>            
                 </div>
