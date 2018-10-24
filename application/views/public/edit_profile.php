@@ -87,11 +87,11 @@ Licensed under MIT
                     <h4 class="card-title"><?php  echo $full_name; ?></h4>
                     <span class="badge badge-info mb-2"><?php  echo $username; ?></span>
                     <span class="badge badge-warning mb-2"><?php  echo $gender; ?></span>                                        
-                    <a class="btn btn-unique" href="<?php  echo site_url('verify'); ?>">
-                    Verification
+                    <a class="btn blue-gradient" href="<?php  echo site_url('verify'); ?>">
+                    Thông tin xác thực
                     </a>
                     <a class="btn btn-danger btn-sm" href="<?php  echo site_url('logout'); ?>">
-                    Logout
+                    Đăng xuất
                     </a>
                     <hr>
                     <!-- Quotation -->
