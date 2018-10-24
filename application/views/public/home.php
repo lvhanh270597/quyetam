@@ -250,7 +250,9 @@
                         </a>
                         </li>                        
                         <?php
-                        for ($i=max(1, $index - 2); $i<=min($max, $index + 2); $i++){
+                        $from = max(1, $index - 2);
+                        $to = min($max, 5 - $from + 1);
+                        for ($i=$from; $i<=$to; $i++){
                             echo '<li class="page-item ';
                             if ($i == $index){
                                 echo 'active">';

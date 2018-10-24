@@ -12,7 +12,7 @@ class Home extends CI_Controller {
         $this->load->helper('array');
         $this->all_need_trips = $this->needed_trip_ml->get_newest(true);
         $this->all_trips = $this->trip_ml->get_newest(true);             
-        $this->limit_per_page = 8;
+        $this->limit_per_page = 1;
 
         $size1 = isset($this->all_trips) ? count($this->all_trips) : 0;
         $size2 = isset($this->all_need_trips) ? count($this->all_need_trips) : 0;
