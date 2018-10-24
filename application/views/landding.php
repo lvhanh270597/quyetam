@@ -344,7 +344,9 @@ EasyHere được tạo ra từ một ý tưởng đơn giản nhưng hiệu qu�
 
                                         <!--Description-->
                                         <p class="text-muted">Bạn nhập tên đăng nhập và mật khẩu của tài khoản mà bạn đã đăng kí vào các ô.
-Sau đó bấm Continue, nếu bạn chưa có tài khoản bấm Sign Up để trở lại bước 1.</p>
+Sau đó bấm Continue, nếu bạn chưa có tài khoản bấm Sign Up để trở lại bước 1.
+Bấm vào <a href="<?= base_url('login') ?>"> đây </a> để đăng nhập.
+                                        </p>
 
                                     </div>
                                     <!--Second column-->
@@ -391,10 +393,10 @@ Sau đó bấm Continue, nếu bạn chưa có tài khoản bấm Sign Up để 
                                         </ul>
                                         <ul>
                                             <li>
-                                            * Nếu bạn là người chủ xe, bạn hãy bấm qua Tab 2, để xem xem có yêu cầu nào không. Nếu bạn chấp nhận được yêu cầu của họ thì bạn hãy bấm vào yêu cầu đó, xem thông tin chi tiết về yêu cầu chuyến đi, xem thông tin người yêu cầu và giá tiền. Sau đó, nếu bạn đồng ý thì hãy bấm vào nút "Mở chuyến đi này". Ngay lúc này, một chuyến đi mới sẽ được tạo giống y đúc yêu cầu chuyến đi này và có hai bạn trong đó.
+                                            Nếu bạn là người chủ xe, bạn hãy bấm qua Tab 2, để xem xem có yêu cầu nào không. Nếu bạn chấp nhận được yêu cầu của họ thì bạn hãy bấm vào yêu cầu đó, xem thông tin chi tiết về yêu cầu chuyến đi, xem thông tin người yêu cầu và giá tiền. Sau đó, nếu bạn đồng ý thì hãy bấm vào nút "Mở chuyến đi này". Ngay lúc này, một chuyến đi mới sẽ được tạo giống y đúc yêu cầu chuyến đi này và có hai bạn trong đó.
                                             </li>
                                             <li>
-                                            * Nếu bạn là người khách, bạn hãy bấm vào Tab 1, để xem có chuyến đi nào phù hợp với mình không. Nếu có, bạn bấm vào chuyến đi ấy, xem thông tin chi tiết chuyến đi, người chở bạn và giá tiền. Sau đó, nếu bạn đồng ý, bạn hãy chọn hình thức thanh toán là "Trực tiếp", sau đó bấm gửi yêu cầu.
+                                            Nếu bạn là người khách, bạn hãy bấm vào Tab 1, để xem có chuyến đi nào phù hợp với mình không. Nếu có, bạn bấm vào chuyến đi ấy, xem thông tin chi tiết chuyến đi, người chở bạn và giá tiền. Sau đó, nếu bạn đồng ý, bạn hãy chọn hình thức thanh toán là "Trực tiếp", sau đó bấm gửi yêu cầu.
                                             </li>
                                         </ul>
 Lưu ý: Khi bạn bấm gửi yêu cầu, người chủ xe sẽ thấy thông báo hiện lên. Và trong chuyến đi của họ sẽ hiển thị là bạn đang gửi yêu cầu đến chuyến đi này. Có thể có nhiều người cùng gửi yêu cầu đến một chuyến đi, nên người chủ xe buộc phải chọn 1 trong số đó. Một thời gian, nếu bạn quan sát thấy, chuyến đi mà bạn gửi yêu cầu đã có chữ "Chuyến đi thành công" thì nghĩa là người chủ chuyến đi này đã đồng ý yêu cầu của một ai đó. Nếu ngay tại chuyến đi đó, bạn không thấy ô bình luận hiện ra, thì nghĩa là người đó không phải là bạn, nếu có ô bình luận, thì nghĩa là bạn đã được chấp nhận yêu cầu.
