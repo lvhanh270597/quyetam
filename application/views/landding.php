@@ -308,6 +308,7 @@ EasyHere được tạo ra từ một ý tưởng đơn giản nhưng hiệu qu�
                                                 <li>Chữ viết liền không dấu</li>
                                                 <li>Cho phép các dấu như: "." và "_"</li>
                                             </ul>
+                                        Bấm vào <a href="<?= base_url('register') ?>"> đây </a> để tạo tài khoản.
                                         </p>
 
                                     </div>
