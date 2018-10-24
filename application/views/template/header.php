@@ -44,7 +44,7 @@
 
 <script>
 function beep() {
-    var snd = new Audio("<?= base_url('assets/noti.wav') ?>");
+    var snd = new Audio("<?= base_url('assets/noti.mp3') ?>");
     snd.play();
 }
 </script>
