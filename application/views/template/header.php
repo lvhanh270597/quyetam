@@ -245,8 +245,7 @@ function beep() {
     first_time = true;
 
     setInterval(
-        function(){
-            beep();
+        function(){            
             $.get(<?php echo '"'.base_url('notify/get_unseen_notification').'"';  ?>, function(data, status){                                           
                 data = JSON.parse(data);                
                 // Show dynamic notification                
@@ -256,13 +255,8 @@ function beep() {
                 console.log(_new);                
                 
                 if (diff.length == 0) return ;                
-                                
-                if (diff.length > 0 && first_time == false){
-                    //PlaySound("sound1");
-                    console.log("DMMMMMMMMMMMM");                    
-                    console.log(first_time);
-                    first_time = false;
-                }     
+
+                beep();                
 
                 $("#count").text(diff.length);
 
