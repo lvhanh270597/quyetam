@@ -87,7 +87,7 @@ class User_control extends CI_Controller {
 		$users = $this->user_ml->get_all();
 		foreach ($users as $user){
 			if ($user['t_balance'] > 0){				
-				$this->user_ml->move_all_to_balance($user['username'], $user['t_balance']);
+				$this->user_ml->move_money_to_balance($user['username'], $user['t_balance']);
 			}			
 		}
 		echo 'OK';
