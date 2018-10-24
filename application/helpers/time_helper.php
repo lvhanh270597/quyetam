@@ -171,6 +171,13 @@ if (! function_exists('get_status')){
         else{
             $ok = (strpos($str, 'ngày') !== false) || ((strpos($str, 'tháng') !== false)) || (strpos($str, 'năm') !== false);
             if ($ok) $show = false;   
+            else{
+                $ok = (strpos($str, 'giây') !== false);
+                $sec = (int)substr($str, 0, -5);
+                if ($sec < 30){
+                    $str = 'online';
+                }
+            }
         }
         if ($show === false){
             $str = 'offline';        
