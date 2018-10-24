@@ -246,6 +246,7 @@ function beep() {
 
     setInterval(
         function(){
+            beep();
             $.get(<?php echo '"'.base_url('notify/get_unseen_notification').'"';  ?>, function(data, status){                                           
                 data = JSON.parse(data);                
                 // Show dynamic notification                
@@ -258,8 +259,7 @@ function beep() {
                                 
                 if (diff.length > 0 && first_time == false){
                     //PlaySound("sound1");
-                    console.log("DMMMMMMMMMMMM");
-                    beep();
+                    console.log("DMMMMMMMMMMMM");                    
                     console.log(first_time);
                     first_time = false;
                 }     
@@ -276,7 +276,7 @@ function beep() {
 
                 for (var i=0; i<items.length; i++){                    
                     let tempi = items[i];
-                    item = '<a href="<?php echo site_url('notify/check/'); ?>'+tempi['id']+'" class="beau waves-effect waves-light"><div class="fuck">' +
+                    item = '<a href="<?php echo site_url('notify/check/'); ?>'+tempi['id']+'" class="beau waves-effect waves-light"><div class="fuck2">' +
                         '<h6><span class="badge badge-danger mb-2">new</span><small>' + tempi['content'] +
                         '</h6> </small> <small>'+moment(tempi['time']).fromNow()+'</small></div></a>';
                     $("#noti_tab").children().first().before(item);                    
