@@ -43,9 +43,11 @@ class User_ml extends Quickaccess
 		return true;
 	}
 
-	public function add_money($username, $money){		
-		if (!$this->session->userdata('admin')){
-			redirect('admin/login');
+	public function add_money($username, $money, $auth = false){		
+		if ($auth == false){
+			if (!$this->session->userdata('admin')){
+				redirect('admin/login');
+			}
 		}
 		$username = trim($username);
 		if (!$this->place_ml->security->checkUsername($username)){

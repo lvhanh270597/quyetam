@@ -167,7 +167,7 @@
                                             if ($this->session->userdata('username') == $trip['guess']){
                                                 echo '<div class="row">
                                                     <div class="col-md-12 text-center my-4">           
-                                                        <input type="submit" value="Hoàn tiền" class="btn btn-info btn-rounded" name="getout">
+                                                        <input type="submit" value="Hoàn tiền" class="btn btn-danger btn-rounded" name="getout">
                                                     </div>
                                                 </div>';                                            
                                             }
