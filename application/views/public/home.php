@@ -196,7 +196,7 @@
                                                             <div class="card-body">
                                                                 <!--Category & Title-->                                                                
                                                                 <h6 class="card-title mb-1"><strong><a href="'.site_url('trip/detail_need/'.$trip['id']).'" class="dark-grey-text">'.$places[$trip['start_from']].' <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a></strong></h6>
-                                                                <span class="badge badge-success mb-2">'.$asker['full_name'].'</span>'.get_color_status(get_status($owner['username'])).'</br>
+                                                                <span class="badge badge-success mb-2">'.$asker['full_name'].'</span>'.get_color_status(get_status($asker['username'])).'</br>
                                                                 '.$empty.'
                                                                 '.$free.'
                                                                 <!--Card footer-->
