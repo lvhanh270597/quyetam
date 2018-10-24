@@ -276,7 +276,7 @@ enablejavascript="true">
                 diff = get_diff(_old, _new);          
                 
                 console.log(_new);
-                if (_new.length > 0 && first_time == false){
+                if (diff.length > 0 && first_time == false){
                     PlaySound("sound1");
                     first_time = false;
                 }     
