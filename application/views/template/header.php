@@ -49,7 +49,7 @@ function beep() {
 }
 </script>
 
-<script src="<?= base_url('assets/moment.js') ?>"></script>
+<script src="<?= base_url('assets/js/moment.js') ?>"></script>
 
 </head>
 
