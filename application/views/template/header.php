@@ -278,7 +278,7 @@ function beep() {
 
 
             })
-        }, 10000);
+        }, 5000);
 </script>
 
 <!-- /.Navigation -->
