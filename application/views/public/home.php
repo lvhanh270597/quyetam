@@ -184,7 +184,7 @@
 
                                                             <!--Card image-->
                                                             <div class="view overlay">
-                                                                <img src="assets/images/uploads/places/'.$place['id'].'/'.$place['image'].'" class="img-fluid" alt="" id="dm">
+                                                                <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">
                                                                 <a href="'.site_url('trip/detail_need/'.$trip['id']).'">
                                                                     <div class="mask rgba-white-slight waves-effect waves-light">                                            
                                                                     </div>                                            
