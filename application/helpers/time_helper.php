@@ -174,7 +174,7 @@ if (! function_exists('get_status')){
             else{
                 $ok = (strpos($str, 'giây') !== false);
                 $sec = (int)substr($str, 0, -5);
-                if ($sec < 30){
+                if ($sec < 10){
                     $str = 'online';
                 }
             }
