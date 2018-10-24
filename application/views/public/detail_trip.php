@@ -163,9 +163,8 @@
                                                         <input type="submit" value="Gửi yêu cầu" class="btn btn-info btn-rounded" name="btn">
                                                     </div>
                                                 </div>';
-                                            }
-
-                                            if ($cur_user == $trip['guess']){
+                                            }                                            
+                                            if ($this->session->userdata('username') == $trip['guess']){
                                                 echo '<div class="row">
                                                     <div class="col-md-12 text-center my-4">           
                                                         <input type="submit" value="Hoàn tiền" class="btn btn-info btn-rounded" name="getout">
