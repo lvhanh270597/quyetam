@@ -164,7 +164,16 @@
                                                     </div>
                                                 </div>';
                                             }
-                                            ?>                                                              
+
+                                            if ($cur_user == $trip['guess']){
+                                                echo '<div class="row">
+                                                    <div class="col-md-12 text-center my-4">           
+                                                        <input type="submit" value="Hoàn tiền" class="btn btn-info btn-rounded" name="getout">
+                                                    </div>
+                                                </div>';                                            
+                                            }
+                                            ?>                    
+
                                     <!-- /.Fourth row -->                                    
                                 </form>
                                 <?php

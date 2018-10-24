@@ -130,9 +130,21 @@ class Trip extends CI_Controller {
         $message = '';
         // Nếu gửi yêu cầu
         if ($this->input->post()){            
+            // Nếu nói rằng không thể tham gia
+            if ($this->input->post('getout')){
+                if ($trip['guess'] == null){                
+                    redirect('trip/detail/'.$trip_id);
+                }
+                // Trừ tiền khách với giá 20%
+                $fee = 0.2 * $trip['price'];                
+                $this->user_ml->add_money($trip['guess'], -$fee);
+                // Cộng tiền của chủ lên 20%
+                $this->user_ml->add_money($trip['owner'], $fee);
+                redirect('show_get_out');
+            }
 
             $trip = $this->trip_ml->get_by_primary($trip_id);   
-            if ($trip['guess'] != null){
+            if ($trip['guess'] != null){                
                 redirect('trip/detail/'.$trip_id);
             }
 
@@ -706,5 +718,13 @@ class Trip extends CI_Controller {
         $this->user_ml->move_money_to_balance($username, 100);
         $this->needed_trip_ml->delete($trip_id);
         redirect('trip/my_trips');    
+    }
+
+    public function show_get_out(){
+        $data = [
+            'title' => 'Hoàn tiền thành công',
+            'content' => 'Bạn đã chuyển số tiền bằng phí của chuyến đi cho chủ xe vì bạn không thể tham gia chuyến đi này',  
+        ];
+        display('action_info', $data);
     }
 }
