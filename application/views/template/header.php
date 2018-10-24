@@ -27,27 +27,6 @@
 </style>
 
 
-    <style>
-        
-        body{margin:0;height:100%;}
-        canvas{
-            position:absolute;top:0;left:0;
-            background-image: linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
-            background-image: -o-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
-            background-image: -moz-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
-            background-image: -webkit-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
-            background-image: -ms-linear-gradient(bottom, rgb(105,173,212) 0%, rgb(23,82,145) 84%);
-            
-            background-image: -webkit-gradient(
-                linear,
-                left bottom,
-                left top,
-                color-stop(0, rgb(105,173,212)),
-                color-stop(0.84, rgb(23,82,145))
-            );
-        }
-        </style>
-
 <style>
     #hehe{
         width: 50px;
@@ -275,14 +254,15 @@ enablejavascript="true">
                 _new = get_id(data);
                 diff = get_diff(_old, _new);          
                 
-                console.log(_new);
+                console.log(_new);                
+                
+                if (diff.length == 0) return ;                
+                                
                 if (diff.length > 0 && first_time == false){
                     PlaySound("sound1");
                     first_time = false;
                 }     
-                
-                if (diff.length == 0) return ;                
-                                
+
                 $("#count").text(diff.length);
 
                 _old = _new.sort();          
