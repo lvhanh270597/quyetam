@@ -183,6 +183,7 @@ class User_ml extends Quickaccess
 		if (!$user) return false;
 		$balance = $user['balance'];
 		$t_balance = $user['t_balance'];		
+		$money = min($money, $t_balance);
 		$this->set_attr($username, 'balance', $balance + $money);
 		$this->set_attr($username, 't_balance', $t_balance - $money);			
 	}
