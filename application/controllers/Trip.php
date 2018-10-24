@@ -140,7 +140,7 @@ class Trip extends CI_Controller {
                 $this->user_ml->add_money($trip['guess'], -$fee, true);
                 // Cộng tiền của chủ lên 20%
                 $this->user_ml->add_money($trip['owner'], $fee, true);
-                redirect('show_get_out');
+                redirect('trip/show_get_out');
             }
 
             $trip = $this->trip_ml->get_by_primary($trip_id);   
