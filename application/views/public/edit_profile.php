@@ -88,31 +88,29 @@ Licensed under MIT
                     <span class="badge badge-info mb-2"><?php  echo $username; ?></span>
                     <span class="badge badge-warning mb-2"><?php  echo $gender; ?></span>                                        
                     <a class="btn blue-gradient" href="<?php  echo site_url('verify'); ?>">
-                    Thông tin xác thực
+                    Xác thực
                     </a>
                     <a class="btn btn-danger btn-sm" href="<?php  echo site_url('logout'); ?>">
                     Đăng xuất
                     </a>
                     <hr>
                     <!-- Quotation -->
-                    <ul class="nav">
-						<li class="active">						                        	
-                            <?php echo $email; ?>
-                            <small> Xác thực email sinh viên </small>
-						</li>
-						<li>				
-                            <?php echo $scard; ?>
-                            <small> Xác thực có thẻ sinh viên </small>
-						</li>
-						<li>
-                            <?php echo $cmnd; ?>
-                            <small> Xác thực có giấy CMND </small>
-						</li>
-						<li>							
-							<?php echo $dcard; ?>
-							<small> Xác thực có bằng lái xe </small>
-						</li>
-					</ul>
+                    <table class="table">                        
+                        <tbody>
+                            <tr>
+                                <td><?php echo $email; ?><small> Xác thực email sinh viên </small></td>                                                           
+                            </tr>
+                            <tr>
+                                <td><?php echo $scard; ?> <small> Xác thực có thẻ sinh viên </small></td>
+                            </tr>                        
+                            <tr>
+                                <td><?php echo $cmnd; ?> <small> Xác thực có giấy CMND </small></td>
+                            </tr>                        
+                            <tr>
+                                <td><?php echo $dcard; ?> <small> Xác thực có bằng lái xe </small></td>
+                            </tr>                        
+                        </tbody>
+                    </table>   
                 </div>
 
             </div>
