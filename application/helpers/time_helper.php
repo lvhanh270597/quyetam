@@ -165,7 +165,7 @@ if (! function_exists('get_status')){
         $user = $ci->user_ml->get_by_primary($username);
         $status = $user['status'];
         $str = ago($status);	                  
-        $ok = (strpos($str, 'giây') !== false) || ((strpos($str, 'vừa mới') !== false));
+        $ok = ((strpos($str, 'vừa mới') !== false));
         $show = true;
         if ($ok) { $str = 'online'; }
         else{
