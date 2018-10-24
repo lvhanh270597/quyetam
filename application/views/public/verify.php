@@ -125,7 +125,7 @@
                                     <div class="row">                                        
                                         <div class="col-md-12 text-center my-4">                        
                                             <input type="text" name="username" value="'.$info['username'].'" hidden>                    
-                                            <input type="submit" value="Send verify" class="btn btn-info btn-rounded">
+                                            <input type="submit" value="Gửi thông tin xác thực" class="btn btn-info btn-rounded">
                                         </div>
                                     </div>                                                                                                                                       
                                 </form>
