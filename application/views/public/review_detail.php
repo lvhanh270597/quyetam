@@ -47,7 +47,7 @@ Licensed under MIT
 
                 <div class="card-body">
                     <!-- Name -->
-                    <h4 class="card-title"><?php  echo $info['full_name']; ?></h4>                    
+                    <h4 class="card-title"><?php  echo $info['full_name']; ?> </h4> <h5><?=get_color_status(get_status($info['username']))?></h5>    
                     <span class="badge badge-info mb-2"></span>
                     <span class="badge badge-warning mb-2"></span>                                        
                     <!-- Quotation -->

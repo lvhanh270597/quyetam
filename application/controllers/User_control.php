@@ -92,4 +92,15 @@ class User_control extends CI_Controller {
 		}
 		echo 'OK';
 	}
+
+	public function set_init_time(){
+		if (!$this->session->userdata('admin')){
+			redirect('admin/login');
+		}
+		$users = $this->user_ml->get_all();
+		foreach ($users as $user){
+			$this->user_ml->set_attr($user['username'], 'status', 0);		
+		}
+		echo 'OK';
+	}
 }

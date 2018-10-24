@@ -182,3 +182,21 @@ if (!function_exists('get_price')){
         return is_numeric($price) ? (int)$price : false;
     }
 }
+
+if (!function_exists('get_color_status')){
+    function get_color_status($status){
+        $ok = (strpos($status, 'online') !== false);
+        if ($ok){
+            return '<span class="badge badge-success mb-2">online</span>';            
+        }
+        else{
+            $ok = (strpos($status, 'offline') !== false);
+            if ($ok){
+                return '<span class="badge badge-danger mb-2">off</span>';            
+            }
+            else{
+                return '<span class="badge badge-warning mb-2">'.$status.'</span>';            
+            }
+        }
+    }
+}

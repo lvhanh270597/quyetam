@@ -75,4 +75,5 @@ class Home extends CI_Controller {
             echo "Message has been sent successfully";
         }
     }        
+
 }

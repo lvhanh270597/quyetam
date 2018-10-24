@@ -158,3 +158,23 @@ if (! function_exists('max_date')){
         return $date->format("Y-m-d\TH:i");
     }
 }
+
+if (! function_exists('get_status')){
+    function get_status($username){        
+        $ci =& get_instance();
+        $user = $ci->user_ml->get_by_primary($username);
+        $status = $user['status'];
+        $str = ago($status);	                  
+        $ok = (strpos($str, 'giây') !== false) || ((strpos($str, 'vừa mới') !== false));
+        $show = true;
+        if ($ok) { $str = 'online'; }
+        else{
+            $ok = (strpos($str, 'ngày') !== false) || ((strpos($str, 'tháng') !== false)) || (strpos($str, 'năm') !== false);
+            if ($ok) $show = false;   
+        }
+        if ($show === false){
+            $str = 'offline';        
+        }
+        return $str;
+    }
+}

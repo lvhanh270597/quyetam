@@ -67,12 +67,13 @@ class Notify extends CI_Controller {
 
     public function get_unseen_notification(){
         $username = $this->session->userdata('username');
-        $unseen = $this->notify_ml->get_unseen($username);                        
+        $unseen = $this->notify_ml->get_unseen($username);
+        $this->user_ml->set_attr($username, 'status', get_current_time());                        
         echo json_encode($unseen);
     }
 
-    public function get_all_notification(){
-        $username = $this->session->userdata('username');
+    public function get_all_notification(){        
+        $username = $this->session->userdata('username');        
         $data = $this->notify_ml->get_from_user($username);                  
         echo json_encode($data);
     }

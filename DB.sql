@@ -160,3 +160,5 @@ CREATE TABLE matched (
 	FOREIGN KEY (user1) REFERENCES user(username),
 	FOREIGN KEY (user2) REFERENCES user(username)
 );
+
+ALTER TABLE user ADD status DATETIME;

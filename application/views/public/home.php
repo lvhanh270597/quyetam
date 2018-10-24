@@ -94,7 +94,7 @@
                                                             $empty = '<span class="badge badge-primary mb-2">còn trống</span></br>';
                                                         }                              
                                                         else{
-                                                            $empty .= '<span class="badge badge-danger mb-2">'.$guess['full_name'].'</span></br>';
+                                                            $empty .= '<span class="badge badge-danger mb-2">'.$guess['full_name'].'</span>'.get_color_status(get_status($trip['guess'])).'</br>';
                                                         }  
                                                         echo '<div class="col-lg-3 col-md-6 mb-4" >
                                                         <!--Card-->
@@ -107,13 +107,13 @@
                                                                     </div>                                            
                                                                 </a>
                                                             </div>
-                                                            <!--Card image-->
+                                                            <!--Card image-->                                                            
 
                                                             <!--Card content-->
                                                             <div class="card-body">                                    
                                                                 <!--Category & Title-->
                                                                 <h6 class="card-title mb-1"><strong><a href="'.site_url('trip/detail/'.$trip['id']).'" class="dark-grey-text">'.$places[$trip['start_from']].'<i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a> </strong></h6>
-                                                                <span class="badge badge-success mb-2">'.$owner['full_name'].'</span> </br>
+                                                                <span class="badge badge-success mb-2">'.$owner['full_name'].'</span>'.get_color_status(get_status($owner['username'])).' </br>
                                                                 '.$empty.'
                                                                 '.$free.'                                                                
                                                                 <!--Card footer-->
@@ -196,7 +196,7 @@
                                                             <div class="card-body">
                                                                 <!--Category & Title-->                                                                
                                                                 <h6 class="card-title mb-1"><strong><a href="'.site_url('trip/detail_need/'.$trip['id']).'" class="dark-grey-text">'.$places[$trip['start_from']].' <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a></strong></h6>
-                                                                <span class="badge badge-success mb-2">'.$asker['full_name'].'</span> </br>
+                                                                <span class="badge badge-success mb-2">'.$asker['full_name'].'</span>'.get_color_status(get_status($owner['username'])).'</br>
                                                                 '.$empty.'
                                                                 '.$free.'
                                                                 <!--Card footer-->
