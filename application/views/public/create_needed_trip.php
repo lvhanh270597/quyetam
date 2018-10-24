@@ -43,6 +43,14 @@
                                 <!-- Edit Form -->
                                 <form method="post">
                                     <div class="row">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="alert alert-info"> 
+                                                    <strong>Lưu ý:</strong>
+                                                    Đây là lúc bạn cần tìm người chở bạn theo đúng như những yêu cầu mà bạn đặt ra cho chuyến đi. Ở đây, bạn đang là khách.
+                                                </div>  
+                                            </div>
+                                        </div>  
                                         <div class="col-md-12">
                                             <?php echo $message; ?>
                                         </div>
