@@ -162,3 +162,4 @@ CREATE TABLE matched (
 );
 
 ALTER TABLE user ADD status DATETIME;
+ALTER TABLE user ADD tai_xe BOOLEAN;
