@@ -79,7 +79,7 @@ class Notify extends CI_Controller {
     }
 
     public function test(){
-        $this->load->view('test_noti');
+        $this->load->view('public/test_noti');
     }
 
 }
