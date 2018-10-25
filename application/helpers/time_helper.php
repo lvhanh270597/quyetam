@@ -169,13 +169,15 @@ if (! function_exists('get_status')){
         $show = true;
         if ($ok) { $str = 'online'; }
         else{
-            $ok = (strpos($str, 'ngày') !== false) || ((strpos($str, 'tháng') !== false)) || (strpos($str, 'năm') !== false);
+            $ok = (strpos($str, 'ngày') !== false) || ((strpos($str, 'tháng') !== false)) || (strpos($str, 'năm') !== false) || (strpos($str, 'giờ') !== false);
             if ($ok) $show = false;   
             else{
                 $ok = (strpos($str, 'giây') !== false);
-                $sec = (int)substr($str, 0, -5);
-                if ($sec < 10){
-                    $str = 'online';
+                if ($ok){
+                    if ($sec < 10){
+                        $sec = (int)substr($str, 0, -5);
+                        $str = 'online';
+                    }
                 }
             }
         }
