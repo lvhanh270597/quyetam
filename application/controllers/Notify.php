@@ -78,4 +78,8 @@ class Notify extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function test(){
+        $this->load->view('test_noti');
+    }
+
 }
