@@ -96,7 +96,7 @@ Licensed under MIT
                             <td><p class="font-weight-bold "> <?= $info['username']; ?></p></td>  
                         </tr>
                         <?php                        
-                        //if ($permission){
+                        if ($permission){
                             echo '
                             <tr>
                                 <td><p class="font-weight-bold green-text">SĐT</p></td>
@@ -107,7 +107,19 @@ Licensed under MIT
                                 <td><p class="font-weight-bold ">'.$info['facebook'].'</p></td>  
                             </tr>
                             ';
-                        //}                        
+                        }
+                        else{
+                            echo '
+                            <tr>
+                                <td><p class="font-weight-bold green-text">SĐT</p></td>
+                                <td> <p class="font-weight-bold ">Hai bạn phải kết nối mới xem được phần này</p></td>  
+                            </tr>
+                            <tr>
+                                <td><p class="font-weight-bold green-text">Facebook</p></td>
+                                <td><p class="font-weight-bold ">Hai bạn phải kết nối mới xem được phần này</p></td>  
+                            </tr>
+                            ';
+                        }                        
                         ?>
                         </tbody>
                     </table>                                                          

@@ -271,7 +271,10 @@
                         </li>
                         <li class="page-item <?php if ($index == $max) echo 'disabled'; ?>"><a class="page-link" href="<?= site_url('pages/'.($max)) ?>">Last</a></li>
                     </ul>
-                    </nav>
+                </nav>
+                <div class="alert alert-info">
+                    <strong>Lưu ý: </strong> Trước khi chuyến đi bắt đầu 15-30 phút, bạn nên vào xem các chuyến đi, yêu cầu của mình đã được chấp nhận hay chưa để liên hệ kịp thời nhé.
+                </div>
             </div>            
         </div>                             
     </div>        
