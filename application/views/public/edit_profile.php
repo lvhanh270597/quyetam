@@ -148,7 +148,7 @@ Licensed under MIT
                                         <!--First column-->
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
-                                                <input type="text" id="form81" class="form-control validate" value="<?php echo $full_name; ?>" name="full_name">
+                                                <input type="text" id="form81" class="form-control validate" value="<?php echo $full_name; ?>" name="full_name" disabled>
                                                 <label for="form81" data-error="wrong" data-success="right">Full name</label>
                                             </div>
                                         </div>
