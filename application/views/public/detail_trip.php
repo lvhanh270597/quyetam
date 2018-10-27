@@ -189,7 +189,7 @@
                                 <!-- Edit Form -->
                             </div> 
                             <div class="alert alert-info">
-                                <strong>Lưu ý: </strong>Các bạn sau khi đã đi đến nơi hãy nhắn tin vào số điện thoại 0353001562 hoặc facebook của page EasyHere để ad được yên tâm rằng bạn đã được chở đến nơi an toàn. Cám ơn các bạn.
+                                <strong>Lưu ý: </strong>Các bạn sau khi đã đi đến nơi hãy nhắn tin vào số điện thoại 0353001562 hoặc facebook của page EasyHere để ad được yên tâm rằng bạn đã đến nơi an toàn. Cám ơn các bạn.
                             </div>                          
                             <style>
                                 #fuckyou{
