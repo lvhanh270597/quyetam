@@ -274,6 +274,7 @@
                 </nav>
                 <div class="alert alert-warning">
                     <strong>Để đảm bảo an toàn: </strong>EasyHere yêu cầu mọi người phải cập nhật đủ các loại giấy tờ liên quan lên hệ thống tại link <a href="<?= base_url('verify') ?>"> này </a>                    
+                    Đồng thời, các bạn phải để hình đại diện có mặt mình (và giống với hình trong các loại giấy tờ bạn cung cấp) để an toàn hơn và người đi chung gặp bạn dễ nhận biết.
                 </div>
                 <div class="alert alert-info">
                     <strong>Lưu ý: </strong> Trước khi chuyến đi bắt đầu 15-30 phút, bạn nên vào xem các chuyến đi, yêu cầu của mình đã được chấp nhận hay chưa để liên hệ kịp thời nhé.
