@@ -163,14 +163,7 @@
                                                         <input type="submit" value="Gửi yêu cầu" class="btn btn-info btn-rounded" name="btn">
                                                     </div>
                                                 </div>';
-                                            }                                            
-                                            if ($this->session->userdata('username') == $trip['guess']){
-                                                echo '<div class="row">
-                                                    <div class="col-md-12 text-center my-4">           
-                                                        <input type="submit" value="Hoàn tiền" class="btn btn-danger btn-rounded" name="getout">
-                                                    </div>
-                                                </div>';                                            
-                                            }
+                                            }                                                                                        
                                             ?>                    
 
                                     <!-- /.Fourth row -->                                    
@@ -194,7 +187,10 @@
 
                                 ?>
                                 <!-- Edit Form -->
-                            </div>                           
+                            </div> 
+                            <div class="alert alert-info">
+                                <strong>Lưu ý: </strong>Các bạn sau khi đã đi đến nơi hãy nhắn tin vào số điện thoại 0353001562 hoặc facebook của page EasyHere để ad được yên tâm rằng bạn đã được chở đến nơi an toàn. Cám ơn các bạn.
+                            </div>                          
                             <style>
                                 #fuckyou{
                                     padding-top: 0px;                                    

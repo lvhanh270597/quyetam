@@ -130,7 +130,7 @@ class Trip extends CI_Controller {
         $message = '';
         // Nếu gửi yêu cầu
         if ($this->input->post()){            
-            // Nếu nói rằng không thể tham gia
+            /* Nếu nói rằng không thể tham gia
             if ($this->input->post('getout')){
                 if ($trip['guess'] == null){                
                     redirect('trip/detail/'.$trip_id);
@@ -143,7 +143,7 @@ class Trip extends CI_Controller {
                 // Hoàn tiền xong thì xóa guess
                 $this->trip_ml->set_attr($trip_id, 'guess', null);
                 redirect('trip/show_get_out');
-            }
+            } */
 
             $trip = $this->trip_ml->get_by_primary($trip_id);   
             if ($trip['guess'] != null){                
@@ -408,7 +408,8 @@ class Trip extends CI_Controller {
             $owner_id = $this->session->userdata('username');
             $owner = $this->user_ml->get_by_primary($owner_id);
             $trip = $this->trip_ml->get_by_primary($trip_id);            
-            $fee = $trip['price'] * 0.2;            
+            //$fee = $trip['price'] * 0.2;            
+            $fee = 600; //Cố định
             if ($owner['balance'] >= $fee){
                 $this->user_ml->set_attr($owner_id, 'balance', $owner['balance'] - $fee);
                 // Nếu là chuyến đi trực tiếp, thì coi như đã thành công!
@@ -417,7 +418,7 @@ class Trip extends CI_Controller {
 
                 $data = [
                     'title' => 'Chấp nhận chuyến đi thành công!',
-                    'content' => 'Phí cho chuyến đi này là '.$trip['price'].'đ x 20% = '.$fee.'đ. Đây là chuyến đi trực tiếp. <br>
+                    'content' => 'Phí cho chuyến đi này là '.$fee.'đ. Đây là chuyến đi trực tiếp. <br>
                     Vậy nên chúng tôi đã trừ phí này vào tài khoản của bạn. <br> Bấm vào <a href="'.site_url('trip/edit/'.$trip_id).'">đây</a> để quay về chi tiết chuyến đi.' 
                 ];
                 $this->session->set_flashdata('title', $data['title']);
@@ -427,7 +428,7 @@ class Trip extends CI_Controller {
             else{
                 $data = [
                     'title' => 'Chấp nhận chuyến đi KHÔNG thành công!',
-                    'content' => 'Phí cho chuyến đi này là '.$trip['price'].'đ x 20% = '.$fee.'đ. Đây là chuyến đi gián tiếp. <br>
+                    'content' => 'Phí cho chuyến đi này là '.$fee.'đ. Đây là chuyến đi gián tiếp. <br>
                     Và số tiền trong tài khoản của bạn không đủ. <br> Bấm vào <a href="'.site_url('trip/edit/'.$trip_id).'">đây</a> để quay về chi tiết chuyến đi.' 
                 ];
                 $this->session->set_flashdata($data);
@@ -439,7 +440,7 @@ class Trip extends CI_Controller {
             $this->accept($trip_id, $request);   
             $data = [
                 'title' => 'Chấp nhận chuyến đi thành công!',
-                'content' => 'Phí cho chuyến đi này là '.$trip['price'].'đ x 20% = '.$fee.'đ. Đây là chuyến đi gián tiếp. <br>
+                'content' => 'Phí cho chuyến đi này là '.$fee.'đ. Đây là chuyến đi gián tiếp. <br>
                 Vậy nên chúng tôi sẽ trừ phí này vào tài khoản của bạn sau khi bạn check code thành công. <br> Bấm vào <a href="'.site_url('trip/edit/'.$trip_id).'">đây</a> để quay về chi tiết chuyến đi.' 
             ];
             $this->session->set_flashdata($data);
@@ -560,7 +561,8 @@ class Trip extends CI_Controller {
             if ($trip['type_transaction'] == $this->tructiep){
                 
                 $owner = $this->user_ml->get_by_primary($data_sql['owner']);                
-                $fee = $trip['price'] * 0.2;
+                //$fee = $trip['price'] * 0.2;
+                $fee = 600;
                 if ($owner['balance'] >= $fee){
                     // Trừ tiền của người chở
                     $this->user_ml->set_attr($data_sql['owner'], 'balance', $owner['balance'] - $fee);
