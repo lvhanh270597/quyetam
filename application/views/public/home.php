@@ -81,7 +81,7 @@
                                                     <div class="card">
                                                         <!--Card image-->                                                            
                                                             <a href="<?= site_url('trip/create') ?>">
-                                                                <img src="<?=base_url('assets/plus.jpeg')?>" class="img-fluid" alt="Tạo chuyến đi mới" id="dm">
+                                                                <img src="<?=base_url('assets/plus.png')?>" class="img-fluid" alt="Tạo chuyến đi mới" id="dm">
                                                                 <div class="mask rgba-white-slight waves-effect waves-light">                                            
                                                                 </div>                                            
                                                             </a>
@@ -182,7 +182,7 @@
                                                     <div class="card">
                                                         <!--Card image-->                                                            
                                                             <a href="<?= site_url('trip/create_ask_trip') ?>">
-                                                                <img src="<?=base_url('assets/plus.jpeg')?>" class="img-fluid" alt="Tạo yêu cầu mới" id="dm">
+                                                                <img src="<?=base_url('assets/plus.png')?>" class="img-fluid" alt="Tạo yêu cầu mới" id="dm">
                                                                 <div class="mask rgba-white-slight waves-effect waves-light">                                            
                                                                 </div>                                            
                                                             </a>
