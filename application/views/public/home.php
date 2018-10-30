@@ -86,7 +86,11 @@
                                                                 </div>                                            
                                                             </a>
                                                         <!--Card image-->
-                                                    </div>
+                                                        <div class="card-body">                                    
+                                                            <!--Category & Title-->
+                                                            <h6 class="card-title mb-1"><strong>TẠO CHUYẾN ĐI</strong></h6>                                                        
+                                                        </div>
+                                                    </div>                                                   
                                                     <!--Card-->
                                                 </div>
                                             <?php
@@ -183,7 +187,12 @@
                                                                 </div>                                            
                                                             </a>
                                                         <!--Card image-->
+                                                        <div class="card-body">                                    
+                                                            <!--Category & Title-->
+                                                            <h6 class="card-title mb-1"><strong>TẠO YÊU CẦU</strong></h6>                                                        
+                                                        </div>
                                                     </div>
+                                                    
                                                     <!--Card-->
                                                 </div>
                                             <?php
