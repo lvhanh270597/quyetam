@@ -47,4 +47,9 @@ class Verify_ml extends Quickaccess
     public function remove_from_user($username){
         $this->db->delete($this->db_table, ['from_user'=> $username]);
     }
+
+    public function count_verify($user){
+        $all = $this->db->get_where($this->db_table, ['from_user' => $user, 'status' => 'OK']);
+        return $all->num_rows();
+    }    
 }

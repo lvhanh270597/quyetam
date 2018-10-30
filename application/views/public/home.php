@@ -76,6 +76,19 @@
                                             <!-- Card content -->
                                             
                                             <div class="row">
+                                                <div class="col-lg-3 col-md-6 mb-4">
+                                                    <!--Card-->
+                                                    <div class="card">
+                                                        <!--Card image-->                                                            
+                                                            <a href="<?= site_url('trip/create') ?>">
+                                                                <img src="<?=base_url('assets/plus.jpeg')?>" class="img-fluid" alt="Tạo chuyến đi mới" id="dm">
+                                                                <div class="mask rgba-white-slight waves-effect waves-light">                                            
+                                                                </div>                                            
+                                                            </a>
+                                                        <!--Card image-->
+                                                    </div>
+                                                    <!--Card-->
+                                                </div>
                                             <?php
                                                 if ($trips){
                                                     foreach ($trips as $trip){
@@ -160,6 +173,19 @@
                                             <!-- Card content -->
                                             
                                             <div class="row">
+                                                <div class="col-lg-3 col-md-6 mb-4">
+                                                        <!--Card-->
+                                                    <div class="card">
+                                                        <!--Card image-->                                                            
+                                                            <a href="<?= site_url('trip/create_ask_trip') ?>">
+                                                                <img src="<?=base_url('assets/plus.jpeg')?>" class="img-fluid" alt="Tạo yêu cầu mới" id="dm">
+                                                                <div class="mask rgba-white-slight waves-effect waves-light">                                            
+                                                                </div>                                            
+                                                            </a>
+                                                        <!--Card image-->
+                                                    </div>
+                                                    <!--Card-->
+                                                </div>
                                             <?php
                                                 if ($needed_trips){
                                                     foreach ($needed_trips as $trip){

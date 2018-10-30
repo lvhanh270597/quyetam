@@ -25,6 +25,9 @@ class Review extends CI_Controller {
         if ($this->matched_ml->check_exist($user, $username)){
             $permission = true;
         }        
+        if ($user == $username){
+            $permission = true;
+        }        
 
         if ($this->input->post()){            
             $content = $this->input->post('content');

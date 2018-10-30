@@ -29,7 +29,11 @@ class Verify extends CI_Controller {
         }        
     }       
     
-    public function index(){       
+    public function index(){      
+        if (!$this->session->userdata('user_logged')){
+            redirect('login');
+        }         
+         
         $message = '';        
         $username = $this->session->userdata('username');        
         

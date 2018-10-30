@@ -123,27 +123,20 @@ class Trip extends CI_Controller {
         if (!$this->session->userdata('user_logged')){
             redirect('login');
         }         
-        $trip = $this->trip_ml->get_by_primary($trip_id);   
-        if ($trip === null){ redirect('page_not_found'); }
 
         $username = $this->session->userdata('username');     
+        /*  */
+        if ($this->verify_ml->count_verify($username) < 2){
+            redirect('trip/show_no_permission');
+        }        
+        /*  */
+
+        $trip = $this->trip_ml->get_by_primary($trip_id);   
+        if ($trip === null){ redirect('page_not_found'); }
+        
         $message = '';
         // Nếu gửi yêu cầu
-        if ($this->input->post()){            
-            /* Nếu nói rằng không thể tham gia
-            if ($this->input->post('getout')){
-                if ($trip['guess'] == null){                
-                    redirect('trip/detail/'.$trip_id);
-                }
-                // Trừ tiền khách với giá 20%
-                $fee = 0.2 * $trip['price'];                
-                $this->user_ml->add_money($trip['guess'], -$fee, true);
-                // Cộng tiền của chủ lên 20%
-                $this->user_ml->add_money($trip['owner'], $fee, true);
-                // Hoàn tiền xong thì xóa guess
-                $this->trip_ml->set_attr($trip_id, 'guess', null);
-                redirect('trip/show_get_out');
-            } */
+        if ($this->input->post()){                       
 
             $trip = $this->trip_ml->get_by_primary($trip_id);   
             if ($trip['guess'] != null){                
@@ -294,6 +287,11 @@ class Trip extends CI_Controller {
         if (!$this->session->userdata('user_logged')){
             redirect('login');
         }
+        $username = $this->session->userdata('username');
+        if ($this->verify_ml->count_verify($username) < 2){
+            redirect('trip/show_no_permission');
+        }        
+
         $message = '';
         if ($this->input->post()){            
             $check = $this->needed_trip_ml->preparing_data();
@@ -346,8 +344,11 @@ class Trip extends CI_Controller {
         if (!$this->session->userdata('user_logged')){
             redirect('login');
         }
-
-        $username = $this->session->userdata('username');
+        $username = $this->session->userdata('username');        
+        if ($this->verify_ml->count_verify($username) < 2){
+            redirect('trip/show_no_permission');
+        }        
+        
         $data = ['owner' => $username, 'message'=>'', '_places' => $this->place_ml->get_all()];
         
         if ($this->input->post()){            
@@ -543,9 +544,16 @@ class Trip extends CI_Controller {
         if (!$this->session->userdata('user_logged')){
             redirect('login');
         }
+
+        $username = $this->session->userdata('username');
+        if ($this->verify_ml->count_verify($username) < 2){
+            redirect('trip/show_no_permission');
+        } 
+
         $message = '';
         $trip = $this->needed_trip_ml->get_by_primary($id);
         if ($this->input->post()){
+            
             $data_sql = [
                 'guess' => $trip['asker'],
                 'code' => rand(100000, 999999),
@@ -724,11 +732,12 @@ class Trip extends CI_Controller {
         redirect('trip/my_trips');    
     }
 
-    public function show_get_out(){
+    public function show_no_permission(){
         $data = [
-            'title' => 'Hoàn tiền thành công',
-            'content' => 'Bạn đã chuyển số tiền bằng phí của chuyến đi cho chủ xe vì bạn không thể tham gia chuyến đi này',  
+            'title' => 'Bạn chưa đủ quyền',
+            'content' => 'Bạn phải xác thực ít nhất 2 loại giấy tờ mới thực hiện được chức năng này. Bấm vào <a href="'.site_url('verify').'"> đây </a> để gửi giấy tờ xác thực.',  
         ];
         display('action_info', $data);
     }
+
 }
