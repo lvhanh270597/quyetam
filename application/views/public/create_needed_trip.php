@@ -91,7 +91,7 @@
                                         <!--First column-->              
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">                                                                                                 
-                                                <input type="date" min="<?= get_date(min_date()) ?>" max="<?= get_date(max_date()) ?>" name="datestart" id="dateofbirth" class="form-control validate">
+                                                <input type="date" min="<?= get_date(min_date()) ?>" max="<?= get_date(max_date()) ?>" value="<?= get_date(get_current_time()) ?>" name="datestart" id="dateofbirth" class="form-control validate">
                                                 <label for="form2" data-error="wrong" data-success="right" class="active">Ngày đi</label>
                                             </div>
                                         </div>  
