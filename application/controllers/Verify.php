@@ -76,20 +76,19 @@ class Verify extends CI_Controller {
             }                        
         }        
 
-        if ($cmnd['status'] == 'Not yet'){
-            if(!empty($_FILES['cmnd']['name'])){            
-                $this->verify_cmnd();                
-                $ok = true;
-            }
-        }
-
-        if ($scard['status'] != 'OK'){
+        if ($scard['status'] == 'Not yet'){
             if(!empty($_FILES['scard']['name'])){   
                 $this->verify_scard();
                 $ok = true;
             }
         }
 
+        if ($cmnd['status'] == 'Not yet'){
+            if(!empty($_FILES['cmnd']['name'])){            
+                $this->verify_cmnd();                
+                $ok = true;
+            }
+        }        
 
         if ($dcard['status'] == 'Not yet'){
             if(!empty($_FILES['dcard']['name'])){            
