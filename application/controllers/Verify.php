@@ -83,16 +83,17 @@ class Verify extends CI_Controller {
             }
         }
 
-        if ($dcard['status'] == 'Not yet'){
-            if(!empty($_FILES['dcard']['name'])){            
-                $this->verify_dcard();
+        if ($scard['status'] != 'OK'){
+            if(!empty($_FILES['scard']['name'])){   
+                $this->verify_scard();
                 $ok = true;
             }
         }
 
-        if ($scard['status'] != 'OK'){
-            if(!empty($_FILES['scard']['name'])){   
-                $this->verify_scard();
+
+        if ($dcard['status'] == 'Not yet'){
+            if(!empty($_FILES['dcard']['name'])){            
+                $this->verify_dcard();
                 $ok = true;
             }
         }
