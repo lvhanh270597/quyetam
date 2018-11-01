@@ -90,13 +90,6 @@ class Verify extends CI_Controller {
             }
         }
 
-        if ($dcard['status'] == 'Not yet'){
-            if(!empty($_FILES['dcard']['name'])){            
-                $this->verify_dcard();
-                $ok = true;
-            }
-        }
-
         if (!$ok){
             redirect('verify');
         }
