@@ -85,7 +85,7 @@ class Verify extends CI_Controller {
 
         if ($dcard['status'] == 'Not yet'){
             if(!empty($_FILES['dcard']['name'])){            
-                //$this->verify_dcard();
+                $this->verify_dcard();
                 $ok = true;
             }
         }
@@ -168,31 +168,7 @@ class Verify extends CI_Controller {
         }
         return true;
         //        
-    }
-    
-    function sendMail2(){                   
-        require_once "./vendor/autoload.php";
-        //PHPMailer Object
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
-        $mail->isSMTP();
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'tls';
-        $mail->Host = 'smtp.gmail.com';
-        $mail->Port = '587';
-        $mail->isHTML();
-        $mail->Username ='easyhere.dh@gmail.com';
-        $mail->Password = 'EasyHere@2018';
-        $mail->From = 'admin@together.easyhere.cf';
-        $mail->FromName = 'noreply';
-        $mail->Subject = 'EasyHere - Verification student email';
-        $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
-			
-		Hãy click vào linh dưới để xác thực email sinh viên của bạn!
-        '; // Our message above including the link
-	$email = 'lvhanh.270597@gmail.com';
-        $mail->AddAddress($email);
-        $mail->send();        
-    }
+    }    
 
     function sendMail($id, $hash, $email){                   
         require_once "./vendor/autoload.php";
