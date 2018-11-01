@@ -74,18 +74,18 @@ class Verify extends CI_Controller {
                 $this->verify_mail($username, $email);
                 $ok = true;
             }                        
-        }
-        
-        if ($dcard['status'] == 'Not yet'){
-            if(!empty($_FILES['dcard']['name'])){            
-                $this->verify_dcard();
-                $ok = true;
-            }
-        }
+        }        
 
         if ($cmnd['status'] == 'Not yet'){
             if(!empty($_FILES['cmnd']['name'])){            
                 $this->verify_cmnd();                
+                $ok = true;
+            }
+        }
+
+        if ($dcard['status'] == 'Not yet'){
+            if(!empty($_FILES['dcard']['name'])){            
+                $this->verify_dcard();
                 $ok = true;
             }
         }
