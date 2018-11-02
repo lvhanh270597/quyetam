@@ -84,7 +84,6 @@ class Verify extends CI_Controller {
             }
         }        
 
-<<<<<<< HEAD
         if ($dcard['status'] == 'Not yet'){
             if(!empty($_FILES['dcard']['name'])){            
                 $this->verify_dcard();                
@@ -92,8 +91,6 @@ class Verify extends CI_Controller {
             }
         }
 
-=======
->>>>>>> 05fe0734cdebdb460874b5672c045a0d9b7249dd
         if ($scard['status'] == 'Not yet'){
             if(!empty($_FILES['scard']['name'])){   
                 $this->verify_scard();
