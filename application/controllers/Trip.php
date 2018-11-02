@@ -332,7 +332,6 @@ class Trip extends CI_Controller {
         $trip = $this->trip_ml->get_by_primary($trip_id);            
         $fee = $trip['price'] * 0.2;                        
         if ($owner['balance'] >= $fee){                        
-            $this->trip_ml->set_attr($trip_id, 'success', false);
             // Tru tien
             $this->user_ml->set_attr($owner_id, 'balance', $owner['balance'] - $fee);
             // Dong y
@@ -450,7 +449,6 @@ class Trip extends CI_Controller {
                 // Trừ tiền của người chở
                 $this->user_ml->set_attr($data_sql['owner'], 'balance', $owner['balance'] - $fee);                
                 // Tạo chuyến đi ngay!
-                $data_sql['success'] = false;
                 $this->trip_ml->add_into($data_sql);
                 $insert_id = $this->db->insert_id();                    
                 // Xóa need trip này!
