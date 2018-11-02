@@ -171,5 +171,32 @@ CREATE TABLE verify_trip(
 	FOREIGN KEY (trip_id) REFERENCES trip(id)
 );
 
+
+CREATE TABLE trip (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	owner VARCHAR(30) NOT NULL,
+	guess VARCHAR(30),
+	start_from INT(6) UNSIGNED NOT NULL,
+	finish_to INT(6) UNSIGNED NOT NULL,
+	timestart VARCHAR(30) NOT NULL,	
+	created DATETIME NOT NULL,
+	note VARCHAR(1000),	
+	code INT NOT NULL,
+	v_owner BOOLEAN NOT NULL,
+	v_guess BOOLEAN NOT NULL,
+	type_transaction VARCHAR(30),
+	price FLOAT NOT NULL,
+	FOREIGN KEY (start_from) references place(id),
+	FOREIGN KEY (finish_to) references place(id),
+	FOREIGN KEY (owner) references user(username),
+	FOREIGN KEY (guess) references user(username)
+);
+
+ALTER TABLE trip DROP COLUMN note;
+ALTER TABLE trip DROP COLUMN success;
+ALTER TABLE trip DROP COLUMN type_transaction;
+ALTER TABLE trip ADD v_owner BOOLEAN;
+ALTER TABLE trip ADD v_guess BOOLEAN;
+
 ALTER TABLE user ADD status DATETIME;
 ALTER TABLE user ADD tai_xe BOOLEAN;

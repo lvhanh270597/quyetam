@@ -11,7 +11,6 @@
         }
     </style>
 
-    <main>
         <div class="container-fluid">
 
             <!-- Section: Edit Account -->
@@ -130,18 +129,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
-                                                <select class="browser-default custom-select mb-4" name="type_transaction">
-                                                    <?php
-                                                    if ($trip['guess']){
-                                                        echo '<option value="" disabled selected>'.$trip['type_transaction'].'</option>';
-                                                    }
-                                                    else{
-                                                        echo '
-                                                        <option value="" disabled selected>Chọn hình thức thanh toán</option>
-                                                        <option value="Trực tiếp">Trực tiếp</option>';
-                                                    }
-                                                    ?>                                                    
-                                                </select>
+                                                <input type="text" id="form1" class="form-control validate" value="Trực tiếp" disabled>
+                                                <label for="form2" data-error="wrong" data-success="right">Hình thức thanh toán</label>                                               
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -155,8 +144,8 @@
                                     <!-- Fourth row -->
                                     
                                             <?php               
-                                            $ok = $trip['guess'] || ($this->session->userdata('username') == $trip['owner']);                                                          
-                                            if (!$ok){
+                                            $ok = $trip['guess'] || ($this->session->userdata('username') == $trip['owner']);                                             
+                                            if (!$ok && !$requested){
                                                 echo '
                                                 <div class="row">
                                                     <div class="col-md-12 text-center my-4">           
@@ -173,13 +162,12 @@
                                     echo '
                                     <div class="row">
                                         <div class="col-md-12">
-                                    ';   
-                                    echo $message;                                 
+                                    ';                                         
                                     echo '
                                         </div>                                            
                                         <div class="col-md-12">';                                            
                                     echo '<form method="post" action="'.site_url('trip/process_request/'.$requested['trip_id'].'/'.$requested['id']).'">';
-                                    echo '<input type="submit" class="btn btn-danger btn-rounded" value="Hủy đặt chuyến" name="cancel">';                                        
+                                    echo '<input type="submit" class="btn btn-danger btn-rounded" value="Hủy yêu cầu" name="cancel">';                                        
                                     echo '</form>';
                                     echo '</div>
                                     </div>';    
@@ -273,7 +261,6 @@
             </section>
             <!-- /.Section: Edit Account -->
         </div>
-    </main>
     <!--Main layout-->
 
 <script>

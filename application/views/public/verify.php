@@ -1,7 +1,6 @@
 
 
     <!--Main layout-->
-    <main>
         <div class="container-fluid">
             
             <!-- Section: Edit Account -->
@@ -146,5 +145,3 @@
             <!-- /.Section: Edit Account -->
 
         </div>
-    </main>
-    <!--Main layout-->

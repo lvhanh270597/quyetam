@@ -16,8 +16,7 @@
             height: 150px;
             width: 150px;
         }
-    </style>
-    <main>
+    </style>    
         <div class="container-fluid">
 
             <!-- Section: Edit Account -->
@@ -175,16 +174,16 @@
                                             $user = $this->user_ml->get_by_primary($request['guess_id']);                                                                                        
                                             echo '
                                             <div class="row">
-                                                <div class="col-md-8">
+                                                <div class="col-md-9">
                                                     <div class="alert alert-info"> 
                                                         <strong>                                        
                                                         <a href="'.site_url('review/detail/'.$user['username']).'"> '.$user['username'].'</a>
                                                         </strong>
-                                                        đã gửi yêu cầu tới chuyến đi này(thanh toán '.$request['type_transaction'].')
+                                                        đã gửi yêu cầu tới chuyến đi này.
                                                     </div>  
                                                 </div>';
                                             echo '                                                                                          
-                                                <div class="col-md-4">';                                            
+                                                <div class="col-md-3">';                                            
                                             echo '<form method="post" action="'.site_url('trip/process_request/'.$request['trip_id'].'/'.$request['id']).'">';
                                             echo '<input type="submit" class="btn btn-info btn-rounded" value="Accept" name="accept">';                                        
                                             echo '</form>';
@@ -208,6 +207,5 @@
             <!-- /.Section: Edit Account -->
 
         </div>
-    </main>
     <!--Main layout-->
     

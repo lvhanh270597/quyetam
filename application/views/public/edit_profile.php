@@ -22,17 +22,12 @@ Licensed under MIT
     .shadow-textarea textarea.form-control {
         padding-left: 0.8rem;
     }
-    #dm{
-        padding-top: 20px;
-    }    
-    #fuck{
-        height: 120px;
-    }
+        
 </style>
 
 
 <div class="container" id="dm">
-    <div class="row profile">
+    <div class="row">
     <div class="col-md-3">
         <!-- Card -->
             <div class="card testimonial-card">
@@ -163,12 +158,41 @@ Licensed under MIT
                                                 <label for="form2" data-error="wrong" data-success="right">Tài khoản chính</label>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="md-form mb-0">
-                                                <input type="text" id="form1" class="form-control validate" value="<?php echo $t_balance; ?>" disabled>
-                                                <label for="form2" data-error="wrong" data-success="right">Tài khoản dự bị</label>
+                                            <!-- Material inline 1 -->
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" class="form-check-input" id="materialInline1" name="gender" value="nam" 
+                                                <?php  
+                                                    if ($gender == 'nam'){
+                                                        echo 'checked';
+                                                    }
+                                                ?>
+                                                >
+                                                <label class="form-check-label" for="materialInline1" id="gender">Male</label>
                                             </div>
-                                        </div>
+
+                                            <!-- Material inline 2 -->
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" class="form-check-input" id="materialInline2" name="gender" value="nu"
+                                                <?php  
+                                                    if ($gender == 'nu'){
+                                                        echo 'checked';
+                                                    }
+                                                ?>
+                                                >
+                                                <label class="form-check-label" for="materialInline2" id="gender">Female</label>
+                                            </div>
+
+                                            <!-- Material inline 3 -->
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" class="form-check-input" id="materialInline3" name="gender" value="khac"
+                                                <?php  
+                                                    if ($gender == 'khac'){
+                                                        echo 'checked';
+                                                    }
+                                                ?>
+                                                >
+                                                <label class="form-check-label" for="materialInline3" id="gender">Other</label>
+                                            </div>    
                                     </div>
                                     <!--/.First row-->
                                     <!--Second row-->
@@ -186,42 +210,7 @@ Licensed under MIT
                                                 <input type="text" id="form77" class="form-control validate" value="<?php echo $facebook; ?>" name="facebook">
                                                 <label for="form77" data-error="wrong" data-success="right">Facebook Address</label>
                                             </div>
-                                        </div>    
-                                        <!-- Material inline 1 -->
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" class="form-check-input" id="materialInline1" name="gender" value="nam" 
-                                            <?php  
-                                                if ($gender == 'nam'){
-                                                    echo 'checked';
-                                                }
-                                            ?>
-                                            >
-                                            <label class="form-check-label" for="materialInline1" id="gender">Male</label>
-                                        </div>
-
-                                        <!-- Material inline 2 -->
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" class="form-check-input" id="materialInline2" name="gender" value="nu"
-                                            <?php  
-                                                if ($gender == 'nu'){
-                                                    echo 'checked';
-                                                }
-                                            ?>
-                                            >
-                                            <label class="form-check-label" for="materialInline2" id="gender">Female</label>
-                                        </div>
-
-                                        <!-- Material inline 3 -->
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" class="form-check-input" id="materialInline3" name="gender" value="khac"
-                                            <?php  
-                                                if ($gender == 'khac'){
-                                                    echo 'checked';
-                                                }
-                                            ?>
-                                            >
-                                            <label class="form-check-label" for="materialInline3" id="gender">Other</label>
-                                        </div>                                    
+                                        </div>                                                                            
                                     </div>
                                     <!--/.Second row-->                                   
                                     <!--/.Second row-->

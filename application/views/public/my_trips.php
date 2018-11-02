@@ -1,8 +1,4 @@
-<style>
-    #fuck{
-        margin-bottom: 20px;
-    }
-</style>
+
 <style>
     #dm{
         width: 100%;
@@ -24,12 +20,7 @@
             <div class="col-lg-12">
                 
                 <!-- Section: Last items -->
-                <section>
-                    <hr class="mb-3">
-                    <hr class="mb-3">
-                    <hr class="mb-3">
-                    <hr class="mb-3">
-                
+                <section>              
                                         <!-- Card -->
                     <div class="card card-cascade">
 

@@ -84,46 +84,111 @@ Licensed under MIT
                 </div>
                 <div class="card-body">
                     <!-- Name -->
-                    <h4 class="card-title">Thông Tin</h4>
-                    <table class="table">                        
-                        <tbody>
-                        <tr>
-                            <td><p class="font-weight-bold green-text">Giới tính</p></td>
-                            <td><p class="font-weight-bold"> <?= $info['gender']; ?> </p></td>                            
-                        </tr>
-                        <tr>
-                            <td><p class="font-weight-bold green-text">Username</p></td>
-                            <td><p class="font-weight-bold "> <?= $info['username']; ?></p></td>  
-                        </tr>
-                        <?php                        
-                        if ($permission){
-                            echo '
-                            <tr>
-                                <td><p class="font-weight-bold green-text">SĐT</p></td>
-                                <td> <p class="font-weight-bold ">'.$info['phone_num'].' </p></td>  
-                            </tr>
-                            <tr>
-                                <td><p class="font-weight-bold green-text">Facebook</p></td>
-                                <td><p class="font-weight-bold ">'.$info['facebook'].'</p></td>  
-                            </tr>
-                            ';
-                        }
-                        else{
-                            echo '
-                            <tr>
-                                <td><p class="font-weight-bold green-text">SĐT</p></td>
-                                <td> <p class="font-weight-bold ">Hai bạn phải kết nối mới xem được phần này</p></td>  
-                            </tr>
-                            <tr>
-                                <td><p class="font-weight-bold green-text">Facebook</p></td>
-                                <td><p class="font-weight-bold ">Hai bạn phải kết nối mới xem được phần này</p></td>  
-                            </tr>
-                            ';
-                        }                        
-                        ?>
-                        </tbody>
-                    </table>                                                          
-                </div>
+                    <!-- /.Main Container -->    
+                    <div class="container">  
+                    
+                    <div class="fuck">                                
+                    </div>                  
+                    <!-- Grid row -->
+                    <!-- Card -->                    
+
+                        <!-- Card content -->
+                        <div class="card-body card-body-cascade text-center">
+                            <!-- /.Main Container -->
+                            <div class="container">
+                                <!-- Grid row -->
+                                <div class="row">
+                                    <div class="container">                                
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!-- Nav tabs -->
+                                                <ul class="nav nav-tabs md-tabs nav-justified cyan" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
+                                                        <i class="fa fa-motorcycle" aria-hidden="true"></i>GIỚI TÍNH</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#panel666" role="tab">
+                                                        <i class="fa fa-heart"></i>USERNAME</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#panel777" role="tab">
+                                                        <i class="fa fa-heart"></i>ĐIỆN THOẠI</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#panel888" role="tab">
+                                                        <i class="fa fa-heart"></i>FACEBOOK</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- Nav tabs -->
+                                        <!-- Tab panels -->
+                                        <div class="tab-content">
+                                            <!--Panel 1-->
+                                            <div class="tab-pane fade in show active" id="panel555" role="tabpanel">
+                                                <!-- Nav tabs -->
+                                                <div class="card-body card-body-cascade">
+                                                    <!-- Card content -->
+                                                    <?php
+                                                    $map = [
+                                                        'nam' => 'Nam',
+                                                        'nu' => 'Nữ',
+                                                        'khac' => 'Khác'
+                                                    ];
+                                                    ?>
+                                                    <p class="font-weight-bold"> <?= $map[$info['gender']]; ?> </p>
+                                                </div>
+                                            </div>
+                                            <!--/.Panel 1-->
+                                            <!--Panel 2-->
+                                            <div class="tab-pane fade" id="panel666" role="tabpanel">
+                                                <!-- Card content -->
+                                                <div class="card-body card-body-cascade">
+                                                    <!-- Card content -->
+                                                    <p class="font-weight-bold "> <?= $info['username']; ?></p>
+                                                </div>
+                                            </div>
+                                            <!--/.Panel 2-->                                            
+                                            <!--Panel 2-->
+                                            <div class="tab-pane fade" id="panel777" role="tabpanel">
+                                                <!-- Card content -->
+                                                <div class="card-body card-body-cascade">
+                                                    <!-- Card content -->
+                                                    <p class="font-weight-bold "> 
+                                                    <?php
+                                                    $str = 'Hai bạn phải kết nối mới xem được phần này';
+                                                    if ($permission){ $str = $info['phone_num']; }
+                                                    echo $str;                                                
+                                                    ?>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--/.Panel 2-->
+                                            <!--Panel 2-->
+                                            <div class="tab-pane fade" id="panel888" role="tabpanel">
+                                                <!-- Card content -->
+                                                <div class="card-body card-body-cascade">
+                                                    <!-- Card content -->
+                                                    <p class="font-weight-bold "> 
+                                                    <?php
+                                                    $str = 'Hai bạn phải kết nối mới xem được phần này';
+                                                    if ($permission){ $str = $info['facebook']; }
+                                                    echo $str;                                                
+                                                    ?>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--/.Panel 2-->
+                                        </div>
+                                        <!-- Tab panels -->
+                                    </div>
+                                    <!-- Card -->                    
+                                </div>
+                            </div>            
+                        </div>            
+                                              
+                </div>                                                             
 
                 <!-- Card content -->
                 <div class="card-body card-body-cascade">

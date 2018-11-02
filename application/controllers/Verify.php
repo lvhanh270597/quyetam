@@ -10,8 +10,7 @@ class Verify extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-
-        $this->load->model(array('verify_trip_ml'));        
+        
         $this->places = $this->place_ml->get_all();
         $this->map = [];
         foreach ($this->places as $place){
@@ -522,6 +521,67 @@ class Verify extends CI_Controller {
             ];
             $this->verify_trip_ml->add_into($sql);
         }
+        redirect('verify/thanks');
+    }
+
+    public function trips(){
+        $trip_false =  $this->trip_ml->get_success_false();
+        $data = [
+            'trips' => $trip_false
+        ];
+
+        display('verify_trips', $data);
+    }
+
+    public function yes($trip_id){
+        $username = $this->session->userdata('username');
+
+        $trip = $this->trip_ml->get_by_primary($trip_id);    
+        if (!$trip){
+            redirect('page_not_found');
+        }        
+        if ($trip['guess'] == null){
+            redirect('page_not_found');
+        }
+
+        if ($username != $trip['owner'] && $username != $trip['guess']){
+            redirect('page_not_found');
+        }            
+    
+        if ($username == $trip['owner']){            
+            $this->trip_ml->set_attr($trip_id, 'v_owner', true);
+        }        
+        else{
+            $this->trip_ml->set_attr($trip_id, 'v_guess', true);
+        }    
+        redirect('verify/thanks');
+    }
+
+    public function no($trip_id){
+        $username = $this->session->userdata('username');
+
+        $trip = $this->trip_ml->get_by_primary($trip_id);    
+        if (!$trip){
+            redirect('page_not_found');
+        }        
+        if ($trip['guess'] == null){
+            redirect('page_not_found');
+        }
+
+        if ($username != $trip['owner'] && $username != $trip['guess']){
+            redirect('page_not_found');
+        }            
+    
+        if ($username == $trip['owner']){            
+            // Tra lai tien
+            $fee = $trip['price'] * 0.2;
+            $get_user = $this->user_ml->get_by_primary($username);
+            $this->user_ml->set_attr($username, 'balance', $get_user['balance'] + $fee);
+            $this->trip_ml->set_attr($trip_id, 'v_owner', false);
+        }        
+        else{
+            $this->trip_ml->set_attr($trip_id, 'v_guess', false);
+        }    
         redirect('verify/thanks');
     }
 

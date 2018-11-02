@@ -120,18 +120,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
-                                                <select class="browser-default custom-select mb-4" name="type_transaction">
-                                                    <?php
-                                                    if ($trip['type_transaction']){
-                                                        echo '<option value="'.$trip['type_transaction'].'" disabled selected>'.$trip['type_transaction'].'</option>';
-                                                    }
-                                                    else{
-                                                        echo '
-                                                        <option value="" disabled selected>Chọn hình thức thanh toán</option>
-                                                        <option value="Trực tiếp">Trực tiếp</option>';
-                                                    }
-                                                    ?>                                                    
-                                                </select>
+                                                <input type="text" id="form1" class="form-control validate" value="Trực tiếp" disabled>
+                                                <label for="form2" data-error="wrong" data-success="right">Hình thức thanh toán</label>                                               
                                             </div>
                                         </div>
                                     </div> 

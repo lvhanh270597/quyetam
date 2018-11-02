@@ -5,7 +5,6 @@ class Trip extends CI_Controller {
     
     // declare variables
     public $image;
-    public $tructiep, $giantiep;
 
     public function __construct(){
         parent::__construct();        
@@ -15,9 +14,7 @@ class Trip extends CI_Controller {
         $places = $this->place_ml->get_all();        
         foreach ($places as $place){
             $this->image[$place['id']] = $place['image'];
-        }                
-        $this->tructiep = 'Trực tiếp';
-        $this->giantiep = 'Gián tiếp';                
+        }                        
     }       
     
     public function index(){
@@ -130,90 +127,49 @@ class Trip extends CI_Controller {
             redirect('trip/show_no_permission');
         }        
         */
-
         $trip = $this->trip_ml->get_by_primary($trip_id);   
         if ($trip === null){ redirect('page_not_found'); }
         
         $message = '';
         // Nếu gửi yêu cầu
         if ($this->input->post()){                       
-
             $trip = $this->trip_ml->get_by_primary($trip_id);   
             if ($trip['guess'] != null){                
                 redirect('trip/detail/'.$trip_id);
             }
-
-            $type_transaction = $this->input->post('type_transaction');  
-            // Nếu chưa chọn hình thức giao dịch          
-            if ($type_transaction == null){
-                $message = get_message_error('Lỗi! <br>', 'Bạn phải chọn hình thức giao dịch');
-            }
-            elseif ($type_transaction !== $this->tructiep && $type_transaction !== $this->giantiep){
-                $message = get_message_error('Lỗi! <br>', 'Bạn vui lòng chọn đúng 1 trong 2 loại hình thức giao dịch');
-            }
-            else {                
-                // Gui yeu cau mat 100d
-                
-                // Soạn thông báo trước
+            // Soạn thông báo trước
+            $notify = [
+                'to_user' => $username,
+                'time' => get_current_time(),
+                'content' => 'Bạn đã gửi yêu cầu tới chuyến đi '.$trip_id.'.',
+                'type_noti' => 'trip',
+                'where_noti' => $trip_id                                        
+            ];            
+            // Nếu kiểm tra tài khoản thành công! Thì thêm vào database của Request                            
+            $sql = [
+                'trip_id' => $trip_id, 
+                'guess_id' => $username, 
+                'created' => get_current_time(),
+            ];
+            if ($this->request_ml->add_into($sql)){                        
+                $message = get_message_success('Bạn đã gửi yêu cầu tới chuyến đi này!');
+                // Gửi thông báo
+                $this->notify_ml->add_trigger($notify);
+                // Gửi thông báo đến người owner luôn
+                $user_guess = $this->user_ml->get_by_primary($username);
                 $notify = [
-                    'to_user' => $username,
+                    'to_user' => $trip['owner'],
                     'time' => get_current_time(),
-                    'content' => 'Bạn đã gửi yêu cầu tới chuyến đi '.$trip_id.' với hình thức '.$type_transaction.'.',
-                    'type_noti' => 'trip',
-                    'where_noti' => $trip_id                                        
+                    'content' => hashCode($user_guess['full_name']).' đã gửi yêu cầu đến chuyến đi '.$trip['id'].' của bạn.',
+                    'type_noti' => 'edit_trip',
+                    'where_noti' => $trip_id
                 ];
-                // Nếu là trả tiền gián tiếp, mình buộc phải dùng tài khoản dự bị
-                // Nếu Trực tiếp thì thôi
-                $success = ($type_transaction == $this->tructiep);
-                if ($type_transaction == $this->giantiep){
-                    $success = false;
-                    $price = $trip['price'];                    
-                    $success = ($this->user_ml->move_money_to_temp_balance($username, $price));                    
-                }
-                $success = $success && ($this->user_ml->get_money($username) >= 100);
-                // Nếu kiểm tra tài khoản thành công! Thì thêm vào database của Request
-                if ($success){
-                    //Gửi thông báo rằng: Bạn đã bị chuyển từ tài khoản chính vào tk dự bị số tiền là: $trip[price]
-                    if ($type_transaction == $this->giantiep){
-                        $notify['content'] .= ' Chúng tôi đã chuyển số tiền là '.$trip['price'].' từ tài khoản chính sang tài khoản dự bị của bạn.';
-                        $notify['type_noti'] = 'profile';
-                        $notify['where_noti'] = $username;                        
-                    }
-                    
-                    /*  */
-                    $this->user_ml->move_money_to_temp_balance($this->session->userdata('username'), 100);
-                    /*  */
-
-                    $sql = [
-                        'trip_id' => $trip_id, 
-                        'guess_id' => $username, 
-                        'created' => get_current_time(),
-                        'type_transaction' => $type_transaction
-                    ];
-                    if ($this->request_ml->add_into($sql)){                        
-                        $message = get_message_success('Bạn đã gửi yêu cầu tới chuyến đi này! Phí gửi yêu cầu là 100đ');
-                        // Gửi thông báo
-                        $this->notify_ml->add_trigger($notify);
-                        // Gửi thông báo đến người owner luôn
-                        $user_guess = $this->user_ml->get_by_primary($username);
-                        $notify = [
-                            'to_user' => $trip['owner'],
-                            'time' => get_current_time(),
-                            'content' => hashCode($user_guess['full_name']).' đã gửi yêu cầu đến chuyến đi '.$trip['id'].' của bạn. Phí gửi yêu cầu là 100đ',
-                            'type_noti' => 'edit_trip',
-                            'where_noti' => $trip_id
-                        ];
-                        $this->notify_ml->add_trigger($notify);
-                    } else {
-                        $message = get_message_error('Lỗi! <br>', 'Gửi yêu cầu thất bại!');
-                    }   
-                }  
-                else{ 
-                    $message = get_message_error('Lỗi! <br>','Số tiền của bạn không đủ!');
-                }
-            }
+                $this->notify_ml->add_trigger($notify);
+            } else {
+                $message = get_message_error('Lỗi! <br>', 'Gửi yêu cầu thất bại!');
+            }         
         }
-        if ($trip['success'] == false){            
+        if (!$trip['v_owner'] && ! $trip['v_guess']){            
             // Nếu đã có khách
             if ($trip['guess'] != null){
                 if ($trip['guess'] == $username){
@@ -232,7 +188,7 @@ class Trip extends CI_Controller {
         $requested = false;
         $username = $this->session->userdata('username');
         if ($requested = $this->request_ml->check_user_trip($username, $trip_id)){
-            $message = get_message_info('', 'Bạn đã gửi yêu cầu tới chuyến đi này! Phí gửi yêu cầu là 100đ');
+            $message = get_message_info('', 'Bạn đã gửi yêu cầu tới chuyến đi này!');
         }
 
         $data = [            
@@ -298,38 +254,14 @@ class Trip extends CI_Controller {
             if ($check['status'] === false){
                 $message = $check['data'];
             }
-            else{                                
-                // Nếu chọn hình thức gián tiếp thì phải kiểm tra tài khoản
-                $type = $this->input->post('type_transaction');
-                if ($type == null){
-                    $message = get_message_error('Lỗi!', 'Xin vui lòng chọn hình thức thanh toán!');
-                } else{
-                    $data_sql = $check['data'];                       
-                    $ok = ($type == $this->tructiep);
-                    if ($type == $this->giantiep){
-                        $asker = $this->session->userdata('username');
-                        $ok = $this->user_ml->move_money_to_temp_balance($asker, $data_sql['price']);                                                
-                    }
-                    /* */                    
-                    if ($this->user_ml->get_money($this->session->userdata('username')) < 100){
-                        $ok = false;                        
-                    }
-                    /*  */
-                    if ($ok){
-                        $data_sql['type_transaction'] = $type;
-                        if ($this->needed_trip_ml->add_into($data_sql)){
-                            print_r($data_sql);                 
-                            $insert_id = $this->db->insert_id();
-                            $link = 'click vào link <a href="'.site_url('trip/edit_need/'.$insert_id).'"> này </a> để xem chuyến đi vừa tạo.';
-                            $money = ' Phí cho chuyến đi là 100đ';
-                            $message = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link.$money); 
-                            $this->user_ml->move_money_to_temp_balance($this->session->userdata('username'), 100);
-                        }
-                    }
-                    else{
-                        $message = get_message_error('Lỗi!', 'Số tiền của bạn không đủ!');
-                    }
-                }
+            else{                                                                
+                $data_sql = $check['data'];                                                   
+                if ($this->needed_trip_ml->add_into($data_sql)){
+                    print_r($data_sql);                 
+                    $insert_id = $this->db->insert_id();
+                    $link = 'click vào link <a href="'.site_url('trip/edit_need/'.$insert_id).'"> này </a> để xem chuyến đi vừa tạo.';
+                    $message = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link);                             
+                }                                          
             }
         }
                 
@@ -359,24 +291,14 @@ class Trip extends CI_Controller {
             else{
                 $data_sql = $check['data'];
                 // Tạo chuyến đi mới
-
-                /* */                    
-                if ($this->user_ml->get_money($this->session->userdata('username')) < 100){
-                    $data['message'] = get_message_error('Tạo chuyến đi thất bại!');
-                }                
-                /* */
-                else{
-                    if ($this->trip_ml->add_into($data_sql)){
-                        $insert_id = $this->db->insert_id();
-                        $link = 'click vào link <a href="'.site_url('trip/edit/'.$insert_id).'"> này </a> để xem chuyến đi vừa tạo.';
-                        $money = ' Phí để tạo chuyến đi là 100đ';
-                        $data['message'] = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link.$money);
-                        $this->user_ml->move_money_to_temp_balance($username, 100);
-                    }
-                    else{
-                        $data['message'] = get_message_error('Tạo chuyến đi thất bại!');
-                    }
+                if ($this->trip_ml->add_into($data_sql)){
+                    $insert_id = $this->db->insert_id();
+                    $link = 'click vào link <a href="'.site_url('trip/edit/'.$insert_id).'"> này </a> để xem chuyến đi vừa tạo.';
+                    $data['message'] = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link);
                 }
+                else{
+                    $data['message'] = get_message_error('Tạo chuyến đi thất bại!');
+                }            
             }
         }
         display('create_trip', $data);
@@ -404,49 +326,36 @@ class Trip extends CI_Controller {
     }
 
     public function accept_request($trip_id, $id){        
-        $request = $this->request_ml->get_by_primary($id);                
-        if ($request['type_transaction'] == $this->tructiep){
-            $owner_id = $this->session->userdata('username');
-            $owner = $this->user_ml->get_by_primary($owner_id);
-            $trip = $this->trip_ml->get_by_primary($trip_id);            
-            $fee = $trip['price'] * 0.2;                        
-            if ($owner['balance'] >= $fee){
-                //$this->user_ml->set_attr($owner_id, 'balance', $owner['balance'] - $fee);
-                // Nếu là chuyến đi trực tiếp, thì coi như đã thành công!
-                $this->trip_ml->set_attr($trip_id, 'success', false);
-                $this->accept($trip_id, $request);
+        $request = $this->request_ml->get_by_primary($id);                        
+        $owner_id = $this->session->userdata('username');
+        $owner = $this->user_ml->get_by_primary($owner_id);
+        $trip = $this->trip_ml->get_by_primary($trip_id);            
+        $fee = $trip['price'] * 0.2;                        
+        if ($owner['balance'] >= $fee){                        
+            $this->trip_ml->set_attr($trip_id, 'success', false);
+            // Tru tien
+            $this->user_ml->set_attr($owner_id, 'balance', $owner['balance'] - $fee);
+            // Dong y
+            $this->accept($trip_id, $request);
 
-                $data = [
-                    'title' => 'Chấp nhận chuyến đi thành công!',
-                    'content' => 'Phí cho chuyến đi này là '.$fee.'đ. Đây là chuyến đi trực tiếp. <br>
-                    Vậy nên chúng tôi đã trừ phí này vào tài khoản của bạn. <br> Bấm vào <a href="'.site_url('trip/edit/'.$trip_id).'">đây</a> để quay về chi tiết chuyến đi.' 
-                ];
-                $this->session->set_flashdata('title', $data['title']);
-                $this->session->set_flashdata('content', $data['content']);
-                redirect('trip/accept_success/'.$trip_id);
-            }        
-            else{
-                $data = [
-                    'title' => 'Chấp nhận chuyến đi KHÔNG thành công!',
-                    'content' => 'Phí cho chuyến đi này là '.$fee.'đ. Đây là chuyến đi gián tiếp. <br>
-                    Và số tiền trong tài khoản của bạn không đủ. <br> Bấm vào <a href="'.site_url('trip/edit/'.$trip_id).'">đây</a> để quay về chi tiết chuyến đi.' 
-                ];
-                $this->session->set_flashdata($data);
-                redirect('trip/accept_fail/'.$trip_id);
-                //redirect('trip/edit/'.$trip_id);
-            }
-        }
-        else{
-            $this->accept($trip_id, $request);   
             $data = [
                 'title' => 'Chấp nhận chuyến đi thành công!',
-                'content' => 'Phí cho chuyến đi này là '.$fee.'đ. Đây là chuyến đi gián tiếp. <br>
-                Vậy nên chúng tôi sẽ trừ phí này vào tài khoản của bạn sau khi bạn check code thành công. <br> Bấm vào <a href="'.site_url('trip/edit/'.$trip_id).'">đây</a> để quay về chi tiết chuyến đi.' 
+                'content' => 'Phí cho chuyến đi này là '.$fee.'đ. Đây là chuyến đi trực tiếp. <br>
+                Chúng tôi đã trừ phí này vào tài khoản của bạn. <br> Bấm vào <a href="'.site_url('trip/edit/'.$trip_id).'">đây</a> để quay về chi tiết chuyến đi.' 
+            ];
+            $this->session->set_flashdata('title', $data['title']);
+            $this->session->set_flashdata('content', $data['content']);
+            redirect('trip/accept_success/'.$trip_id);
+        }        
+        else{
+            $data = [
+                'title' => 'Chấp nhận chuyến đi KHÔNG thành công!',
+                'content' => 'Phí cho chuyến đi này là '.$fee.'đ.<br>
+                Và số tiền trong tài khoản của bạn không đủ. <br> Bấm vào <a href="'.site_url('trip/edit/'.$trip_id).'">đây</a> để quay về chi tiết chuyến đi.' 
             ];
             $this->session->set_flashdata($data);
-            redirect('trip/accept_success/'.$trip_id);
-            //Chuyển từ tài khoản dự bị sang tài khoản chính cho những khách không được đồng ý!
-        }
+            redirect('trip/accept_fail/'.$trip_id);
+        }          
     }
     
     function accept($trip_id, $request){
@@ -464,7 +373,6 @@ class Trip extends CI_Controller {
         ];
         // Gửi thông báo
         $this->notify_ml->add_trigger($notify);
-
         // Tạo thông báo        
         $trip = $this->trip_ml->get_by_primary($trip_id);        
         $notify = [
@@ -476,18 +384,9 @@ class Trip extends CI_Controller {
         ];
         // Gửi thông báo
         $this->notify_ml->add_trigger($notify);
-
         // Xác nhận là người dùng guess, đã được thêm vào chuyến đi
-        $this->trip_ml->push_to_trip($trip_id, $request['guess_id'], $request['type_transaction']);
-        $this->trip_ml->set_attr($trip_id, 'guess', $request['guess_id']);    
-        $this->trip_ml->set_attr($trip_id, 'type_transaction', $request['type_transaction']);
-        // Hoàn tác tiền cho tất cả mọi người, đây là tiền gửi yêu cầu, khi gửi yêu cầu thì mất tiền, chứ khi yêu cầu thành công thì không mất tiền nữa
-        $all_requests = $this->request_ml->get_all_from_trip($trip_id);        
-        foreach ($all_requests as $req){            
-            $this->user_ml->move_money_to_balance($req['guess_id'], 100);            
-        }
-        // Trả lại tiền cho người chủ xe
-        $this->user_ml->move_money_to_balance($user['username'], 100);      
+        $this->trip_ml->push_to_trip($trip_id, $request['guess_id'], '');
+        $this->trip_ml->set_attr($trip_id, 'guess', $request['guess_id']);                    
         // Xóa tất cả request của chuyến đi này      
         $this->request_ml->delete_all_from_trip($trip_id);    
     }
@@ -499,8 +398,7 @@ class Trip extends CI_Controller {
         $request = $this->request_ml->get_by_primary($request_id);      
         if ($request['guess_id'] != $this->session->userdata('username')){
             return ;
-        }  
-        
+        }          
         $trip = $this->trip_ml->get_by_primary($request['trip_id']);
         // Soạn thông báo
         $notify = [
@@ -509,32 +407,16 @@ class Trip extends CI_Controller {
             'content' => 'Bạn đã hủy yêu cầu tới chuyến đi '.$trip['id'].'.',
             'type_noti' => 'trip',
             'where_noti' => $trip['id']
-        ];        
-        // Trả lại tiền nếu người dùng thanh toán gián tiếp,
-        // Trả lại tiền cho người khách
-        $this->user_ml->move_money_to_balance($request['guess_id'], 100);
-        // Chỉ gián tiếp mới mất tiền
-        if ($request['type_transaction'] == $this->giantiep){            
-            $this->user_ml->move_money_to_balance($request['guess_id'], $trip['price']);        
-            $notify['content'] .= 'Chúng tôi đã chuyển lại từ tài khoản dự bị vào tài khoản chính cho bạn số tiền '.$trip['price'];
-            $notify['type_noti'] = 'profile';
-            $notify['where_noti'] = $notify['to_user'];            
-        }
+        ];                
         // Gửi thông báo
         $this->notify_ml->add_trigger($notify);
-
         // Xóa request cho nó
         $this->request_ml->delete($request_id);
     }
 
     public function deny_request($id){        
         $request = $this->request_ml->get_by_primary($id);
-        $trip = $this->trip_ml->get_by_primary($request['trip_id']);
-        // Trả lại tiền nếu người dùng thanh toán gián tiếp,
-        // Chỉ gián tiếp mới mất tiền
-        if ($request['type_transaction'] == $this->giantiep){
-            $this->user_ml->move_money_to_balance($request['guess_id'], $trip['price']);        
-        }
+        $trip = $this->trip_ml->get_by_primary($request['trip_id']);        
         // Xóa request cho nó
         $this->request_ml->delete($id);
     }
@@ -551,8 +433,7 @@ class Trip extends CI_Controller {
 
         $message = '';
         $trip = $this->needed_trip_ml->get_by_primary($id);
-        if ($this->input->post()){
-            
+        if ($this->input->post()){            
             $data_sql = [
                 'guess' => $trip['asker'],
                 'code' => rand(100000, 999999),
@@ -561,56 +442,48 @@ class Trip extends CI_Controller {
                 'start_from' =>$trip['start_from'],
                 'finish_to' => $trip['finish_to'],
                 'timestart' => $trip['timestart'],
-                'created' => $trip['created'],
-                'type_transaction' => $trip['type_transaction']                
-            ];                  
-            // Nếu là thanh toán trực tiếp thì mình lấy tiền của owner
-            if ($trip['type_transaction'] == $this->tructiep){
-                
-                $owner = $this->user_ml->get_by_primary($data_sql['owner']);                
-                $fee = $trip['price'] * 0.2;                
-                if ($owner['balance'] >= $fee){
-                    // Trừ tiền của người chở
-                    $this->user_ml->set_attr($data_sql['owner'], 'balance', $owner['balance'] - $fee);
-                    // Trả lại tiền cho người khách
-                    $this->user_ml->move_money_to_balance($data_sql['guess'], 100);
-                    // Tạo chuyến đi ngay!
-                    $data_sql['success'] = false;
-                    $this->trip_ml->add_into($data_sql);
-                    $insert_id = $this->db->insert_id();                    
-                    // Xóa need trip này!
-                    // Set trip_id, instead removing it
-                    $this->needed_trip_ml->set_attr($id, 'trip_id', $insert_id);
-                    //$this->needed_trip_ml->delete($id);
-                    // Gửi thông báo
-                    $notify = [
-                        'to_user' => $data_sql['owner'],
-                        'time' => get_current_time(),
-                        'content' => 'Bạn đã đồng ý mở chuyến đi. Và mã số chuyến đi của bạn có là: '.$insert_id,
-                        'type_noti' => 'trip',
-                        'where_noti' => $insert_id
-                    ];
-                    $this->notify_ml->add_trigger($notify);
+                'created' => $trip['created']                           
+            ];                                              
+            $owner = $this->user_ml->get_by_primary($data_sql['owner']);                
+            $fee = $trip['price'] * 0.2;                
+            if ($owner['balance'] >= $fee){
+                // Trừ tiền của người chở
+                $this->user_ml->set_attr($data_sql['owner'], 'balance', $owner['balance'] - $fee);                
+                // Tạo chuyến đi ngay!
+                $data_sql['success'] = false;
+                $this->trip_ml->add_into($data_sql);
+                $insert_id = $this->db->insert_id();                    
+                // Xóa need trip này!
+                // Set trip_id, instead removing it
+                $this->needed_trip_ml->set_attr($id, 'trip_id', $insert_id);
+                //$this->needed_trip_ml->delete($id);
+                // Gửi thông báo
+                $notify = [
+                    'to_user' => $data_sql['owner'],
+                    'time' => get_current_time(),
+                    'content' => 'Bạn đã đồng ý mở chuyến đi. Và mã số chuyến đi của bạn có là: '.$insert_id,
+                    'type_noti' => 'trip',
+                    'where_noti' => $insert_id
+                ];
+                $this->notify_ml->add_trigger($notify);
 
-                    // them vao bang matched
-                    $this->matched_ml->add_into(['user1' => $data_sql['owner'], 'user2' => $data_sql['guess']]);
-                    //
-                    
-                    $notify = [
-                        'to_user' => $data_sql['guess'],
-                        'time' => get_current_time(),
-                        'content' => 'Chuyến đi mà bạn yêu cầu đã được mở. Chuyến đi của bạn là: '.$insert_id,
-                        'type_noti' => 'trip',
-                        'where_noti' => $insert_id
-                    ];
-                    $this->notify_ml->add_trigger($notify);
-                    // remove need trip                    
-                    redirect('trip/detail/'.$insert_id);                          
-                }
-                else{
-                    $message = get_message_error('Lỗi!<br>', 'Đây là hình thức thanh toán trực tiếp. Nhưng tài khoản của bạn không đủ.');
-                }
-            }                 
+                // them vao bang matched
+                $this->matched_ml->add_into(['user1' => $data_sql['owner'], 'user2' => $data_sql['guess']]);
+                //            
+                $notify = [
+                    'to_user' => $data_sql['guess'],
+                    'time' => get_current_time(),
+                    'content' => 'Chuyến đi mà bạn yêu cầu đã được mở. Chuyến đi của bạn là: '.$insert_id,
+                    'type_noti' => 'trip',
+                    'where_noti' => $insert_id
+                ];
+                $this->notify_ml->add_trigger($notify);
+                // remove need trip                    
+                redirect('trip/detail/'.$insert_id);                          
+            }
+            else{
+                $message = get_message_error('Lỗi!<br>', 'Đây là hình thức thanh toán trực tiếp. Nhưng tài khoản của bạn không đủ.');
+            }            
         }
         
         $asker = $this->user_ml->get_by_primary($trip['asker']);
@@ -695,11 +568,6 @@ class Trip extends CI_Controller {
                     'type_noti' => 'profile',
                     'where_noti' => $req['guess_id']
                 ];
-
-                if ($req['type_transaction'] == $this->giantiep){
-                    $notify['content'] = $content.'Vì vậy, chúng tôi đã chuyển tiền từ tài khoản dự bị vào lại tài khoản chính cho bạn';
-                    $this->user_ml->move_money_to_balance($req['guess_id'], $trip['price']);
-                }
                 // Gửi thông báo
                 $this->notify_ml->add_trigger($notify);
             }
@@ -718,14 +586,7 @@ class Trip extends CI_Controller {
         $username = $this->session->userdata('username');
         $trip = $this->needed_trip_ml->get_by_primary($trip_id);
         if ($trip['asker'] != $username){ redirect('trip/detail_need/'.$trip_id); }
-        // Gửi notify đến cho Khách nếu đã có khách
-        //Trả lại tiền cho những người gián tiếp
-        // Nếu là xóa, thì mình chuyển lại tiền vào tài khoản chính từ tài khoản dự bị                
-        if ($trip['type_transaction'] == $this->giantiep){
-            $this->user_ml->move_money_to_balance($username, $trip['price']);   
-        }            
-        // Trả lại tiền cho khách 
-        $this->user_ml->move_money_to_balance($username, 100);
+        // Gửi notify đến cho Khách nếu đã có khách                
         $this->needed_trip_ml->delete($trip_id);
         redirect('trip/my_trips');    
     }

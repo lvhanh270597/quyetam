@@ -282,3 +282,26 @@ function beep() {
 </script>
 
 <!-- /.Navigation -->
+
+
+<style>    
+    .fuck{
+        padding: 45px;        
+    }       
+    body{
+        
+    }
+</style>
+
+<div class="fuck">                                
+</div>                  
+<div class="container">
+    <?php
+    $trip_false =  $this->trip_ml->get_success_false();
+        if (count($trip_false) > 0){
+            echo '<div class="alert alert-primary" role="alert">
+            Bạn có '.count($trip_false).' chuyến đi cần phải xác thực! Bấm vào <a href="'.site_url('verify/trips').'" class="alert-link">đây </a> để xác thực các chuyến đi</a>. 
+        </div>';
+        }
+    ?>
+</div>

@@ -1,13 +1,5 @@
 
 
-<style>    
-    .fuck{
-        padding: 45px;        
-    }       
-    body{
-        
-    }
-</style>
 <style>
     #dm{
         width: 100%;
@@ -27,10 +19,7 @@
     <!-- Mega menu -->
     
     <!-- /.Main Container -->    
-    <div class="container">  
-    
-        <div class="fuck">                                
-        </div>                  
+    <div class="container">      
         <!-- Grid row -->
         <!-- Card -->
         <div class="card card-cascade">

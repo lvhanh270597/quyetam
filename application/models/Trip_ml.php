@@ -174,11 +174,26 @@ class Trip_ml extends Trip_template
 	public function get_success_false(){
 		$username = $this->session->userdata('username');
 		$this->db->select('*');
-    	$this->db->from($this->db_table);
-		$where = '(owner="'.$username.'" or guess = "'.$username.'") and (timestart >= '.get_current_time().') and (success = false)';
+		$this->db->from($this->db_table);
+		
+		$where = '(owner="'.$username.'" or guess = "'.$username.'") and (timestart<="'.get_current_time().'")';
 		$this->db->where($where);
 		$query = $this->db->get();
-		return $query->result_array();
+		$query = $query->result_array();
+		$res = [];
+		foreach ($query as $q){
+			if ($q['guess'] == null) continue;
+			if ($username == $q['owner']){
+				if ($q['v_owner'] == null){
+					array_push($res, $q);
+				}
+			}else{
+				if ($q['v_guess'] == null){
+					array_push($res, $q);
+				}
+			}
+		}
+		return $res;
 	}
 
 }
