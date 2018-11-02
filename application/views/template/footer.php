@@ -1,6 +1,4 @@
 
-<div class="fuck">
-</div>
 <!--Footer-->
     <footer class="page-footer text-center text-md-left stylish-color-dark pt-0">
 
@@ -37,7 +35,7 @@
         </div>
 
         <!--Footer Links-->
-        <div class="container mt-5 mb-4 text-center text-md-left">
+        <div class="container text-center text-md-left">
             <div class="row mt-3">
 
                 <!--First column-->

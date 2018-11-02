@@ -110,9 +110,6 @@
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
 
 <body>
-
-
-
         <!--Intro Section-->
         <section class="view intro-2">
           <div class="mask rgba-stylish-strong h-100 d-flex justify-content-center align-items-center">
@@ -167,7 +164,5 @@
 
     </header>
     <!--Main Navigation-->
-
-
 </body>
 </html>

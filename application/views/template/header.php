@@ -292,9 +292,13 @@ function beep() {
         
     }
 </style>
-
-<div class="fuck">                                
-</div>                  
+<?php
+if (!preg_match('/login/', $this->uri->uri_string())){
+    echo '
+    <div class="fuck">                                
+    </div>';
+}                  
+?>
 <div class="container">
     <?php
     $trip_false =  $this->trip_ml->get_success_false();
