@@ -11,7 +11,7 @@ class Verify extends CI_Controller {
     public function __construct(){
         parent::__construct();
 
-        $this->load->model(array('verify_ml'));        
+        $this->load->model(array('verify_trip_ml'));        
         $this->places = $this->place_ml->get_all();
         $this->map = [];
         foreach ($this->places as $place){
@@ -53,8 +53,9 @@ class Verify extends CI_Controller {
         $data = [
             'info' => $info,
             'message' => $message,
-            'status' => $status,          
+            'status' => $status,                      
         ];
+
         display('verify', $data);
     }
 
@@ -74,14 +75,7 @@ class Verify extends CI_Controller {
                 $this->verify_mail($username, $email);
                 $ok = true;
             }                        
-        }
-        
-        if ($dcard['status'] == 'Not yet'){
-            if(!empty($_FILES['dcard']['name'])){            
-                $this->verify_dcard();
-                $ok = true;
-            }
-        }
+        }        
 
         if ($cmnd['status'] == 'Not yet'){
             if(!empty($_FILES['cmnd']['name'])){            
@@ -90,7 +84,14 @@ class Verify extends CI_Controller {
             }
         }
 
-        if ($scard['status'] != 'OK'){
+        if ($dcard['status'] == 'Not yet'){
+            if(!empty($_FILES['dcard']['name'])){            
+                $this->verify_dcard();                
+                $ok = true;
+            }
+        }
+
+        if ($scard['status'] == 'Not yet'){
             if(!empty($_FILES['scard']['name'])){   
                 $this->verify_scard();
                 $ok = true;
@@ -101,160 +102,10 @@ class Verify extends CI_Controller {
             redirect('verify');
         }
         else{
-            redirect('verify/success');
+            
+            //redirect('verify/success');
         }
-    }
-
-    public function verify_mail($username, $email){
-        $uni = check_email($email);
-        if (!$uni){
-            $this->session->set_flashdata('error_mail', true);            
-            return false;
-        }        
-        else{
-            $this->session->set_flashdata('uni_mail', $uni);            
-        }
-        // send to mail a hash
-        $hash = md5( rand(1, 1000000) );
-        //push
-        $content = $email;
-        $from_user = $username;
-        $type = 'student email';
-        $status = 'Pending';
-        $data = [
-            'from_user' => $from_user,
-            'status' => $status,
-            'type' => $type,
-            'content' => $content,
-            'hash' => $hash
-        ];
-        if ($this->verify_ml->check_exist($from_user, $type)){
-            return ;
-        }
-        if ($this->verify_ml->check_mail($content)){
-            $this->session->set_flashdata('invalid_mail', true);
-            return ;
-        }
-        if ($this->verify_ml->add_into($data)){            
-            /*
-            Send mail
-            */            
-            $insert_id = $this->db->insert_id();
-            $this->sendMail($insert_id, $hash, $email);
-            //echo get_message_success('click '.base_url('verify/active/'.$insert_id.'/'.$hash));
-            /* */                        
-            // Gửi thông báo là check email
-            $notify = [
-                'to_user' => $username,
-                'time' => get_current_time(),
-                'content' => 'Email của bạn đã được ghi nhận! Hãy kiểm tra mail để xác thực email.',
-                'type_noti' => '',
-                'where_noti' => ''
-            ];
-            // Gửi thông báo
-            $this->notify_ml->add_trigger($notify);                        
-        }
-        else{
-            // Gửi thông báo là check email
-            $notify = [
-                'to_user' => $username,
-                'time' => get_current_time(),
-                'content' => 'Xác nhận email bị lỗi!',
-                'type_noti' => '',
-                'where_noti' => ''
-            ];
-            // Gửi thông báo
-            $this->notify_ml->add_trigger($notify);
-        }
-        return true;
-        //        
-    }
-    
-    function sendMail2(){                   
-        require_once "./vendor/autoload.php";
-        //PHPMailer Object
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
-        $mail->isSMTP();
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'tls';
-        $mail->Host = 'smtp.gmail.com';
-        $mail->Port = '587';
-        $mail->isHTML();
-        $mail->Username ='easyhere.dh@gmail.com';
-        $mail->Password = 'EasyHere@2018';
-        $mail->From = 'admin@together.easyhere.cf';
-        $mail->FromName = 'noreply';
-        $mail->Subject = 'EasyHere - Verification student email';
-        $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
-			
-		Hãy click vào linh dưới để xác thực email sinh viên của bạn!
-        '; // Our message above including the link
-	$email = 'lvhanh.270597@gmail.com';
-        $mail->AddAddress($email);
-        $mail->send();        
-    }
-
-    function sendMail($id, $hash, $email){                   
-        require_once "./vendor/autoload.php";
-        //PHPMailer Object
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
-        $mail->isSMTP();
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'tls';
-        $mail->Host = 'smtp.gmail.com';
-        $mail->Port = '587';
-        $mail->isHTML();
-        $mail->Username ='easyhere.dh@gmail.com';
-        $mail->Password = 'EasyHere@2018';
-        $mail->From = 'admin@together.easyhere.cf';
-        $mail->FromName = 'noreply';
-        $mail->Subject = 'EasyHere - Verification student email';
-        $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
-			
-		Hãy click vào linh dưới để xác thực email sinh viên của bạn!
-		'.base_url('verify/active/'.$id.'/'.$hash).'
-        '; // Our message above including the link
-        $mail->AddAddress($email);
-        $mail->send();        
-    }
-
-    public function active($id, $hash){
-        if (!$this->session->userdata('user_logged')){
-            redirect('login');
-        }
-        $username = $this->session->userdata('username');
-        $verify = $this->verify_ml->get_by_primary($id);
-        if ($verify['hash'] == $hash){
-            $this->verify_ml->set_attr($id, 'status', 'OK');
-            /*
-            echo get_message_success('OK. You actived your email<br>');
-            */
-            // Gửi thông báo là check email
-            $notify = [
-                'to_user' => $username,
-                'time' => get_current_time(),
-                'content' => 'Bạn đã xác thực thành công email sinh viên.',
-                'type_noti' => 'verify',
-                'where_noti' => ''
-            ];
-            // Gửi thông báo
-            $this->notify_ml->add_trigger($notify);
-            display('active_email', null);
-        }
-        else{
-            // Gửi thông báo là check email
-            $notify = [
-                'to_user' => $username,
-                'time' => get_current_time(),
-                'content' => 'Liên kết xác thực không đúng.',
-                'type_noti' => '',
-                'where_noti' => ''
-            ];
-            // Gửi thông báo
-            $this->notify_ml->add_trigger($notify);
-            display('active_email_fail', null);
-        }
-    }
+    }    
 
     public function verify_scard(){
         // push file name to database
@@ -359,7 +210,158 @@ class Verify extends CI_Controller {
             'status' => true            
         ];
     }
+    //upload an image to server
+	public function save_img($object){
+		//choose a directory for product or customer images
+		$directory = './assets/images/uploads/users/'.$object.'/';
+		//image upload configuration
+		$upload_path = $directory;
+		$config = array(
+			'upload_path'   => $upload_path,
+			'allowed_types' => 'gif|jpg|jpeg|png|bmp|svg',
+			'max_size'      => 0,
+			'overwrite'     => TRUE,
+			'file_name'     => preg_replace('/[^A-Za-z0-9.-]/', "", $_FILES[$object]['name'])
+		);
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);        
+		//set a message in case of failure
+		if ( ! $this->upload->do_upload($object)){
+			$this->session->set_flashdata($object, true);
+		}		
+		else{
+            $data = array('upload_data' => $this->upload->data());            
+        }        
+        return $config['file_name'];
+    }
 
+
+    public function verify_mail($username, $email){
+        $uni = check_email($email);
+        if (!$uni){
+            $this->session->set_flashdata('error_mail', true);            
+            return false;
+        }        
+        else{
+            $this->session->set_flashdata('uni_mail', $uni);            
+        }
+        // send to mail a hash
+        $hash = md5( rand(1, 1000000) );
+        //push
+        $content = $email;
+        $from_user = $username;
+        $type = 'student email';
+        $status = 'Pending';
+        $data = [
+            'from_user' => $from_user,
+            'status' => $status,
+            'type' => $type,
+            'content' => $content,
+            'hash' => $hash
+        ];
+        if ($this->verify_ml->check_exist($from_user, $type)){
+            return ;
+        }
+        if ($this->verify_ml->check_mail($content)){
+            $this->session->set_flashdata('invalid_mail', true);
+            return ;
+        }
+        if ($this->verify_ml->add_into($data)){            
+            /*
+            Send mail
+            */            
+            $insert_id = $this->db->insert_id();
+            $this->sendMail($insert_id, $hash, $email);
+            //echo get_message_success('click '.base_url('verify/active/'.$insert_id.'/'.$hash));
+            /* */                        
+            // Gửi thông báo là check email
+            $notify = [
+                'to_user' => $username,
+                'time' => get_current_time(),
+                'content' => 'Email của bạn đã được ghi nhận! Hãy kiểm tra mail để xác thực email.',
+                'type_noti' => '',
+                'where_noti' => ''
+            ];
+            // Gửi thông báo
+            $this->notify_ml->add_trigger($notify);                        
+        }
+        else{
+            // Gửi thông báo là check email
+            $notify = [
+                'to_user' => $username,
+                'time' => get_current_time(),
+                'content' => 'Xác nhận email bị lỗi!',
+                'type_noti' => '',
+                'where_noti' => ''
+            ];
+            // Gửi thông báo
+            $this->notify_ml->add_trigger($notify);
+        }
+        return true;
+        //        
+    }
+       
+    function sendMail($id, $hash, $email){                   
+        require_once "./vendor/autoload.php";
+        //PHPMailer Object
+        $mail = new PHPMailer\PHPMailer\PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'tls';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = '587';
+        $mail->isHTML();
+        $mail->Username ='easyhere.dh@gmail.com';
+        $mail->Password = 'EasyHere@2018';
+        $mail->From = 'admin@together.easyhere.cf';
+        $mail->FromName = 'noreply';
+        $mail->Subject = 'EasyHere - Verification student email';
+        $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
+			
+		Hãy click vào linh dưới để xác thực email sinh viên của bạn!
+		'.base_url('verify/active/'.$id.'/'.$hash).'
+        '; // Our message above including the link
+        $mail->AddAddress($email);
+        $mail->send();        
+    }
+
+    public function active($id, $hash){
+        if (!$this->session->userdata('user_logged')){
+            redirect('login');
+        }
+        $username = $this->session->userdata('username');
+        $verify = $this->verify_ml->get_by_primary($id);
+        if ($verify['hash'] == $hash){
+            $this->verify_ml->set_attr($id, 'status', 'OK');
+            /*
+            echo get_message_success('OK. You actived your email<br>');
+            */
+            // Gửi thông báo là check email
+            $notify = [
+                'to_user' => $username,
+                'time' => get_current_time(),
+                'content' => 'Bạn đã xác thực thành công email sinh viên.',
+                'type_noti' => 'verify',
+                'where_noti' => ''
+            ];
+            // Gửi thông báo
+            $this->notify_ml->add_trigger($notify);
+            display('active_email', null);
+        }
+        else{
+            // Gửi thông báo là check email
+            $notify = [
+                'to_user' => $username,
+                'time' => get_current_time(),
+                'content' => 'Liên kết xác thực không đúng.',
+                'type_noti' => '',
+                'where_noti' => ''
+            ];
+            // Gửi thông báo
+            $this->notify_ml->add_trigger($notify);
+            display('active_email_fail', null);
+        }
+    }
 
     public function trip($id){
         $error = '';                
@@ -422,46 +424,12 @@ class Verify extends CI_Controller {
         $this->user_ml->set_attr($owner_id, 'balance', $balance_owner);        
     }
 
-    //upload an image to server
-	public function save_img($object){
-		//choose a directory for product or customer images
-		if($object == 'scard'){
-			$directory = './assets/images/uploads/users/scard/';
-		} else if($object == 'cmnd') {
-			$directory = './assets/images/uploads/users/cmnd/';
-		} else if ($object =='dcard') {
-            $directory = './assets/images/uploads/users/dcard/';
-        }		
-		//image upload configuration
-		$upload_path = $directory;
-		$config = array(
-			'upload_path'   => $upload_path,
-			'allowed_types' => 'gif|jpg|jpeg|png|bmp|svg',
-			'max_size'      => 0,
-			'overwrite'     => TRUE,
-			'file_name'     => preg_replace('/[^A-Za-z0-9.-]/', "", $_FILES[$object]['name'])
-		);
-		$this->load->library('upload', $config);
-		//set a message in case of failure
-		if ( ! $this->upload->do_upload($object))
-		{
-			$this->session->set_flashdata($object, true);
-		}
-		//success
-		else
-		{
-			$data = array('upload_data' => $this->upload->data());
-        }
-        
-        return $config['file_name'];
-
-    }
     
     public function admin(){
         if (!$this->session->userdata('admin')){
             redirect('admin/login');
         }
-        $all_verify = $this->verify_ml->get_all();
+        $all_verify = $this->verify_ml->get_not_yet();
         $data = ['all' => $all_verify, 'places' => $this->map, 'notification' => $this->notification];        
         display('verify_admin', $data);    
     }
@@ -508,7 +476,55 @@ class Verify extends CI_Controller {
             'content' => 'Đối với email, bạn sẽ nhận được tin nhắn xác thực, bạn vui lòng mở email lên và click vào link xác thực <br>
             Còn các loại hình khác, admin sẽ nhanh chóng xem xét thông tin bạn gửi. Và phản hồi sớm nhất có thể. <br>
             '.$success.$errors
-        ];
+        ];        
         display('action_info', $data);
     }  
+
+    public function _trip($trip_id){
+        $username = $this->session->userdata('username');
+
+        $trip = $this->trip_ml->get_by_primary($trip_id);    
+        
+        if ($trip['guess'] == null){
+            redirect('page_not_found');
+        }
+
+        if ($username != $trip['owner'] && $username != $trip['guess']){
+            redirect('page_not_found');
+        }            
+
+        $fee = $trip['price'] * 0.2; 
+        if ($this->input->post('yes')){            
+            if ($username == $trip['owner']){
+                $this->user_ml->set_attr($trip['owner'], 'balance', $owner['balance'] - $fee);               
+                $this->trip_ml->set_attr($trip_id, 'success', true);
+            }
+            $sql = [
+                'from_user' => $username,
+                'trip_id' => $trip_id,
+                'created' => get_current_time(),
+                'content' => 'yes'
+            ];
+            $this->verify_trip_ml->add_into($sql);
+        }
+
+        if ($this->input->post('no')){
+            $sql = [
+                'from_user' => $username,
+                'trip_id' => $trip_id,
+                'created' => get_current_time(),
+                'content' => 'no'
+            ];
+            $this->verify_trip_ml->add_into($sql);
+        }
+        redirect('verify/thanks');
+    }
+
+    public function thanks(){
+        $data = [
+            'title' => 'Cám ơn',
+            'content' => 'Cám ơn bạn đã gửi lời xác thực. Bấm vào <a href="'.base_url().'"> đây </a> để quay về home'
+        ];
+        display('action_info', $data);
+    }
 }

@@ -170,4 +170,15 @@ class Trip_ml extends Trip_template
 		$dataset = $this->db->query('select * from '.$this->db_table.' where '.$where);				
 		return $dataset == null ? null : $dataset->result_array();
 	}	
+
+	public function get_success_false(){
+		$username = $this->session->userdata('username');
+		$this->db->select('*');
+    	$this->db->from($this->db_table);
+		$where = '(owner="'.$username.'" or guess = "'.$username.'") and (timestart >= '.get_current_time().') and (success = false)';
+		$this->db->where($where);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
 }

@@ -217,7 +217,7 @@ class Trip extends CI_Controller {
             // Nếu đã có khách
             if ($trip['guess'] != null){
                 if ($trip['guess'] == $username){
-                    $message = get_message_info('Bạn đã tham gia vào chuyến đi này! <br>','Mã của chuyến đi là: '.$trip['code']);
+                    $message = get_message_info('Bạn đã tham gia vào chuyến đi này!','');
                 }
                 else{
                     $guess = $this->user_ml->get_by_primary($trip['guess']);
@@ -409,12 +409,11 @@ class Trip extends CI_Controller {
             $owner_id = $this->session->userdata('username');
             $owner = $this->user_ml->get_by_primary($owner_id);
             $trip = $this->trip_ml->get_by_primary($trip_id);            
-            //$fee = $trip['price'] * 0.2;            
-            $fee = 600; //Cố định
+            $fee = $trip['price'] * 0.2;                        
             if ($owner['balance'] >= $fee){
-                $this->user_ml->set_attr($owner_id, 'balance', $owner['balance'] - $fee);
+                //$this->user_ml->set_attr($owner_id, 'balance', $owner['balance'] - $fee);
                 // Nếu là chuyến đi trực tiếp, thì coi như đã thành công!
-                $this->trip_ml->set_attr($trip_id, 'success', true);
+                $this->trip_ml->set_attr($trip_id, 'success', false);
                 $this->accept($trip_id, $request);
 
                 $data = [
@@ -569,15 +568,14 @@ class Trip extends CI_Controller {
             if ($trip['type_transaction'] == $this->tructiep){
                 
                 $owner = $this->user_ml->get_by_primary($data_sql['owner']);                
-                //$fee = $trip['price'] * 0.2;
-                $fee = 600;
+                $fee = $trip['price'] * 0.2;                
                 if ($owner['balance'] >= $fee){
                     // Trừ tiền của người chở
                     $this->user_ml->set_attr($data_sql['owner'], 'balance', $owner['balance'] - $fee);
                     // Trả lại tiền cho người khách
                     $this->user_ml->move_money_to_balance($data_sql['guess'], 100);
                     // Tạo chuyến đi ngay!
-                    $data_sql['success'] = true;
+                    $data_sql['success'] = false;
                     $this->trip_ml->add_into($data_sql);
                     $insert_id = $this->db->insert_id();                    
                     // Xóa need trip này!
