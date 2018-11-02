@@ -101,9 +101,8 @@ class Verify extends CI_Controller {
         if (!$ok){
             redirect('verify');
         }
-        else{
-            
-            //redirect('verify/success');
+        else{            
+            redirect('verify/success');
         }
     }    
 
