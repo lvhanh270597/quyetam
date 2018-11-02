@@ -151,7 +151,7 @@ class Verify extends CI_Controller {
         $content = $file_name;
         $from_user = $this->session->userdata('username');
         $type = 'driver card';
-        $status = 'Pending';
+        $status = 'Đang chờ';
         $data = [
             'from_user' => $from_user,
             'status' => $status,
@@ -184,7 +184,7 @@ class Verify extends CI_Controller {
         $content = $file_name;
         $from_user = $this->session->userdata('username');
         $type = 'cmnd card';
-        $status = 'Pending';
+        $status = 'Đang chờ';
         $data = [
             'from_user' => $from_user,
             'status' => $status,
@@ -204,10 +204,7 @@ class Verify extends CI_Controller {
             ];
             // Gửi thông báo
             $this->notify_ml->add_trigger($notify);
-        }        
-        return [
-            'status' => true            
-        ];
+        }                
     }
     //upload an image to server
 	public function save_img($object){
