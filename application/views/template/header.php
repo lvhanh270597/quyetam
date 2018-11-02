@@ -283,18 +283,15 @@ function beep() {
 
 <!-- /.Navigation -->
 
+<?php
+if (!preg_match('/login/', $this->uri->uri_string()) && !preg_match('/register/', $this->uri->uri_string())){
+    echo '
 
 <style>    
-    .fuck{
-        padding: 45px;        
-    }       
-    body{
-        
-    }
+.fuck{
+    padding: 45px;        
+}           
 </style>
-<?php
-if (!preg_match('/login/', $this->uri->uri_string())){
-    echo '
     <div class="fuck">                                
     </div>';
 }                  
