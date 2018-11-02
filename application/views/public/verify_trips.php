@@ -51,7 +51,7 @@
             echo '</div>';
         }
 
-        if (count($trips) > 0){
+        if (count($trips) == 0){
             echo '<div class="fuckfuck">
             </div>
             <div class="container">
