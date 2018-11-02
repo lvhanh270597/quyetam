@@ -7,7 +7,7 @@
 </style>
 
 <!-- Card -->
-<div class="container">    
+<div class="container">        
         <?php
         $i = 0;
         foreach ($trips as $trip){
@@ -30,7 +30,7 @@
                 <div class="card-body">
 
                     <!-- Title -->
-                    <h4 class="card-title">Card title</h4>
+                    <h4 class="card-title">Xác thực chuyến đi</h4>
                     <!-- Text -->
                     <p class="card-text">Xin xác thực chuyến đi <a href="'.site_url('trip/detail/'.$trip['id']).'"> này </a> có thành công không?</p>
                     <!-- Button -->
@@ -46,6 +46,21 @@
             }             
             
             $i++;
+        }
+
+        if ($i == 0){
+            echo '<div class="fuckfuck">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Hiện không có chuyến đi nào cần xác thực</h1>                        
+                    </div>                 
+                </div>
+            </div>
+            <div class="fuckfuck">
+            </div>
+            ';
         }
         ?>
 </div>

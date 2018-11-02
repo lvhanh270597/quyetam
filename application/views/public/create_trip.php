@@ -108,8 +108,11 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
-                                                <input type="number" id="form1" class="form-control validate" name="price">
-                                                <label for="form2" data-error="wrong" data-success="right">Giá</label>
+                                                <select class="browser-default custom-select mb-4" name="price">
+                                                    <option value="" disabled selected>Giá</option>
+                                                    <option value="default">Mặc định</option>
+                                                    <option value="free">Miễn phí</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>                                                                                                           

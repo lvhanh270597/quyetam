@@ -21,7 +21,7 @@ class Price extends CI_Controller {
         } 
     }       
     
-    public function index(){
+    public function index(){      
         if ($this->session->userdata('user_logged')){
             $username = $this->session->userdata('username');
             $this->notification = $this->notify_ml->get_from_user($username);                        
@@ -31,7 +31,7 @@ class Price extends CI_Controller {
             }
             $this->session->set_userdata('count', $count);
         }
-
+        
         $places = $this->place_ml->get_all();
         $map = [];
         foreach ($places as $place){
@@ -43,6 +43,9 @@ class Price extends CI_Controller {
 	}	
 
     public function add_price(){
+        if (!$this->session->userdata('admin')){
+            redirect('admin/login');
+        }
         $message_success = get_message_success('Adding successfully');
 		$message_error = get_message_error('Fail when adding');
 
@@ -59,7 +62,30 @@ class Price extends CI_Controller {
         display('add_price', $data, true);
     }
 
-    public function edit_price(){
+    public function edit_price($id_f, $id_t){
+        if (!$this->session->userdata('admin')){
+            redirect('admin/login');
+        }
+        $message = '';
+        if ($this->input->post()){
+            $amount = $this->input->post('amount');
+            $this->price_ml->edit_amount($id_f, $id_t, $amount);
+            $message = get_message_success('Adding successfully');
+        }
+        
+        $price = $this->price_ml->get_price_from_and_to($id_f, $id_t);
 
+        $places = $this->place_ml->get_all();
+        $map = [];
+        foreach ($places as $place){
+            $map[$place['id']] = $place['name'];
+        }
+        
+        $data = [
+            'message' => $message,
+            'price' => $price,
+            'map' => $map
+        ];
+        display('edit_price', $data, true);
     }
 }

@@ -13,5 +13,11 @@ class Price_ml extends Quickaccess
 		}
 		return null;
 	}
+
+	public function edit_amount($start_from, $finish_to, $amount){
+		$this->db->set('amount', $amount);
+		$this->db->where(['start_from' => $start_from, 'finish_to' => $finish_to]);
+		$this->db->update($this->db_table);
+	}
 }
 ?>

@@ -23,10 +23,6 @@
                 
                 <!-- Section: Last items -->
                 <section>
-                
-                    <h4 class="font-weight-bold mt-4 dark-grey-text"><strong>CÁC CHUYẾN ĐI HIỆN CÓ</strong></h4>
-                    <hr class="mb-3">
-
                                         <!-- Card -->
                     <div class="card card-cascade">
 

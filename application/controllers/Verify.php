@@ -554,6 +554,7 @@ class Verify extends CI_Controller {
         else{
             $this->trip_ml->set_attr($trip_id, 'v_guess', true);
         }    
+        $this->session->set_flashdata('yes', true);
         redirect('verify/thanks');
     }
 
@@ -582,13 +583,28 @@ class Verify extends CI_Controller {
         else{
             $this->trip_ml->set_attr($trip_id, 'v_guess', false);
         }    
+        $this->session->set_flashdata('no', $trip_id);
         redirect('verify/thanks');
     }
 
     public function thanks(){
+        $content = 'Cám ơn bạn đã gửi lời xác thực. Bấm vào <a href="'.base_url().'"> đây </a> để quay về home';
+        if ($this->session->flashdata('yes')){            
+        }
+        else{
+            $trip = $this->trip_ml->get_by_primary($this->session->flashdata('no'));
+            $user = $this->user_ml->get_by_primary($trip['owner']);
+            $current = $this->session->userdata('username');            
+            $fee = 0;
+            if ($current == $user['username']){
+                $fee = $trip['price'] * 0.2;
+                $content = 'Cám ơn bạn đã gửi lời xác thực. Vì chuyến đi đã không được thực hiện nên chúng tôi đã cộng vào tài khoản của bạn phí chuyến đi chúng tôi đã lấy trước đó '.$fee.' <br>
+            Bấm vào <a href="'.base_url().'"> đây </a> để quay về home';            
+            }            
+        }
         $data = [
             'title' => 'Cám ơn',
-            'content' => 'Cám ơn bạn đã gửi lời xác thực. Bấm vào <a href="'.base_url().'"> đây </a> để quay về home'
+            'content' => $content
         ];
         display('action_info', $data);
     }

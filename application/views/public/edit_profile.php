@@ -22,6 +22,11 @@ Licensed under MIT
     .shadow-textarea textarea.form-control {
         padding-left: 0.8rem;
     }
+
+    #fuck{
+        weight: 100px;
+        height: 150px;
+    }
         
 </style>
 
@@ -77,17 +82,14 @@ Licensed under MIT
                     });
                 </script>         
                 <div class="card-body">
-                    <!-- Name -->
-                    
-                    <h4 class="card-title"><?php  echo $full_name; ?></h4>
-                    <span class="badge badge-info mb-2"><?php  echo $username; ?></span>
-                    <span class="badge badge-info mb-2"><?php  echo $gender; ?></span>                                        
-                    <a class="btn blue-gradient" href="<?php  echo site_url('verify'); ?>">
-                    Xác thực
-                    </a>
-                    <a class="btn btn-danger btn-sm" href="<?php  echo site_url('logout'); ?>">
-                    Đăng xuất
-                    </a>                    
+                    <!-- Name -->                    
+                    <h4 class="card-title"><?php  echo $full_name; ?></h4>                                      
+                    <table>
+                        <tr>
+                            <td><a class="btn blue-gradient btn-sm btn-rounded" href="<?php  echo site_url('verify'); ?>">Xác thực</a></td>
+                            <td><a class="btn btn-danger btn-sm btn-rounded" href="<?php  echo site_url('logout'); ?>">Đăng xuất</a></td>
+                        </tr>
+                    </table>                                        
                     <!-- Quotation -->
                     <table class="table">                        
                         <tbody>

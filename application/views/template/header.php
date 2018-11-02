@@ -207,7 +207,6 @@ function beep() {
 
     </header>
 
-
 <script>
     function get_id(data){
         var res = [];
@@ -233,7 +232,6 @@ function beep() {
         }
         return res;
     }
-
     _old = [];
     $(document).ready(function(){
         $.get(<?php echo '"'.base_url('notify/get_unseen_notification').'"';  ?>, function(data, status){                                           
@@ -241,9 +239,7 @@ function beep() {
             _old = get_id(data);
         });
     });
-
     first_time = true;
-
     setInterval(
         function(){            
             $.get(<?php echo '"'.base_url('notify/get_unseen_notification').'"';  ?>, function(data, status){                                           
@@ -255,11 +251,8 @@ function beep() {
                 console.log(_new);                
                 
                 if (diff.length == 0) return ;                
-
                 beep();                
-
                 $("#count").text(diff.length);
-
                 _old = _new.sort();          
                       
                 items = get_item(data, diff);
@@ -267,7 +260,6 @@ function beep() {
                 items.sort(function (a, b) {
                     return new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b);
                 });                            
-
                 for (var i=0; i<items.length; i++){                    
                     let tempi = items[i];
                     item = '<a href="<?php echo site_url('notify/check/'); ?>'+tempi['id']+'" class="beau waves-effect waves-light"><div class="fuck2">' +
@@ -275,8 +267,6 @@ function beep() {
                         '</h6> </small> <small>'+moment(tempi['time']).fromNow()+'</small></div></a>';
                     $("#noti_tab").children().first().before(item);                    
                 }         
-
-
             })
         }, 5000);
 </script>
@@ -285,15 +275,18 @@ function beep() {
 
 <?php
 if (!preg_match('/login/', $this->uri->uri_string()) && !preg_match('/register/', $this->uri->uri_string())){
-    echo '
-
-<style>    
-.fuck{
-    padding: 45px;        
-}           
+    echo '<style>
+    #fuckfuck{
+        padding-top: 200px;        
+    }
+    .fuckfuck{
+        padding-top: 100px;
+    }
 </style>
-    <div class="fuck">                                
-    </div>';
+
+<div class="fuckfuck">
+</div>
+';
 }                  
 ?>
 <div class="container">
@@ -306,3 +299,5 @@ if (!preg_match('/login/', $this->uri->uri_string()) && !preg_match('/register/'
         }
     ?>
 </div>
+
+<!-- /.Navigation -->

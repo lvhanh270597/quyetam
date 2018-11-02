@@ -238,6 +238,9 @@
                     <table id="dtMaterialDesignExample" class="table table-striped dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="dtMaterialDesignExample_info" style="width: 100%;">
                         <thead>
                             <tr role="row">
+                                <th class="th-sm sorting_asc">ID
+                                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                                </th>
                                 <th class="th-sm sorting_asc">From
                                     <i class="fa fa-sort float-right" aria-hidden="true"></i>
                                 </th>
@@ -254,30 +257,22 @@
 
                             for ($i=0; $i<count($prices); $i++){
                                 $price = $prices[$i];
-                                if ($i % 2 == 0){
-                                    echo '
-                                    <tr role="row" class="odd">
+                                if ($i % 2 == 0){ echo '<tr role="row" class="odd">'; } 
+                                else{ echo '<tr role="row" class="even">'; }
+                                echo '
+                                    <td> <a href="'.site_url('price/edit_price/'.$price['start_from'].'/'.$price['finish_to']).'"> '.($i + 1).'</a></td>                                    
                                     <td class="sorting_1"> <a href="'.site_url('place/detail/'.$price['start_from']).'"> '.$places[$price['start_from']].' </a> </td>
                                     <td> <a href="'.site_url('place/detail/'.$price['finish_to']).'"> '.$places[$price['finish_to']].' </a> </td>
                                     <td>'.$price['amount'].'</td>                                    
                                     </tr>
                                     ';
-                                } 
-                                else{
-                                    echo '
-                                    <tr role="row" class="even">
-                                    <td class="sorting_1"> <a href="'.site_url('place/detail/'.$price['start_from']).'"> '.$places[$price['start_from']].' </a> </td>
-                                    <td> <a href="'.site_url('place/detail/'.$price['finish_to']).'"> '.$places[$price['finish_to']].' </a> </td>                
-                                    <td>'.$price['amount'].'</td>                                    
-                                    </tr>
-                                    ';
-                                }
                             }
                             ?>                                
                         </tbody>
                         
                         <tfoot>
-                            <tr><th rowspan="1" colspan="1">From
+                            <tr><th rowspan="1" colspan="1">ID
+                            <th rowspan="1" colspan="1">From
                             </th><th rowspan="1" colspan="1">To                            
                             </th><th rowspan="1" colspan="1">Price
                             </th></tr>

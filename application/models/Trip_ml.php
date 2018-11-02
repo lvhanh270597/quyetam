@@ -60,25 +60,22 @@ class Trip_ml extends Trip_template
 
 
 		$price = $this->input->post('price');
-		$price = get_price($price);		
-		
-		if ($price === false){
-			return [
-				'status' => false,
-				'data' => get_message_error('Thất bại!<br>', 'Giá tiền phải là một con số!')
-			];
+		if ($price == 'free'){
+			$price = 0;
 		}
 		else{
-			$price2 = (int)$price;
-			if ($price2 < 0){
+			$price = $this->price_ml->get_price_from_and_to($check['data']['start_from'], $check['data']['finish_to']);
+			if (!$price){
 				return [
 					'status' => false,
-					'data' => get_message_error('Thất bại!<br>', 'Giá tiền phải lớn hơn 0!')
+					'data' => get_message_error('Thất bại!<br>', 'Tuyến đi chưa được cập nhật!')
 				];
 			}
+			else{
+				$price = $price['amount'];
+			}
 		}
-
-		$price = round($price, -3);
+		
 
 		$data = [
 			'created' => $created, 
