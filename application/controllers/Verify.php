@@ -11,7 +11,7 @@ class Verify extends CI_Controller {
     public function __construct(){
         parent::__construct();
 
-        $this->load->model(array('verify_ml'));        
+        $this->load->model(array('verify_trip_ml'));        
         $this->places = $this->place_ml->get_all();
         $this->map = [];
         foreach ($this->places as $place){
@@ -53,8 +53,9 @@ class Verify extends CI_Controller {
         $data = [
             'info' => $info,
             'message' => $message,
-            'status' => $status,          
+            'status' => $status,                      
         ];
+
         display('verify', $data);
     }
 
@@ -83,6 +84,16 @@ class Verify extends CI_Controller {
             }
         }        
 
+<<<<<<< HEAD
+        if ($dcard['status'] == 'Not yet'){
+            if(!empty($_FILES['dcard']['name'])){            
+                $this->verify_dcard();                
+                $ok = true;
+            }
+        }
+
+=======
+>>>>>>> 05fe0734cdebdb460874b5672c045a0d9b7249dd
         if ($scard['status'] == 'Not yet'){
             if(!empty($_FILES['scard']['name'])){   
                 $this->verify_scard();
@@ -94,9 +105,139 @@ class Verify extends CI_Controller {
             redirect('verify');
         }
         else{
-            redirect('verify/success');
+            
+            //redirect('verify/success');
         }
+    }    
+
+    public function verify_scard(){
+        // push file name to database
+        // save image 
+        $file_name = $this->save_img('scard');
+        if ($this->session->flashdata('scard')){
+            return ;
+        }
+        $content = $file_name;
+        $from_user = $this->session->userdata('username');
+        $type = 'student card';
+        $status = 'Đang chờ';
+        $data = [
+            'from_user' => $from_user,
+            'status' => $status,
+            'type' => $type,
+            'content' => $content
+        ];
+        if ($this->verify_ml->check_exist($from_user, $type)){
+            return ;
+        }
+        if ($this->verify_ml->add_into($data)){
+            // Gửi thông báo là check email
+            $notify = [
+                'to_user' => $from_user,
+                'time' => get_current_time(),
+                'content' => 'Student card của bạn đã được gửi đi. Vui lòng chờ admin xác thực.',
+                'type_noti' => 'verify',
+                'where_noti' => ''
+            ];
+            // Gửi thông báo
+            $this->notify_ml->add_trigger($notify);
+        }        
     }
+
+    public function verify_dcard(){
+        
+        // push file name to database
+        // save image 
+        $file_name = $this->save_img('dcard');
+        if ($this->session->flashdata('dcard')){
+            return ;
+        }
+        $content = $file_name;
+        $from_user = $this->session->userdata('username');
+        $type = 'driver card';
+        $status = 'Pending';
+        $data = [
+            'from_user' => $from_user,
+            'status' => $status,
+            'type' => $type,
+            'content' => $content
+        ];
+        if ($this->verify_ml->check_exist($from_user, $type)){
+            return ;
+        }
+        if ($this->verify_ml->add_into($data)){
+            $notify = [
+                'to_user' => $from_user,
+                'time' => get_current_time(),
+                'content' => 'Bằng lái xe của bạn đang được gửi đi. Vui lòng chờ admin xác thực.',
+                'type_noti' => 'verify',
+                'where_noti' => ''
+            ];
+            // Gửi thông báo
+            $this->notify_ml->add_trigger($notify);
+        }        
+    }
+
+    public function verify_cmnd(){
+         // push file name to database
+        // save image 
+        $file_name = $this->save_img('cmnd');
+        if ($this->session->flashdata('cmnd')){
+            return ;
+        }
+        $content = $file_name;
+        $from_user = $this->session->userdata('username');
+        $type = 'cmnd card';
+        $status = 'Pending';
+        $data = [
+            'from_user' => $from_user,
+            'status' => $status,
+            'type' => $type,
+            'content' => $content
+        ];
+        if ($this->verify_ml->check_exist($from_user, $type)){
+            return ;
+        }
+        if ($this->verify_ml->add_into($data)){
+            $notify = [
+                'to_user' => $from_user,
+                'time' => get_current_time(),
+                'content' => 'Giấy chứng minh nhân dân của bạn đã được gửi. Vui lòng chờ admin xác thực.',
+                'type_noti' => 'verify',
+                'where_noti' => ''
+            ];
+            // Gửi thông báo
+            $this->notify_ml->add_trigger($notify);
+        }        
+        return [
+            'status' => true            
+        ];
+    }
+    //upload an image to server
+	public function save_img($object){
+		//choose a directory for product or customer images
+		$directory = './assets/images/uploads/users/'.$object.'/';
+		//image upload configuration
+		$upload_path = $directory;
+		$config = array(
+			'upload_path'   => $upload_path,
+			'allowed_types' => 'gif|jpg|jpeg|png|bmp|svg',
+			'max_size'      => 0,
+			'overwrite'     => TRUE,
+			'file_name'     => preg_replace('/[^A-Za-z0-9.-]/', "", $_FILES[$object]['name'])
+		);
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);        
+		//set a message in case of failure
+		if ( ! $this->upload->do_upload($object)){
+			$this->session->set_flashdata($object, true);
+		}		
+		else{
+            $data = array('upload_data' => $this->upload->data());            
+        }        
+        return $config['file_name'];
+    }
+
 
     public function verify_mail($username, $email){
         $uni = check_email($email);
@@ -161,8 +302,13 @@ class Verify extends CI_Controller {
         }
         return true;
         //        
+<<<<<<< HEAD
+    }
+       
+=======
     }    
 
+>>>>>>> 05fe0734cdebdb460874b5672c045a0d9b7249dd
     function sendMail($id, $hash, $email){                   
         require_once "./vendor/autoload.php";
         //PHPMailer Object
@@ -225,6 +371,8 @@ class Verify extends CI_Controller {
         }
     }
 
+<<<<<<< HEAD
+=======
     public function verify_scard(){
         // push file name to database
         // save image 
@@ -327,6 +475,7 @@ class Verify extends CI_Controller {
     }
 
 
+>>>>>>> 05fe0734cdebdb460874b5672c045a0d9b7249dd
     public function trip($id){
         $error = '';                
         $success = '';
@@ -388,46 +537,12 @@ class Verify extends CI_Controller {
         $this->user_ml->set_attr($owner_id, 'balance', $balance_owner);        
     }
 
-    //upload an image to server
-	public function save_img($object){
-		//choose a directory for product or customer images
-		if($object == 'scard'){
-			$directory = './assets/images/uploads/users/scard/';
-		} else if($object == 'cmnd') {
-			$directory = './assets/images/uploads/users/cmnd/';
-		} else if ($object =='dcard') {
-            $directory = './assets/images/uploads/users/dcard/';
-        }		
-		//image upload configuration
-		$upload_path = $directory;
-		$config = array(
-			'upload_path'   => $upload_path,
-			'allowed_types' => 'gif|jpg|jpeg|png|bmp|svg',
-			'max_size'      => 0,
-			'overwrite'     => TRUE,
-			'file_name'     => preg_replace('/[^A-Za-z0-9.-]/', "", $_FILES[$object]['name'])
-		);
-		$this->load->library('upload', $config);
-		//set a message in case of failure
-		if ( ! $this->upload->do_upload($object))
-		{
-			$this->session->set_flashdata($object, true);
-		}
-		//success
-		else
-		{
-			$data = array('upload_data' => $this->upload->data());
-        }
-        
-        return $config['file_name'];
-
-    }
     
     public function admin(){
         if (!$this->session->userdata('admin')){
             redirect('admin/login');
         }
-        $all_verify = $this->verify_ml->get_all();
+        $all_verify = $this->verify_ml->get_not_yet();
         $data = ['all' => $all_verify, 'places' => $this->map, 'notification' => $this->notification];        
         display('verify_admin', $data);    
     }
@@ -474,7 +589,55 @@ class Verify extends CI_Controller {
             'content' => 'Đối với email, bạn sẽ nhận được tin nhắn xác thực, bạn vui lòng mở email lên và click vào link xác thực <br>
             Còn các loại hình khác, admin sẽ nhanh chóng xem xét thông tin bạn gửi. Và phản hồi sớm nhất có thể. <br>
             '.$success.$errors
-        ];
+        ];        
         display('action_info', $data);
     }  
+
+    public function _trip($trip_id){
+        $username = $this->session->userdata('username');
+
+        $trip = $this->trip_ml->get_by_primary($trip_id);    
+        
+        if ($trip['guess'] == null){
+            redirect('page_not_found');
+        }
+
+        if ($username != $trip['owner'] && $username != $trip['guess']){
+            redirect('page_not_found');
+        }            
+
+        $fee = $trip['price'] * 0.2; 
+        if ($this->input->post('yes')){            
+            if ($username == $trip['owner']){
+                $this->user_ml->set_attr($trip['owner'], 'balance', $owner['balance'] - $fee);               
+                $this->trip_ml->set_attr($trip_id, 'success', true);
+            }
+            $sql = [
+                'from_user' => $username,
+                'trip_id' => $trip_id,
+                'created' => get_current_time(),
+                'content' => 'yes'
+            ];
+            $this->verify_trip_ml->add_into($sql);
+        }
+
+        if ($this->input->post('no')){
+            $sql = [
+                'from_user' => $username,
+                'trip_id' => $trip_id,
+                'created' => get_current_time(),
+                'content' => 'no'
+            ];
+            $this->verify_trip_ml->add_into($sql);
+        }
+        redirect('verify/thanks');
+    }
+
+    public function thanks(){
+        $data = [
+            'title' => 'Cám ơn',
+            'content' => 'Cám ơn bạn đã gửi lời xác thực. Bấm vào <a href="'.base_url().'"> đây </a> để quay về home'
+        ];
+        display('action_info', $data);
+    }
 }

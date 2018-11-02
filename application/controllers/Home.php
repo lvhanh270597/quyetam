@@ -74,6 +74,14 @@ class Home extends CI_Controller {
         {
             echo "Message has been sent successfully";
         }
-    }        
+    }     
+
+    function make_notification_for_trips(){
+        $all_trips = $this->trip_ml->get_success_false();
+        foreach ($all_trips as $trip){
+            $this->trip_ml->set_attr($trip['id'], 'success', true);
+        }
+        
+    }
 
 }

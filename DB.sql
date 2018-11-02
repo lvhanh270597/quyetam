@@ -161,5 +161,15 @@ CREATE TABLE matched (
 	FOREIGN KEY (user2) REFERENCES user(username)
 );
 
+CREATE TABLE verify_trip(
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	trip_id INT(6) UNSIGNED NOT NULL,
+	from_user VARCHAR(30) NOT NULL,
+	created DATETIME NOT NULL,
+	content VARCHAR(10) NOT NULL,
+	FOREIGN KEY (from_user) REFERENCES user(username),
+	FOREIGN KEY (trip_id) REFERENCES trip(id)
+);
+
 ALTER TABLE user ADD status DATETIME;
 ALTER TABLE user ADD tai_xe BOOLEAN;

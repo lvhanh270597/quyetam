@@ -52,4 +52,10 @@ class Verify_ml extends Quickaccess
         $all = $this->db->get_where($this->db_table, ['from_user' => $user, 'status' => 'OK']);
         return $all->num_rows();
     }    
+
+    public function get_not_yet(){
+        $where = '(status <> "OK")';
+        $dataset = $this->db->get_where($this->db_table, $where);
+        return $dataset->result_array();        
+    }
 }
