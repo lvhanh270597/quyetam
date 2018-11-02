@@ -427,23 +427,32 @@ class Verify extends CI_Controller {
         }
         $all_verify = $this->verify_ml->get_not_yet();
         $data = ['all' => $all_verify, 'places' => $this->map, 'notification' => $this->notification];        
-        display('verify_admin', $data);    
+        $this->load->view('public/verify_admin', $data);    
     }
 
-    public function accept($id){
+    public function admin_process(){
         if (!$this->session->userdata('admin')){
             redirect('admin/login');
         }
-        $this->verify_ml->set_attr($id, 'status', 'OK');
-        redirect('verify/admin');
-    }
-
-    public function deny($id){
-        if (!$this->session->userdata('admin')){
-            redirect('admin/login');
+        $all_verify = $this->verify_ml->get_not_yet();        
+        if ($this->input->post('accept')){            
+            foreach ($all_verify as $one){
+                $id = $one['id'];
+                if ($this->input->post('a'.$id)){                
+                    $this->verify_ml->set_attr($id, 'status', 'OK');
+                    echo 'Accept verification '.$id.'-th successfully!</br>';
+                }            
+            }
         }
-        $this->verify_ml->delete($id);
-        redirect('verify/admin');
+        else{
+            foreach ($all_verify as $one){
+                $id = $one['id'];
+                if ($this->input->post('a'.$id)){                
+                    $this->verify_ml->delete($id);
+                    echo 'Reject verification '.$id.'-th successfully!</br>';
+                }            
+            }
+        }        
     }
 
     public function success(){
