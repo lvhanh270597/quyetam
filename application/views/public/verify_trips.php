@@ -9,9 +9,9 @@
 <!-- Card -->
 <div class="container">        
         <?php
-        $i = 0;
+        $i = 2;
         foreach ($trips as $trip){
-            if ($i % 2 == 0){
+            if ($i == 2){
                 echo '<div class="row">';
             }                        
             $place = $this->place_ml->get_by_primary($trip['finish_to']);                                    
@@ -40,15 +40,18 @@
             </div>
         </div>
     <!-- Card -->';
-                    
-            if ($i % 2 == 1){
-                echo '</div>';
-            }             
             
-            $i++;
+            $i--;
+            if ($i == 0){
+                echo '</div>';
+                $i = 2;
+            }                         
+        }
+        if ($i == 1){
+            echo '</div>';
         }
 
-        if ($i == 0){
+        if (count($trips) > 0){
             echo '<div class="fuckfuck">
             </div>
             <div class="container">
