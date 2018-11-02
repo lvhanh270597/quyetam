@@ -32,7 +32,7 @@
                     <!-- Title -->
                     <h4 class="card-title">Card title</h4>
                     <!-- Text -->
-                    <p class="card-text">Xin xác thực chuyến đi <a href=""> này </a> có thành công không?</p>
+                    <p class="card-text">Xin xác thực chuyến đi <a href="'.site_url('trip/detail/'.$trip['id']).'"> này </a> có thành công không?</p>
                     <!-- Button -->
                     <a href="'.site_url('verify/yes/'.$trip['id']).'" class="btn btn-primary">Có</a>
                     <a href="'.site_url('verify/no/'.$trip['id']).'" class="btn btn-primary">Không</a>
