@@ -299,13 +299,8 @@ class Verify extends CI_Controller {
         }
         return true;
         //        
-<<<<<<< HEAD
     }
        
-=======
-    }    
-
->>>>>>> 05fe0734cdebdb460874b5672c045a0d9b7249dd
     function sendMail($id, $hash, $email){                   
         require_once "./vendor/autoload.php";
         //PHPMailer Object
@@ -368,111 +363,6 @@ class Verify extends CI_Controller {
         }
     }
 
-<<<<<<< HEAD
-=======
-    public function verify_scard(){
-        // push file name to database
-        // save image 
-        $file_name = $this->save_img('scard');
-        if ($this->session->flashdata('scard')){
-            return ;
-        }
-        $content = $file_name;
-        $from_user = $this->session->userdata('username');
-        $type = 'student card';
-        $status = 'Đang chờ';
-        $data = [
-            'from_user' => $from_user,
-            'status' => $status,
-            'type' => $type,
-            'content' => $content
-        ];
-        if ($this->verify_ml->check_exist($from_user, $type)){
-            return ;
-        }
-        if ($this->verify_ml->add_into($data)){
-            // Gửi thông báo là check email
-            $notify = [
-                'to_user' => $from_user,
-                'time' => get_current_time(),
-                'content' => 'Student card của bạn đã được gửi đi. Vui lòng chờ admin xác thực.',
-                'type_noti' => 'verify',
-                'where_noti' => ''
-            ];
-            // Gửi thông báo
-            $this->notify_ml->add_trigger($notify);
-        }        
-    }
-
-    public function verify_dcard(){
-        
-        // push file name to database
-        // save image 
-        $file_name = $this->save_img('dcard');
-        if ($this->session->flashdata('dcard')){
-            return ;
-        }
-        $content = $file_name;
-        $from_user = $this->session->userdata('username');
-        $type = 'driver card';
-        $status = 'Pending';
-        $data = [
-            'from_user' => $from_user,
-            'status' => $status,
-            'type' => $type,
-            'content' => $content
-        ];
-        if ($this->verify_ml->check_exist($from_user, $type)){
-            return ;
-        }
-        if ($this->verify_ml->add_into($data)){
-            $notify = [
-                'to_user' => $from_user,
-                'time' => get_current_time(),
-                'content' => 'Bằng lái xe của bạn đang được gửi đi. Vui lòng chờ admin xác thực.',
-                'type_noti' => 'verify',
-                'where_noti' => ''
-            ];
-            // Gửi thông báo
-            $this->notify_ml->add_trigger($notify);
-        }        
-    }
-
-    public function verify_cmnd(){
-         // push file name to database
-        // save image 
-        $file_name = $this->save_img('cmnd');
-        if ($this->session->flashdata('cmnd')){
-            return ;
-        }
-        $content = $file_name;
-        $from_user = $this->session->userdata('username');
-        $type = 'cmnd card';
-        $status = 'Pending';
-        $data = [
-            'from_user' => $from_user,
-            'status' => $status,
-            'type' => $type,
-            'content' => $content
-        ];
-        if ($this->verify_ml->check_exist($from_user, $type)){
-            return ;
-        }
-        if ($this->verify_ml->add_into($data)){
-            $notify = [
-                'to_user' => $from_user,
-                'time' => get_current_time(),
-                'content' => 'Giấy chứng minh nhân dân của bạn đã được gửi. Vui lòng chờ admin xác thực.',
-                'type_noti' => 'verify',
-                'where_noti' => ''
-            ];
-            // Gửi thông báo
-            $this->notify_ml->add_trigger($notify);
-        }                
-    }
-
-
->>>>>>> 05fe0734cdebdb460874b5672c045a0d9b7249dd
     public function trip($id){
         $error = '';                
         $success = '';
