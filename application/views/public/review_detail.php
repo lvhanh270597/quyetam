@@ -97,9 +97,7 @@ Licensed under MIT
                             <!-- /.Main Container -->
                             <div class="container">
                                 <!-- Grid row -->
-                                <div class="row">
-                                    <div class="container">                                
-                                        <div class="row">
+                                <div class="row">                                    
                                             <div class="col-md-12">
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs md-tabs nav-justified cyan" role="tablist">
@@ -184,9 +182,7 @@ Licensed under MIT
                                         <!-- Tab panels -->
                                     </div>
                                     <!-- Card -->                    
-                                </div>
-                            </div>            
-                        </div>            
+                                </div>                            
                                               
                 </div>                                                             
 
