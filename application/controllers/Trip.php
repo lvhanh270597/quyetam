@@ -383,8 +383,7 @@ class Trip extends CI_Controller {
         ];
         // Gửi thông báo
         $this->notify_ml->add_trigger($notify);
-        // Xác nhận là người dùng guess, đã được thêm vào chuyến đi
-        $this->trip_ml->push_to_trip($trip_id, $request['guess_id'], '');
+        // Xác nhận là người dùng guess, đã được thêm vào chuyến đi        
         $this->trip_ml->set_attr($trip_id, 'guess', $request['guess_id']);                    
         // Xóa tất cả request của chuyến đi này      
         $this->request_ml->delete_all_from_trip($trip_id);    
