@@ -49,30 +49,15 @@ class Home extends CI_Controller {
     }
 
     public function send(){                   
-        require_once "./vendor/autoload.php";
-        //PHPMailer Object
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
-        $mail->isSMTP();
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'ssl';
-        $mail->Host = 'smtp.gmail.com';
-        $mail->Port = '465';
-        $mail->isHTML();
-        $mail->Username ='easyhere.dh@gmail.com';
-        $mail->Password = 'EasyHere@2018';
-        $mail->From = 'admin@together.easyhere.cf';
-        $mail->FromName = 'Hanh';
-        $mail->Subject = 'Hello World';
-        $mail->Body = 'A Test email';
-        $mail->AddAddress('lvhanh.270597@gmail.com');
-
-        if(!$mail->send()) 
-        {
-            echo "Mailer Error: " . $mail->ErrorInfo;
-        } 
-        else 
-        {
-            echo "Message has been sent successfully";
+        $to_email = $email;
+        $subject = 'Testing PHP Mail';
+        $message = 'This mail is sent using the PHP mail function';
+        $headers = 'From: noreply @ company . com';
+        if (mail($to_email,$subject,$message,$headers)){
+            echo 'OK';
+        }
+        else{
+            echo "Fuck";
         }
     }     
 
