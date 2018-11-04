@@ -299,17 +299,17 @@ class Verify extends CI_Controller {
         $mail->isSMTP();
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'tls';
-        $mail->Host = 'smtp.mandrillapp.com';
+        $mail->Host = 'smtp.zoho.com';
         $mail->Port = '587';
         $mail->isHTML();
-        $mail->Username ='easyhere.dh@gmail.com';
-        $mail->Password = 'EasyHere@2018';
-        $mail->From = 'admin@together.easyhere.cf';
+        $mail->Username ='easyhere@zoho.com';
+        $mail->Password = 'Xfam0usx_';
+        $mail->From = 'easyhere@zoho.com';
         $mail->FromName = 'noreply';
         $mail->Subject = 'EasyHere - Verification student email';
-        $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
+        $mail->Body = 'Thanks for verification student email here!
 			
-		Hãy click vào link dưới để xác thực email sinh viên của bạn!
+		Please click the below link to verification your email.
 		'.base_url('verify/active/'.$id.'/'.$hash).'
         '; // Our message above including the link
         $mail->AddAddress($email);
