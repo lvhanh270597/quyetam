@@ -49,7 +49,7 @@ class Home extends CI_Controller {
     }
 
     public function send(){                   
-        $to_email = $email;
+        $to_email = "lvhanh.270597@gmail.com";
         $subject = 'Testing PHP Mail';
         $message = 'This mail is sent using the PHP mail function';
         $headers = 'From: noreply @ company . com';
