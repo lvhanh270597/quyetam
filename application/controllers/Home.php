@@ -57,9 +57,9 @@ class Home extends CI_Controller {
         <p>Your password is: <b>springfield</b></p>
         ";
         $from = "ian@example.com";
-        $headers = "MIME-Version: 1.0" . "\n";
-        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\n";
-        $headers .= "From: $from" . "\n";
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+        $headers .= "From: $from" . "\r\n";
 
         // Send email
         if (mail($to,$subject,$message,$headers)){
