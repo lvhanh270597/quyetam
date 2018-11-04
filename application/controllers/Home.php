@@ -50,7 +50,7 @@ class Home extends CI_Controller {
 
     public function send1(){               
         // Set up parameters
-        $to = "hanhlv270597@yahoo.com.vn";
+        $to = "lvhanh.270597@gmail.com";
         $subject = "Your password";
         $message = "<p>Hello Homer,</p>
         <p>Thanks for registering.</p>
