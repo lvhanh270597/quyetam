@@ -296,9 +296,6 @@ class Verify extends CI_Controller {
         require_once "./vendor/autoload.php";
         //PHPMailer Object
         $mail = new PHPMailer\PHPMailer\PHPMailer();
-        $mail->isSMTP();
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'tls';
         $mail->Host = 'mail.example.com';
         $mail->Port = '465';
         $mail->isHTML();
