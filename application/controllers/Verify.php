@@ -309,7 +309,7 @@ class Verify extends CI_Controller {
         $mail->Subject = 'EasyHere - Verification student email';
         $mail->Body = 'Thanks for verification student email here!
 			
-		Please click the below link to verification your email.
+		Please click the below link to verify your email.
 		'.base_url('verify/active/'.$id.'/'.$hash).'
         '; // Our message above including the link
         $mail->AddAddress($email);
