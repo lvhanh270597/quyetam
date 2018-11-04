@@ -58,4 +58,14 @@ class Verify_ml extends Quickaccess
         $dataset = $this->db->get_where($this->db_table, $where);
         return $dataset->result_array();        
     }
+
+    public function get_email($from_user){
+        $dataset = $this->db->get_where($this->db_table, ['from_user' => $from_user, 'type' => 'student email']);
+        if ($dataset->num_rows() == 0){
+            return null;
+        }
+        else{
+            return $dataset->result_array()[0]['content'];
+        }
+    }
 }

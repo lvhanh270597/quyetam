@@ -165,6 +165,7 @@ class Trip extends CI_Controller {
                     'where_noti' => $trip_id
                 ];
                 $this->notify_ml->add_trigger($notify);
+                $this->sendMessage($trip['owner'], hashCode($user_guess['full_name']).' has sent a request to your trip '.$trip['id']);
             } else {
                 $message = get_message_error('Lỗi! <br>', 'Gửi yêu cầu thất bại!');
             }         
@@ -372,6 +373,8 @@ class Trip extends CI_Controller {
         ];
         // Gửi thông báo
         $this->notify_ml->add_trigger($notify);
+        // Send message
+        $this->sendMessage($request['guess_id'], hashCode($user['full_name']).' has accepted your request in trip '.$trip_id);
         // Tạo thông báo        
         $trip = $this->trip_ml->get_by_primary($trip_id);        
         $notify = [
@@ -475,8 +478,9 @@ class Trip extends CI_Controller {
                     'where_noti' => $insert_id
                 ];
                 $this->notify_ml->add_trigger($notify);
-                // remove need trip                    
-                redirect('trip/detail/'.$insert_id);                          
+                // send message
+                $this->sendMessage($data_sql['guess'], 'Your asked trip was opened! Please check to contact as soon as posible!^^');
+                redirect('trip/show_open_this_trip/'.$insert_id);                          
             }
             else{
                 $message = get_message_error('Lỗi!<br>', 'Đây là hình thức thanh toán trực tiếp. Nhưng tài khoản của bạn không đủ.');
@@ -596,4 +600,41 @@ class Trip extends CI_Controller {
         display('action_info', $data);
     }
 
+    public function sendMessage($username, $content){
+        $email = $this->verify_ml->get_email($username);
+        if ($email == null){
+            return ;
+        }
+        require_once "./vendor/autoload.php";
+        //PHPMailer Object
+        $mail = new PHPMailer\PHPMailer\PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'tls';
+        $mail->Host = 'smtp.zoho.com';
+        $mail->Port = '587';
+        $mail->isHTML();
+        $mail->Username ='easyhere@zoho.com';
+        $mail->Password = 'Xfam0usx_';
+        $mail->From = 'easyhere@zoho.com';
+        $mail->FromName = 'noreply';
+        $mail->Subject = 'EasyHere - Notification';
+        $mail->Body = $content;
+        // Our message above including the link
+        $mail->AddAddress($email);
+        $mail->send();
+    }
+
+    public function show_open_this_trip($trip_id){
+        $trip = $this->trip_ml->get_by_primary($trip_id);
+        if ($trip == null){
+            redirect('page_not_found');
+        }
+        $fee = $trip['price'] * 0.2;
+        $data = [
+            'title' => 'Bạn đã đồng ý mở chuyến đi này',
+            'content' => 'Chúng tôi đã trừ vào tài khoản của bạn phí cho chuyến đi này là '.$fee.'d. Bấm vào <a href="'.site_url('trip/detail/'.$trip_id).'"> đây </a> để  xem chuyến đi bạn vừa tạo.'  
+        ];
+        display('action_info', $data);
+    }
 }
