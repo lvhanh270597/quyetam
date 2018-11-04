@@ -302,9 +302,9 @@ class Verify extends CI_Controller {
         $mail->Host = 'mail.example.com';
         $mail->Port = '465';
         $mail->isHTML();
-        $mail->Username ='root@example.com';
+        $mail->Username ='root';
         $mail->Password = 'Xfam0usx';
-        $mail->From = 'admin@example.com';
+        $mail->From = 'root@example.com';
         $mail->FromName = 'noreply';
         $mail->Subject = 'EasyHere - Verification student email';
         $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
