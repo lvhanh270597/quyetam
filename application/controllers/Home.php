@@ -48,7 +48,10 @@ class Home extends CI_Controller {
         display('pnf', []);
     }
 
-    public function send(){                   
+    public function send(){       
+        
+        echo phpinfo();
+        /*    
         $to_email = "lvhanh.270597@gmail.com";
         $subject = 'Testing PHP Mail';
         $message = 'This mail is sent using the PHP mail function';
@@ -58,7 +61,7 @@ class Home extends CI_Controller {
         }
         else{
             echo "Fuck";
-        }
+        }*/
     }     
 
     function make_notification_for_trips(){
