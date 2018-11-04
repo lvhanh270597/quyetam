@@ -296,12 +296,18 @@ class Verify extends CI_Controller {
         require_once "./vendor/autoload.php";
         //PHPMailer Object
         $mail = new PHPMailer\PHPMailer\PHPMailer();
+        //$mail->isSMTP();
+        //$mail->SMTPAuth = true;
+        //$mail->SMTPSecure = 'tls';
+        //$mail->Host = 'smtp.mandrillapp.com';
         $mail->Host = 'mail.example.com';
         $mail->Port = '465';
         $mail->isHTML();
-        $mail->Username ='root';
+        //$mail->Username ='easyhere.dh@gmail.com';
+        $mail->Username ='root@example.com';
+        //$mail->Password = 'EasyHere@2018';
         $mail->Password = 'Xfam0usx';
-        $mail->From = 'root@example.com';
+        $mail->From = 'admin@example';
         $mail->FromName = 'noreply';
         $mail->Subject = 'EasyHere - Verification student email';
         $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
@@ -310,7 +316,7 @@ class Verify extends CI_Controller {
 		'.base_url('verify/active/'.$id.'/'.$hash).'
         '; // Our message above including the link
         $mail->AddAddress($email);
-    
+        $mail->send();
     }
 
     public function active($id, $hash){
