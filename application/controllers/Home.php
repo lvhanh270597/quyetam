@@ -93,6 +93,32 @@ class Home extends CI_Controller {
         }
     }     
 
+    public function send3(){
+        $email = "lvhanh.270597@gmail.com";
+        require_once "./vendor/autoload.php";
+        //PHPMailer Object
+        $mail = new PHPMailer\PHPMailer\PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'tls';
+        $mail->Host = 'smtp.zoho.com';
+        $mail->Port = '587';
+        $mail->isHTML();
+        $mail->Username ='lvhanh.270597@zoho.com';
+        $mail->Password = 'Xfam0usx_';
+        $mail->From = 'lvhanh.270597@zoho.com';
+        $mail->FromName = 'noreply';
+        $mail->Subject = 'EasyHere - Verification student email';
+        $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
+            
+        Hãy click vào link dưới để xác thực email sinh viên của bạn!
+        '.base_url('verify/active/'.$id.'/'.$hash).'
+        '; // Our message above including the link
+        $mail->AddAddress($email);
+        $mail->send();
+    
+    }
+
     function make_notification_for_trips(){
         $all_trips = $this->trip_ml->get_success_false();
         foreach ($all_trips as $trip){
