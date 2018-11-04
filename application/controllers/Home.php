@@ -48,20 +48,49 @@ class Home extends CI_Controller {
         display('pnf', []);
     }
 
-    public function send(){       
-        
-        echo phpinfo();
-        /*    
-        $to_email = "lvhanh.270597@gmail.com";
-        $subject = 'Testing PHP Mail';
-        $message = 'This mail is sent using the PHP mail function';
-        $headers = 'From: noreply @ company . com';
-        if (mail($to_email,$subject,$message,$headers)){
-            echo 'OK';
+    public function send1(){               
+        // Set up parameters
+        $to = "lvhanh.270597@gmail.com";
+        $subject = "Your password";
+        $message = "<p>Hello Homer,</p>
+        <p>Thanks for registering.</p>
+        <p>Your password is: <b>springfield</b></p>
+        ";
+        $from = "ian@example.com";
+        $headers = "MIME-Version: 1.0" . "\n";
+        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\n";
+        $headers .= "From: $from" . "\n";
+
+        // Send email
+        if (mail($to,$subject,$message,$headers)){
+            // Inform the user
+            echo "Thanks for registering! We have just sent you an email with your password.";
         }
         else{
-            echo "Fuck";
-        }*/
+            echo "FUCK";
+        }
+    }     
+    public function send2(){               
+        // Set up parameters
+        $to = "contact@together.easyhere.cf";
+        $subject = "Your password";
+        $message = "<p>Hello Homer,</p>
+        <p>Thanks for registering.</p>
+        <p>Your password is: <b>springfield</b></p>
+        ";
+        $from = "ian@example.com";
+        $headers = "MIME-Version: 1.0" . "\n";
+        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\n";
+        $headers .= "From: $from" . "\n";
+
+        // Send email
+        if (mail($to,$subject,$message,$headers)){
+            // Inform the user
+            echo "Thanks for registering! We have just sent you an email with your password.";
+        }
+        else{
+            echo "FUCK";
+        }
     }     
 
     function make_notification_for_trips(){
