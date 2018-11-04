@@ -56,7 +56,7 @@ class Home extends CI_Controller {
         <p>Thanks for registering.</p>
         <p>Your password is: <b>springfield</b></p>
         ";
-        $from = "ian@example.com";
+        $from = "contact@together.easyhere.cf";
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
         $headers .= "From: $from" . "\r\n";
