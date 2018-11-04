@@ -296,18 +296,15 @@ class Verify extends CI_Controller {
         require_once "./vendor/autoload.php";
         //PHPMailer Object
         $mail = new PHPMailer\PHPMailer\PHPMailer();
-        //$mail->isSMTP();
-        //$mail->SMTPAuth = true;
-        //$mail->SMTPSecure = 'tls';
-        //$mail->Host = 'smtp.mandrillapp.com';
-        $mail->Host = 'mail.example.com';
-        $mail->Port = '465';
+        $mail->isSMTP();
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'tls';
+        $mail->Host = 'smtp.mandrillapp.com';
+        $mail->Port = '587';
         $mail->isHTML();
-        //$mail->Username ='easyhere.dh@gmail.com';
-        $mail->Username ='root@example.com';
-        //$mail->Password = 'EasyHere@2018';
-        $mail->Password = 'Xfam0usx';
-        $mail->From = 'admin@example';
+        $mail->Username ='easyhere.dh@gmail.com';
+        $mail->Password = 'EasyHere@2018';
+        $mail->From = 'admin@together.easyhere.cf';
         $mail->FromName = 'noreply';
         $mail->Subject = 'EasyHere - Verification student email';
         $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
