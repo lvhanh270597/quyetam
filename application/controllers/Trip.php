@@ -165,7 +165,7 @@ class Trip extends CI_Controller {
                     'where_noti' => $trip_id
                 ];
                 $this->notify_ml->add_trigger($notify);
-                $this->sendMessage($trip['owner'], hashCode($user_guess['full_name']).' has sent a request to your trip '.$trip['id'].'\n Click <a href="'.site_url('trip/detail/'.$trip['id']).'"> here to view this request!');
+                $this->sendMessage($trip['owner'], hashCode($user_guess['full_name']).' has sent a request to your trip '.$trip['id'].'\n Click <a href="'.site_url('trip/detail/'.$trip['id']).'"> here </a> to view this request!');
             } else {
                 $message = get_message_error('Lỗi! <br>', 'Gửi yêu cầu thất bại!');
             }         
@@ -374,7 +374,7 @@ class Trip extends CI_Controller {
         // Gửi thông báo
         $this->notify_ml->add_trigger($notify);
         // Send message
-        $this->sendMessage($request['guess_id'], hashCode($user['full_name']).' has accepted your request in trip '.$trip_id.'\nClick <a href="'.site_url('trip/detail/'.$trip['id']).'"> here to view this trip!');
+        $this->sendMessage($request['guess_id'], hashCode($user['full_name']).' has accepted your request in trip '.$trip_id.'\nClick <a href="'.site_url('trip/detail/'.$trip['id']).'"> here </a> to view this trip!');
         // Tạo thông báo        
         $trip = $this->trip_ml->get_by_primary($trip_id);        
         $notify = [
@@ -479,7 +479,7 @@ class Trip extends CI_Controller {
                 ];
                 $this->notify_ml->add_trigger($notify);
                 // send message
-                $this->sendMessage($data_sql['guess'], 'Your asked trip was opened! Please check to contact as soon as posible!^^'.'\nClick <a href="'.site_url('trip/detail/'.$trip['id']).'"> here to view this trip!');
+                $this->sendMessage($data_sql['guess'], 'Your asked trip was opened! Please check to contact as soon as posible!^^'.'\nClick <a href="'.site_url('trip/detail/'.$trip['id']).'"> here </a> to view this trip!');
                 redirect('trip/show_open_this_trip/'.$insert_id);                          
             }
             else{
