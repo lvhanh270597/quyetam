@@ -293,37 +293,27 @@ class Verify extends CI_Controller {
     }
        
     function sendMail($id, $hash, $email){                   
-   /*     require_once "./vendor/autoload.php";
+        require_once "./vendor/autoload.php";
         //PHPMailer Object
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->isSMTP();
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'tls';
-        $mail->Host = 'smtp.gmail.com';
-        $mail->Port = '587';
+        $mail->Host = 'mail.example.com';
+        $mail->Port = '465';
         $mail->isHTML();
-        $mail->Username ='easyhere.dh@gmail.com';
-        $mail->Password = 'EasyHere@2018';
-        $mail->From = 'admin@together.easyhere.cf';
+        $mail->Username ='root@example.com';
+        $mail->Password = 'Xfam0usx';
+        $mail->From = 'admin@example.com';
         $mail->FromName = 'noreply';
         $mail->Subject = 'EasyHere - Verification student email';
         $mail->Body = 'Cám ơn bạn đã xác thực tại EasyHere!
 			
-		Hãy click vào linh dưới để xác thực email sinh viên của bạn!
+		Hãy click vào link dưới để xác thực email sinh viên của bạn!
 		'.base_url('verify/active/'.$id.'/'.$hash).'
         '; // Our message above including the link
         $mail->AddAddress($email);
-        $mail->send();        
-*/
-        $to_email = $email;
-        $subject = 'Testing PHP Mail';
-        $message = 'This mail is sent using the PHP mail function';
-        $headers = 'From: noreply @ company . com'."\n";
-        if(mail($to_email,$subject,$message,$headers)){
-            echo "Thank you for using our mail form";
-        }else{
-            echo "Mail sending failed."; 
-        }        
+    
     }
 
     public function active($id, $hash){
