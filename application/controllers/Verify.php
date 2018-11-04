@@ -262,13 +262,9 @@ class Verify extends CI_Controller {
             return ;
         }
         if ($this->verify_ml->add_into($data)){            
-            /*
-            Send mail
-            */            
+            /* Send mail */            
             $insert_id = $this->db->insert_id();
-            $this->sendMail($insert_id, $hash, $email);
-            //echo get_message_success('click '.base_url('verify/active/'.$insert_id.'/'.$hash));
-            /* */                        
+            $this->sendMail($insert_id, $hash, $email);    
             // Gửi thông báo là check email
             $notify = [
                 'to_user' => $username,
@@ -297,7 +293,7 @@ class Verify extends CI_Controller {
     }
        
     function sendMail($id, $hash, $email){                   
-        require_once "./vendor/autoload.php";
+   /*     require_once "./vendor/autoload.php";
         //PHPMailer Object
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->isSMTP();
@@ -318,13 +314,17 @@ class Verify extends CI_Controller {
         '; // Our message above including the link
         $mail->AddAddress($email);
         $mail->send();        
-/*
+*/
+        ini_set('display_errors',1);
         $to_email = $email;
         $subject = 'Testing PHP Mail';
         $message = 'This mail is sent using the PHP mail function';
-        $headers = 'From: noreply @ company . com';
-        mail($to_email,$subject,$message,$headers);
-*/
+        $headers = 'From: noreply @ company . com'."\r\n";
+        if(mail($to_email,$subject,$message,$headers)){
+            echo "Thank you for using our mail form";
+        }else{
+            echo "Mail sending failed."; 
+        }        
     }
 
     public function active($id, $hash){
