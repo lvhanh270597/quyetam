@@ -315,11 +315,10 @@ class Verify extends CI_Controller {
         $mail->AddAddress($email);
         $mail->send();        
 */
-        ini_set('display_errors',1);
         $to_email = $email;
         $subject = 'Testing PHP Mail';
         $message = 'This mail is sent using the PHP mail function';
-        $headers = 'From: noreply @ company . com'."\r\n";
+        $headers = 'From: noreply @ company . com'."\n";
         if(mail($to_email,$subject,$message,$headers)){
             echo "Thank you for using our mail form";
         }else{
