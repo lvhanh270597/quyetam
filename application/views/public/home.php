@@ -287,7 +287,7 @@
                             echo '<a class="page-link" href="'.site_url('pages/'.$i).'">'.$i.'</a> </li>';
                         }
                         ?>                        
-                        <li class="page-item <?php if ($index == $max) echo 'disabled'; ?>">
+                        <li class="page-item <?php if ($index >= $max) echo 'disabled'; ?>">
                         <a class="page-link" aria-label="Next" href="<?= site_url('pages/'.($index + 1)) ?>">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
