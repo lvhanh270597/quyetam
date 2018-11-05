@@ -263,9 +263,9 @@
                         </div>
                         <!-- Card -->                    
                     </div>
-                </div>
+                </div>                
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination pagination-circle pg-blue justify-content-center">
+                    <ul class="pagination pagination-circle pg-blue justify-content-center">                        
                         <li class="page-item <?php if ($index == 1) echo 'disabled'; ?>"><a class="page-link"  href="<?= site_url('pages/1') ?>">First</a></li>
                         <li class="page-item">
                         <a class="page-link <?php if ($index == 1) echo 'disabled'; ?>" aria-label="Previous"  href="<?= site_url('pages/'.($index - 1)) ?>">
@@ -293,7 +293,7 @@
                             <span class="sr-only">Next</span>
                         </a>
                         </li>
-                        <li class="page-item <?php if ($index == $max) echo 'disabled'; ?>"><a class="page-link" href="<?= site_url('pages/'.($max)) ?>">Last</a></li>
+                        <li class="page-item <?php if ($index >= $max) echo 'disabled'; ?>"><a class="page-link" href="<?= site_url('pages/'.($max)) ?>">Last</a></li>
                     </ul>
                 </nav>
                 <div class="alert alert-info">
