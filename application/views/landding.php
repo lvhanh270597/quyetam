@@ -184,7 +184,7 @@ EasyHere được tạo ra từ một ý tưởng đơn giản nhưng hiệu qu�
                     <div class="col-lg-6 dark-grey-text ml-lg-auto col-md-12 wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
 
                         <!--Description-->
-                        <p align="justify">Vì là đi xe chung nên giá thành của dịch vụ rất rẻ. Thậm chí đến mức người dùng có thể tự định giá.</p>
+                        <p align="justify">Vì là đi xe chung nên giá thành của dịch vụ rất rẻ.</p>
                         <p align="justify">EasyHere ra đời nhằm giải quyết các nhu cầu như: </p>
                         <ul>
                             <li>Nếu là các bạn có xe
