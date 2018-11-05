@@ -79,7 +79,7 @@
                             <a class="nav-link waves-effect waves-light" href="#info" data-offset="100">Hướng dẫn sử dụng</a>
                         </li>                        
                         <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light" data-toggle="modal" data-target="#modal-contact">Liên hệ</a>
+                            <a class="nav-link waves-effect waves-light" href="#contact" data-offset="100">Liên hệ</a>
                         </li>
                     </ul>
 
@@ -247,27 +247,27 @@ EasyHere được tạo ra từ một ý tưởng đơn giản nhưng hiệu qu�
 
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#panel31" role="tab">
-                                        <i class="fa fa-mortar-board fa-2x"></i>
+                                    <i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
                                         <br> Bước 1</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#panel32" role="tab">
-                                        <i class="fa fa-users fa-2x"></i>
+                                    <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
                                         <br> Bước 2</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#panel33" role="tab">
-                                        <i class="fa fa-bank fa-2x"></i>
+                                        <i class="fa fa-send fa-2x" aria-hidden="true"></i>
                                         <br> Bước 3</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#panel34" role="tab">
-                                        <i class="fa fa-home fa-2x"></i>
+                                        <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
                                         <br> Bước 4</a>
                                 </li>
                                  <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#panel35" role="tab">
-                                        <i class="fa fa-home fa-2x"></i>
+                                        <i class="fa fa-commenting fa-2x" aria-hidden="true"></i>
                                         <br> Bước 5</a>
                                 </li>
                             </ul>
@@ -298,10 +298,10 @@ EasyHere được tạo ra từ một ý tưởng đơn giản nhưng hiệu qu�
                                     <div class="col-lg-6 ml-lg-auto col-md-12 text-center text-md-left">
 
                                         <!--Title-->
-                                        <h4 class="mb-5">Tạo tài khoản</h4>
+                                        <h3 class="mb-5">Tạo tài khoản</h3>
 
                                         <!--Description-->
-                                        <p class="text-muted">Để vào được hệ thống bạn cần đăng nhập.<br> Và để đăng nhập được bạn cần tạo một tài khoản. <br>
+                                        <p>Để vào được hệ thống bạn cần đăng nhập.<br> Và để đăng nhập được bạn cần tạo một tài khoản. <br>
                                         Sau khi điền tất cả các thông tin xong. Bấm Sign Up.<br>
                                         Lưu ý: Username phải là:
                                             <ul>
@@ -340,11 +340,11 @@ EasyHere được tạo ra từ một ý tưởng đơn giản nhưng hiệu qu�
                                     <div class="col-lg-6 ml-lg-auto col-md-12 text-center text-md-left">
 
                                         <!--Title-->
-                                        <h4 class="mb-5">Đăng nhập vào hệ thống</h4>
+                                        <h3 class="mb-5">Đăng nhập vào hệ thống</h3>
 
                                         <!--Description-->
-                                        <p class="text-muted">Bạn nhập tên đăng nhập và mật khẩu của tài khoản mà bạn đã đăng kí vào các ô.
-Sau đó bấm Continue, nếu bạn chưa có tài khoản bấm Sign Up để trở lại bước 1.
+                                        <p>Bạn nhập tên đăng nhập và mật khẩu của tài khoản mà bạn đã đăng kí vào các ô.
+Sau đó bấm Continue, nếu bạn chưa có tài khoản bấm Sign Up để trở lại bước 1. <br>
 Bấm vào <a href="<?= base_url('login') ?>"> đây </a> để đăng nhập.
                                         </p>
 
@@ -383,10 +383,10 @@ Bấm vào <a href="<?= base_url('login') ?>"> đây </a> để đăng nhập.
                                     <div class="col-lg-6 ml-lg-auto col-md-12 text-center text-md-left">
 
                                         <!--Title-->
-                                        <h4 class="mb-5">Gửi yêu cầu và Mở một chuyến đi có sẵn</h4>
+                                        <h3 class="mb-5">Gửi yêu cầu và Mở một chuyến đi có sẵn</h3>
 
                                         <!--Description-->
-                                        <p class="text-muted">Sau khi đăng nhập xong. Bạn sẽ vào Trang chủ của trang web. Ở đây bạn thấy 2 tabs, 
+                                        <p>Sau khi đăng nhập xong. Bạn sẽ vào Trang chủ của trang web. Ở đây bạn thấy 2 tabs, 
                                         <ul>
                                             <li>Tab 1: Tất cả chyến đi đã có </li>
                                             <li>Tab 2: Các chuyến đi được yêu cầu </li>
@@ -438,10 +438,10 @@ Tại ô bình luận này, hai bạn có thể nói về địa điểm gặp g
                                     <div class="col-lg-6 ml-lg-auto col-md-12 text-center text-md-left">
 
                                         <!--Title-->
-                                        <h4 class="mb-5">Tạo chuyến đi hoặc Tạo yêu cầu</h4>
+                                        <h3 class="mb-5">Tạo chuyến đi hoặc Tạo yêu cầu</h3>
 
                                         <!--Description-->
-                                        <p class="text-muted">Nếu ở bước 3, bạn thấy không có chuyến đi nào phù hợp với mình. Thì ở bước này, bạn sẽ tạo một chuyến đi hoặc yêu cầu theo ý bạn.
+                                        <p>Nếu ở bước 3, bạn thấy không có chuyến đi nào phù hợp với mình. Thì ở bước này, bạn sẽ tạo một chuyến đi hoặc yêu cầu theo ý bạn.
 Bạn bấm vào hình chiếc xe máy (ở gốc trên phải màn hình máy tính, nếu điện thoại thì bạn bấm vào dấu "gạch ngang" để hiện thị ra chiếc xe máy). Khi bấm vào đó, bạn sẽ vào mục Các chuyến đi của tôi. Ở đây, bạn có hai sự lựa chọn:
                                         <ul>
                                             <li>Nếu bạn là chủ xe, và đang muốn kêu gọi người khác vào đi cùng, thì bạn sẽ tạo một chuyến đi.</li>
@@ -481,10 +481,10 @@ Sau khi bạn bấm vào nút Tạo mới, thì sẽ hiện ra một hộp tho�
                                     <div class="col-lg-6 ml-lg-auto col-md-12 text-center text-md-left">
 
                                         <!--Title-->
-                                        <h4 class="mb-5">Quan sát chuyến đi của mình</h4>
+                                        <h3 class="mb-5">Quan sát chuyến đi của mình</h3>
 
                                         <!--Description-->
-                                        <p class="text-muted">
+                                        <p>
                                         <ul>
                                             <li>Nếu bạn là chủ xe, hãy thường xuyên xem ai gửi yêu cầu và chấp nhận họ sớm nhất có thể nhé! </li>
                                             <li>Nếu bạn là khách, hãy thường xuyên quan sát yêu cầu của mình, xem người ta đã chấp nhận yêu cầu chưa. Hoặc có người nào mở chuyến đi của mình chưa. </li>
@@ -507,6 +507,9 @@ Khi các bạn đã được kết nối, hãy để lại thông tin ở ô bì
                 </div>
                 <!--First row-->
 
+            </section>
+            <hr>
+            <section id="contact" class="section mt-4 mb-2">            
             </section>
             <!--Projects section v.3-->
 
@@ -548,8 +551,8 @@ Khi các bạn đã được kết nối, hãy để lại thông tin ở ô bì
                     <!--Description-->
                     <p class="white-text mb-5"></p>
                     <!--Reservation button-->
-                    <a href="#!" class="btn btn-warning waves-effect waves-light">Đăng nhập</a>
-                    <a href="#!" class="btn btn-info waves-effect waves-light">Đăng kí</a>
+                    <a href="<?= site_url('login') ?>" class="btn btn-warning waves-effect waves-light">Đăng nhập</a>
+                    <a href="<?= site_url('register') ?>" class="btn btn-info waves-effect waves-light">Đăng kí</a>
 
                 </div>
                 <!--First column-->
