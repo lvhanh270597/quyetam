@@ -78,6 +78,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function show_cards(){
+		if (!$this->session->userdata('admin')) {
+			redirect('admin/login');
+		}
 		$cards = $this->card_ml->get_all();
 		$data = [
 			'cards' => $cards
