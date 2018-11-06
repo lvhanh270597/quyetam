@@ -258,7 +258,6 @@ class Trip extends CI_Controller {
             else{                                                                
                 $data_sql = $check['data'];                                                   
                 if ($this->needed_trip_ml->add_into($data_sql)){
-                    print_r($data_sql);                 
                     $insert_id = $this->db->insert_id();
                     $link = 'click vào link <a href="'.site_url('trip/edit_need/'.$insert_id).'"> này </a> để xem yêu cầu vừa tạo.';
                     $message = get_message_success('Bạn đã tạo tạo yêu cầu thành công!<br>', $link);                             
@@ -278,7 +277,7 @@ class Trip extends CI_Controller {
             redirect('login');
         }
         $username = $this->session->userdata('username');        
-        if ($this->verify_ml->count_verify($username) < 2){
+        if ($this->verify_ml->count_verify($username) < 1){
             redirect('trip/show_no_permission');
         }        
         
@@ -428,7 +427,7 @@ class Trip extends CI_Controller {
         }
 
         $username = $this->session->userdata('username');
-        if ($this->verify_ml->count_verify($username) < 2){
+        if ($this->verify_ml->count_verify($username) < 1){
             redirect('trip/show_no_permission');
         } 
 
@@ -594,8 +593,8 @@ class Trip extends CI_Controller {
 
     public function show_no_permission(){
         $data = [
-            'title' => 'Bạn chưa đủ quyền',
-            'content' => 'Bạn phải xác thực ít nhất 2 loại giấy tờ mới thực hiện được chức năng này. Bấm vào <a href="'.site_url('verify').'"> đây </a> để gửi giấy tờ xác thực.',  
+            'title' => 'Vì lí do an toàn',
+            'content' => 'Có lẽ bạn cần ít nhất một trong bốn loại giấy tờ xác thực để có thể thực hiện được chức năng này. Mời bạn bấm vào <a href="'.site_url('verify').'"> đây </a> để gửi giấy tờ xác thực.',  
         ];
         display('action_info', $data);
     }

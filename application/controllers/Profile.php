@@ -100,7 +100,6 @@ class Profile extends CI_Controller {
 			$code = preg_replace("/[^0-9]/", '', $code);
 			
 			$get_card = $this->card_ml->check($code);
-			print_r($get_card);
 			if (!$get_card){
 				$data['message'] = get_message_error("", "Mã số sai hoặc đã được sử dụng");
 			}

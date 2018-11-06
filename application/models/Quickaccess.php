@@ -46,7 +46,6 @@ public function instantiate(){
 		if($field == 'image' && !empty($_FILES['image']['name'])) {
 			$data[$field] = preg_replace('/[^A-Za-z0-9.-]/', "", $_FILES['image']['name']);
 			// hash it before push to database
-			//print_r($data);
 		}
 	}
 	//hash a password before it is saved to DB

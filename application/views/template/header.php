@@ -248,7 +248,6 @@ function beep() {
                 _new = get_id(data);
                 diff = get_diff(_old, _new);          
                 
-                console.log(_new);                
                 
                 if (diff.length == 0) return ;                
                 beep();                
