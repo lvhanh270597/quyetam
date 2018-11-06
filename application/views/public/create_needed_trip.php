@@ -104,13 +104,10 @@
                                         <!--First column-->
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
-                                                <select class="browser-default custom-select mb-4" name="price">
-                                                    <option value="" disabled selected>Giá</option>
-                                                    <option value="default">Mặc định</option>
-                                                    <option value="free">Miễn phí</option>
-                                                </select>
+                                                <input type="number" id="form1" class="form-control validate" value="" name="price">
+                                                <label for="form2" data-error="wrong" data-success="right">Giá</label>
                                             </div>
-                                        </div>          
+                                        </div>       
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
                                                 <input type="text" id="form1" class="form-control validate" value="<?php echo $this->session->userdata('username'); ?>" disabled>
