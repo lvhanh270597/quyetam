@@ -200,3 +200,16 @@ ALTER TABLE trip ADD v_guess BOOLEAN;
 
 ALTER TABLE user ADD status DATETIME;
 ALTER TABLE user ADD tai_xe BOOLEAN;
+
+
+ALTER TABLE user ADD university VARCHAR(100);
+ALTER TABLE user ADD subject VARCHAR(100);
+
+CREATE TABLE cards (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	user_id VARCHAR(30),
+	price INT(6) NOT NULL,
+	private_code VARCHAR(15) NOT NULL,	
+	used_date DATETIME,
+	is_used BOOLEAN
+);

@@ -8,7 +8,7 @@ class Admin extends CI_Controller {
 	 public $map;
 	 public function __construct(){
 		 parent::__construct();
-		 $this->load->model(['admin_ml']);		
+		 $this->load->model(['admin_ml', 'card_ml']);		
 	 }        
 
 	public function index() {
@@ -57,4 +57,31 @@ class Admin extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('admin/login');
 	} 		
+
+	public function create_private_code($size, $price){	
+		if (!$this->session->userdata('admin')) {
+			redirect('admin/login');
+		}
+		$cnt = 0;
+		for ($i = 0; $i < $size; $i++){
+			$private_code = random_number();
+			$data = [
+				'price' => $price,
+				'private_code' => $private_code
+			];
+			if (!$this->card_ml->check($private_code)){
+				$this->card_ml->add_into($data);
+				$cnt += 1;
+			}			
+		}
+		echo $cnt." cards were created successfully!";
+	}
+
+	public function show_cards(){
+		$cards = $this->card_ml->get_all();
+		$data = [
+			'cards' => $cards
+		];
+		$this->load->view('public/cards', $data);
+	}
 }

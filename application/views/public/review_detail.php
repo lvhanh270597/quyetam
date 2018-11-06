@@ -119,6 +119,13 @@ Licensed under MIT
                                         <td><?= $info['username']; ?></td>                                        
                                         </tr>
                                         <tr>
+                                        <th scope="row">Trường</th>
+                                        <td><?= $info['university']; ?></td>                                        
+                                        </tr>
+                                        <th scope="row">Khoa</th>
+                                        <td><?= $info['subject']; ?></td>                                        
+                                        </tr>
+                                        <tr>
                                         <th scope="row">Điện thoại</th>
                                         <td>
                                             <?php
@@ -137,7 +144,7 @@ Licensed under MIT
                                             echo $str;                                                
                                             ?>
                                         </td>                                        
-                                        </tr>
+                                        </tr>                                        
                                     </tbody>
                                 </table>                                    
                                 </div>

@@ -7,7 +7,7 @@ class Profile extends CI_Controller {
 
 	 public function __construct(){
 		 parent::__construct();		 
-		 $this->load->model(['verify_ml']);		 	
+		 $this->load->model(['verify_ml', 'card_ml']);		 	
 		 if (!$this->session->userdata('user_logged')){
 			 redirect('login');
 		 }	
@@ -89,5 +89,29 @@ class Profile extends CI_Controller {
 		$this->load->library('upload', $config);
 		//set a message in case of failure
 		return $this->upload->do_upload('image');
+	}
+
+	public function recharge(){
+		$data = [
+			'message' => ''
+		];
+		if ($this->input->post()){
+			$code = $this->input->post('code');
+			$code = preg_replace("/[^0-9]/", '', $code);
+			
+			$get_card = $this->card_ml->check($code);
+			print_r($get_card);
+			if (!$get_card){
+				$data['message'] = get_message_error("", "Mã số sai hoặc đã được sử dụng");
+			}
+			else{
+				$user = $this->user_ml->get_by_primary($this->session->userdata('username'));
+				$price = $get_card['price'];
+				$this->user_ml->set_attr($user['username'], 'balance', $user['balance'] + $price);
+				$this->card_ml->set_used($user['username'], $code);
+				$data['message'] = get_message_success('', 'Tài khoản của bạn là '.($user['balance'] + $price));
+			}
+		}		
+		display('recharge', $data);
 	}
 }

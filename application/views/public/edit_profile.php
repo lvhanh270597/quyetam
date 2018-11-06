@@ -197,6 +197,22 @@ Licensed under MIT
                                             </div>    
                                     </div>
                                     <!--/.First row-->
+                                    <div class="row">
+                                        <!--First column-->
+                                        <div class="col-md-6">
+                                            <div class="md-form mb-0">
+                                                <input type="text" id="form76" class="form-control validate" value="<?php echo $university; ?>" name="university">
+                                                <label for="form76">Trường</label>
+                                            </div>
+                                        </div>
+                                        <!--Second column-->
+                                        <div class="col-md-6">
+                                            <div class="md-form mb-0">
+                                                <input type="text" id="form77" class="form-control validate" value="<?php echo $subject; ?>" name="subject">
+                                                <label for="form77" data-error="wrong" data-success="right">Khoa</label>
+                                            </div>
+                                        </div>                                                                            
+                                    </div>
                                     <!--Second row-->
                                     <div class="row">
                                         <!--First column-->
