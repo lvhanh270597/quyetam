@@ -235,13 +235,15 @@ Licensed under MIT
                                     <!--/.Third row-->
                                     <!-- Fourth row -->
                                     <div class="row">
-                                        <div class="col-md-6 text-center my-4">                        
+                                        <div class="col-md-3 text-center my-4"></div>
+                                        <div class="col-md-3 text-center my-4">                        
                                             <input type="text" name="username" value="<?php echo $username; ?>" hidden>                    
                                             <input type="submit" value="Cập nhật" class="btn btn-info btn-rounded">
                                         </div>
-                                        <div class="col-md-6 text-center my-4">                        
+                                        <div class="col-md-3 text-center my-4">                        
                                             <a href="<?= site_url('profile/recharge') ?>" class="btn btn-info btn-rounded">NỘP TIỀN</a> 
                                         </div>
+                                        <div class="col-md-3 text-center my-4"></div>
                                     </div>                                    
                                     <!-- /.Fourth row -->
                                 </form>                                            
