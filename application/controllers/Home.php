@@ -31,10 +31,8 @@ class Home extends CI_Controller {
     }
 
     public function pages($index){
-        echo $index;
         $from = ((int)$index - 1) * $this->limit_per_page;
         $len = $this->limit_per_page;
-        echo $from.' '.$len;
         $data = array(
             'trips' => get_slice($this->all_trips, $from, $len),
             'needed_trips' => get_slice($this->all_need_trips, $from, $len),

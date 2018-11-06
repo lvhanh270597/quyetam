@@ -15,7 +15,6 @@ class Trip_ml extends Trip_template
 	public function checkPlace(){
 		$start_from = trim($this->input->post('start_from'));
 		$finish_to = trim($this->input->post('finish_to'));		
-		echo $start_from.' '.$finish_to.'<br>';
 		$start_from = preg_replace('/[^0-9]/', "", $start_from);		
 		$finish_to = preg_replace('/[^0-9]/', "", $finish_to);	
 

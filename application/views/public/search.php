@@ -35,7 +35,6 @@
                             <?php
                             if ($all == 'all') $all = '<span class="badge badge-info mb-2">tất cả</span>';
                             else $all = '<span class="badge badge-info mb-2">chỉ trống</span>';
-                            echo $from.' '.$to;
                             if ($from == 'Any'){
                                 $from = '<span class="badge badge-warning mb-2">bất cứ nơi nào</span>';
                             }
