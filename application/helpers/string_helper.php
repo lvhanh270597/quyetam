@@ -166,7 +166,7 @@ if ( ! function_exists('check_email')){
                 return $uni;
             }
         }
-        return false;
+        return 'Quả thật! Có một số trường không dùng loại email riêng. Hãy chắc rằng đây thực sự là email sinh viên của bạn.';        
     }
 }
 
