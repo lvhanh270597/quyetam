@@ -249,11 +249,11 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination pagination-circle pg-blue justify-content-center">                                                
                         <li class="page-item <?php if ($index == 1) echo 'disabled'; ?>"><a class="page-link"  href="<?= site_url('pages/1') ?>">First</a></li>
-                        <li class="page-item" <?php if ($index == 1) echo 'disabled'; ?>>
-                        <a class="page-link" aria-label="Previous"  href="<?= site_url('pages/'.($index - 1)) ?>">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
+                        <li class="page-item <?php if ($index == 1) echo 'disabled'; ?>">
+                            <a class="page-link" aria-label="Previous"  href="<?= site_url('pages/'.($index - 1)) ?>">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
                         </li>                        
                         <?php
                         $from = max(1, $index - 2);
@@ -273,10 +273,10 @@
                         }
                         ?>                        
                         <li class="page-item <?php if ($index >= $max) echo 'disabled'; ?>">
-                        <a class="page-link" aria-label="Next" href="<?= site_url('pages/'.($index + 1)) ?>">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                            <a class="page-link" aria-label="Next" href="<?= site_url('pages/'.($index + 1)) ?>">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </li>
                         <li class="page-item <?php if ($index >= $max) echo 'disabled'; ?>"><a class="page-link" href="<?= site_url('pages/'.($max)) ?>">Last</a></li>
                     </ul>
