@@ -273,6 +273,9 @@ class Trip extends CI_Controller {
     }
 
     public function create(){        
+        /* Xoa chuc nang tao chuyen di */
+        redirect('page_not_found');
+
         if (!$this->session->userdata('user_logged')){
             redirect('login');
         }
