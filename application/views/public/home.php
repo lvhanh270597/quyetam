@@ -269,7 +269,7 @@
                             echo '<a class="page-link" href="'.site_url('pages/'.$i).'">'.$i.'</a> </li>';
                         }
                         if ($from > $to){
-                            echo '<a class="page-link" href="#">'.$i.'</a> </li>';
+                            echo '<li class="page-item active"> <a class="page-link" href="#">'.$i.'</a> </li>';
                         }
                         ?>                        
                         <li class="page-item <?php if ($index >= $max) echo 'disabled'; ?>">
