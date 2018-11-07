@@ -436,6 +436,11 @@ class Trip extends CI_Controller {
 
         $message = '';
         $trip = $this->needed_trip_ml->get_by_primary($id);
+
+        if ($trip['owner'] == $this->session->user_data('username')){
+            redirect('trip/edit_need/'.$id);
+        }
+
         if ($this->input->post()){            
             $data_sql = [
                 'guess' => $trip['asker'],
