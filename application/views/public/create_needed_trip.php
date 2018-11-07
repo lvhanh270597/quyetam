@@ -42,15 +42,7 @@
                             <div class="card-body text-center">
                                 <!-- Edit Form -->
                                 <form method="post">
-                                    <div class="row">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="alert alert-info"> 
-                                                    <strong>Lưu ý:</strong>
-                                                    Đây là lúc bạn cần tìm người chở bạn theo đúng như những yêu cầu mà bạn đặt ra cho chuyến đi.<br> Ở đây, bạn đang là người đi cùng.
-                                                </div>  
-                                            </div>
-                                        </div>  
+                                    <div class="row">                                        
                                         <div class="col-md-12">
                                             <?php echo $message; ?>
                                         </div>
