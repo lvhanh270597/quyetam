@@ -1,3 +1,10 @@
+
+     <style>
+        #fuck {
+            height: 150px;
+            width: 150px;
+        }
+    </style>
         <div class="container-fluid">
 
             <!-- Section: Edit Account -->
