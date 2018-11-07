@@ -41,11 +41,11 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs md-tabs nav-justified cyan" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#panel666" role="tab">
-                                            <i class="fa fa-heart"></i> CÁC CHUYẾN ĐI ĐƯỢC YÊU CẦU</a>
+                                            <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
+                                            <i class="fa fa-heart"></i> CÁC YÊU CẦU</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#panel555" role="tab">
+                                            <a class="nav-link" data-toggle="tab" href="#panel666" role="tab">
                                             <i class="fa fa-motorcycle" aria-hidden="true"></i> TẤT CẢ CHUYẾN ĐI ĐÃ CÓ</a>
                                         </li>                                        
                                     </ul>
@@ -55,7 +55,7 @@
                             <!-- Tab panels -->
                             <div class="tab-content">                                
                                 <!--Panel 2-->
-                                <div class="tab-pane fade" id="panel666" role="tabpanel">
+                                <div class="tab-pane fade" id="panel555" role="tabpanel">
                                     <!-- Card content -->
                                     <div class="card-body card-body-cascade">
                                         <!--Card-->
@@ -156,7 +156,7 @@
                                 </div>
                                 <!--/.Panel 2-->
                                 <!--Panel 1-->
-                                <div class="tab-pane fade in show active" id="panel555" role="tabpanel">
+                                <div class="tab-pane fade in show active" id="panel666" role="tabpanel">
                                     <!-- Nav tabs -->
                                     <div class="row">
                                     <div class="card-body card-body-cascade">
