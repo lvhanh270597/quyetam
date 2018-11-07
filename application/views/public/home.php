@@ -247,10 +247,10 @@
                     </div>
                 </div>                
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination pagination-circle pg-blue justify-content-center">                        
+                    <ul class="pagination pagination-circle pg-blue justify-content-center">                                                
                         <li class="page-item <?php if ($index == 1) echo 'disabled'; ?>"><a class="page-link"  href="<?= site_url('pages/1') ?>">First</a></li>
-                        <li class="page-item">
-                        <a class="page-link <?php if ($index == 1) echo 'disabled'; ?>" aria-label="Previous"  href="<?= site_url('pages/'.($index - 1)) ?>">
+                        <li class="page-item" <?php if ($index == 1) echo 'disabled'; ?>>
+                        <a class="page-link" aria-label="Previous"  href="<?= site_url('pages/'.($index - 1)) ?>">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                         </a>
@@ -267,6 +267,9 @@
                                 echo '">';
                             }
                             echo '<a class="page-link" href="'.site_url('pages/'.$i).'">'.$i.'</a> </li>';
+                        }
+                        if ($from > $to){
+                            echo '<a class="page-link" href="#">'.$i.'</a> </li>';
                         }
                         ?>                        
                         <li class="page-item <?php if ($index >= $max) echo 'disabled'; ?>">
