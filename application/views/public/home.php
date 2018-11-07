@@ -42,29 +42,31 @@
                                     <ul class="nav nav-tabs md-tabs nav-justified cyan" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
-                                            <i class="fa fa-heart"></i> CÁC YÊU CẦU</a>
+                                            <i class="fa fa-heart" aria-hidden="true"></i>CÁC YÊU CẦU HIỆN CÓ</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#panel666" role="tab">
-                                            <i class="fa fa-motorcycle" aria-hidden="true"></i> TẤT CẢ CHUYẾN ĐI ĐÃ CÓ</a>
-                                        </li>                                        
+                                            <i class="fa fa-motorcycle"></i> TẤT CẢ CHUYẾN ĐI ĐÃ CÓ</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                             <!-- Nav tabs -->
                             <!-- Tab panels -->
-                            <div class="tab-content">                                
-                                <!--Panel 2-->
-                                <div class="tab-pane fade" id="panel555" role="tabpanel">
-                                    <!-- Card content -->
+                            <div class="tab-content">
+                                <!--Panel 1-->
+                                <div class="tab-pane fade in show active" id="panel555" role="tabpanel">
+                                    <!-- Nav tabs -->
+                                    <div class="row">
                                     <div class="card-body card-body-cascade">
-                                        <!--Card-->
+                                                        <!--Card-->
+                                                        
                                         <div class="card card-cascade narrower">
                                             <!-- Card content -->
                                             
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-6 mb-4">
-                                                        <!--Card-->
+                                                    <!--Card-->
                                                     <div class="card">
                                                         <!--Card image-->                                                            
                                                             <a href="<?= site_url('trip/create_ask_trip') ?>">
@@ -77,11 +79,10 @@
                                                             <!--Category & Title-->
                                                             <h6 class="card-title mb-1"><strong>TẠO YÊU CẦU</strong></h6>                                                        
                                                         </div>
-                                                    </div>
-                                                    
+                                                    </div>                                               
                                                     <!--Card-->
                                                 </div>
-                                            <?php
+                                                <?php
                                                 if ($needed_trips){
                                                     foreach ($needed_trips as $trip){
                                                         $asker = $this->user_ml->get_by_primary($trip['asker']);                                    
@@ -148,25 +149,23 @@
                                                 
                                                 <!--Grid column-->                        
 
-                                                </div>
-                                            
+                                            </div>                                            
                                         </div>
                                     </div>
-
-                                </div>
-                                <!--/.Panel 2-->
-                                <!--Panel 1-->
-                                <div class="tab-pane fade in show active" id="panel666" role="tabpanel">
+                                    </div>
                                     <!-- Nav tabs -->
-                                    <div class="row">
+                                </div>
+                                <!--/.Panel 1-->
+                                <!--Panel 2-->
+                                <div class="tab-pane fade" id="panel666" role="tabpanel">
+                                    <!-- Card content -->
                                     <div class="card-body card-body-cascade">
-                                                        <!--Card-->
-                                                        
+                                        <!--Card-->
                                         <div class="card card-cascade narrower">
                                             <!-- Card content -->
                                             
-                                            <div class="row">                                                
-                                            <?php
+                                            <div class="row">
+                                                <?php
                                                 if ($trips){
                                                     foreach ($trips as $trip){
                                                         $owner = $this->user_ml->get_by_primary($trip['owner']);
@@ -228,19 +227,19 @@
                                                     </div>
                                                     ';      
                                                 }
-                                            ?>
+                                            ?>                                            
 
                                                 <!--Grid column-->
                                                 
                                                 <!--Grid column-->                        
 
-                                                </div>                                            
+                                                </div>
+                                            
                                         </div>
                                     </div>
-                                    </div>
-                                    <!-- Nav tabs -->
+
                                 </div>
-                                <!--/.Panel 1-->
+                                <!--/.Panel 2-->
                             </div>
                             <!-- Tab panels -->
                         </div>
