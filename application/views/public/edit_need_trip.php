@@ -51,7 +51,7 @@
 
                             <!--Card image-->
                             <div class="view gradient-card-header mdb-color lighten-3">
-                                <h5 class="mb-0 font-weight-bold">Sửa chuyến đi</h5>
+                                <h5 class="mb-0 font-weight-bold">Sửa yêu cầu</h5>
                             </div>
                             <!--/Card image-->
 
