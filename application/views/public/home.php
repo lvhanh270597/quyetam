@@ -46,7 +46,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#panel666" role="tab">
-                                            <i class="fa fa-motorcycle"></i> TẤT CẢ CHUYẾN ĐI ĐÃ CÓ</a>
+                                            <i class="fa fa-motorcycle"></i> CÁC CHUYẾN ĐI ĐÃ CÓ</a>
                                         </li>
                                     </ul>
                                 </div>
