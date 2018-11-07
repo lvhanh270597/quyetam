@@ -1,11 +1,3 @@
-
-     <style>
-        #fuck {
-            height: 150px;
-            width: 150px;
-        }
-    </style>
-    <main>
         <div class="container-fluid">
 
             <!-- Section: Edit Account -->
@@ -150,6 +142,4 @@
             <!-- /.Section: Edit Account -->
 
         </div>
-    </main>
-    <!--Main layout-->
     
