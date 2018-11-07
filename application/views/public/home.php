@@ -41,13 +41,13 @@
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs md-tabs nav-justified cyan" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
-                                            <i class="fa fa-motorcycle" aria-hidden="true"></i> TẤT CẢ CHUYẾN ĐI ĐÃ CÓ</a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#panel666" role="tab">
                                             <i class="fa fa-heart"></i> CÁC CHUYẾN ĐI ĐƯỢC YÊU CẦU</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
+                                            <i class="fa fa-motorcycle" aria-hidden="true"></i> TẤT CẢ CHUYẾN ĐI ĐÃ CÓ</a>
+                                        </li>                                        
                                     </ul>
                                 </div>
                             </div>
