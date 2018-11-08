@@ -239,6 +239,7 @@ Licensed under MIT
                                                 <?php  
                                                     if ($noti_email){
                                                         $class = 'materialChecked';
+                                                        echo 'du ma may';
                                                     }
                                                     else{
                                                         $class = 'materialUnchecked';
