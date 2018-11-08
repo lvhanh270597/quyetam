@@ -16,14 +16,17 @@ class Login extends CI_Controller {
         if ($this->input->post()){
             $ok = $this->user_ml->check_login();
             if ($ok['status'] === false){
-                $data['errors'] = get_message_error('Lỗi!<br>', $ok['data']);
+                $data['errors'] = get_message_error('Lỗi!', $ok['data']);
             }
             else{                
                 $user = $this->user_ml->get_by_primary($ok['data']['username']);                                            
                 $password = $ok['data']['password'];
                 if (password_verify($password, $user['password'])){
                     $this->user_ml->user_log_in($user);                    
-                }                                
+                }       
+                else{
+                    $data['errors'] = get_message_error('Lỗi!', 'Sai mật khẩu!');
+                }                         
             }
         }
         display('login', $data);        
@@ -40,7 +43,7 @@ class Login extends CI_Controller {
             if ($check['status'] === true){                
                 if ($this->user_ml->add_really_carefully($check['data'])){ redirect('login/success'); }                
             }
-            else{ $errors = get_message_error('Lỗi! <br>', $check['data']); }
+            else{ $errors = get_message_error('Lỗi!', $check['data']); }
         }
         
         $data = ['errors' => $errors ];
