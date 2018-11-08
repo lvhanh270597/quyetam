@@ -245,7 +245,7 @@ Licensed under MIT
                                                     }
                                                 ?>
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="<?= $class ?>" name="noti_email" value="email">
+                                                    <input type="checkbox" class="form-check-input" id="<?= $class ?>" name="noti_email">
                                                     <label class="form-check-label" for="materialUnchecked">Nhận thông báo về một yêu cầu mới qua email?</label>
                                                 </div>                                                                                                                                  
                                             </div>
