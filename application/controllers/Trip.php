@@ -8,7 +8,7 @@ class Trip extends CI_Controller {
 
     public function __construct(){
         parent::__construct();        
-        $this->load->model(array('request_ml'));
+        $this->load->model(array('request_ml', 'queue'));
         $this->load->helper(['image']);
 
         $places = $this->place_ml->get_all();        
@@ -265,11 +265,17 @@ class Trip extends CI_Controller {
                     /* Send for all of users who checked noti_email */
                     $string_from = $this->place_ml->get_by_primary($data_sql['start_from'])['name'];
                     $string_finish = $this->place_ml->get_by_primary($data_sql['finish_to'])['name'];
-                    foreach ($this->user_ml->get_users_check_notif_email() as $user){
-                        $content = 'There is a request from '.khongdau($string_from). ' to '.khongdau($string_finish).' at '.$data_sql['timestart'];
-                        //$this->sendMessage($user['username'], $content);
-                        shell_exec("touch dmm/fuck.php");
+                    $content = 'There is a request from '.khongdau($string_from). ' to '.khongdau($string_finish).' at '.$data_sql['timestart'];   
+                    foreach ($this->user_ml->get_users_check_notif_email() as $user){                        
+                        $email = $this->verify_ml->get_email($user['username']);
+                        if ($email){
+                            $datasql = ['email' => $email, 'content' => $content];
+                            $this->queue->add($datasql);                            
+                        }                                        
                     }
+                    /* Process in the queue */
+                    shell_exec('php '.escapeshellarg(FCPATH.'index.php')." queueprocess >/dev/null 2>/dev/null &");
+                    /********        *******/
                 }                                          
             }
         }

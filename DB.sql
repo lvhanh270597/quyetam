@@ -216,7 +216,9 @@ CREATE TABLE cards (
 
 ALTER TABLE user ADD noti_email BOOLEAN;
 
-CREATE TABLE send_mail(
+CREATE TABLE queue(
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	
+	email VARCHAR(50),
+	content VARCHAR(200),
+	created_at DATETIME
 )
