@@ -273,10 +273,8 @@ class Trip extends CI_Controller {
                             $this->queue->add($datasql);                            
                         }                                        
                     }
-                    /* Process in the queue */
-                    echo 'php '.escapeshellarg(FCPATH.'index.php')." queueprocess >/dev/null 2>/dev/null &";                    
-                    shell_exec('php '.escapeshellarg(FCPATH.'index.php')." queueprocess >/dev/null 2>/dev/null &");
-                    return ;
+                    /* Process in the queue */                                 
+                    shell_exec('php '.escapeshellarg(FCPATH.'index.php')." queueprocess >/dev/null 2>/dev/null &");                    
                     /********        *******/
                 }                                          
             }
