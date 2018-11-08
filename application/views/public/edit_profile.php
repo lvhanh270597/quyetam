@@ -237,7 +237,7 @@ Licensed under MIT
                                             <div class="form-check form-check-inline">
                                             <!-- Material unchecked -->
                                                 <?php  
-                                                    if ($info['noti_email']){
+                                                    if ($noti_email){
                                                         $class = 'materialIndeterminate';
                                                     }
                                                     else{
