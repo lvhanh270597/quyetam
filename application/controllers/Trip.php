@@ -564,9 +564,7 @@ class Trip extends CI_Controller {
             redirect('trip/detail/'.$trip_id); 
         }
 
-        $id_need_trip = $this->needed_trip_ml->get_id_from_tripid($trip_id);
-        echo $id_need_trip;
-        return ;
+        $id_need_trip = $this->needed_trip_ml->get_id_from_tripid($trip_id);        
         if ($id_need_trip) $this->needed_trip_ml->set_attr($id_need_trip, 'trip_id', 0);
 
         // Gửi notify đến cho Khách nếu đã có khách
