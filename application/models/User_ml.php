@@ -36,7 +36,7 @@ class User_ml extends Quickaccess
 			if (!empty($this->input->post($field))){
 				$data[$field] = hashCode($this->input->post($field));
 			}
-		}		
+		}				
 		$this->db->set($data);
 		$this->db->where(['username' => $username]);
 		$this->db->update($this->db_table);

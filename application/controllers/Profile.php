@@ -36,6 +36,8 @@ class Profile extends CI_Controller {
 		
 		$data = ['message'=>''];
 		if ($this->input->post()){
+			print_r($this->input->post());
+			return ;			
 			if ($this->user_ml->edit()){								
 				$data['message'] = get_message_success('Update successfully!');
 			}			
