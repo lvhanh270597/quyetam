@@ -239,14 +239,15 @@ Licensed under MIT
                                                 <?php  
                                                     if ($noti_email){
                                                         $class = 'materialChecked';
-                                                        echo 'du ma may';
+                                                        $check = 'checked';                                                        
                                                     }
                                                     else{
                                                         $class = 'materialUnchecked';
+                                                        $check = '';
                                                     }
                                                 ?>
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="<?= $class ?>" name="noti_email" value="1">
+                                                    <input type="checkbox" class="form-check-input" id="<?= $class ?>" name="noti_email" value="1" <?= $check ?>>
                                                     <label class="form-check-label" for="<?= $class ?>">Nhận thông báo về một yêu cầu mới qua email?</label>
                                                 </div>                                                                                                                                  
                                             </div>
