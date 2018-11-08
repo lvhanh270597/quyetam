@@ -557,6 +557,9 @@ class Trip extends CI_Controller {
     public function remove_trip($trip_id){
         $username = $this->session->userdata('username');
         $trip = $this->trip_ml->get_by_primary($trip_id);
+        if (!$trip) {
+            redirect('page_not_found');
+        }
         if ($trip['owner'] != $username){
             redirect('trip/detail/'.$trip_id); 
         }
