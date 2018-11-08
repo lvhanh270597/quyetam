@@ -122,11 +122,11 @@ class Trip extends CI_Controller {
         }         
 
         $username = $this->session->userdata('username');     
-        /*  
-        if ($this->verify_ml->count_verify($username) < 2){
+        
+        if ($this->verify_ml->count_verify($username) < 1){
             redirect('trip/show_no_permission');
         }        
-        */
+        
         $trip = $this->trip_ml->get_by_primary($trip_id);   
         if ($trip === null){ redirect('page_not_found'); }
         
@@ -245,9 +245,9 @@ class Trip extends CI_Controller {
             redirect('login');
         }
         $username = $this->session->userdata('username');
-        /*if ($this->verify_ml->count_verify($username) < 2){
+        if ($this->verify_ml->count_verify($username) < 1){
             redirect('trip/show_no_permission');
-        } */       
+        }
 
         $message = '';
         if ($this->input->post()){            
