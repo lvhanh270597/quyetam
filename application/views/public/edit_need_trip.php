@@ -135,10 +135,18 @@
                                     <!-- Fourth row -->                                                                   
                                     <!-- /.Fourth row -->                                    
                                 </form>                               
-                                <!-- Edit Form -->
+                                <!-- Edit Form -->                                
+                                <?php                                
+                                if ($trip['trip_id'] != 0){
+                                    echo '<div class="row">
+                                        <div class="col-md-12 text-center my-4">                                                                                
+                                            <a class="btn btn-primary btn-rounded" href="'.site_url('trip/detail/'.$trip['trip_id']).'">Chuyến đi tương ứng</a>
+                                        </div>
+                                    </div>';                     
+                                }                                                           
+                                ?>
                             </div>                           
-                            <!-- /.Card content -->
-
+                            <!-- /.Card content -->                            
                         </div>
                         <!--/.Card-->
                     </div>
