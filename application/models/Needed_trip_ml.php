@@ -150,9 +150,8 @@ class Needed_trip_ml extends Trip_template
 
 	public function get_id_from_tripid($trip_id){
 		$dataset = $this->db->get_where($this->db_table, ['trip_id' => $trip_id]);		
-		if ($dataset->num_rows() > 0) {
-			print_r($dataset->result_array());
-			$dataset->result_array()[0]['id'];
+		if ($dataset->num_rows() > 0) {			
+			return $dataset->result_array()[0]['id'];
 		} 
 		return null;
 	}
