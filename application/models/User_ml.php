@@ -7,7 +7,7 @@ class User_ml extends Quickaccess
 	protected $db_table = 'user';
 	protected $personal_info = ['username', 'password'];
 	protected $editable_fields = ['username','full_name', 'gender', 'password'];
-	protected $fields = ['facebook', 'phone_num', 'gender', 'university', 'subject'];	
+	protected $fields = ['facebook', 'phone_num', 'gender', 'university', 'subject', 'noti_email'];	
 	private $security;
 
 	public function __construct()
@@ -206,5 +206,10 @@ class User_ml extends Quickaccess
 		$dataset = $this->db->get_where($this->db_table, ['username'=> $username]);
 		if ($dataset->num_rows() == 0) return 0;
 		return $dataset->result_array()[0]['balance'];
+	}
+
+	public function get_users_check_notif_email(){
+		$dataset = $this->db->get_where($this->db_table, ['noti_email'=> true]);
+		return $dataset->result_array();
 	}
 }

@@ -229,8 +229,28 @@ Licensed under MIT
                                                 <label for="form77" data-error="wrong" data-success="right">Facebook Address</label>
                                             </div>
                                         </div>                                                                            
-                                    </div>
+                                    </div>                                    
                                     <!--/.Second row-->                                   
+                                    <div class="row">
+                                        <!--First column-->
+                                        <div class="col-md-6">
+                                            <div class="form-check form-check-inline">
+                                            <!-- Material unchecked -->
+                                                <?php  
+                                                    if ($info['noti_email']){
+                                                        $class = 'materialIndeterminate';
+                                                    }
+                                                    else{
+                                                        $class = 'materialUnchecked';
+                                                    }
+                                                ?>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="<?= $class ?>" name="noti_email" value="email">
+                                                    <label class="form-check-label" for="materialUnchecked">Nhận thông báo về một yêu cầu mới qua email?</label>
+                                                </div>                                                                                                                                  
+                                            </div>
+                                        </div>                                                                                                         
+                                    </div>
                                     <!--/.Second row-->
                                     <!--/.Third row-->
                                     <!-- Fourth row -->

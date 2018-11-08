@@ -213,3 +213,5 @@ CREATE TABLE cards (
 	used_date DATETIME,
 	is_used BOOLEAN
 );
+
+ALTER TABLE user ADD noti_email BOOLEAN;

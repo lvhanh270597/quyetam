@@ -260,7 +260,13 @@ class Trip extends CI_Controller {
                 if ($this->needed_trip_ml->add_into($data_sql)){
                     $insert_id = $this->db->insert_id();
                     $link = 'click vào link <a href="'.site_url('trip/edit_need/'.$insert_id).'"> này </a> để xem yêu cầu vừa tạo.';
-                    $message = get_message_success('Bạn đã tạo tạo yêu cầu thành công!<br>', $link);                             
+                    $message = get_message_success('Bạn đã tạo tạo yêu cầu thành công!<br>', $link);         
+                    
+                    /* Send for all of users who checked noti_email */
+                    foreach ($this->user_ml->get_users_check_notif_email() as $user){
+                        $content = 'Có yêu cầu mới đi từ '.$data_sql['start_from']. ' đến '.$data_sql['finish_to'].' vào lúc '.$data_sql['timestart'];
+                        $this->sendMessage($user['username'], $content);
+                    }
                 }                                          
             }
         }
