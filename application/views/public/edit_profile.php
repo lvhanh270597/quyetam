@@ -233,12 +233,12 @@ Licensed under MIT
                                     <!--/.Second row-->                                   
                                     <div class="row">
                                         <!--First column-->
-                                        <div class="col-md-9">
+                                        <div class="col-md-12">
                                             <div class="form-check form-check-inline">
                                             <!-- Material unchecked -->
                                                 <?php  
                                                     if ($noti_email){
-                                                        $class = 'materialIndeterminate';
+                                                        $class = 'materialChecked';
                                                     }
                                                     else{
                                                         $class = 'materialUnchecked';
