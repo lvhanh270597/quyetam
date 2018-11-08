@@ -233,7 +233,7 @@ Licensed under MIT
                                     <!--/.Second row-->                                   
                                     <div class="row">
                                         <!--First column-->
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
                                             <div class="form-check form-check-inline">
                                             <!-- Material unchecked -->
                                                 <?php  
