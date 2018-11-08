@@ -36,6 +36,11 @@ class User_ml extends Quickaccess
 			if (!empty($this->input->post($field))){
 				$data[$field] = hashCode($this->input->post($field));
 			}
+			else{
+				if ($field === 'noti_email'){
+					$data[$field] = false;
+				}
+			}
 		}				
 		$this->db->set($data);
 		$this->db->where(['username' => $username]);
