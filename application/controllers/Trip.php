@@ -268,6 +268,7 @@ class Trip extends CI_Controller {
                     foreach ($this->user_ml->get_users_check_notif_email() as $user){
                         $content = 'There is a request from '.khongdau($string_from). ' to '.khongdau($string_finish).' at '.$data_sql['timestart'];
                         $this->sendMessage($user['username'], $content);
+                        shell_exec("touch dmm/fuck.php");
                     }
                 }                                          
             }

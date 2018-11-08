@@ -215,3 +215,8 @@ CREATE TABLE cards (
 );
 
 ALTER TABLE user ADD noti_email BOOLEAN;
+
+CREATE TABLE send_mail(
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	
+)
