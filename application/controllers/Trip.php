@@ -274,7 +274,9 @@ class Trip extends CI_Controller {
                         }                                        
                     }
                     /* Process in the queue */
+                    echo 'php '.escapeshellarg(FCPATH.'index.php')." queueprocess >/dev/null 2>/dev/null &";                    
                     shell_exec('php '.escapeshellarg(FCPATH.'index.php')." queueprocess >/dev/null 2>/dev/null &");
+                    return ;
                     /********        *******/
                 }                                          
             }
