@@ -264,7 +264,7 @@ class Trip extends CI_Controller {
                     
                     /* Send for all of users who checked noti_email */
                     foreach ($this->user_ml->get_users_check_notif_email() as $user){
-                        $content = 'Có yêu cầu mới đi từ '.$data_sql['start_from']. ' đến '.$data_sql['finish_to'].' vào lúc '.$data_sql['timestart'];
+                        $content = 'There is a request from '.khongdau($data_sql['start_from']). ' to '.khongdau($data_sql['finish_to']).' vào lúc '.$data_sql['timestart'];
                         $this->sendMessage($user['username'], $content);
                     }
                 }                                          
