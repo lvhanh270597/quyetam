@@ -35,9 +35,7 @@ class Profile extends CI_Controller {
         else { $driver_card = $no; }
 		
 		$data = ['message'=>''];
-		if ($this->input->post()){
-			print_r($this->input->post());
-			return ;			
+		if ($this->input->post()){			
 			if ($this->user_ml->edit()){								
 				$data['message'] = get_message_success('Update successfully!');
 			}			
