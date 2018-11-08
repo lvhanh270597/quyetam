@@ -269,7 +269,11 @@ class Trip extends CI_Controller {
                     foreach ($this->user_ml->get_users_check_notif_email() as $user){                        
                         $email = $this->verify_ml->get_email($user['username']);
                         if ($email){
-                            $datasql = ['email' => $email, 'content' => $content];
+                            $datasql = [
+                                'email' => $email, 
+                                'content' => $content,
+                                'created_at' => get_current_time()
+                            ];
                             $this->queue->add($datasql);                            
                         }                                        
                     }
