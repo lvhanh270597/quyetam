@@ -263,8 +263,10 @@ class Trip extends CI_Controller {
                     $message = get_message_success('Bạn đã tạo tạo yêu cầu thành công!<br>', $link);         
                     
                     /* Send for all of users who checked noti_email */
+                    $string_from = $this->place_ml->get_by_primary($data_sql['start_from'])['name'];
+                    $string_finish = $this->place_ml->get_by_primary($data_sql['finish_to'])['name'];
                     foreach ($this->user_ml->get_users_check_notif_email() as $user){
-                        $content = 'There is a request from '.khongdau($data_sql['start_from']). ' to '.khongdau($data_sql['finish_to']).' vào lúc '.$data_sql['timestart'];
+                        $content = 'There is a request from '.khongdau($string_from). ' to '.khongdau($string_finish).' at '.$data_sql['timestart'];
                         $this->sendMessage($user['username'], $content);
                     }
                 }                                          
