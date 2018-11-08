@@ -560,6 +560,10 @@ class Trip extends CI_Controller {
         if ($trip['owner'] != $username){
             redirect('trip/detail/'.$trip_id); 
         }
+
+        $id_need_trip = $this->needed_trip_ml->get_id_from_tripid($trip_id);
+        if ($id_need_trip) $this->needed_trip_ml->set_attr($id_need_trip, 'trip_id', 0);
+
         // Gửi notify đến cho Khách nếu đã có khách
         //Trả lại tiền cho những người gián tiếp
         $self = $this->user_ml->get_by_primary($username);
