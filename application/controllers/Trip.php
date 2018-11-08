@@ -609,7 +609,7 @@ class Trip extends CI_Controller {
     public function show_no_permission(){
         $data = [
             'title' => 'Vì lí do an toàn',
-            'content' => 'Có lẽ bạn cần ít nhất một trong bốn loại giấy tờ xác thực để có thể thực hiện được chức năng này. Mời bạn bấm vào <a href="'.site_url('verify').'"> đây </a> để gửi giấy tờ xác thực.',  
+            'content' => 'Bạn cần bạn cần xác thực email sinh viên hoặc các loại giấy tờ để có thể thực hiện được chức năng này. Mời bạn bấm vào <a href="'.site_url('verify').'"> đây </a> để gửi giấy tờ xác thực.',  
         ];
         display('action_info', $data);
     }
