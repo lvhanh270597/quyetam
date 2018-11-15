@@ -199,12 +199,7 @@ function beep() {
                                 <a href="'.site_url('edit_profile').'" class="nav-link waves-effect headerNotifCountBadge">
                                     <i class="fa fa-cogs" aria-hidden="true"></i>
                                 </a>
-                            </li> 
-                            <li class="nav-item ">
-                                <a href="'.site_url('trip/my_trips').'" class="nav-link waves-effect headerNotifCountBadge">
-                                    <i class="fa fa-motorcycle" aria-hidden="true"></i>
-                                </a>
-                            </li>                             
+                            </li>                                                   
                            ';
                        }
                        ?>

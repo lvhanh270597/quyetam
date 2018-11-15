@@ -46,7 +46,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#panel666" role="tab">
-                                            <i class="fa fa-motorcycle"></i> CÁC CHUYẾN ĐI ĐÃ CÓ</a>
+                                            <i class="fa fa-motorcycle"></i> CHUYẾN ĐI CỦA TÔI</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -137,6 +137,41 @@
                                     </div>
                                     </div>
                                     <!-- Nav tabs -->
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination pagination-circle pg-blue justify-content-center">                                                
+                                            <li class="page-item <?php if ($index == 1) echo 'disabled'; ?>"><a class="page-link"  href="<?= site_url('pages/1') ?>">First</a></li>
+                                            <li class="page-item <?php if ($index == 1) echo 'disabled'; ?>">
+                                                <a class="page-link" aria-label="Previous"  href="<?= site_url('pages/'.($index - 1)) ?>">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>                        
+                                            <?php
+                                            $from = max(1, $index - 2);
+                                            $to = min($max, 5 - $from + 1);
+                                            for ($i=$from; $i<=$to; $i++){
+                                                echo '<li class="page-item ';
+                                                if ($i == $index){
+                                                    echo 'active">';
+                                                }
+                                                else{
+                                                    echo '">';
+                                                }
+                                                echo '<a class="page-link" href="'.site_url('pages/'.$i).'">'.$i.'</a> </li>';
+                                            }
+                                            if ($from > $to){
+                                                echo '<li class="page-item active"> <a class="page-link" href="#">'.$i.'</a> </li>';
+                                            }
+                                            ?>                        
+                                            <li class="page-item <?php if ($index >= $max) echo 'disabled'; ?>">
+                                                <a class="page-link" aria-label="Next" href="<?= site_url('pages/'.($index + 1)) ?>">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item <?php if ($index >= $max) echo 'disabled'; ?>"><a class="page-link" href="<?= site_url('pages/'.($max)) ?>">Last</a></li>
+                                        </ul>
+                                    </nav>
                                 </div>
                                 <!--/.Panel 1-->
                                 <!--Panel 2-->
@@ -148,69 +183,228 @@
                                             <!-- Card content -->
                                             
                                             <div class="row">
-                                                <?php
-                                                if ($trips){
-                                                    foreach ($trips as $trip){
-                                                        $owner = $this->user_ml->get_by_primary($trip['owner']);
-                                                        $guess = $this->user_ml->get_by_primary($trip['guess']);
-                                                        $place = $this->place_ml->get_by_primary($trip['finish_to']);                                    
-                                                        $free = '';
-                                                        if ($trip['price'] == 0){
-                                                            $free = '<span class="badge badge-info mb-2">free</span>';
-                                                        }
-                                                        else{
-                                                            $free = '<span class="badge badge-info mb-2">'.$trip['price'].'đ</span>';
-                                                        }
-                                                        $empty = '';
-                                                        if ($trip['guess'] == null){
-                                                            $empty = '<span class="badge badge-primary mb-2">còn trống</span></br>';
-                                                        }                              
-                                                        else{
-                                                            $empty .= '<span class="badge badge-danger mb-2">'.$guess['full_name'].'</span>'.get_color_status(get_status($trip['guess'])).'</br>';
-                                                        }  
-                                                        echo '<div class="col-lg-3 col-md-6 mb-4" >
-                                                        <!--Card-->
-                                                        <div class="card card-ecommerce">
-                                                            <!--Card image-->
-                                                            <div class="view overlay">
-                                                                <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">
-                                                                <a href="'.site_url('trip/detail/'.$trip['id']).'">
-                                                                    <div class="mask rgba-white-slight waves-effect waves-light">                                            
-                                                                    </div>                                            
-                                                                </a>
-                                                            </div>
-                                                            <!--Card image-->                                                            
+                                                
+                                                <style>
+                                                    #dm{
+                                                        width: 100%;
+                                                        height: 200px;                        
+                                                    }
+                                                </style>
 
-                                                            <!--Card content-->
-                                                            <div class="card-body">                                    
-                                                                <!--Category & Title-->
-                                                                <h6 class="card-title mb-1"><strong><a href="'.site_url('trip/detail/'.$trip['id']).'" class="dark-grey-text">'.$places[$trip['start_from']].'<i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a> </strong></h6>
-                                                                <span class="badge badge-success mb-2">'.$owner['full_name'].'</span>'.get_color_status(get_status($owner['username'])).' </br>
-                                                                '.$empty.'
-                                                                '.$free.'                                                                
-                                                                <!--Card footer-->
-                                                                <div class="card-footer pb-0">
-                                                                    <div class="row mb-0">                                                            
-                                                                        <span class="float-left"><strong> '.after($trip['timestart']).'</strong></span>
-                                                                    </div>                                                                    
-                                                                </div>
+                                                    <!-- Mega menu -->
+                                                    
+                                                    <!-- Mega menu -->
+
+                                                    <!-- /.Main Container -->
+                                                    <div class="container">
+                                                    
+                                                        <!-- Grid row -->
+                                                        <div class="row">
+
+                                                            <!-- Content -->
+                                                            <div class="col-lg-12">
+                                                                
+                                                                <!-- Section: Last items -->
+                                                                <section>              
+                                                                                        <!-- Card -->
+                                                                    <div class="card card-cascade">
+
+                                                                        <!-- Card image -->
+                                                                        <div class="view view-cascade gradient-card-header blue-gradient">
+
+                                                                            <!-- Title -->
+                                                                            <h2 class="card-header-title mb-3">CÁC CHUYẾN ĐI CỦA TÔI</h2>
+                                                                            <a href="<?php echo site_url('trip/create'); ?>" class="btn aqua-gradient btn-rounded btn-sm">                            
+                                                                            TẠO MỚI
+                                                                            </a>
+                                                                            <!-- Subtitle -->                                                       
+                                                                        </div>
+                                                                        <hr>
+                                                                        <!-- Card content -->
+                                                                        <div class="card-body card-body-cascade text-center">
+                                                                            <!-- Card -->
+                                                                            <div class="row">
+                                                                            
+                                                                                <?php
+                                                                                    if ($my_trips){
+                                                                                        foreach ($my_trips as $trip){                                    
+                                                                                            $owner = $this->user_ml->get_by_primary($trip['owner']);
+                                                                                            $guess = $this->user_ml->get_by_primary($trip['guess']);
+                                                                                            $place = $this->place_ml->get_by_primary($trip['finish_to']);                                    
+                                                                                            $free = '';
+                                                                                            if ($trip['price'] == 0){
+                                                                                                $free = '<span class="badge badge-warning mb-2">free</span>';
+                                                                                            }
+                                                                                            $empty = '';
+                                                                                            if ($trip['guess'] == null){
+                                                                                                $empty = '<span class="badge badge-primary mb-2">còn trống</span></br>';
+                                                                                            }                              
+                                                                                            else{
+                                                                                                $empty .= '<span class="badge badge-danger mb-2">'.$guess['full_name'].'</span></br>';
+                                                                                            }  
+
+                                                                                            $link = site_url('trip/detail/'.$trip['id']);
+                                                                                            if ($this->session->userdata('username') == $trip['owner']){
+                                                                                                $link = site_url('trip/edit/'.$trip['id']);
+                                                                                            }
+                                                                                            echo '<div class="col-lg-3 col-md-6 mb-4">
+
+                                                                                            <!--Card-->
+                                                                                            <div class="card card-ecommerce">
+
+                                                                                                <!--Card image-->
+                                                                                                <div class="view overlay">
+                                                                                                    <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">
+                                                                                                    <a href="'.$link.'">
+                                                                                                        <div class="mask rgba-white-slight waves-effect waves-light">                                            
+                                                                                                        </div>                                            
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <!--Card image-->
+                                                                
+                                                                                                <!--Card content-->
+                                                                                                <div class="card-body">
+                                                                                                    <!--Category & Title-->
+                                                                                                    <h6 class="card-title mb-1"><strong><a href="" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h6>                                        
+                                                                                                    <span class="badge badge-success mb-2">'.$owner['full_name'].'</span> </br>
+                                                                                                    '.$free.'
+                                                                                                    '.$empty.'
+                                                                                                    <!--Card footer-->
+                                                                                                    <div class="card-footer pb-0">
+                                                                                                        <div class="row mb-0">
+                                                                                                            <span class="float-left"><strong> '.get_compare($trip['timestart']).'</strong></span>                                                            
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <!--Card content-->
+                                                                
+                                                                                            </div>
+                                                                                            <!--Card-->
+                                                                
+                                                                                        </div>';
+                                                                                        }
+                                                                                    }                                   
+                                                                                ?>
+
+                                                                                <!--Grid column-->
+                                                                                
+                                                                                <!--Grid column-->                        
+
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                    </div>
+                                                                    
+                                                                    <!--Grid row-->
+
+                                                                    <!--Grid row-->                    
+                                                                    <!--Grid row-->
+                                                                </section>
+                                                                <!-- /.Section: Last items -->
+
+                                                            
+                                                            <section>                    
+                                                                    <!-- Grid row -->
+                                                                    <div class="card card-cascade">
+
+                                                                        <!-- Card image -->
+                                                                        <div class="view view-cascade gradient-card-header blue-gradient">
+
+                                                                            <!-- Title -->
+                                                                            <h2 class="card-header-title mb-3">CÁC YÊU CẦU CỦA TÔI</h2>
+                                                                            <!-- Subtitle -->                            
+                                                                            <a href="<?php echo site_url('trip/create_ask_trip'); ?>" class="btn aqua-gradient btn-rounded btn-sm">                            
+                                                                            TẠO MỚI
+                                                                            </a>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <!-- Card content -->
+                                                                        <div class="card-body card-body-cascade text-center">
+                                                                            <!-- Card -->
+                                                                            <div class="row">
+                                                                            <?php
+                                                                            if ($my_needed_trips){
+                                                                                foreach ($my_needed_trips as $trip){
+                                                                                    $asker = $this->user_ml->get_by_primary($trip['asker']);                                    
+                                                                                    $place = $this->place_ml->get_by_primary($trip['finish_to']);                                    
+                                                                                    $free = '';
+                                                                                    if ($trip['price'] == 0){
+                                                                                        $free = '<span class="badge badge-warning mb-2">free</span>';
+                                                                                    }                                    
+                                                                                    $link = site_url('trip/edit_need/'.$trip['id']);                                    
+                                                                                    echo '<div class="col-lg-3 col-md-6 mb-4">
+
+                                                                                    <!--Card-->
+                                                                                    <div class="card card-ecommerce">
+
+                                                                                        <!--Card image-->
+                                                                                        <div class="view overlay">
+                                                                                            <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">
+                                                                                            <a href="'.$link.'">
+                                                                                                <div class="mask rgba-white-slight waves-effect waves-light">                                            
+                                                                                                </div>                                            
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <!--Card image-->
+                                                        
+                                                                                        <!--Card content-->
+                                                                                        <div class="card-body">                                    
+                                                                                            <!--Category & Title-->
+                                                                                            <h6 class="card-title mb-1"><strong><a href="" class="dark-grey-text">'.$places[$trip['start_from']].'</a> <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</strong></h6>
+                                                                                            <span class="badge badge-success mb-2">'.$asker['full_name'].'</span> </br>
+                                                                                            '.$free.'                                            
+                                                                                            <!--Card footer-->
+                                                                                            <div class="card-footer pb-0">
+                                                                                                <div class="row mb-0">
+                                                                                                    <span class="float-left"><strong> '.get_compare($trip['timestart']).'</strong></span>
+                                                                                                    <span class="float-right">                                                                                                       
+                                                                                                        <a class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Giờ xuất phát"><i class="fa fa-clock-o ml-3" aria-hidden="true"></i></a>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <!--Card content-->
+                                                        
+                                                                                    </div>
+                                                                                    <!--Card-->
+                                                        
+                                                                                </div>';
+                                                                                }
+                                                                            }                            
+                                                                        ?>
+
+
+                                                                                <!--Grid column-->
+                                                                                
+                                                                                <!--Grid column-->                        
+
+                                                                            </div>
+                                                                        
+                                                                        </div>
+
+                                                                    </div>                   
+                                                                    <!--Grid row-->
+
+                                                                    <!--Grid row-->
+                                                                    <div class="row justify-content-center mb-4">
+                                                                        
+
+                                                                    </div>
+                                                                    <!--Grid row-->
+                                                                </section>
+                                                                <!-- /.Section: Last items -->
+
+
+
                                                             </div>
-                                                            <!--Card content-->
+                                                            <!-- /.Content -->
 
                                                         </div>
-                                                        <!--Card-->
+                                                        <!-- Grid row -->
 
-                                                    </div>';
-                                                    }
-                                                }
-                                                else{
-                                                    echo '
-                                                    <div class="col-md-12">
-                                                    <h5>CHƯA CÓ CHUYẾN ĐI NÀO</h5>
                                                     </div>
-                                                    ';      
-                                                }
-                                            ?>                                            
+                                    
 
                                                 <!--Grid column-->
                                                 
@@ -228,42 +422,7 @@
                         </div>
                         <!-- Card -->                    
                     </div>
-                </div>                
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination pagination-circle pg-blue justify-content-center">                                                
-                        <li class="page-item <?php if ($index == 1) echo 'disabled'; ?>"><a class="page-link"  href="<?= site_url('pages/1') ?>">First</a></li>
-                        <li class="page-item <?php if ($index == 1) echo 'disabled'; ?>">
-                            <a class="page-link" aria-label="Previous"  href="<?= site_url('pages/'.($index - 1)) ?>">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>                        
-                        <?php
-                        $from = max(1, $index - 2);
-                        $to = min($max, 5 - $from + 1);
-                        for ($i=$from; $i<=$to; $i++){
-                            echo '<li class="page-item ';
-                            if ($i == $index){
-                                echo 'active">';
-                            }
-                            else{
-                                echo '">';
-                            }
-                            echo '<a class="page-link" href="'.site_url('pages/'.$i).'">'.$i.'</a> </li>';
-                        }
-                        if ($from > $to){
-                            echo '<li class="page-item active"> <a class="page-link" href="#">'.$i.'</a> </li>';
-                        }
-                        ?>                        
-                        <li class="page-item <?php if ($index >= $max) echo 'disabled'; ?>">
-                            <a class="page-link" aria-label="Next" href="<?= site_url('pages/'.($index + 1)) ?>">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                        <li class="page-item <?php if ($index >= $max) echo 'disabled'; ?>"><a class="page-link" href="<?= site_url('pages/'.($max)) ?>">Last</a></li>
-                    </ul>
-                </nav>
+                </div>                                
 
                 
                 <main>
