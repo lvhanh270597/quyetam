@@ -327,10 +327,11 @@
                                     <div class="col-md-12">
                                         <!-- Exaple 1 -->
                                         <div class="card example-1 square scrollbar-dusty-grass square thin">
-                                            <div class="row">                                                
+                                            <div class="row">
+                                                <div class="card-body card-body-cascade">
                                                                     <!--Card-->
                                                                     
-                                                    <div class="card card-cascade narrower">
+                                                    
                                                     <?php
                                                     if ($no_trips){
                                                         foreach ($no_trips as $trip){                                                                    
@@ -374,8 +375,8 @@
                                                         }
                                                     }                                            
                                                     ?>
-                                                    </div>
                                                 </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>                                                                    
