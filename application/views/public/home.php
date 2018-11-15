@@ -207,16 +207,12 @@
                                                                 <!-- Section: Last items -->
                                                                 <section>              
                                                                                         <!-- Card -->
-                                                                    <div class="card card-cascade">
 
                                                                         <!-- Card image -->
                                                                         <div class="view view-cascade gradient-card-header blue-gradient">
 
                                                                             <!-- Title -->
-                                                                            <h2 class="card-header-title mb-3">CÁC CHUYẾN ĐI CỦA TÔI</h2>
-                                                                            <a href="<?php echo site_url('trip/create'); ?>" class="btn aqua-gradient btn-rounded btn-sm">                            
-                                                                            TẠO MỚI
-                                                                            </a>
+                                                                            <h2 class="card-header-title mb-3">CÁC CHUYẾN ĐI CỦA TÔI</h2>                                                                            
                                                                             <!-- Subtitle -->                                                       
                                                                         </div>
                                                                         <hr>
@@ -292,7 +288,6 @@
 
                                                                             </div>
                                                                         
-                                                                        </div>
 
                                                                     </div>
                                                                     
@@ -306,17 +301,13 @@
                                                             
                                                             <section>                    
                                                                     <!-- Grid row -->
-                                                                    <div class="card card-cascade">
 
                                                                         <!-- Card image -->
                                                                         <div class="view view-cascade gradient-card-header blue-gradient">
 
                                                                             <!-- Title -->
                                                                             <h2 class="card-header-title mb-3">CÁC YÊU CẦU CỦA TÔI</h2>
-                                                                            <!-- Subtitle -->                            
-                                                                            <a href="<?php echo site_url('trip/create_ask_trip'); ?>" class="btn aqua-gradient btn-rounded btn-sm">                            
-                                                                            TẠO MỚI
-                                                                            </a>
+                                                                            <!-- Subtitle -->                                                                                                       
                                                                         </div>
                                                                         <hr>
                                                                         <!-- Card content -->
@@ -382,16 +373,7 @@
                                                                             </div>
                                                                         
                                                                         </div>
-
-                                                                    </div>                   
-                                                                    <!--Grid row-->
-
-                                                                    <!--Grid row-->
-                                                                    <div class="row justify-content-center mb-4">
-                                                                        
-
-                                                                    </div>
-                                                                    <!--Grid row-->
+                                                                  
                                                                 </section>
                                                                 <!-- /.Section: Last items -->
 
