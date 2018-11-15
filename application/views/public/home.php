@@ -457,9 +457,11 @@
 
                                 </style>                                                    
                                 <!--Title-->
-                                <h2 class="section-heading mb-4">
-                                Chuyến đi gợi ý
-                                </h2>
+                                <div class="view view-cascade gradient-card-header blue-gradient">
+                                    <!-- Title -->
+                                    <h2 class="card-header-title mb-3">Chuyến đi gợi ý</h2>
+                                    <!-- Subtitle -->                                                                                                       
+                                </div>                                
                                 <!--Section: Live preview-->
                         
                                 <!-- Grid row -->
@@ -523,9 +525,11 @@
                                 </div>                                                                    
                             </div>
                             <div class=" col-md-4">   
-                                <h2 class="section-heading mb-4">
-                                Người dùng online
-                                </h2>               
+                                <div class="view view-cascade gradient-card-header success-color">
+                                    <!-- Title -->
+                                    <h2 class="card-header-title mb-3">Online</h2>
+                                    <!-- Subtitle -->                                                                                                       
+                                </div>           
                                 <!-- Grid row -->
                                 <div class="row">
                                     <!-- Grid column -->
