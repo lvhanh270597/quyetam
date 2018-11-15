@@ -42,7 +42,16 @@
                             <div class="card-body text-center">
                                 <!-- Edit Form -->
                                 <form method="post">
-                                    <div class="row">                                        
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="alert alert-info"> 
+                                                <strong>Lưu ý:</strong>                                                
+                                                Nếu tạo yêu cầu, nghĩa là bạn đang cần tìm người chở.
+                                                Nếu bạn là người chở, hãy bấm vào <a href="<?= base_url('trip/create') ?>"> đây </a> để tạo chuyến đi.
+                                            </div>  
+                                        </div>
+                                    </div>  
+                                    <div class="row">                                                                            
                                         <div class="col-md-12">
                                             <?php echo $message; ?>
                                         </div>
