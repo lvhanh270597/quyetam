@@ -345,9 +345,8 @@
                                                     <div class="card card-ecommerce">
 
                                                         <!--Card image-->
-                                                        <div class="view overlay">
-                                                            <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">                                                         
-                                                        </div>
+                                   
+                                                        <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">                                    
                                                         <!--Card image-->
                         
                                                         <!--Card content-->
