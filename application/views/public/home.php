@@ -400,7 +400,7 @@
                                                                 <img class="d-flex rounded-circle" src="'.profile_image($user['gender'], $user['username'], $user['image']).'" style="width: 40px; height: 40px;">
                                                                 <div class="media-body">                                            
                                                                     <a href="'.site_url('review/detail/'.$user['username']).'"> 
-                                                                    <h5 class="mt-1 font-weight-bold blue-text" style="padding-left: 10px;">'.$user['full_name'].'<p style="float: right; font-size: 15px">'.$str.'</p> </h5> </a>
+                                                                    <h5 class="mt-1 font-weight-bold blue-text">'.$user['full_name'].'<p style="font-size: 15px">'.$str.'</p> </h5> </a>
                                                                 </div>                                    
                                                             </div>';                                                            
                                                     }                                                    
