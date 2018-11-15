@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
     
-    public $all_trips;
+    public $trips_have_people, $trip_no_people;
     public $all_need_trips;
     public $limit_per_page, $max;
 
@@ -11,7 +11,8 @@ class Home extends CI_Controller {
         parent::__construct();                
         $this->load->helper('array');
         $this->all_need_trips = $this->needed_trip_ml->get_newest(true);
-        $this->all_trips = $this->trip_ml->get_newest(true);             
+        $this->trip_no_people = $this->trip_ml->get_with_people(true, true);
+        $this->trips_have_people = $this->trip_ml->get_with_people(true, false);
         $this->limit_per_page = 12;
 
         $size1 = isset($this->all_trips) ? count($this->all_trips) : 0;
@@ -22,8 +23,9 @@ class Home extends CI_Controller {
     
     public function index(){                    
         $data = array(
-            'trips' => get_slice($this->all_trips, 0, $this->limit_per_page),
+            'trips' => get_slice($this->trips_have_people, 0, $this->limit_per_page),
             'needed_trips' => get_slice($this->all_need_trips, 0, $this->limit_per_page),
+            'no_trips' => $this->trip_no_people,
             'index' => 1,
             'max' => $this->max
         );

@@ -195,4 +195,29 @@ class Trip_ml extends Trip_template
 		return $res;
 	}
 
+	public function get_with_people($current=false, $empty=false){		
+		$this->db->order_by("timestart", "asc");
+		if ($current){
+			$this->db->where(["timestart>=" => get_current_time()]);
+		}
+		$query = $this->db->get($this->db_table);				
+		$all = $query->result_array();									
+		
+		$res = [];
+		if ($empty){			
+			foreach ($all as $trip){
+				if ($trip['guess'] == null){
+					array_push($res, $trip);
+				}
+			}
+		}
+		else{			
+			foreach ($all as $trip){
+				if ($trip['guess'] != null){
+					array_push($res, $trip);
+				}
+			}
+		}
+		return $res;
+	}
 }

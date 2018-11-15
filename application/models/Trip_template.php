@@ -39,5 +39,4 @@ class Trip_template extends Quickaccess
 		}
 		return null;
 	}
-	
 }

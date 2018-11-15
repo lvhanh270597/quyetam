@@ -293,7 +293,7 @@ class Trip extends CI_Controller {
 
     public function create(){        
         /* Xoa chuc nang tao chuyen di */
-        redirect('page_not_found');
+//        redirect('page_not_found');
 
         if (!$this->session->userdata('user_logged')){
             redirect('login');
@@ -523,6 +523,20 @@ class Trip extends CI_Controller {
         display('detail_need', $data);
     }
 
+    public function create_as_trip($trip_id){
+        $trip = $this->trip_ml->get_by_primary($trip_id);
+        $trip['asker'] = $this->session->userdata('username');
+        unset($trip['owner']);
+        unset($trip['guess']);
+        unset($trip['code']);
+        unset($trip['id']);
+        unset($trip['v_owner']);         
+        unset($trip['v_guess']); 
+        $this->needed_trip_ml->add_into($trip);
+        $insert_id = $this->db->insert_id();
+        redirect('trip/as_trip_success/'.$insert_id);
+    }
+
     public function edit_need($trip_id){
         if (!$this->session->userdata('user_logged')){
             redirect('login');
@@ -667,6 +681,18 @@ class Trip extends CI_Controller {
         $data = [
             'title' => 'Bạn đã đồng ý mở chuyến đi này',
             'content' => 'Chúng tôi đã trừ vào tài khoản của bạn phí cho chuyến đi này là '.$fee.'d. Bấm vào <a href="'.site_url('trip/detail/'.$trip_id).'"> đây </a> để  xem chuyến đi bạn vừa tạo.'  
+        ];
+        display('action_info', $data);
+    }
+
+    public function as_trip_success($trip_id){
+        $trip = $this->needed_trip_ml->get_by_primary($trip_id);
+        if ($trip == null){
+            redirect('page_not_found');
+        }
+        $data = [
+            'title' => 'Bạn đã mở một yêu cầu tương tự thành công!',
+            'content' => 'Click vào <a href="'.site_url('trip/detail_need/'.$trip_id).'"> đây </a> để xem yêu cầu vừa tạo'  
         ];
         display('action_info', $data);
     }

@@ -29,6 +29,9 @@
 
                             <!-- Title -->
                             <h2 class="card-header-title mb-3">CÁC CHUYẾN ĐI CỦA TÔI</h2>
+                            <a href="<?php echo site_url('trip/create'); ?>" class="btn aqua-gradient btn-rounded btn-sm">                            
+                            TẠO MỚI
+                            </a>
                             <!-- Subtitle -->                                                       
                         </div>
 

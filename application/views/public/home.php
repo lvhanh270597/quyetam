@@ -281,10 +281,164 @@
                         <li class="page-item <?php if ($index >= $max) echo 'disabled'; ?>"><a class="page-link" href="<?= site_url('pages/'.($max)) ?>">Last</a></li>
                     </ul>
                 </nav>
-                <div class="alert alert-info">
-                    <strong>Lưu ý: </strong> Trước khi chuyến đi bắt đầu 15-30 phút, bạn nên vào xem yêu cầu của mình đã được chấp nhận hay chưa để liên hệ kịp thời nhé.
-                </div>
-            </div>            
+
+                
+                <main>
+                    <div class="container-fluid mt-2">
+                        <!-- Main docs tabs -->
+                            <!--Grid row-->
+                        <div class="row">
+                            <!--Grid column: Content-->
+                            <div class=" col-md-8">                        
+                                <!--Section: Docs content-->                                
+                                <style>
+                                    
+                                    .scrollbar {
+                                    margin-left: 30px;
+                                    float: left;
+                                    height: 300px;
+                                    width: 65px;
+                                    background: #fff;
+                                    overflow-y: scroll;
+                                    margin-bottom: 25px;
+                                    }
+
+                                    .force-overflow {
+                                    min-height: 450px;
+                                    }
+
+                                    .example-1 {
+                                        position: relative;
+                                        overflow-y: scroll;
+                                        height: 500px;
+                                    }
+
+                                    .scrollbar-dusty-grass::-webkit-scrollbar-track {
+                                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+                                    background-color: #F5F5F5;
+                                    border-radius: 10px;
+                                    }
+
+                                    .scrollbar-dusty-grass::-webkit-scrollbar {
+                                    width: 12px;
+                                    background-color: #F5F5F5;
+                                    }
+
+                                    .scrollbar-dusty-grass::-webkit-scrollbar-thumb {
+                                    border-radius: 10px;
+                                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+                                    background-image: -webkit-linear-gradient(330deg, #d4fc79 0%, #96e6a1 100%);
+                                    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+                                    }
+
+                                </style>                                                    
+                                <!--Title-->
+                                <h2 class="section-heading mb-4">
+                                Chuyến đi gợi ý
+                                </h2>
+                                <!--Section: Live preview-->
+                        
+                                <!-- Grid row -->
+                                <div class="row">
+                                    <!-- Grid column -->
+                                    <div class="col-md-12">
+                                        <!-- Exaple 1 -->
+                                        <div class="card example-1 square scrollbar-dusty-grass square thin">
+                                            <?php
+                                            if ($no_trips){
+                                                foreach ($no_trips as $trip){                                                                    
+                                                    $place = $this->place_ml->get_by_primary($trip['finish_to']);                                    
+                                                    $trip_detail = $this->trip_ml->get_by_primary($trip['id']);                                                   
+                                                    $free = '';
+                                                    if ($trip['price'] == 0){
+                                                        $free = '<span class="badge badge-info mb-2">free</span> <br>';
+                                                    }
+                                                    else{
+                                                        $free = '<span class="badge badge-info mb-2">'.$trip['price'].'đ</span> <br>';
+                                                    }                          
+                                                    echo '<div class="col-md-12">
+
+                                                    <!--Card-->
+                                                    <div class="card card-ecommerce">
+
+                                                        <!--Card image-->
+                                                        <div class="view overlay">
+                                                            <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">
+                                                            <a href="#">
+                                                                <div class="mask rgba-white-slight waves-effect waves-light">                                            
+                                                                </div>                                            
+                                                            </a>
+                                                        </div>
+                                                        <!--Card image-->
+                        
+                                                        <!--Card content-->
+                                                        <div class="card-body">
+                                                            <!--Category & Title-->                                                                
+                                                            <h6 class="card-title mb-1"><strong><a href="#" class="dark-grey-text">'.$places[$trip['start_from']].' <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a></strong></h6>
+                                                            '.$free.'
+                                                            <span><strong> '.after($trip['timestart']).' ('.$trip['timestart'].')</strong></span>
+                                                            <!--Card footer-->
+                                                            <div class="card-footer pb-0">                                                            
+                                                                <a href='.site_url('trip/create_as_trip/'.$trip['id']).'><button class="btn aqua-gradient btn-rounded btn-sm">TẠO YÊU CẦU NHƯ THẾ NÀY</button></a>
+                                                            </div>
+                                                        </div>
+                                                        <!--Card content-->
+                    
+                                                    </div>
+                                                    <!--Card-->
+                        
+                                                </div>';
+                                                }
+                                            }                                            
+                                        ?>
+                                        </div>
+                                    </div>
+                                </div>                                                                    
+                            </div>
+                            <div class=" col-md-4">   
+                                <h2 class="section-heading mb-4">
+                                Người dùng online
+                                </h2>               
+                                <!-- Grid row -->
+                                <div class="row">
+                                    <!-- Grid column -->
+                                    <div class="col-md-12">
+                                        <!-- Exaple 1 -->
+                                        <div class="card example-1 square scrollbar-dusty-grass square thin">
+                                            <div class="card-body">        
+                                                                
+                                            <?php   
+                                                $count = 0;                         
+                                                foreach ($this->user_ml->get_all() as $user){                                                    
+                                                    $str = get_color_status(get_status($user['username']));
+                                                    if (!(strpos($str, 'off') !== false)){
+                                                        $count += 1;
+                                                        echo '<div class="media">       
+                                                                <img class="d-flex rounded-circle" src="'.profile_image($user['gender'], $user['username'], $user['image']).'" style="width: 40px; height: 40px;">
+                                                                <div class="media-body">                                            
+                                                                    <a href="'.site_url('review/detail/'.$user['username']).'"> 
+                                                                    <h5 class="mt-1 font-weight-bold blue-text" style="padding-left: 10px;">'.$user['full_name'].'<p style="float: right; font-size: 15px">'.$str.'</p> </h5> </a>                                                        
+                                                                </div>                                    
+                                                            </div>';                                                            
+                                                    }                                                    
+                                                }
+                                                if ($count == 0){
+                                                    echo '<h5 class="mt-1 font-weight-bold black-text">Không có người dùng nào đang online</h5>';
+                                                }
+                                            ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>            
+                    </div>
+                </main>                      
+            </div>     
+                                      
+            <div class="alert alert-info">
+                <strong>Lưu ý: </strong> Trước khi chuyến đi bắt đầu 15-30 phút, bạn nên vào xem yêu cầu của mình đã được chấp nhận hay chưa để liên hệ kịp thời nhé.
+            </div>       
         </div>                             
     </div>        
 </div>
