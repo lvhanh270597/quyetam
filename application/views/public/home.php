@@ -64,24 +64,7 @@
                                         <div class="card card-cascade narrower">
                                             <!-- Card content -->
                                             
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-6 mb-4">
-                                                    <!--Card-->
-                                                    <div class="card">
-                                                        <!--Card image-->                                                            
-                                                            <a href="<?= site_url('trip/create_ask_trip') ?>">
-                                                                <img src="<?=base_url('assets/plus.png')?>" class="img-fluid" alt="Tạo yêu cầu mới" id="dm">
-                                                                <div class="mask rgba-white-slight waves-effect waves-light">                                            
-                                                                </div>                                            
-                                                            </a>
-                                                        <!--Card image-->
-                                                        <div class="card-body">                                    
-                                                            <!--Category & Title-->
-                                                            <h6 class="card-title mb-1"><strong>TẠO YÊU CẦU</strong></h6>                                                        
-                                                        </div>
-                                                    </div>                                               
-                                                    <!--Card-->
-                                                </div>
+                                            <div class="row">                                                
                                                 <?php
                                                 if ($needed_trips){
                                                     foreach ($needed_trips as $trip){
