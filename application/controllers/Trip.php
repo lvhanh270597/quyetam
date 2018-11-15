@@ -524,6 +524,9 @@ class Trip extends CI_Controller {
     }
 
     public function create_as_trip($trip_id){
+        if (!$this->session->userdata('user_logged')){
+            redirect('login');
+        }
         $trip = $this->trip_ml->get_by_primary($trip_id);
         $trip['asker'] = $this->session->userdata('username');
         unset($trip['owner']);
