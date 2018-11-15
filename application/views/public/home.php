@@ -327,8 +327,7 @@
                                     <div class="col-md-12">
                                         <!-- Exaple 1 -->
                                         <div class="card example-1 square scrollbar-dusty-grass square thin">
-                                            <div class="row">
-                                                <div class="card-body card-body-cascade">
+                                            <div class="row">                                                
                                                                     <!--Card-->
                                                                     
                                                     <div class="card card-cascade narrower">
@@ -377,7 +376,6 @@
                                                     ?>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>                                                                    
