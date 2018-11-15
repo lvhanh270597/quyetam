@@ -60,8 +60,7 @@
                                     <div class="row">
                                     <div class="card-body card-body-cascade">
                                                         <!--Card-->
-                                                        
-                                        <div class="card card-cascade narrower">
+                                                                                                
                                             <!-- Card content -->
                                             
                                             <div class="row">                                                
@@ -73,7 +72,7 @@
                                                         $empty = '';
                                                         $trip_detail = $this->trip_ml->get_by_primary($trip['trip_id']);
                                                         if ($trip_detail !== null){
-                                                            $empty = '<span class="badge badge-warning mb-2">đã có người chở</span> <br>';
+                                                            $empty = '<span class="badge badge-warning mb-2">có người nhận chở</span> <br>';
                                                         }          
                                                         $free = '';
                                                         if ($trip['price'] == 0){
@@ -132,7 +131,6 @@
                                                 
                                                 <!--Grid column-->                        
 
-                                            </div>                                            
                                         </div>
                                     </div>
                                     </div>
