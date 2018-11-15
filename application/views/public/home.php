@@ -327,49 +327,57 @@
                                     <div class="col-md-12">
                                         <!-- Exaple 1 -->
                                         <div class="card example-1 square scrollbar-dusty-grass square thin">
-                                            <?php
-                                            if ($no_trips){
-                                                foreach ($no_trips as $trip){                                                                    
-                                                    $place = $this->place_ml->get_by_primary($trip['finish_to']);                                    
-                                                    $trip_detail = $this->trip_ml->get_by_primary($trip['id']);                                                   
-                                                    $free = '';
-                                                    if ($trip['price'] == 0){
-                                                        $free = '<span class="badge badge-info mb-2">free</span> <br>';
-                                                    }
-                                                    else{
-                                                        $free = '<span class="badge badge-info mb-2">'.$trip['price'].'đ</span> <br>';
-                                                    }                          
-                                                    echo '<div class="col-lg-9 col-md-6 mb-4" >
+                                            <div class="row">
+                                                <div class="card-body card-body-cascade">
+                                                                    <!--Card-->
+                                                                    
+                                                    <div class="card card-cascade narrower">
+                                                    <?php
+                                                    if ($no_trips){
+                                                        foreach ($no_trips as $trip){                                                                    
+                                                            $place = $this->place_ml->get_by_primary($trip['finish_to']);                                    
+                                                            $trip_detail = $this->trip_ml->get_by_primary($trip['id']);                                                   
+                                                            $free = '';
+                                                            if ($trip['price'] == 0){
+                                                                $free = '<span class="badge badge-info mb-2">free</span> <br>';
+                                                            }
+                                                            else{
+                                                                $free = '<span class="badge badge-info mb-2">'.$trip['price'].'đ</span> <br>';
+                                                            }                          
+                                                            echo '<div class="col-lg-9 col-md-6 mb-4" >
 
-                                                    <!--Card-->
-                                                    <div class="card">
+                                                            <!--Card-->
+                                                            <div class="card card-ecommerce">
 
-                                                        <!--Card image-->
-                                                        <div class="view overlay">
-                                                            <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">                                                         
-                                                        </div>
-                                                        <!--Card image-->
-                        
-                                                        <!--Card content-->
-                                                        <div class="card-body">
-                                                            <!--Category & Title-->                                                                
-                                                            <h6 class="card-title mb-1"><strong><a href="#" class="dark-grey-text">'.$places[$trip['start_from']].' <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a></strong></h6>
-                                                            '.$free.'
-                                                            <span><strong> '.after($trip['timestart']).' ('.$trip['timestart'].')</strong></span>
-                                                            <!--Card footer-->
-                                                            <div class="card-footer pb-0">                                                            
-                                                                <a href='.site_url('trip/create_as_trip/'.$trip['id']).'><button class="btn aqua-gradient btn-rounded btn-sm">TẠO YÊU CẦU NHƯ THẾ NÀY</button></a>
+                                                                <!--Card image-->
+                                                                <div class="view overlay">
+                                                                    <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">                                                         
+                                                                </div>
+                                                                <!--Card image-->
+                                
+                                                                <!--Card content-->
+                                                                <div class="card-body">
+                                                                    <!--Category & Title-->                                                                
+                                                                    <h6 class="card-title mb-1"><strong><a href="#" class="dark-grey-text">'.$places[$trip['start_from']].' <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a></strong></h6>
+                                                                    '.$free.'
+                                                                    <span><strong> '.after($trip['timestart']).' ('.$trip['timestart'].')</strong></span>
+                                                                    <!--Card footer-->
+                                                                    <div class="card-footer pb-0">                                                            
+                                                                        <a href='.site_url('trip/create_as_trip/'.$trip['id']).'><button class="btn aqua-gradient btn-rounded btn-sm">TẠO YÊU CẦU NHƯ THẾ NÀY</button></a>
+                                                                    </div>
+                                                                </div>
+                                                                <!--Card content-->
+                            
                                                             </div>
-                                                        </div>
-                                                        <!--Card content-->
-                    
+                                                            <!--Card-->
+                                
+                                                        </div>';
+                                                        }
+                                                    }                                            
+                                                    ?>
                                                     </div>
-                                                    <!--Card-->
-                        
-                                                </div>';
-                                                }
-                                            }                                            
-                                        ?>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>                                                                    
