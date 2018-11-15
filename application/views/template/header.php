@@ -136,8 +136,9 @@ function beep() {
                         background-color: #ebebeb;
                     }
                 </style>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-                    <ul class="nav navbar-nav nav-flex-icons ml-auto">                                                                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">                
+                    <ul class="nav navbar-nav nav-flex-icons ml-auto">      
+                                                                              
                        <?php
                        if (!$this->session->userdata('user_logged')){
                            echo '
@@ -156,11 +157,21 @@ function beep() {
                             }                               
                         }
                            echo '
-                           <!--Dropdown primary-->                                                  
+                           <!--Dropdown primary-->                                  
+                           <li class="nav-item">
+                                <a href="'.site_url('trip/create_ask_trip').'" class="btn btn-primary btn-sm">
+                                    tạo yêu cầu
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="'.site_url('trip/create').'" class="btn btn-info btn-sm">
+                                    tạo chuyến đi
+                                </a>
+                            </li>                
                             <div class="dropdown">                            
-                                <!--Trigger-->                                
+                                <!--Trigger-->                                                                      
                                 <li class="nav-item dropdown-toggle" data-toggle="dropdown">
-                                    <a href="/contact" data-toggle="modal" data-target="#contactForm" class="nav-link waves-effect">
+                                    <a href="#" data-toggle="modal" data-target="#contactForm" class="nav-link waves-effect">
                                         <i class="fa fa-bell"></i><span class="badge badge-danger mb-2" id="count">'.$count.'</span>
                                     </a>
                                 </li>                                
