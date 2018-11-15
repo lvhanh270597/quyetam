@@ -339,14 +339,15 @@
                                                     else{
                                                         $free = '<span class="badge badge-info mb-2">'.$trip['price'].'đ</span> <br>';
                                                     }                          
-                                                    echo '
+                                                    echo '<div class="col-md-12">
 
                                                     <!--Card-->
                                                     <div class="card card-ecommerce">
 
                                                         <!--Card image-->
-                                   
-                                                        <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">                                    
+                                                        <div class="view overlay">
+                                                            <img src="'.base_url('assets/images/uploads/places/'.$place['id'].'/'.$place['image']).'" class="img-fluid" alt="" id="dm">                                                         
+                                                        </div>
                                                         <!--Card image-->
                         
                                                         <!--Card content-->
@@ -355,13 +356,17 @@
                                                             <h6 class="card-title mb-1"><strong><a href="#" class="dark-grey-text">'.$places[$trip['start_from']].' <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a></strong></h6>
                                                             '.$free.'
                                                             <span><strong> '.after($trip['timestart']).' ('.$trip['timestart'].')</strong></span>
-                                                            <!--Card footer-->                                                                                                                  
-                                                                <a href='.site_url('trip/create_as_trip/'.$trip['id']).'><button class="btn aqua-gradient btn-rounded btn-sm">TẠO YÊU CẦU NHƯ THẾ NÀY</button></a>                                                            
+                                                            <!--Card footer-->
+                                                            <div class="card-footer pb-0">                                                            
+                                                                <a href='.site_url('trip/create_as_trip/'.$trip['id']).'><button class="btn aqua-gradient btn-rounded btn-sm">TẠO YÊU CẦU NHƯ THẾ NÀY</button></a>
+                                                            </div>
                                                         </div>
                                                         <!--Card content-->
                     
                                                     </div>
-                                                    <!--Card-->';
+                                                    <!--Card-->
+                        
+                                                </div>';
                                                 }
                                             }                                            
                                         ?>
