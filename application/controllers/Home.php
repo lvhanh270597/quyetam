@@ -38,7 +38,7 @@ class Home extends CI_Controller {
         $data = array(
             'trips' => get_slice($this->trips_have_people, $from, $len),
             'needed_trips' => get_slice($this->all_need_trips, $from, $len),
-            'no_trips' => get_slice($this->trips_no_people),
+            'no_trips' => get_slice($this->trip_no_people),
             'index' => $index,
             'max' => $this->max
         );
