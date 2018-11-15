@@ -58,6 +58,7 @@
                                 <div class="tab-pane fade in show active" id="panel555" role="tabpanel">
                                     <!-- Nav tabs -->
                                     <div class="row">
+                                    <div class="card-body card-body-cascade">
                                                         <!--Card-->
                                                         
                                         <div class="card card-cascade narrower">
@@ -133,6 +134,7 @@
 
                                             </div>                                            
                                         </div>
+                                    </div>
                                     </div>
                                     <!-- Nav tabs -->
                                     <nav aria-label="Page navigation example">
