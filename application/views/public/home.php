@@ -73,7 +73,7 @@
                                                         $empty = '';
                                                         $trip_detail = $this->trip_ml->get_by_primary($trip['trip_id']);
                                                         if ($trip_detail !== null){
-                                                            $empty = '<span class="badge badge-warning mb-2">có người nhận chở</span> <br>';
+                                                            $empty = '<span class="badge badge-warning mb-2">đã có người nhận chở</span> <br>';
                                                         }          
                                                         $free = '';
                                                         if ($trip['price'] == 0){
