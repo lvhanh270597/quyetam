@@ -141,10 +141,20 @@ function beep() {
                                                                               
                        <?php
                        if (!$this->session->userdata('user_logged')){
-                           echo '
+                        echo '<li class="nav-item">
+                            <a href="'.site_url('trip/create_ask_trip').'" class="btn btn-primary btn-sm">
+                                tạo yêu cầu
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="'.site_url('trip/create').'" class="btn btn-info btn-sm">
+                                tạo chuyến đi
+                            </a>
+                        </li> ';   
+                        echo '
                            <a id="navbar-static-login" class="btn btn-info btn-rounded btn-sm waves-effect waves-light"  href="'.site_url('login').'">Log In
                                 <i class="fa fa-sign-in ml-2"></i>
-                            </a>';
+                            </a>';                            
                        }
                        else{
                         $count = '';

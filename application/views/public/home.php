@@ -179,7 +179,6 @@
                                     <!-- Card content -->
                                     <div class="card-body card-body-cascade">
                                         <!--Card-->
-                                        <div class="card card-cascade narrower">
                                             <!-- Card content -->
                                             
                                             <div class="row">
@@ -196,7 +195,6 @@
                                                     <!-- Mega menu -->
 
                                                     <!-- /.Main Container -->
-                                                    <div class="container">
                                                     
                                                         <!-- Grid row -->
                                                         <div class="row">
@@ -205,7 +203,6 @@
                                                             <div class="col-lg-12">
                                                                 
                                                                 <!-- Section: Last items -->
-                                                                <section>              
                                                                                         <!-- Card -->
 
                                                                         <!-- Card image -->
@@ -215,7 +212,6 @@
                                                                             <h2 class="card-header-title mb-3">CÁC CHUYẾN ĐI CỦA TÔI</h2>                                                                            
                                                                             <!-- Subtitle -->                                                       
                                                                         </div>
-                                                                        <hr>
                                                                         <!-- Card content -->
                                                                         <div class="card-body card-body-cascade text-center">
                                                                             <!-- Card -->
@@ -290,16 +286,15 @@
                                                                         
 
                                                                     </div>
+
                                                                     
                                                                     <!--Grid row-->
 
                                                                     <!--Grid row-->                    
                                                                     <!--Grid row-->
-                                                                </section>
                                                                 <!-- /.Section: Last items -->
 
-                                                            
-                                                            <section>                    
+                                                                                                                            
                                                                     <!-- Grid row -->
 
                                                                         <!-- Card image -->
@@ -309,7 +304,6 @@
                                                                             <h2 class="card-header-title mb-3">CÁC YÊU CẦU CỦA TÔI</h2>
                                                                             <!-- Subtitle -->                                                                                                       
                                                                         </div>
-                                                                        <hr>
                                                                         <!-- Card content -->
                                                                         <div class="card-body card-body-cascade text-center">
                                                                             <!-- Card -->
@@ -374,7 +368,6 @@
                                                                         
                                                                         </div>
                                                                   
-                                                                </section>
                                                                 <!-- /.Section: Last items -->
 
 
@@ -385,7 +378,6 @@
                                                         </div>
                                                         <!-- Grid row -->
 
-                                                    </div>
                                     
 
                                                 <!--Grid column-->
@@ -394,7 +386,6 @@
 
                                                 </div>
                                             
-                                        </div>
                                     </div>
 
                                 </div>
