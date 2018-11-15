@@ -339,7 +339,7 @@
                                                     else{
                                                         $free = '<span class="badge badge-info mb-2">'.$trip['price'].'đ</span> <br>';
                                                     }                          
-                                                    echo '<div class="col-md-12">
+                                                    echo '
 
                                                     <!--Card-->
                                                     <div class="card card-ecommerce">
@@ -361,9 +361,7 @@
                                                         <!--Card content-->
                     
                                                     </div>
-                                                    <!--Card-->
-                        
-                                                </div>';
+                                                    <!--Card-->';
                                                 }
                                             }                                            
                                         ?>
