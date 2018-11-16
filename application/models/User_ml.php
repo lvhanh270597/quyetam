@@ -7,7 +7,7 @@ class User_ml extends Quickaccess
 	protected $db_table = 'user';
 	protected $personal_info = ['username', 'password'];
 	protected $editable_fields = ['username','full_name', 'gender', 'password'];
-	protected $fields = ['facebook', 'phone_num', 'gender', 'university', 'subject', 'noti_email'];	
+	protected $fields = ['facebook', 'phone_num', 'gender', 'university', 'subject', 'noti_email', 'full_name'];	
 	private $security;
 
 	public function __construct()
