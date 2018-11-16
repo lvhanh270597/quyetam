@@ -164,8 +164,8 @@ class Trip extends CI_Controller {
                     'type_noti' => 'edit_trip',
                     'where_noti' => $trip_id
                 ];
-                $this->notify_ml->add_trigger($notify);
-                $this->sendMessage($trip['owner'], hashCode($user_guess['full_name']).' has sent a request to your trip '.$trip['id'].'\n Click <a href="'.site_url('trip/detail/'.$trip['id']).'"> here </a> to view this request!');
+                $this->notify_ml->add_trigger($notify);                
+                //$this->sendMessage($trip['owner'], hashCode($user_guess['full_name']).' has sent a request to your trip '.$trip['id'].'\n Click <a href="'.site_url('trip/detail/'.$trip['id']).'"> here </a> to view this request!');
             } else {
                 $message = get_message_error('Lỗi! <br>', 'Gửi yêu cầu thất bại!');
             }         
@@ -505,7 +505,7 @@ class Trip extends CI_Controller {
                 ];
                 $this->notify_ml->add_trigger($notify);
                 // send message
-                $this->sendMessage($data_sql['guess'], 'Your asked trip was opened! Please check to contact as soon as posible!^^'.'\nClick <a href="'.site_url('trip/detail/'.$insert_id).'"> here </a> to view this trip!');
+                $this->sendMessage($data_sql['guess'], 'Đã mở chuyến đi!', 'Chuyến đi mà bạn yêu cầu đã được mở. Bấm vào  <a href="'.site_url('trip/detail/'.$insert_id).'"> đây </a> để xem thông tin chi tiết của chuyến đi.');
                 redirect('trip/show_open_this_trip/'.$insert_id);                          
             }
             else{
@@ -650,7 +650,8 @@ class Trip extends CI_Controller {
         display('action_info', $data);
     }
 
-    public function sendMessage($username, $content){
+    public function sendMessage($username, $header, $content){
+        $content = get_content($header, $content);
         $email = $this->verify_ml->get_email($username);
         if ($email == null){
             return ;
@@ -662,14 +663,15 @@ class Trip extends CI_Controller {
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'tls';
         $mail->Host = 'smtp.zoho.com';
-        $mail->Port = '587';
-        $mail->isHTML();
+        $mail->Port = '587';        
         $mail->Username ='easyhere@zoho.com';
         $mail->Password = 'Xfam0usx_';
         $mail->From = 'easyhere@zoho.com';
         $mail->FromName = 'noreply';
+        $mail->CharSet = 'UTF-8';
         $mail->Subject = 'EasyHere - Notification';
         $mail->Body = $content;
+        $mail->isHTML(true);
         // Our message above including the link
         $mail->AddAddress($email);
         $mail->send();

@@ -67,30 +67,4 @@ class Home extends CI_Controller {
         
     }
 
-    public function fuck(){
-        
-        $content = get_content('please fuck me now!', 'i love you');
-
-        $email = 'lvhanh.270597@gmail.com';        
-        require_once "./vendor/autoload.php";
-        //PHPMailer Object
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
-        $mail->isSMTP();
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'tls';
-        $mail->Host = 'smtp.zoho.com';
-        $mail->Port = '587';        
-        $mail->CharSet = 'UTF-8';
-        $mail->Username ='easyhere@zoho.com';
-        $mail->Password = 'Xfam0usx_';
-        $mail->From = 'easyhere@zoho.com';
-        $mail->FromName = 'noreply';
-        $mail->Subject = 'EasyHere - Notification';
-        $mail->Body = $content;
-        $mail->isHTML(true);
-        // Our message above including the link
-        $mail->AddAddress($email);
-        $mail->send();        
-    }
-
 }

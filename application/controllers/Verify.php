@@ -301,17 +301,16 @@ class Verify extends CI_Controller {
         $mail->SMTPSecure = 'tls';
         $mail->Host = 'smtp.zoho.com';
         $mail->Port = '587';
-        $mail->isHTML();
         $mail->Username ='easyhere@zoho.com';
         $mail->Password = 'Xfam0usx_';
         $mail->From = 'easyhere@zoho.com';
         $mail->FromName = 'noreply';
+        $mail->CharSet = 'UTF-8';
         $mail->Subject = 'EasyHere - Verification student email';
-        $mail->Body = 'Thanks for verification student email here!
-			
-		Please click the below link to verify your email.
-		'.base_url('verify/active/'.$id.'/'.$hash).'
-        '; // Our message above including the link
+        $mail->Body = get_content('Cám ơn bạn đã xác thực email!',
+        'Việc xác thực giúp cho mọi người trong hệ thống được an toàn hơn. Xin hãy bấm vào link dưới đây để xác thực email của bạn.'.base_url('verify/active/'.$id.'/'.$hash)); 
+        // Our message above including the link
+        $mail->isHTML(true);
         $mail->AddAddress($email);
         $mail->send();
     }
