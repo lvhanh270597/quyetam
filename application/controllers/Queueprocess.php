@@ -16,7 +16,11 @@ class Queueprocess extends CI_Controller {
         }
     }
 
-    public function sendMessage($email, $content){        
+    public function sendMessage($email, $content){  
+        $index = strpos($content,'_');
+        $header = substr($content, 0, $index);
+        $content = substr($content, $index + 1);
+        $content = get_content($header, $content);      
         require_once "./vendor/autoload.php";
         //PHPMailer Object
         $mail = new PHPMailer\PHPMailer\PHPMailer();
@@ -30,8 +34,10 @@ class Queueprocess extends CI_Controller {
         $mail->Password = 'Xfam0usx_';
         $mail->From = 'easyhere@zoho.com';
         $mail->FromName = 'noreply';
-        $mail->Subject = 'EasyHere - Notification';
+        $mail->CharSet = 'UTF-8';
+        $mail->Subject = 'EasyHere - Notification';        
         $mail->Body = $content;
+        $mail->isHTML(true);
         // Our message above including the link
         $mail->AddAddress($email);
         $mail->send();

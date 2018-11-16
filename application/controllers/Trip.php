@@ -265,13 +265,14 @@ class Trip extends CI_Controller {
                     /* Send for all of users who checked noti_email */
                     $string_from = $this->place_ml->get_by_primary($data_sql['start_from'])['name'];
                     $string_finish = $this->place_ml->get_by_primary($data_sql['finish_to'])['name'];
-                    $content = 'There is a request from '.khongdau($string_from). ' to '.khongdau($string_finish).' at '.$data_sql['timestart'];   
+                    $header = 'Yêu cầu mới!_';
+                    $content = 'Có một yêu cầu từ  '.$string_from. ' đến '.$string_finish.' vào lúc '.$data_sql['timestart'].'. Bạn có thể nhận chuyến này không?';   
                     foreach ($this->user_ml->get_users_check_notif_email() as $user){                        
                         $email = $this->verify_ml->get_email($user['username']);
                         if ($email){
                             $datasql = [
                                 'email' => $email, 
-                                'content' => $content,
+                                'content' => $header.$content,
                                 'created_at' => get_current_time()
                             ];
                             $this->queue->add($datasql);                            
