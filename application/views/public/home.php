@@ -195,7 +195,8 @@
                                                     <!-- Mega menu -->
 
                                                     <!-- /.Main Container -->
-                                                    
+                                                
+                                                    <div class="container">
                                                         <!-- Grid row -->
                                                         <div class="row">
 
@@ -377,7 +378,7 @@
 
                                                         </div>
                                                         <!-- Grid row -->
-
+                                                    </div>
                                     
 
                                                 <!--Grid column-->
