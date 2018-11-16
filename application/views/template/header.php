@@ -167,17 +167,7 @@ function beep() {
                             }                               
                         }
                            echo '
-                           <!--Dropdown primary-->                                  
-                           <li class="nav-item">
-                                <a href="'.site_url('trip/create_ask_trip').'" class="btn btn-primary btn-sm">
-                                    tạo yêu cầu
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="'.site_url('trip/create').'" class="btn btn-info btn-sm">
-                                    tạo chuyến đi
-                                </a>
-                            </li>                
+                           <!--Dropdown primary-->                                                                    
                             <div class="dropdown">                            
                                 <!--Trigger-->                                                                      
                                 <li class="nav-item dropdown-toggle" data-toggle="dropdown">
@@ -211,6 +201,16 @@ function beep() {
                                 </a>
                             </li>                                                   
                            ';
+                           echo '<li class="nav-item">
+                           <a href="'.site_url('trip/create_ask_trip').'" class="btn btn-primary btn-sm">
+                               tạo yêu cầu
+                           </a>
+                       </li>
+                       <li class="nav-item">
+                           <a href="'.site_url('trip/create').'" class="btn btn-info btn-sm">
+                               tạo chuyến đi
+                           </a>
+                       </li>        ';
                        }
                        ?>
                                              
