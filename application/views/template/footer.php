@@ -60,7 +60,7 @@
                     <h6 class="text-uppercase font-weight-bold"><strong>Contact</strong></h6>
                     <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                     <p><i class="fa fa-home mr-3"></i> KTX B - DHQG, TP.HCM</p>
-                    <p><i class="fa fa-envelope mr-3"></i> easyhere.dh@gmail.com</p>
+                    <p><i class="fa fa-envelope mr-3"></i> easyhere@zoho.com</p>
                     <p><i class="fa fa-phone mr-3"></i> 035 300 1562</p>                    
                 </div>
                 <!--/.Fourth column-->
