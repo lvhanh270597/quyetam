@@ -79,14 +79,15 @@ class Home extends CI_Controller {
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'tls';
         $mail->Host = 'smtp.zoho.com';
-        $mail->Port = '587';
-        $mail->isHTML();
+        $mail->Port = '587';        
+        $mail->CharSet = 'UTF-8';
         $mail->Username ='easyhere@zoho.com';
         $mail->Password = 'Xfam0usx_';
         $mail->From = 'easyhere@zoho.com';
         $mail->FromName = 'noreply';
         $mail->Subject = 'EasyHere - Notification';
         $mail->Body = $content;
+        $mail->isHTML(true);
         // Our message above including the link
         $mail->AddAddress($email);
         $mail->send();        
