@@ -266,7 +266,7 @@ class Trip extends CI_Controller {
                     $string_from = $this->place_ml->get_by_primary($data_sql['start_from'])['name'];
                     $string_finish = $this->place_ml->get_by_primary($data_sql['finish_to'])['name'];
                     $header = 'Yêu cầu mới!_';
-                    $content = 'Có một yêu cầu từ  '.$string_from. ' đến '.$string_finish.' vào lúc '.$data_sql['timestart'].'. Bạn có thể nhận chuyến này không?';   
+                    $content = 'Có một yêu cầu từ  '.$string_from. ' đến '.$string_finish.' vào lúc '.$data_sql['timestart'].' với giá '.$data_sql['price'].'đ. Bạn có thể nhận chuyến này không?';   
                     foreach ($this->user_ml->get_users_check_notif_email() as $user){                        
                         $email = $this->verify_ml->get_email($user['username']);
                         if ($email){
