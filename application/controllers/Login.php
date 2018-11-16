@@ -40,7 +40,8 @@ class Login extends CI_Controller {
         if ($this->input->post()){              
             // check register
             $check = $this->user_ml->check_register();
-            if ($check['status'] === true){                
+            if ($check['status'] === true){        
+                $check['data']['status'] = get_current_time();        
                 if ($this->user_ml->add_really_carefully($check['data'])){ redirect('login/success'); }                
             }
             else{ $errors = get_message_error('Lỗi!', $check['data']); }
