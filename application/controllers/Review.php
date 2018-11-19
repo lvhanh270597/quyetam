@@ -18,6 +18,7 @@ class Review extends CI_Controller {
         if (!$test_user = $this->user_ml->get_by_primary($user)){
             redirect('page_not_found');
         }        
+        $user_get = $user;
 
         $username = $this->session->userdata('username');
 
@@ -77,7 +78,8 @@ class Review extends CI_Controller {
             'cmnd' => $cmnd_card,
             'dcard' => $driver_card,
             'current_user' =>$current_user,            
-            'permission' => $permission
+            'permission' => $permission,
+            'success_per_all' => $this->trip_ml->get_success_per_all($user_get)
         ];
         display('review_detail', $data);
     }

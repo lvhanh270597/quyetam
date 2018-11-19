@@ -195,6 +195,33 @@ class Trip_ml extends Trip_template
 		return $res;
 	}
 
+	public function get_success_per_all($username){
+		
+		$this->db->select('*');
+		$this->db->from($this->db_table);
+		
+		$where = '(owner="'.$username.'" or guess = "'.$username.'") and (timestart<="'.get_current_time().'")';
+		$this->db->where($where);
+		$query = $this->db->get();
+		$query = $query->result_array();
+		$fail = 0;
+		$all = 0;
+		foreach ($query as $q){
+			if ($q['guess'] == null) continue;
+			$all += 1;
+			if ($username == $q['owner']){
+				if ($q['v_owner'] == null || $q['v_owner'] == false){
+					$fail += 1;
+				}
+			}else{
+				if ($q['v_guess'] == null || $q['v_guess'] == false){
+					$fail += 1;
+				}
+			}
+		}
+		return [$all - $fail, $all];
+	}
+
 	public function get_with_people($current=false, $empty=false){		
 		$this->db->order_by("timestart", "asc");
 		if ($current){

@@ -102,6 +102,10 @@ Licensed under MIT
                                 <table class="table table-striped">                                    
                                     <tbody>
                                         <tr>
+                                        <th scope="row">Tỉ lệ chuyến đi thành công</th>
+                                        <td><?= round($success_per_all[0] / max($success_per_all[1], 1), 2); ?>% (<?= $success_per_all[0]?>/<?= $success_per_all[1] ?>)</td>                                        
+                                        </tr>
+                                        <tr>
                                         <th scope="row">Giới tính</a></th>
                                         <td>
                                             <?php
