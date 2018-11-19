@@ -103,7 +103,7 @@ Licensed under MIT
                                     <tbody>
                                         <tr>
                                         <th scope="row">Tỉ lệ chuyến đi thành công</th>
-                                        <td><?= round($success_per_all[0] / max($success_per_all[1], 1), 2); ?>% (<?= $success_per_all[0]?>/<?= $success_per_all[1] ?>)</td>                                        
+                                        <td><?= 100 * round($success_per_all[0] / max($success_per_all[1], 1), 4); ?>% (<?= $success_per_all[0]?>/<?= $success_per_all[1] ?>)</td>                                        
                                         </tr>
                                         <tr>
                                         <th scope="row">Giới tính</a></th>
