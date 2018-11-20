@@ -67,7 +67,7 @@ class User_control extends CI_Controller {
 		}				
 		display('add_money', $data, true);
 	}
-	public function all_user_1999(){
+	public function all_user_2000(){
 		if (!$this->session->userdata('admin')){
 			redirect('admin/login');
 		}
