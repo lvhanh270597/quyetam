@@ -30,6 +30,7 @@ class Trip_template extends Quickaccess
 
     public function get_newest($current=false){		
 		$this->db->order_by("timestart", "asc");
+		$this->db->order_by("trip_id", "asc");
 		if ($current){
 			$this->db->where(["timestart>=" => get_current_time()]);
 		}
