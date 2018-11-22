@@ -89,7 +89,7 @@
   <h6> Yêu cầu chuyến đi tổng thể: <?= $data_research['all_cnt'] ?> </h6>
   <h6> Yêu cầu thành công tổng thể: <?= $data_research['all_success'] ?>  </h6>
   <h6> Tỉ lệ thành công tổng thể: <?= 100*round($data_research['all_success'] / max($data_research['all_cnt'], 1), 4) ?>% </h6>
-  <h6> Tỉ lệ yêu cầu thành công mỗi ngày (TB): <?= $data_research['avg_trip'] ?> </h6>
+  <h6> Tỉ lệ yêu cầu thành công mỗi ngày (TB): <?= $data_research['avg_trip'] ?>% </h6>
   
   <main>
 

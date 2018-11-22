@@ -172,8 +172,8 @@ class Needed_trip_ml extends Trip_template
 		$dataset = $this->db->query("select avg(cnt) as avg from (SELECT count(*) as cnt FROM ".$this->db_table." GROUP BY CAST(timestart AS DATE)) as T");
 		$res['avg_trip'] = $dataset->result_array()[0]['avg'];
 		$dataset = $this->db->query("select avg(cnt) as avg from (SELECT count(*) as cnt FROM ".$this->db_table." where (trip_id = 0) GROUP BY CAST(timestart AS DATE)) as T");
-		$avg_fail = $dataset->result_array()[0]['avg'];
-		$res['avg_trip'] = 100 * round($avg_fail / max(1, $res['avg_trip']), 4);
+		$avg_success = $res['avg_trip'] - $dataset->result_array()[0]['avg'];
+		$res['avg_trip'] = 100 * round($avg_success / max(1, $res['avg_trip']), 4);
 
 		$dataset = $this->db->query("SELECT * FROM ".$this->db_table);		
 		$res['all_cnt'] = $dataset->num_rows();
