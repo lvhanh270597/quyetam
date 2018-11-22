@@ -471,7 +471,8 @@
                                                     if ($no_trips){
                                                         foreach ($no_trips as $trip){                                                                    
                                                             $place = $this->place_ml->get_by_primary($trip['finish_to']);                                    
-                                                            $trip_detail = $this->trip_ml->get_by_primary($trip['id']);                                                   
+                                                            $trip_detail = $this->trip_ml->get_by_primary($trip['id']);     
+                                                            $owner = $this->user_ml->get_by_primary($trip['owner']);                                              
                                                             $free = '';
                                                             if ($trip['price'] == 0){
                                                                 $free = '<span class="badge badge-info mb-2">free</span> <br>';
@@ -496,6 +497,7 @@
                                                                     <h6 class="card-title mb-1"><strong><a href="#" class="dark-grey-text">'.$places[$trip['start_from']].' <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a></strong></h6>
                                                                     '.$free.'
                                                                     <span><strong> '.after($trip['timestart']).' ('.$trip['timestart'].')</strong></span>
+                                                                    <a href='.site_url('review/detail/'.$owner['username']).'><button class="btn aqua-gradient btn-rounded btn-sm">'.$owner['full_name'].'</button></a>
                                                                     <!--Card footer-->
                                                                     <div class="card-footer pb-0">                                                            
                                                                         <a href='.site_url('trip/create_as_trip/'.$trip['id']).'><button class="btn aqua-gradient btn-rounded btn-sm">TẠO YÊU CẦU NHƯ THẾ NÀY</button></a>
