@@ -84,7 +84,11 @@
   <h4 class="card-title"><strong>Data research(<?= date('Y-m-d', strtotime(get_current_time())) ?>)</strong></h4>
   <h6> Yêu cầu chuyến đi ngày nay: <?= $data_research['cnt'] ?> </h6>
   <h6> Yêu cầu thành công ngày nay: <?= $data_research['success_ask'] ?>  </h6>
-  <h6> Tỉ lệ thành công: <?= 100*round($data_research['success_ask'] / max($data_research['cnt'], 1), 2) ?>% </h6>
+  <h6> Tỉ lệ thành công: <?= 100*round($data_research['success_ask'] / max($data_research['cnt'], 1), 4) ?>% </h6>
+  
+  <h6> Yêu cầu chuyến đi tổng thể: <?= $data_research['all_cnt'] ?> </h6>
+  <h6> Yêu cầu thành công tổng thể: <?= $data_research['all_success'] ?>  </h6>
+  <h6> Tỉ lệ thành công tổng thể: <?= 100*round($data_research['all_success'] / max($data_research['all_cnt'], 1), 4) ?>% </h6>
   
   
   <main>
