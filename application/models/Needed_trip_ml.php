@@ -157,7 +157,7 @@ class Needed_trip_ml extends Trip_template
 	}
 	public function get_research_info(){
 		$target_date = date('Y-m-d', strtotime(get_current_time()));
-		$dataset = $this->db->query("SELECT * FROM ".$this->db_table." WHERE CAST(created AS DATE) = ".'"'.$target_date.'"');		
+		$dataset = $this->db->query("SELECT * FROM ".$this->db_table." WHERE CAST(timestart AS DATE) = ".'"'.$target_date.'"');		
 		$res = [];
 		$res['cnt'] = $dataset->num_rows();
 		$dataset = $this->db->query("SELECT start_from, count(*) as cnt FROM ".$this->db_table.' group by start_from');		
