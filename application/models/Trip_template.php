@@ -40,4 +40,9 @@ class Trip_template extends Quickaccess
 		}
 		return null;
 	}
+
+	public function get_user_access(){
+		$dataset = $this->db->query('select DISTINCT owner as u from trip UNION DISTINCT select DISTINCT guess as u from trip UNION DISTINCT select DISTINCT asker as u from needed_trip');
+		return $dataset->result_array();
+	}
 }

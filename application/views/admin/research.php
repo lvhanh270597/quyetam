@@ -90,6 +90,8 @@
   <h6> Yêu cầu thành công tổng thể: <?= $data_research['all_success'] ?>  </h6>
   <h6> Tỉ lệ thành công tổng thể: <?= 100*round($data_research['all_success'] / max($data_research['all_cnt'], 1), 4) ?>% </h6>
   <h6> Trung bình mỗi ngày có: <?= $data_research['avg_trip'] ?> yêu cầu </h6>
+
+  <h6> Tỉ lệ users đã tương tác: <?= 100 * round($data_research['user_access'] / $data_research['all_users'], 4) ?>% (<?=$data_research['user_access']?>/<?= $data_research['all_users'] ?>) </h6>
   
   <main>
 
