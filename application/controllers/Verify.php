@@ -55,6 +55,12 @@ class Verify extends CI_Controller {
             'status' => $status,                      
         ];
 
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Verification',
+            'created_at' => get_current_time()
+        ]);        
+
         display('verify', $data);
     }
 
@@ -524,7 +530,11 @@ class Verify extends CI_Controller {
         $data = [
             'trips' => $trip_false
         ];
-
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Verify a trip',
+            'created_at' => get_current_time()
+        ]);        
         display('verify_trips', $data);
     }
 

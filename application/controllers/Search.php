@@ -35,6 +35,13 @@ class Search extends CI_Controller {
             'to'           => $to,
             'all'          => $all,            
         );
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Search',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
+
         display('search', $data);
     }
 }

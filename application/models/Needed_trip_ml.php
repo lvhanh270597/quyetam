@@ -155,4 +155,19 @@ class Needed_trip_ml extends Trip_template
 		} 
 		return null;
 	}
+	public function get_research_info(){
+		$target_date = date('Y-m-d', strtotime(get_current_time()));
+		$dataset = $this->db->query("SELECT * FROM ".$this->db_table." WHERE CAST(created AS DATE) = ".'"'.$target_date.'"');		
+		$res = [];
+		$res['cnt'] = $dataset->num_rows();
+		$dataset = $this->db->query("SELECT start_from, count(*) as cnt FROM ".$this->db_table.' group by start_from');		
+		$res['start_from'] = $dataset->result_array();
+		$dataset = $this->db->query("SELECT finish_to, count(*) as cnt FROM ".$this->db_table.' group by finish_to');		
+		$res['finish_to'] = $dataset->result_array();
+		$dataset = $this->db->query('SELECT HOUR(created) as hour, COUNT(*) as cnt FROM '.$this->db_table.' GROUP BY HOUR(created)');
+		$res['hour_cnt'] = $dataset->result_array();
+		$dataset = $this->db->query("SELECT * FROM ".$this->db_table." WHERE (trip_id = 0) and CAST(created AS DATE) = ".'"'.$target_date.'"');		
+		$res['success_ask'] = $dataset->num_rows();
+		return $res;
+	}
 }

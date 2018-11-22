@@ -50,6 +50,13 @@ class Trip extends CI_Controller {
             'my_needed_trips' => $my_needed_trips,           
         );
 
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'My trips',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
+        
         display('my_trips', $data);
         // show all of my trips
     }    
@@ -112,6 +119,13 @@ class Trip extends CI_Controller {
             'requests' => $requests,            
             'images' => $this->image,            
         ];
+
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Edit trip',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
 
         display('edit_trip', $data);
     }
@@ -237,6 +251,13 @@ class Trip extends CI_Controller {
             $data['comments'] = $this->comment_ml->get_from_trip($trip_id);            
         }        
 
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Detail trip',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
+
         display('detail_trip', $data);    
     }
 
@@ -289,6 +310,14 @@ class Trip extends CI_Controller {
             'message'=>$message, 
             '_places' => $this->place_ml->get_all(),
         ];
+
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Create ask trip',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
+
         display('create_needed_trip', $data);
     }
 
@@ -324,6 +353,14 @@ class Trip extends CI_Controller {
                 }            
             }
         }
+
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Create a trip',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
+
         display('create_trip', $data);
     }
 
@@ -521,6 +558,14 @@ class Trip extends CI_Controller {
             'message' => $message,     
             'images' => $this->image,                             
         ];
+
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Detail ask trip',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
+
         display('detail_need', $data);
     }
 
@@ -538,6 +583,14 @@ class Trip extends CI_Controller {
         unset($trip['v_guess']); 
         $this->needed_trip_ml->add_into($trip);
         $insert_id = $this->db->insert_id();
+
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Create need trip like this',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
+
         redirect('trip/as_trip_success/'.$insert_id);
     }
 
@@ -569,6 +622,13 @@ class Trip extends CI_Controller {
             'asker' => $asker,            
             'images' => $this->image,            
         ];
+
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Edit need trip',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
 
         display('edit_need_trip', $data);
     }

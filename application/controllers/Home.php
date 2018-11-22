@@ -27,6 +27,7 @@ class Home extends CI_Controller {
         $size2 = isset($this->all_need_trips) ? count($this->all_need_trips) : 0;
         $this->max = max($size1, $size2);
         $this->max = intdiv($this->max, $this->limit_per_page) + ($this->max % $this->limit_per_page != 0);
+
     }       
     
     public function index(){                    
@@ -38,6 +39,12 @@ class Home extends CI_Controller {
             'index' => 1,
             'max' => $this->max
         );
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Home',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
         display('home', $data);
     }
 
@@ -53,6 +60,12 @@ class Home extends CI_Controller {
             'max' => $this->max
         );
         display('home', $data);
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Page',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
     }
 
     public function page_not_found(){        
@@ -63,8 +76,7 @@ class Home extends CI_Controller {
         $all_trips = $this->trip_ml->get_success_false();
         foreach ($all_trips as $trip){
             $this->trip_ml->set_attr($trip['id'], 'success', true);
-        }
-        
+        }        
     }
 
 }

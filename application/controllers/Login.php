@@ -29,6 +29,12 @@ class Login extends CI_Controller {
                 }                         
             }
         }
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Login',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
         display('login', $data);        
     }
 
@@ -46,7 +52,12 @@ class Login extends CI_Controller {
             }
             else{ $errors = get_message_error('Lỗi!', $check['data']); }
         }
-        
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Register',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
         $data = ['errors' => $errors ];
         display('register', $data);
     }

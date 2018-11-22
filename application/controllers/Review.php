@@ -81,6 +81,14 @@ class Review extends CI_Controller {
             'permission' => $permission,
             'success_per_all' => $this->trip_ml->get_success_per_all($user_get)
         ];
+
+        // add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Review',
+            'created_at' => get_current_time(),
+            'user_access' => $this->session->userdata('username')
+        ]);        
+        
         display('review_detail', $data);
     }
 }

@@ -222,3 +222,10 @@ CREATE TABLE queue(
 	content VARCHAR(200),
 	created_at DATETIME
 )
+
+CREATE TABLE visited(
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	page_name VARCHAR(50),
+	user_access VARCHAR(30),
+	created_at DATETIME
+)

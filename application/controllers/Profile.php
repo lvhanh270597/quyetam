@@ -56,6 +56,14 @@ class Profile extends CI_Controller {
 			'dcard' => $driver_card	
 		];
 		$data = array_merge($data, $addition);
+
+		// add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Home',
+			'created_at' => get_current_time(),
+			'user_access' => $this->session->userdata('username')
+		]);        
+		
 		display('edit_profile', $data);
 	}	
 
@@ -111,6 +119,12 @@ class Profile extends CI_Controller {
 				$data['message'] = get_message_success('', 'Tài khoản của bạn là '.($user['balance'] + $price));
 			}
 		}		
+		// add to visit page
+        $this->visited_ml->add_into([
+            'page_name' => 'Profile',
+			'created_at' => get_current_time(),
+			'user_access' => $this->session->userdata('username')
+        ]);        
 		display('recharge', $data);
 	}
 }
