@@ -26,7 +26,7 @@
             <!-- Card image -->            
             <div class="view view-cascade overlay" id="hihi">
                 <!-- Title -->                
-                <img  class="card-img-top" src="<?php echo base_url('assets/cover.jpg'); ?>" alt="Card image cap">                
+                <img  class="card-img-top" src="<?php echo base_url('assets/huongdan.png'); ?>" alt="Card image cap">                
             </div>
 
             <!-- Card content -->
