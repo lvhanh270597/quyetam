@@ -10,7 +10,7 @@
         height: 70px;
     }
     #hihi{
-        height: 50%;
+        height: 100%;
     }
 </style>
 
