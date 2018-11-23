@@ -217,4 +217,9 @@ class User_ml extends Quickaccess
 		$dataset = $this->db->get_where($this->db_table, ['noti_email'=> true]);
 		return $dataset->result_array();
 	}
+	public function get_all_status_desc(){
+		$this->db->order_by('status', 'desc');
+		$dataset = $this->db->get_where($this->db_table);
+		return $dataset->result_array();
+	}
 }

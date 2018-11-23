@@ -534,7 +534,7 @@
                                                                 
                                             <?php   
                                                 $count = 0;                         
-                                                foreach ($this->user_ml->get_all() as $user){                                                    
+                                                foreach ($this->user_ml->get_all_status_desc() as $user){                                                    
                                                     $str = get_color_status(get_status($user['username']));
                                                     if (!(strpos($str, 'off') !== false)){
                                                         $count += 1;
