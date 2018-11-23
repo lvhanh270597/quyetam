@@ -146,7 +146,7 @@
                                 if ($trip['trip_id'] != 0){
                                     echo '<div class="row">
                                         <div class="col-md-12 text-center my-4">                                                                                
-                                            <a class="btn btn-primary btn-rounded" href="'.site_url('trip/detail/'.$trip['trip_id']).'">Xem chuyến đi tương ứng</a>
+                                            <a class="btn btn-primary btn-rounded" href="'.site_url('trip/detail/'.$trip['trip_id']).'">Xem chi tiết chuyến đi</a>
                                         </div>
                                     </div>';                     
                                 }                                                           
