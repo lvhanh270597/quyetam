@@ -164,14 +164,9 @@ Licensed under MIT
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
                                             <select class="browser-default custom-select mb-4" name="role">
-<<<<<<< HEAD
 
                                               <?php
                                               if ($role == null){
-=======
-                                              <?php                                              
-                                              if ($role === null){
->>>>>>> 00740465ce81dfa3fff6819f851542fdb6dbaef7
                                                 echo '<option value="" disabled selected>Bạn là?</option>
                                                 <option value="chu_xe" >Chủ xe</option>
                                                 <option value="hanh_khach" >Hành khách</option>';
