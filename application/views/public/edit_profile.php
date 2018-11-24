@@ -164,7 +164,7 @@ Licensed under MIT
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
                                             <select class="browser-default custom-select mb-4" name="role">
-                                              <?
+                                              <?php                                              
                                               if ($role == null){
                                                 echo '<option value="" disabled selected>Bạn là?</option>
                                                 <option value="chu_xe" >Chủ xe</option>
