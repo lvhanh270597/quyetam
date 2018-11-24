@@ -6,8 +6,8 @@ class User_ml extends Quickaccess
 	protected $primary = 'username';
 	protected $db_table = 'user';
 	protected $personal_info = ['username', 'password'];
-	protected $editable_fields = ['username','full_name', 'gender', 'password'];
-	protected $fields = ['facebook', 'phone_num', 'gender', 'university', 'subject', 'noti_email', 'full_name'];	
+	protected $editable_fields = ['username','full_name', 'gender', 'password', 'role'];
+	protected $fields = ['facebook', 'phone_num', 'gender', 'university', 'subject', 'noti_email', 'full_name', 'role'];	
 	private $security;
 
 	public function __construct()
@@ -35,6 +35,7 @@ class User_ml extends Quickaccess
 		foreach ($this->fields as $field){
 			if (!empty($this->input->post($field))){
 				$data[$field] = hashCode($this->input->post($field));
+				$this->session->set_userdata($field, $data[$field]);
 			}
 			else{
 				if ($field === 'noti_email'){

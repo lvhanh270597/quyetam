@@ -141,11 +141,7 @@ function beep() {
                                                                               
                        <?php
                        if (!$this->session->userdata('user_logged')){
-                        echo '<li class="nav-item">
-                            <a href="'.site_url('trip/create_ask_trip').'" class="btn btn-primary btn-sm">
-                                tạo yêu cầu
-                            </a>
-                        </li>
+                        echo '
                         <li class="nav-item">
                             <a href="'.site_url('trip/create').'" class="btn btn-info btn-sm">
                                 tạo chuyến đi
@@ -201,11 +197,7 @@ function beep() {
                                 </a>
                             </li>                                                   
                            ';
-                           echo '<li class="nav-item">
-                           <a href="'.site_url('trip/create_ask_trip').'" class="btn btn-primary btn-sm">
-                               tạo yêu cầu
-                           </a>
-                       </li>
+                           echo '
                        <li class="nav-item">
                            <a href="'.site_url('trip/create').'" class="btn btn-info btn-sm">
                                tạo chuyến đi

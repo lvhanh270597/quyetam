@@ -479,7 +479,13 @@
                                                             }
                                                             else{
                                                                 $free = '<span class="badge badge-info mb-2">'.$trip['price'].'đ</span> <br>';
-                                                            }                          
+                                                            }               
+                                                            $show = '<div class="card-footer pb-0">                                                            
+                                                            <a href='.site_url('trip/create_as_trip/'.$trip['id']).'><button class="btn aqua-gradient btn-rounded btn-sm">TẠO YÊU CẦU NHƯ THẾ NÀY</button></a>
+                                                        </div>';
+                                                            if ($this->session->userdata('role') == 'chu_xe'){
+                                                                $show = '';
+                                                            }
                                                             echo '<div class="col-lg-9 col-md-6 mb-4" >
 
                                                             <!--Card-->
@@ -499,9 +505,7 @@
                                                                     <span><strong> '.after($trip['timestart']).' ('.$trip['timestart'].')</strong></span>
                                                                     <a href='.site_url('review/detail/'.$owner['username']).'><button class="btn aqua-gradient btn-rounded btn-sm">'.$owner['full_name'].'</button></a>
                                                                     <!--Card footer-->
-                                                                    <div class="card-footer pb-0">                                                            
-                                                                        <a href='.site_url('trip/create_as_trip/'.$trip['id']).'><button class="btn aqua-gradient btn-rounded btn-sm">TẠO YÊU CẦU NHƯ THẾ NÀY</button></a>
-                                                                    </div>
+                                                                    '.$show.'                                                                    
                                                                 </div>
                                                                 <!--Card content-->
                             

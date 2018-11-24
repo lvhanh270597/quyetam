@@ -154,10 +154,31 @@ Licensed under MIT
                                     <!--First row-->
                                     <div class="row">                                        
                                         <!--Second column-->
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="md-form mb-0">
                                                 <input type="text" id="form1" class="form-control validate" value="<?php echo $balance; ?>" disabled>
                                                 <label for="form2" data-error="wrong" data-success="right">Tài khoản chính</label>
+                                            </div>
+                                        </div>
+                                        <!--First column-->
+                                        <div class="col-md-3">
+                                            <div class="md-form mb-0">
+                                            <select class="browser-default custom-select mb-4" name="role">
+                                              <?
+                                              if ($role == null){
+                                                echo '<option value="" disabled selected>Bạn là?</option>
+                                                <option value="chu_xe" >Chủ xe</option>
+                                                <option value="hanh_khach" >Hành khách</option>';
+                                              }                                           
+                                              else if ($role == 'chu_xe'){
+                                                echo '<option value="chu_xe" >Chủ xe</option>
+                                                <option value="hanh_khach" >Hành khách</option>';
+                                              } else {
+                                                echo '<option value="hanh_khach" >Hành khách</option>
+                                                <option value="chu_xe" >Chủ xe</option>';
+                                              }
+                                              ?>                                                                                               
+                                              </select> 
                                             </div>
                                         </div>
                                             <!-- Material inline 1 -->

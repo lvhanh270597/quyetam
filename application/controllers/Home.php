@@ -31,6 +31,14 @@ class Home extends CI_Controller {
     }       
     
     public function index(){                    
+
+        if ($this->session->userdata('user_logged')){
+            $current_user = $this->user_ml->get_by_primary($this->session->userdata('username'));
+            if ($current_user['role'] == null){
+                redirect('trip/cap_nhat_thong_tin');
+            }
+        }
+
         $data = array(
             'needed_trips' => get_slice($this->all_need_trips, 0, $this->limit_per_page),
             'no_trips' => $this->trip_no_people,

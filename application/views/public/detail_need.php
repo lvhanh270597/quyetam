@@ -127,7 +127,7 @@
                                     </div> 
                                     <?php   
                                     $trip_detail = $this->trip_ml->get_by_primary($trip['trip_id']);
-                                    if ($trip_detail == null){
+                                    if ($trip_detail == null && $this->session->userdata('role') == 'chu_xe'){
                                         echo '
                                         <div class="row">
                                             <div class="col-md-12 text-center my-4">

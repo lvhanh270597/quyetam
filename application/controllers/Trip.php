@@ -260,7 +260,37 @@ class Trip extends CI_Controller {
 
         display('detail_trip', $data);    
     }
-
+    public function execute_with_data($data_sql){
+        unset($data_sql['code']);
+        $data_sql['asker'] = $data_sql['owner'];
+        unset($data_sql['owner']);
+        if ($this->needed_trip_ml->add_into($data_sql)){
+            $insert_id = $this->db->insert_id();
+            $link = 'click vào link <a href="'.site_url('trip/edit_need/'.$insert_id).'"> này </a> để xem yêu cầu vừa tạo.';
+            $message = get_message_success('Bạn đã tạo tạo yêu cầu thành công!<br>', $link);         
+            
+            /* Send for all of users who checked noti_email */
+            $string_from = $this->place_ml->get_by_primary($data_sql['start_from'])['name'];
+            $string_finish = $this->place_ml->get_by_primary($data_sql['finish_to'])['name'];
+            $header = 'Yêu cầu mới!_';
+            $content = 'Có một yêu cầu từ  '.$string_from. ' đến '.$string_finish.' vào lúc '.$data_sql['timestart'].' với giá '.$data_sql['price'].'đ. Bạn có thể nhận chuyến này không?';   
+            foreach ($this->user_ml->get_users_check_notif_email() as $user){                        
+                $email = $this->verify_ml->get_email($user['username']);
+                if ($email){
+                    $datasql = [
+                        'email' => $email, 
+                        'content' => $header.$content,
+                        'created_at' => get_current_time()
+                    ];
+                    $this->queue->add($datasql);                            
+                }                                        
+            }
+            /* Process in the queue */                                 
+            shell_exec('php '.escapeshellarg(FCPATH.'index.php')." queueprocess >/dev/null 2>/dev/null &");                    
+            /********        *******/
+            return ['message' => $message];
+        }    
+    }
     public function create_ask_trip(){
         if (!$this->session->userdata('user_logged')){
             redirect('login');
@@ -334,7 +364,11 @@ class Trip extends CI_Controller {
         } */       
         
         $data = ['owner' => $username, 'message'=>'', '_places' => $this->place_ml->get_all()];
-        
+        $current_user = $this->user_ml->get_by_primary($username);
+        if ($current_user['role'] == null){
+            redirect('trip/cap_nhat_thong_tin');
+        }
+
         if ($this->input->post()){            
             $check = $this->trip_ml->preparing_data();                        
             if ($check['status'] === false){
@@ -342,15 +376,37 @@ class Trip extends CI_Controller {
             }    
             else{
                 $data_sql = $check['data'];
-                // Tạo chuyến đi mới
-                if ($this->trip_ml->add_into($data_sql)){
-                    $insert_id = $this->db->insert_id();
-                    $link = 'click vào link <a href="'.site_url('trip/edit/'.$insert_id).'"> này </a> để xem chuyến đi vừa tạo.';
-                    $data['message'] = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link);
-                }
+                // if la chu xe thi tao chuyen di
+                // neu la hanh khach thi tao yeu cau
+                if ($current_user['role'] != null){
+                    if ($current_user['role'] == 'chu_xe'){
+                        // Tạo chuyến đi mới
+                        if ($this->trip_ml->add_into($data_sql)){
+                            $insert_id = $this->db->insert_id();
+                            $link = 'click vào link <a href="'.site_url('trip/edit/'.$insert_id).'"> này </a> để xem chuyến đi vừa tạo.';
+                            $data['message'] = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link);
+                        }
+                        else{
+                            $data['message'] = get_message_error('Tạo chuyến đi thất bại!');
+                        }
+                    }
+                    else{
+                        // tao yeu cau
+                        $info = $this->execute_with_data($data_sql);
+                        $data['message'] = $info['message'];                        
+                    }
+                }                     
                 else{
-                    $data['message'] = get_message_error('Tạo chuyến đi thất bại!');
-                }            
+                    // Tạo chuyến đi mới
+                    if ($this->trip_ml->add_into($data_sql)){
+                        $insert_id = $this->db->insert_id();
+                        $link = 'click vào link <a href="'.site_url('trip/edit/'.$insert_id).'"> này </a> để xem chuyến đi vừa tạo.';
+                        $data['message'] = get_message_success('Bạn đã tạo chuyến đi thành công!<br>', $link);
+                    }
+                    else{
+                        $data['message'] = get_message_error('Tạo chuyến đi thất bại!');
+                    }
+                }       
             }
         }
 
@@ -759,6 +815,13 @@ class Trip extends CI_Controller {
         $data = [
             'title' => 'Bạn đã mở một yêu cầu tương tự thành công!',
             'content' => 'Click vào <a href="'.site_url('trip/detail_need/'.$trip_id).'"> đây </a> để xem yêu cầu vừa tạo'  
+        ];
+        display('action_info', $data);
+    }
+    public function cap_nhat_thong_tin(){        
+        $data = [
+            'title' => 'Bạn là ai?',
+            'content' => 'Xin hãy cập nhật thông tin rằng bạn là Chủ xe hay Hành khách. Việc này sẽ giúp chúng tôi đưa ra những thông tin phù hợp hơn cho bạn.</br> <h3> Click vào <a href="'.site_url('edit_profile').'"> đây </a> để cập nhật và thực hiện lại thao tác.<br></h3> EasyHere xin chân thành cám ơn. '  
         ];
         display('action_info', $data);
     }

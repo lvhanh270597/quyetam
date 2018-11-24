@@ -40,16 +40,7 @@
                             <!-- Card content -->
                             <div class="card-body text-center">
                                 <!-- Edit Form -->
-                                <form method="post">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="alert alert-info"> 
-                                                <strong>Lưu ý:</strong>                                                
-                                                Nếu tạo chuyến đi, nghĩa là bạn đang là chủ xe và đang cần tìm người để chở.
-                                                Nếu bạn muốn được chở, hãy bấm vào <a href="<?= base_url('trip/create_ask_trip') ?>"> đây </a> để tạo yêu cầu.
-                                            </div>  
-                                        </div>
-                                    </div>  
+                                <form method="post">                                   
                                     <div class="row">
                                         <div class="col-md-12">
                                             <?php echo $message; ?>
@@ -102,10 +93,25 @@
                                         <!--First column-->
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
-                                                <input type="text" id="form1" class="form-control validate" value="<?php echo $this->session->userdata('username'); ?>" disabled>
-                                                <label for="form2" data-error="wrong" data-success="right">Bạn là</label>
+                                                <?
+                                                $role = $this->user_ml->get_by_primary($this->session->userdata('username'));
+                                                if (isset($role['role'])){
+                                                    $role = $role['role'];
+                                                    if ($role == 'chu_xe'){
+                                                        $role = 'Chủ xe';
+                                                    }
+                                                    else{
+                                                        $role = 'Hành khách';
+                                                    }
+                                                }
+                                                else{
+                                                    $role = 'wrong';
+                                                }
+                                                ?>
+                                                <input type="text" id="form1" class="form-control validate" value="<?= $role ?>" disabled>
+                                                <label for="form2" data-error="wrong" data-success="right">Bạn là?</label>
                                             </div>
-                                        </div>
+                                        </div>    
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
                                                 <input type="number" id="form1" class="form-control validate" value="" name="price">

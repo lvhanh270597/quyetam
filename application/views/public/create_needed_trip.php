@@ -111,8 +111,23 @@
                                         </div>       
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
-                                                <input type="text" id="form1" class="form-control validate" value="<?php echo $this->session->userdata('username'); ?>" disabled>
-                                                <label for="form2" data-error="wrong" data-success="right">Người yêu cầu</label>
+                                                <?
+                                                $role = $this->user_ml->get_by_primary($this->session->userdata('username'));
+                                                if (isset($role['role'])){
+                                                    $role = $role['role'];
+                                                    if ($role == 'chu_xe'){
+                                                        $role = 'Chủ xe';
+                                                    }
+                                                    else{
+                                                        $role = 'Hành khách';
+                                                    }
+                                                }
+                                                else{
+                                                    $role = 'wrong';
+                                                }
+                                                ?>
+                                                <input type="text" id="form1" class="form-control validate" value="<?= $role ?>" disabled>
+                                                <label for="form2" data-error="wrong" data-success="right">Bạn là?</label>
                                             </div>
                                         </div>                                        
                                     </div>                                                                                                           
