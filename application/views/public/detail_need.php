@@ -133,7 +133,7 @@
                                             <div class="col-md-12 text-center my-4">
                                                 <input type="text" name="asker" hidden value="'.$this->session->userdata('username').'"/>
                                                 <input type="datetime-local" name="timestart" hidden value="'.$trip['timestart'].'"/>                                            
-                                                <input type="submit" value="Mở chuyến đi này"" class="btn btn-info btn-rounded">
+                                                <input type="submit" value="Chở người này" class="btn btn-info btn-rounded">
                                             </div>
                                         </div>';
                                     }                                    
