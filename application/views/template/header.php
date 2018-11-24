@@ -71,73 +71,7 @@ function beep() {
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!-- Small button group -->
-                <div class="btn-group">
-                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="from_btn"><?php if (isset($from)) echo $from; else echo 'From'; ?></button>
-                    <div class="dropdown-menu">
-                    <?php
-                        foreach ($places as $id => $name){
-                            echo '<a class="dropdown-item" href="#" name="from" id="'.$id.'">'.$name.'</a>';
-                        }                                               
-                    ?>
-                    <!-- 
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" name="from" id="4">Separated link</a>
-                    -->
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="to_btn"><?php if (isset($to)) echo $to; else echo 'To'; ?></button>
-                    <div class="dropdown-menu">
-                    <?php
-                        foreach ($places as $id => $name){
-                            echo '<a class="dropdown-item" href="#" name="to" id="'.$id.'">'.$name.'</a>';
-                        }                                               
-                    ?>
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="emp_btn">Tất cả</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#" name="option" id="all">Tất cả</a>
-                        <a class="dropdown-item" href="#" name="option" id="empty">Còn trống</a>
-                    </div>
-                </div>
-                <input hidden value="null" id="id_from" />
-                <input hidden value="null" id="id_to" />
-                <input hidden value="all" id="id_emp" />
-                <a class="btn-floating btn-sm peach-gradient" id="loveyou"><i class="fa fa-search" aria-hidden="true"></i></a>                                                                  
-                <script>                    
-                    $("a[name=from]").click(function(){                        
-                        $("button[name=from_btn]").text($(this).text());
-                        $("input[id=id_from]").val($(this).attr('id'));
-                    });
-                    $("a[name=to]").click(function(){                        
-                        $("button[name=to_btn]").text($(this).text());
-                        $("input[id=id_to]").val($(this).attr('id'));
-                    });    
-                    $("a[name=option]").click(function(){                        
-                        $("button[name=emp_btn]").text($(this).text());
-                        $("input[id=id_emp]").val($(this).attr('id'));
-                    });                                        
-                    $("a[id=loveyou]").click(function(){                        
-                        window.location.href = '<?php echo site_url('search/combine') ?>' + '/' + $("input[id=id_from]").val() + '/' + $("input[id=id_to]").val() + '/' + $("input[id=id_emp]").val();
-                    });
-                </script>
-                
-                <style>
-                    .fuck{
-                        width: 150px;                    
-                    }
-                    .beau{
-                        height: 100px;                        
-                        width: 200px;
-                    }
-                    .beau:hover{
-                        background-color: #ebebeb;
-                    }
-                </style>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">                
-                    <ul class="nav navbar-nav nav-flex-icons ml-auto">      
+                <ul class="nav navbar-nav nav-flex-icons ml-auto">      
                                                                               
                        <?php
                        if (!$this->session->userdata('user_logged')){
@@ -206,7 +140,7 @@ function beep() {
                        }
                        ?>
                                              
-                     </ul>
+                     </ul>                
                     
                 </div>                
             </div>
