@@ -93,7 +93,7 @@
                                         <!--First column-->
                                         <div class="col-md-3">
                                             <div class="md-form mb-0">
-                                                <?
+                                                <?php
                                                 $role = $this->user_ml->get_by_primary($this->session->userdata('username'));
                                                 if (isset($role['role'])){
                                                     $role = $role['role'];
