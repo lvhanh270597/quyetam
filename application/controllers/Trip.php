@@ -821,7 +821,7 @@ class Trip extends CI_Controller {
     public function cap_nhat_thong_tin(){        
         $data = [
             'title' => 'Bạn là ai?',
-            'content' => 'Xin hãy cập nhật thông tin rằng bạn là Chủ xe hay Hành khách. Việc này sẽ giúp chúng tôi đưa ra những thông tin phù hợp hơn cho bạn.</br> <h3> Click vào <a href="'.site_url('edit_profile').'"> đây </a> để cập nhật và thực hiện lại thao tác.<br></h3> EasyHere xin chân thành cám ơn. '  
+            'content' => 'Xin hãy cập nhật thông tin rằng bạn là Chủ xe hay Hành khách tại Profile của bạn có mục "Bạn là?", bạn hãy bấm vào đó và thực hiện thao tác cập nhật nhé!. Việc này sẽ giúp chúng tôi đưa ra những thông tin phù hợp hơn cho bạn.</br> <h3> Click vào <a href="'.site_url('edit_profile').'"> đây </a> để vào profile của bạn.<br></h3> EasyHere xin chân thành cám ơn. '  
         ];
         display('action_info', $data);
     }
