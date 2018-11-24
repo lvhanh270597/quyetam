@@ -165,12 +165,12 @@ Licensed under MIT
                                             <div class="md-form mb-0">
                                             <select class="browser-default custom-select mb-4" name="role">
                                               <?php                                              
-                                              if ($role == null){
+                                              if ($role === null){
                                                 echo '<option value="" disabled selected>Bạn là?</option>
                                                 <option value="chu_xe" >Chủ xe</option>
                                                 <option value="hanh_khach" >Hành khách</option>';
                                               }                                           
-                                              else if ($role == 'chu_xe'){
+                                              else if ($role === 'chu_xe'){
                                                 echo '<option value="chu_xe" >Chủ xe</option>
                                                 <option value="hanh_khach" >Hành khách</option>';
                                               } else {
