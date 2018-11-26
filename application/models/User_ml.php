@@ -7,6 +7,7 @@ class User_ml extends Quickaccess
 	protected $db_table = 'user';
 	protected $personal_info = ['username', 'password'];
 	protected $editable_fields = ['username','full_name', 'gender', 'password', 'role'];
+	protected $check_fields = ['username','full_name', 'gender', 'password'];
 	protected $fields = ['facebook', 'phone_num', 'gender', 'university', 'subject', 'noti_email', 'full_name', 'role'];	
 	private $security;
 
@@ -75,7 +76,7 @@ class User_ml extends Quickaccess
 			'gender' => 'Bạn phải điền gender',			
 		];
 		$data = [];
-		foreach ($this->editable_fields as $field){
+		foreach ($this->check_fields as $field){
 			if ($this->input->post($field) === null){ 
 				return [
 					'status' => false,
