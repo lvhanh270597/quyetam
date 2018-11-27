@@ -107,7 +107,7 @@
                                                                 <!--Card footer-->
                                                                 <div class="card-footer pb-0">
                                                                     <div class="row mb-0">
-                                                                        <span><strong> '.after($trip['timestart']).'</strong></span>
+                                                                        <span><strong> '.get_exactly_time($trip['timestart']).'</strong></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -502,7 +502,7 @@
                                                                     <!--Category & Title-->                                                                
                                                                     <h6 class="card-title mb-1"><strong><a href="#" class="dark-grey-text">'.$places[$trip['start_from']].' <i class="fa fa-mail-forward" aria-hidden="true"></i> '.$places[$trip['finish_to']].'</a></strong></h6>
                                                                     '.$free.'
-                                                                    <span><strong> '.after($trip['timestart']).' ('.$trip['timestart'].')</strong></span>
+                                                                    <span><strong> '.get_exactly_time($trip['timestart']).'</strong></span>
                                                                     <a href='.site_url('review/detail/'.$owner['username']).'><button class="btn aqua-gradient btn-rounded btn-sm">'.$owner['full_name'].'</button></a>
                                                                     <!--Card footer-->
                                                                     '.$show.'                                                                    

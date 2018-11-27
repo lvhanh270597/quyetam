@@ -66,6 +66,27 @@ class Needed_trip_ml extends Trip_template
 		$timestart = $this->input->post('timestart');
 		$datestart = $this->input->post('datestart');
 		$timestart = $datestart.' '.$timestart;
+
+		$price = $this->input->post('price');
+		$price = get_price($price);		
+		
+		if ($price === false){
+			return [
+				'status' => false,
+				'data' => get_message_error('Thất bại!<br>', 'Giá tiền phải là một con số!')
+			];
+		}
+		else{
+			$price2 = (int)$price;
+			if ($price2 < 0){
+				return [
+					'status' => false,
+					'data' => get_message_error('Thất bại!<br>', 'Giá tiền phải lớn hơn 0!')
+				];
+			}
+		}
+		$price = round($price, -3);
+
 		if (!validateDate($timestart)){
 			return [
 				'status' => false,
@@ -79,6 +100,8 @@ class Needed_trip_ml extends Trip_template
 			];
 		}
 		$data['timestart'] = $timestart;
+		$data['price'] = $price2;
+		
 		$this->db->update($this->db_table,$data,[$this->primary => $id]);
 		//upload an image to a server if a new row was successfully edited
 		return ['status' => true];

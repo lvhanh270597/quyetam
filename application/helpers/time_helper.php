@@ -96,6 +96,19 @@ if ( ! function_exists('after')){
     }
 }
 
+if (!function_exists('get_exactly_time')){
+    function get_exactly_time($time){
+        $today = date('Y:m:d', strtotime(get_current_time()));
+        $thatday = date('Y:m:d', strtotime($time));
+        $day = 'hôm nay';
+        if ($today != $thatday){
+            $day = 'ngày mai';
+        }
+        $time = date("H:i",strtotime($time));
+        return $time.' '.$day;
+    }
+}
+
 if (! function_exists('get_compare')){
     function get_compare($time){
         date_default_timezone_set('Asia/Ho_Chi_Minh');

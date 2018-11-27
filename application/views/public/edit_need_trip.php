@@ -113,7 +113,7 @@
                                         <!--First column-->                                        
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
-                                                <input type="text" id="form1" class="form-control validate" value="<?php echo $trip['price']; ?>đ" disabled name="price">
+                                                <input type="number" id="form1" class="form-control validate" value="<?php echo $trip['price']; ?>"  name="price">
                                                 <label for="form2" data-error="wrong" data-success="right">Giá</label>
                                             </div>
                                         </div>
