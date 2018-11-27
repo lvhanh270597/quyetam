@@ -108,6 +108,24 @@ if ( ! function_exists('get_message_error')){
     }
 }
 
+
+if ( ! function_exists('get_message_warning')){
+    function get_message_warning($content, $sub=''){
+        $message_error = '
+		<div class="row">
+			<div class="col-md-12">
+				<div class="alert alert-warning"> 
+					<strong>                                        
+						'.$content.'
+                    </strong>
+                    '.$sub.'
+				</div>  
+			</div>
+        </div>    ';	
+        return $message_error;
+    }
+}
+
 if ( ! function_exists('get_message_info')){
     function get_message_info($content, $sub=''){
         $message_error = '

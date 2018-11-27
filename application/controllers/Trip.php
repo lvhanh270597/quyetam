@@ -266,8 +266,19 @@ class Trip extends CI_Controller {
         unset($data_sql['owner']);
         if ($this->needed_trip_ml->add_into($data_sql)){
             $insert_id = $this->db->insert_id();
+
+            // lay thong tin gia tien
+            $price = $this->price_ml->get_price_from_and_to($data_sql['start_from'], $data_sql['finish_to']);
+            $string_info = '';
+            if ($price != null){
+                if ($price['amount'] > $data_sql['price']){
+                    $string_info = get_message_warning('Giá niêm yết trên hệ thống cho tuyến đường này là: '.$price['amount'].'đ', '<br>Nếu bạn trả ít hơn, có thể sẽ ít lôi cuốn chủ xe hơn. Bạn có thể sửa giá tại <a href="'.site_url('trip/edit_need/'.$insert_id).'">đây</a>.');
+                }
+            }
+            //
+
             $link = 'click vào link <a href="'.site_url('trip/edit_need/'.$insert_id).'"> này </a> để xem yêu cầu vừa tạo.';
-            $message = get_message_success('Bạn đã tạo tạo yêu cầu thành công!<br>', $link);         
+            $message = get_message_success('Bạn đã tạo tạo yêu cầu thành công!<br>', $link).$string_info;         
             
             /* Send for all of users who checked noti_email */
             $string_from = $this->place_ml->get_by_primary($data_sql['start_from'])['name'];
