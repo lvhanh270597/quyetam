@@ -285,16 +285,18 @@ class Trip extends CI_Controller {
             $string_finish = $this->place_ml->get_by_primary($data_sql['finish_to'])['name'];
             $header = 'Yêu cầu mới!_';
             $content = 'Có một yêu cầu từ  '.$string_from. ' đến '.$string_finish.' vào lúc '.$data_sql['timestart'].' với giá '.$data_sql['price'].'đ. Bạn có thể nhận chuyến này không?';   
-            foreach ($this->user_ml->get_users_check_notif_email() as $user){                        
-                $email = $this->verify_ml->get_email($user['username']);
-                if ($email){
-                    $datasql = [
-                        'email' => $email, 
-                        'content' => $header.$content,
-                        'created_at' => get_current_time()
-                    ];
-                    $this->queue->add($datasql);                            
-                }                                        
+            foreach ($this->user_ml->get_users_check_notif_email() as $user){                                        
+                if ($this->road_care_ml->check_by_three_info($data_sql['start_from'], $data_sql['finish_to'], $user['username'])){
+                    $email = $this->verify_ml->get_email($user['username']);
+                    if ($email){
+                        $datasql = [
+                            'email' => $email, 
+                            'content' => $header.$content,
+                            'created_at' => get_current_time()
+                        ];
+                        $this->queue->add($datasql);                            
+                    }                                        
+                }
             }
             /* Process in the queue */                                 
             shell_exec('php '.escapeshellarg(FCPATH.'index.php')." queueprocess >/dev/null 2>/dev/null &");                    

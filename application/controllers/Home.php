@@ -35,7 +35,7 @@ class Home extends CI_Controller {
         if ($this->session->userdata('user_logged')){
             $current_user = $this->user_ml->get_by_primary($this->session->userdata('username'));
             if ($current_user['role'] == null){
-                redirect('trip/cap_nhat_thong_tin');
+                redirect('cap_nhat_thong_tin');
             }
         }
 

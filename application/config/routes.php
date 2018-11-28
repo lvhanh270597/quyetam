@@ -54,6 +54,7 @@ $route['page_not_found'] = 'home/page_not_found';
 $route['pages/(:num)'] = 'home/pages/$1';
 $route['show_cards'] = 'admin/show_cards';
 $route['logout'] = 'login/logout';
+$route['cap_nhat_thong_tin'] = 'trip/cap_nhat_thong_tin';
 $route['register'] = 'login/register';
 $route['my_trips'] = 'trip/my_trips';
 $route['verify_transaction'] = 'home/verify_transaction';

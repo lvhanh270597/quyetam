@@ -229,3 +229,13 @@ CREATE TABLE visited(
 	user_access VARCHAR(30),
 	created_at DATETIME
 )
+
+CREATE TABLE road_care (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	start_from INT(6) UNSIGNED,
+	finish_to INT(6) UNSIGNED,
+	username VARCHAR(30) COLLATE utf8_unicode_ci NOT NULL,
+	FOREIGN KEY (username) references user(username),
+	FOREIGN KEY (start_from) references place(id),
+	FOREIGN KEY (finish_to) references place(id)	
+);
