@@ -252,29 +252,16 @@ Licensed under MIT
                                             </div>
                                         </div>                                                                            
                                     </div>                                    
-                                    <!--/.Second row-->                                   
+                                    <!--/.Second row-->  
                                     <div class="row">
-                                        <!--First column-->
                                         <div class="col-md-12">
-                                            <div class="form-check form-check-inline">
-                                            <!-- Material unchecked -->
-                                                <?php  
-                                                    if ($noti_email){
-                                                        $class = 'materialChecked';
-                                                        $check = 'checked';                                                        
-                                                    }
-                                                    else{
-                                                        $class = 'materialUnchecked';
-                                                        $check = '';
-                                                    }
-                                                ?>
+                                            <div class="form-check form-check-inline">                                            
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="<?= $class ?>" name="noti_email" value="1" <?= $check ?>>
-                                                    <label class="form-check-label" for="<?= $class ?>">Nhận thông báo về một yêu cầu mới qua email?</label>
+                                                <a href="<?= site_url('profile/road') ?>" class="btn btn-sm btn-info btn-rounded">Cập nhật tuyến đường mà bạn quan tâm</a> 
                                                 </div>                                                                                                                                  
                                             </div>
                                         </div>                                                                                                         
-                                    </div>
+                                    </div>                                                                      
                                     <!--/.Second row-->
                                     <!--/.Third row-->
                                     <!-- Fourth row -->

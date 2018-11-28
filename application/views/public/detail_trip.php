@@ -204,6 +204,10 @@
                                             foreach ($comments as $comment){
                                                 $from = $this->user_ml->get_by_primary($comment['user_id']);
                                                 $image = profile_image($from['gender'], $from['username'], $from['image']);
+                                                $seen = '';
+                                                if ($comment['seen'] && $from['username'] == $cur_user){
+                                                    $seen = 'Đã xem';
+                                                }
                                                 echo '
                                                 <div class="media" id="dmm">                        
                                                     <img id="fuck" class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="'.$image.'" alt="Avatar">
@@ -212,7 +216,8 @@
                                                         '.$comment['content'].'
                                                         <div class="media mt-3 shadow-textarea">
                                                         </div>          
-                                                        <label> <small>'.$comment['created'].'</small> </label>                              
+                                                        <label> <small>'.$comment['created'].'</small> </label>
+                                                        <label> <small>'.$seen.'</small> </label>
                                                     </div>                                    
                                                 </div>
                                                 ';

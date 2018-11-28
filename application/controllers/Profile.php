@@ -127,4 +127,39 @@ class Profile extends CI_Controller {
         ]);        
 		display('recharge', $data);
 	}
+	public function road(){
+		$message = '';
+		$data = [];
+		$username = $this->session->userdata('username');
+		if ($this->input->post()){
+			// update noti email
+			$this->user_ml->edit();
+			// remove all old roads
+			$this->road_care_ml->remove_all_from_username($username);
+			$starts = $this->input->post('start');
+			$finishs = $this->input->post('finish');
+			$cnt = min(count($starts), count($finishs));
+			$success_cnt = 0;
+			for ($i=0; $i<$cnt; $i++){
+				if ($starts[$i] && $finishs[$i]){
+					$datasql = [
+						'start_from' => $starts[$i],
+						'finish_to' => $finishs[$i],
+						'username' => $username						
+					];
+					$this->road_care_ml->add_into($datasql);
+				}
+				$success_cnt += 1;
+			}
+			$message = get_message_success('Cập nhật thông tin thành công!', '');
+		}
+		$user = $this->user_ml->get_by_primary($username);
+		$noti_email = $user['noti_email'];
+
+		$road_cares = $this->road_care_ml->get_all_from_username($username);
+		$data['all_roads'] = $road_cares;
+		$data['noti_email'] = $noti_email;
+		$data['message'] = $message;
+		display('road_update', $data);
+	}
 }
