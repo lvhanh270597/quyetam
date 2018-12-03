@@ -87,4 +87,46 @@ class Admin extends CI_Controller {
 		];
 		$this->load->view('public/cards', $data);
 	}
+	public function create_all(){		
+		$map = ['Sunday' => 8, 'Monday' => 2, 'Tuesday' => 3, 'Wednesday' => 4, 'Thursday' => 5, 'Friday' => 6, 'Saturday' => 7];
+		$current_date = $map[getDay()];		
+		$cnt = 0;
+		$fail = 0;		
+		$tomorrow = get_next_date();	
+		foreach ($this->calendar_ml->get_all() as $cal){
+			if ($current_date == $cal['thu']){
+				$user = $this->user_ml->get_by_primary($cal['username']);
+				$getRole = $user['role'];
+				$timestart = $cal['timestart'];
+				$timestart = date('Y-m-d H:i:s', strtotime("$tomorrow $timestart"));
+				if ($getRole == 'hanh_khach'){ 									
+					$datasql = [
+						'asker' => $cal['username'],
+						'start_from' => $cal['start_from'],
+						'finish_to' => $cal['finish_to'],
+						'created' => get_current_time(),
+						'price' => $cal['price'],
+						'timestart' => $timestart,
+						'trip_id' => 0,
+						'type_transaction' => 'Trực tiếp'
+					];
+					$fail += (!$this->needed_trip_ml->add_into($datasql));
+				}
+				else{
+					$datasql = [
+						'owner' => $cal['username'],
+						'start_from' => $cal['start_from'],
+						'finish_to' => $cal['finish_to'],
+						'created' => get_current_time(),
+						'price' => $cal['price'],
+						'code' => random_number(6),												
+						'timestart' => $timestart,
+					];
+					$fail += (!$this->trip_ml->add_into($datasql));
+				}
+				$cnt += 1;
+			}
+		}		
+		echo 'Created '.$cnt.' successfully! <br>Fail '.$fail;
+	}
 }

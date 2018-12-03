@@ -239,3 +239,17 @@ CREATE TABLE road_care (
 	FOREIGN KEY (start_from) references place(id),
 	FOREIGN KEY (finish_to) references place(id)	
 );
+
+CREATE TABLE calendar (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(30) COLLATE utf8_unicode_ci NOT NULL,
+	start_from INT(6) UNSIGNED,
+	finish_to INT(6) UNSIGNED,
+	thu INT(2) UNSIGNED,
+	timestart TIME,
+	price INT(6) UNSIGNED,
+	bat BOOLEAN NOT NULL,
+	FOREIGN KEY (username) references user(username),
+	FOREIGN KEY (start_from) references place(id),
+	FOREIGN KEY (finish_to) references place(id)
+)

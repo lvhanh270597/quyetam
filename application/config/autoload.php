@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url','html', 'script','cookie', 'time', 'layout', 'string', 'image');
+$autoload['helper'] = array('url','html', 'script','cookie', 'time', 'layout', 'string', 'image', 'number');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Config files
@@ -131,4 +131,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('review_ml', 'user_ml', 'trip_ml', 'notify_ml', 'needed_trip_ml', 'place_ml', 'comment_ml', 'price_ml', 'matched_ml', 'verify_ml', 'visited_ml', 'road_care_ml');
+$autoload['model'] = array('review_ml', 'user_ml', 'trip_ml', 'notify_ml', 'needed_trip_ml', 'place_ml', 'calendar_ml', 'comment_ml', 'price_ml', 'matched_ml', 'verify_ml', 'visited_ml', 'road_care_ml');
