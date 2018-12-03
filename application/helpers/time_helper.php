@@ -9,6 +9,15 @@ if ( ! function_exists('get_current_time'))
         return $date;
     }   
 }
+if ( ! function_exists('get_next_date'))
+{		
+    function get_next_date()
+    {
+    	date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $date = date('Y-m-d', strtotime(' +1 day'));
+        return $date;
+    }   
+}
 if ( ! function_exists('ago')){
     function ago($timestamp){
         date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -108,7 +117,14 @@ if (!function_exists('get_exactly_time')){
         return $time.' '.$day;
     }
 }
-
+if (!function_exists('getDay')){
+    function getDay(){
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $dowMap = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+        $dow_numeric = date('w');
+        return $dowMap[$dow_numeric];
+    }
+}
 if (! function_exists('get_compare')){
     function get_compare($time){
         date_default_timezone_set('Asia/Ho_Chi_Minh');

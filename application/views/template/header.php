@@ -80,6 +80,12 @@ function beep() {
                             <a href="'.site_url('trip/create').'" class="btn btn-info btn-sm">
                                 tạo chuyến đi
                             </a>
+                        </li> ';
+                        echo '
+                        <li class="nav-item">
+                            <a href="'.site_url('calendar').'" class="btn btn-info btn-sm">
+                            Lập lịch
+                            </a>
                         </li> ';   
                         echo '
                            <a id="navbar-static-login" class="btn btn-info btn-rounded btn-sm waves-effect waves-light"  href="'.site_url('login').'">Log In
@@ -137,6 +143,12 @@ function beep() {
                                tạo chuyến đi
                            </a>
                        </li>        ';
+                       echo '
+                        <li class="nav-item">
+                            <a href="'.site_url('calendar').'" class="btn btn-info btn-sm">
+                            Lập lịch
+                            </a>
+                        </li> ';   
                        }
                        ?>
                                              

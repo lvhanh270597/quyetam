@@ -61,7 +61,6 @@
                                     <div class="card-body card-body-cascade">
                                                         <!--Card-->
                                                         
-                                        <div class="card card-cascade narrower">
                                             <!-- Card content -->
                                             
                                             <div class="row">                                                
@@ -133,7 +132,7 @@
                                                 <!--Grid column-->                        
 
                                             </div>                                            
-                                        </div>
+                                        
                                     </div>
                                     </div>
                                     <!-- Nav tabs -->
