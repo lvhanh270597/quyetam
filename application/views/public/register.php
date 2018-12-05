@@ -65,7 +65,11 @@
         
     </style>
 <style type="text/css">/* Chart.js */
-@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
+
+<script src='https://www.google.com/recaptcha/api.js?render=6Lfm6X4UAAAAAJIDkh4TpbDDXBg4otXfSRK11D96'></script>
+
+</head>
 
         <!-- Intro Section -->
         <section class="view intro-2">
@@ -150,6 +154,7 @@
                                                     <label for="form4" class="white-text">Confirm Password</label>
                                                     <p class="error" id="confirm_password"></p>
                                                 </div>                       
+                                                <div class="g-recaptcha" data-sitekey="6Lfm6X4UAAAAAJIDkh4TpbDDXBg4otXfSRK11D96"></div>
                                             </form>
                                         </div>
                                         <div class="text-center mt-4">
@@ -178,3 +183,12 @@
     
     <!-- Main Navigation -->    
     <!--/.Footer-->
+
+    <script>
+        grecaptcha.ready(function() {
+        grecaptcha.execute('6Lfm6X4UAAAAAJIDkh4TpbDDXBg4otXfSRK11D96', {action: 'action_name'})
+        .then(function(token) {
+        // Verify the token on the server.
+        });
+        });
+</script>
