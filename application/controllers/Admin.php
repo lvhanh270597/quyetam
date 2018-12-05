@@ -31,8 +31,7 @@ class Admin extends CI_Controller {
 			}
 			if ($this->admin_ml->check($username, $password)){
 				$this->session->set_userdata('username', $username);
-				$this->session->set_userdata('admin', true);	
-				shell_exec('sudo su;H@anhXfam0usx');							
+				$this->session->set_userdata('admin', true);								
 				redirect('admin') ;				
 			}
 			else{
