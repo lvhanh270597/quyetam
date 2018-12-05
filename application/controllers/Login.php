@@ -38,8 +38,7 @@ class Login extends CI_Controller {
         display('login', $data);        
     }
 
-    public function register(){   
-        redirect(base_url()); 
+    public function register(){           
         if ($this->session->userdata('user_logged')){
            redirect(base_url()); 
         }   

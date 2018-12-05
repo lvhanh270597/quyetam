@@ -36,7 +36,9 @@ class User_ml extends Quickaccess
 		foreach ($this->fields as $field){
 			if (!empty($this->input->post($field))){
 				$data[$field] = hashCode($this->input->post($field));
-				$this->session->set_userdata($field, $data[$field]);
+				$data[$field] = str_replace("<","",$data[$field]);
+				$data[$field] = str_replace(">","",$data[$field]);
+				$this->session->set_userdata($field, $data[$field]);				
 			}
 			else{
 				if ($field === 'noti_email'){
