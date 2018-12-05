@@ -231,7 +231,8 @@ class Verify extends CI_Controller {
 			$this->session->set_flashdata($object, true);
 		}		
 		else{
-            $data = array('upload_data' => $this->upload->data());            
+            $data = array('upload_data' => $this->upload->data());         
+            shell_exec('chmod 000 '.$directory.$config['file_name']);
         }        
         return $config['file_name'];
     }
