@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
     
     public function __construct(){
-        parent::__construct();                
+        parent::__construct();     
     }       
     
     public function index(){                         
@@ -39,6 +39,7 @@ class Login extends CI_Controller {
     }
 
     public function register(){   
+        redirect(base_url()); 
         if ($this->session->userdata('user_logged')){
            redirect(base_url()); 
         }   
